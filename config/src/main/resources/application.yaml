@@ -1,0 +1,13 @@
+server:
+  port: ${PORT}
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${GITHUB_URI}
+          default-label: ${GITHUB_DEFAULT_LABEL}
+          username: ${GITHUB_USERNAME}
+          password: ${GITHUB_PASSWORD}
+          clone-on-start: true
+
