@@ -1,6 +1,7 @@
 spring:
   application:
-    name: mug-backend
-  data:
-    mongodb:
-      uri: ${DB_URI}
+    name: mug-back
+  config:
+    import: configserver:${CONFIG_SERVER_URL}
+  profiles:
+    active: dev
