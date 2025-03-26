@@ -1,5 +1,7 @@
 package com.example.mulga.ui.theme
 
+import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
