@@ -2,6 +2,7 @@ package com.example.mugbackend.transaction.controller;
 
 
 import com.example.mugbackend.analysis.domain.Analysis;
+import com.example.mugbackend.transaction.domain.Transaction;
 import com.example.mugbackend.transaction.dto.MonthlyTransactionDto;
 import com.example.mugbackend.transaction.service.TransactionService;
 import com.example.mugbackend.user.domain.User;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -27,10 +30,15 @@ public class TransactionController {
             @PathVariable int month) {
 
         int monthTotal = transactionService.getMonthTotal(user.getId(), year, month);
-
         Map<Integer, Analysis.DailyAmount> daily = transactionService.getDaily(user.getId(), year, month);
+        LinkedHashMap<Integer, List<Transaction>> transactions = transactionService.getTransactions(user.getId(), year, month);
 
-
-//        return transactionService.getMonthlyTransactions(user.getId(), year, month);
+        return MonthlyTransactionDto.builder()
+                .monthTotal(monthTotal)
+                .year(year)
+                .month(month)
+                .daily(daily)
+                .transactions(transactions)
+                .build();
     }
 }
