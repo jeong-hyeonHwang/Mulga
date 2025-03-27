@@ -25,7 +25,7 @@ public class TransactionController {
 
     @GetMapping("/{year}/{month}")
     public MonthlyTransactionDto getMonthlyTransactions(
-            @AuthenticationPrincipal User user,
+            User user,
             @PathVariable int year,
             @PathVariable int month) {
 
