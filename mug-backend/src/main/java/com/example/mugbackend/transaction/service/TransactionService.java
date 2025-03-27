@@ -50,4 +50,8 @@ public class TransactionService {
         return transactions;
     }
 
+    public Transaction getLastTransaction(String userId) {
+
+    }
+
 }
