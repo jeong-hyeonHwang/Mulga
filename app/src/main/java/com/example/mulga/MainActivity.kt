@@ -8,9 +8,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.Button
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.mulga.feature.component.main.MainScreen
+import com.example.mulga.feature.login.LoginScreen
 import com.example.mulga.ui.theme.MulGaTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +22,26 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MulGaTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                // 로그인 상태를 판단하는 예시 변수 (실제 구현에서는 ViewModel이나 Repository에서 처리)
+                var isLoggedIn by remember { mutableStateOf(false) }
+
+                // 조건에 따라 화면 전환
+                if (isLoggedIn) {
+                    // 로그인된 경우: 네비게이션이 있는 메인 화면으로 이동
+                    MainScreen()
+                } else {
+                    // 로그인되지 않은 경우: 로그인 화면 표시
+                    LoginScreen(onLoginSuccess = { isLoggedIn = true })
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun LoginScreenPreview() {
     MulGaTheme {
-        Greeting("Android")
+        LoginScreen(onLoginSuccess = {})
     }
 }
