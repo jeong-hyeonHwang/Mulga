@@ -1,6 +1,7 @@
 package com.example.mugbackend.transaction.controller;
 
 
+import com.example.mugbackend.analysis.domain.Analysis;
 import com.example.mugbackend.transaction.dto.MonthlyTransactionDto;
 import com.example.mugbackend.transaction.service.TransactionService;
 import com.example.mugbackend.user.domain.User;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/calendar")
@@ -25,9 +28,8 @@ public class TransactionController {
 
         int monthTotal = transactionService.getMonthTotal(user.getId(), year, month);
 
+        Map<Integer, Analysis.DailyAmount> daily = transactionService.getDaily(user.getId(), year, month);
 
-
-//        transactionService.getMonthlyDaily(user.getId(), year, month);
 
 //        return transactionService.getMonthlyTransactions(user.getId(), year, month);
     }
