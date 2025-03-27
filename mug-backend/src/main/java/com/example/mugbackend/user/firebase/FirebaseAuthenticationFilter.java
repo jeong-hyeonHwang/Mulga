@@ -1,6 +1,7 @@
 package com.example.mugbackend.user.firebase;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -40,9 +41,30 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
 		if(authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
 			throw new TokenUnprovidedException();
 		}
+
+		String uid = null;
 		try {
 			FirebaseService.DecodedToken decodedToken = firebaseService.parseToken(authorizationHeader);
-			User userOpt = userService.findUserById(decodedToken.uid());
+			uid = decodedToken.uid();
+		} catch (TokenInvalidException e) {
+			throw new TokenInvalidException();
+		}
+
+		if ("POST".equalsIgnoreCase(method) && requestUri.equals("/signup")) {
+			CustomUserDetails userDetails = CustomUserDetails.builder().id(uid).build();
+
+			UsernamePasswordAuthenticationToken authentication =
+				new UsernamePasswordAuthenticationToken(userDetails, null, Collections.emptyList());
+
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+
+			filterChain.doFilter(request, response);
+
+			return;
+		}
+
+		try {
+			User userOpt = userService.findUserById(uid);
 			CustomUserDetails userDetails = CustomUserDetails.of(userOpt);
 			UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authToken);

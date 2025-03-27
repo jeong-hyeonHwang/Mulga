@@ -10,4 +10,5 @@ import com.example.mugbackend.user.domain.User;
 @Repository
 public interface UserRepository extends MongoRepository<User, String> {
 	Optional<User> findById(String id);
+	Optional<User> findByIdAndIsWithdrawnFalse(String id);
 }

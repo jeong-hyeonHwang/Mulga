@@ -30,9 +30,18 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http
 			.csrf(AbstractHttpConfigurer::disable)
+			.authorizeHttpRequests(auth -> auth
+				.requestMatchers(request -> request.getRequestURI().equals("/signup")).permitAll()
+				.anyRequest().authenticated()
+			)
 			.cors(cors -> cors.configurationSource(corsConfigurationSource())) // CORS 설정
 			.addFilterBefore(firebaseAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
 			.addFilterBefore(exceptionHandlerFilter, FirebaseAuthenticationFilter.class)
+			.exceptionHandling(handling -> handling
+				.authenticationEntryPoint((request, response, authException) -> {
+					throw authException;
+				})
+			)
 			.build();
 	}
 
