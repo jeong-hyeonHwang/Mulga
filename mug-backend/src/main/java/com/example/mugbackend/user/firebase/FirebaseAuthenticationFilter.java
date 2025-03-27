@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.example.mugbackend.common.exception.MulgaException;
 import com.example.mugbackend.common.exception.TokenInvalidException;
 import com.example.mugbackend.common.exception.TokenUnprovidedException;
 import com.example.mugbackend.user.domain.User;
@@ -45,8 +46,11 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
 			CustomUserDetails userDetails = CustomUserDetails.of(userOpt);
 			UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authToken);
-
-		} catch (Exception e) {
+		}
+		catch (MulgaException e) {
+			throw new MulgaException(e.getErrorCode());
+		}
+		catch (Exception e) {
 			throw new TokenInvalidException();
 		}
 
