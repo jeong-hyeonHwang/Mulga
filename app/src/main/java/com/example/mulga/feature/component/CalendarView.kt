@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -17,6 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mulga.ui.theme.MulGaTheme
 import java.time.LocalDate
 import java.time.YearMonth
 
@@ -74,7 +76,7 @@ fun CustomCalendarView(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(12.dp)
     ) {
         // 월/연도 확인용
 //        Text(
@@ -89,12 +91,12 @@ fun CustomCalendarView(
                 Box(
                     modifier = Modifier
                         .weight(1f)
-                        .padding(top = 8.dp),
+                        .padding(top = 4.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = dayOfWeek,
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MulGaTheme.typography.caption,
                         textAlign = TextAlign.Center
                     )
                 }
@@ -106,17 +108,9 @@ fun CustomCalendarView(
             columns = GridCells.Fixed(7),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp)
         ) {
             items(dayDataList) { dayData ->
-                if (dayData == null) {
-                    // 첫 줄 시작 전의 빈 칸
-                    Spacer(
-                        modifier = Modifier
-                            .aspectRatio(1f) // 칸 크기 맞춤
-                            .padding(4.dp)
-                    )
-                } else {
+                if (dayData != null) {
                     DayCell(
                         dayData = dayData,
                         isSelected = dayData.date == selectedDate,
@@ -139,58 +133,60 @@ fun DayCell(
     isSelected: Boolean,
     onClick: (LocalDate) -> Unit
 ) {
-    // 지출/수입을 보기 좋게 포맷 (예: 123,000)
-    val expenseText = String.format("%,d", dayData.expense)
-    val incomeText = String.format("%,d", dayData.income)
+    // 지출/수입을 보기 좋게 포맷 (예: 123,000), 지출은 음수, 수입은 양수
+    val expenseText = String.format("-%,d", dayData.expense)
+    val incomeText = String.format("+%,d", dayData.income)
 
-    // 지출은 음수, 수입은 양수
-    // 여기서는 간단히 Color.Gray / Color.Black 정도로 예시
-    val expenseColor = Color(0xFF0090FF) // 파란색 느낌
-    val incomeColor = Color(0xFF999999) // 그레이 계열
+    // 지출 수입 색 지정
+    val expenseColor = MulGaTheme.colors.primary
+    val incomeColor = MulGaTheme.colors.grey2
 
     Box(
         modifier = Modifier
-            .aspectRatio(1f) // 정사각형 칸
-            .padding(4.dp)
+            .padding(top = 8.dp)
             .clickable { onClick(dayData.date) },
         contentAlignment = Alignment.Center
     ) {
-        // 선택된 날짜면 동그라미 배경
-        if (isSelected) {
-            Box(
-                modifier = Modifier
-                    .size(36.dp)
-                    .clip(MaterialTheme.shapes.small)
-                    .background(Color(0xFF00B0FF).copy(alpha = 0.3f))
-            )
-        }
-        // 날짜/지출/수입 표시
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // 날짜 숫자
-            Text(
-                text = dayData.date.dayOfMonth.toString(),
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontSize = 16.sp,
-                    color = if (isSelected) Color(0xFF00B0FF) else Color.Black
+            // 날짜 숫자를 원 안에 표시 (선택된 경우에만 원 배경 적용)
+            Box(
+                modifier = Modifier
+                    .size(22.dp)
+                    .then(
+                        if (isSelected)
+                            Modifier
+                                .clip(CircleShape)
+                                .background(MulGaTheme.colors.primary)
+                        else Modifier
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = dayData.date.dayOfMonth.toString(),
+                    style = MulGaTheme.typography.caption,
+                    color = if (isSelected) MulGaTheme.colors.white1 else MulGaTheme.colors.black1
                 )
-            )
-            // 지출(음수)
-            Text(
-                text = expenseText,
-                style = MaterialTheme.typography.bodySmall.copy(
+            }
+            Column (
+                modifier = Modifier.padding(vertical = 4.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                // 지출 표시
+                Text(
+                    text = expenseText,
+                    style = MulGaTheme.typography.label,
                     color = expenseColor
                 )
-            )
-            // 수입(양수)
-            Text(
-                text = incomeText,
-                style = MaterialTheme.typography.bodySmall.copy(
+                // 수입 표시
+                Text(
+                    text = incomeText,
+                    style = MulGaTheme.typography.label,
                     color = incomeColor
                 )
-            )
+            }
         }
     }
 }
