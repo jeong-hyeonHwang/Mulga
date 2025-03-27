@@ -3,7 +3,6 @@ package com.example.mugbackend.common.exception;
 import java.io.IOException;
 
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -19,16 +18,10 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
 
 
 		try{
-
 			filterChain.doFilter(request,response);
-			System.out.println("--------AFTER FILTER CHAIN---------");
-			System.out.println("RESPONSE STATUS: " + response.getStatus());
 		} catch (MulgaException ex){
-			System.out.println("--------MULGA---------");
 			setErrorResponse(response, ex.getErrorCode());
 		} catch (Exception ex){
-			System.out.println("--------EXCEPTION---------");
-			System.out.println(ex.getMessage());
 			setErrorResponse(response, CommonErrorCode.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -38,7 +31,6 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
 		response.setContentType("application/json");
 
 		String jsonBody = "{\"code\":\"" + errorCode.getCode() + "\"}";
-		System.out.println(jsonBody);
 		try{
 			response.getWriter().write(jsonBody);
 			response.flushBuffer();

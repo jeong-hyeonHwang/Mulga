@@ -32,7 +32,6 @@ public class UserController {
 		@AuthenticationPrincipal CustomUserDetails userDetails,
 		@RequestBody @Valid UserCreateDto dto
 	) {
-		System.out.println("_________-conftoller-------");
 		return ResponseEntity.ok(userService.signUp(userDetails, dto));
 	}
 }
