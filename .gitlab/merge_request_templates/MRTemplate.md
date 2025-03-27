@@ -1,5 +1,5 @@
 ## 📝 지라 링크
-- [JIRA-번호](https://jira.example.com/browse/JIRA-번호)
+- [JIRA-번호](https://ssafy.atlassian.net/browse/S12P21A207-번호호)
 
 ---
 
