@@ -25,8 +25,8 @@ public record CustomUserDetails (
 			.name(user.getName())
 			.budget(user.getBudget())
 			.email(user.getEmail())
-			.isWithdrawn(user.isWithdrawn())
-			.receivesNotification(user.isReceivesNotification())
+			.isWithdrawn(user.getIsWithdrawn())
+			.receivesNotification(user.getReceivesNotification())
 			.build();
 	}
 
