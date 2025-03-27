@@ -12,6 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.example.mugbackend.common.exception.TokenInvalidException;
+import com.example.mugbackend.common.exception.TokenUnprovidedException;
 import com.example.mugbackend.user.domain.User;
 import com.example.mugbackend.user.dto.CustomUserDetails;
 import com.example.mugbackend.user.service.UserService;
@@ -34,20 +36,20 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
 		String method = request.getMethod();
 		String authorizationHeader = request.getHeader("Authorization");
 
-		if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-			try {
-				FirebaseService.DecodedToken decodedToken = firebaseService.parseToken(authorizationHeader);
-				User userOpt = userService.findUserById(decodedToken.uid());
-				CustomUserDetails userDetails = CustomUserDetails.of(userOpt);
-				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-				SecurityContextHolder.getContext().setAuthentication(authToken);
-
-			} catch (Exception e) {
-				return;
-			}
-		} else {
-			return;
+		if(authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+			throw new TokenUnprovidedException();
 		}
+		try {
+			FirebaseService.DecodedToken decodedToken = firebaseService.parseToken(authorizationHeader);
+			User userOpt = userService.findUserById(decodedToken.uid());
+			CustomUserDetails userDetails = CustomUserDetails.of(userOpt);
+			UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+			SecurityContextHolder.getContext().setAuthentication(authToken);
+
+		} catch (Exception e) {
+			throw new TokenInvalidException();
+		}
+
 		filterChain.doFilter(request, response);
 	}
 }
