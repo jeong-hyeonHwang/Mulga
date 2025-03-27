@@ -1,4 +1,4 @@
-package com.example.mulga.feature.component
+package com.example.mulga.feature.calendar.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -7,17 +7,14 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.mulga.ui.theme.MulGaTheme
 import java.time.LocalDate
 import java.time.YearMonth
@@ -31,6 +28,7 @@ import java.time.YearMonth
  */
 data class DayData(
     val date: LocalDate,
+    val isValid: Boolean,
     val expense: Int = 0,
     val income: Int = 0
 )
@@ -67,9 +65,10 @@ fun CustomCalendarView(
             val date = LocalDate.of(year, month, day)
             // TODO: DB나 API에서 날짜별 지출/수입 데이터를 받아와서 매핑
             // 일단 랜덤값 사용
-            val expense = (1000..100000).random()
-            val income = (1000..1000000).random()
-            add(DayData(date, expense, income))
+            val isValid = if ((0..2).random() != 0) true else false
+            val expense = if ((0..2).random() != 0) 12345 else 0
+            val income = if ((0..2).random() != 0) 12345 else 0
+            add(DayData(date, isValid, expense, income))
         }
     }
 
@@ -134,17 +133,29 @@ fun DayCell(
     onClick: (LocalDate) -> Unit
 ) {
     // 지출/수입을 보기 좋게 포맷 (예: 123,000), 지출은 음수, 수입은 양수
-    val expenseText = String.format("-%,d", dayData.expense)
-    val incomeText = String.format("+%,d", dayData.income)
+    val expenseText = if (dayData.expense != 0) String.format("-%,d", dayData.expense) else ""
+    val incomeText = if (dayData.income != 0) String.format("+%,d", dayData.income) else ""
 
     // 지출 수입 색 지정
     val expenseColor = MulGaTheme.colors.primary
     val incomeColor = MulGaTheme.colors.grey2
 
+    // 날짜 텍스트의 기본 색상 (유효하면 선택 여부에 따라, 아니면 회색)
+    val dateTextColor = if (!dayData.isValid) MulGaTheme.colors.grey3
+    else if (isSelected) MulGaTheme.colors.white1
+    else MulGaTheme.colors.black1
+
+    // 클릭 가능한 Modifier: isValid가 false면 clickable 효과를 주지 않음
+    val clickableModifier = if (dayData.isValid) {
+        Modifier.clickable { onClick(dayData.date) }
+    } else {
+        Modifier
+    }
+
     Box(
         modifier = Modifier
             .padding(top = 8.dp)
-            .clickable { onClick(dayData.date) },
+            .then(clickableModifier),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -167,25 +178,34 @@ fun DayCell(
                 Text(
                     text = dayData.date.dayOfMonth.toString(),
                     style = MulGaTheme.typography.caption,
-                    color = if (isSelected) MulGaTheme.colors.white1 else MulGaTheme.colors.black1
+                    color = dateTextColor
                 )
             }
             Column (
                 modifier = Modifier.padding(vertical = 4.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // 지출 표시
-                Text(
-                    text = expenseText,
-                    style = MulGaTheme.typography.label,
-                    color = expenseColor
-                )
-                // 수입 표시
-                Text(
-                    text = incomeText,
-                    style = MulGaTheme.typography.label,
-                    color = incomeColor
-                )
+                if (dayData.expense == 0 && dayData.income != 0) {
+                    // 지출이 없는 경우, 수입 텍스트만 상단에 정렬
+                    Text(
+                        text = incomeText,
+                        style = MulGaTheme.typography.label,
+                        color = incomeColor
+                    )
+                } else {
+                    // 지출 표시
+                    Text(
+                        text = expenseText,
+                        style = MulGaTheme.typography.label,
+                        color = expenseColor
+                    )
+                    // 수입 표시
+                    Text(
+                        text = incomeText,
+                        style = MulGaTheme.typography.label,
+                        color = incomeColor
+                    )
+                }
             }
         }
     }
