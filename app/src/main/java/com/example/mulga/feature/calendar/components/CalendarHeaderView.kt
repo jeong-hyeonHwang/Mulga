@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.example.mulga.R
 import com.example.mulga.feature.calendar.CalendarViewModel
 import com.example.mulga.feature.component.toggle.ToggleSwitch
-import com.example.mulga.ui.theme.LocalMulGaColors
+import com.example.mulga.ui.theme.MulGaTheme
 
 @Composable
 fun CalendarHeaderView(viewModel: CalendarViewModel) {
@@ -57,7 +57,7 @@ fun CalendarHeaderView(viewModel: CalendarViewModel) {
                         indication = null,
                         interactionSource = remember { MutableInteractionSource() }
                     ) { viewModel.onPlusClick() },
-                colorFilter = ColorFilter.tint(LocalMulGaColors.current.grey1)
+                colorFilter = ColorFilter.tint(MulGaTheme.colors.grey1)
             )
         }
         // 하단 Row: 총 지출 금액 텍스트와 토글 스위치

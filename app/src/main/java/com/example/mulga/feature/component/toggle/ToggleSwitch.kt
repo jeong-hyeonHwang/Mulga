@@ -16,8 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.mulga.ui.theme.LocalMulGaColors
-import com.example.mulga.ui.theme.LocalMulGaTypography
+import com.example.mulga.ui.theme.MulGaTheme
 
 @SuppressLint("RememberReturnType")
 @Composable
@@ -51,7 +50,7 @@ fun ToggleSwitch(
             .width(trackWidth)
             .height(trackHeight)
             .clip(RoundedCornerShape(15.dp))
-            .background(LocalMulGaColors.current.grey4)
+            .background(MulGaTheme.colors.grey4)
     ) {
         // 흰색 Thumb (슬라이딩 영역)
         Box(
@@ -78,8 +77,8 @@ fun ToggleSwitch(
         ) {
             Text(
                 text = firstLabel,
-                style = LocalMulGaTypography.current.caption,
-                color = if (selectedIndex == 0) LocalMulGaColors.current.primary else Color.Gray,
+                style = MulGaTheme.typography.caption,
+                color = if (selectedIndex == 0) MulGaTheme.colors.primary else Color.Gray,
                 modifier = Modifier
                     .clickable(
                         indication = null, // ripple 및 hover 효과 제거
@@ -92,8 +91,8 @@ fun ToggleSwitch(
 
             Text(
                 text = secondLabel,
-                style = LocalMulGaTypography.current.caption,
-                color = if (selectedIndex == 1) LocalMulGaColors.current.primary else LocalMulGaColors.current.grey2,
+                style = MulGaTheme.typography.caption,
+                color = if (selectedIndex == 1) MulGaTheme.colors.primary else MulGaTheme.colors.grey2,
                 modifier = Modifier
                     .clickable(
                         indication = null, // ripple 및 hover 효과 제거

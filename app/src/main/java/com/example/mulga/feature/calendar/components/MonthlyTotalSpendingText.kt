@@ -6,8 +6,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mulga.R
-import com.example.mulga.ui.theme.LocalMulGaColors
-import com.example.mulga.ui.theme.LocalMulGaTypography
+import com.example.mulga.ui.theme.MulGaTheme
 import com.example.mulga.util.extension.withCommas
 
 @Composable
@@ -17,8 +16,8 @@ fun MonthlyTotalSpendingText(
     Text(
         text =  stringResource(id = R.string.budget_value_unit, amount.withCommas()),
         textAlign = TextAlign.Start,
-        style = LocalMulGaTypography.current.headline,
-        color = LocalMulGaColors.current.grey1
+        style = MulGaTheme.typography.headline,
+        color = MulGaTheme.colors.grey1
     )
 }
 

@@ -19,8 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mulga.R
-import com.example.mulga.ui.theme.LocalMulGaColors
-import com.example.mulga.ui.theme.LocalMulGaTypography
+import com.example.mulga.ui.theme.MulGaTheme
 import java.util.Calendar
 
 @SuppressLint("RememberReturnType")
@@ -48,9 +47,9 @@ fun MonthSelector(
     // 오른쪽 화살표 색상을 조건에 따라 변경:
     // 올해의 이번 달이면 비활성화된 색상(예: grey2), 아니면 활성화 색상(primary)
     val rightArrowColor = if (currentYear == systemYear && currentMonth == systemMonth) {
-        LocalMulGaColors.current.grey3
+        MulGaTheme.colors.grey3
     } else {
-        LocalMulGaColors.current.grey1
+        MulGaTheme.colors.grey1
     }
 
     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -63,13 +62,13 @@ fun MonthSelector(
                     indication = null,
                     interactionSource = remember { MutableInteractionSource() }
                 ) { onPrevClick() },
-            colorFilter = ColorFilter.tint(LocalMulGaColors.current.grey1)
+            colorFilter = ColorFilter.tint(MulGaTheme.colors.grey1)
         )
         Text(
             text = monthDisplayText,
             textAlign = TextAlign.Start,
-            style = LocalMulGaTypography.current.subtitle,
-            color = LocalMulGaColors.current.grey1,
+            style = MulGaTheme.typography.subtitle,
+            color = MulGaTheme.colors.grey1,
             modifier = Modifier.padding(horizontal = 4.dp)
         )
         Image(
