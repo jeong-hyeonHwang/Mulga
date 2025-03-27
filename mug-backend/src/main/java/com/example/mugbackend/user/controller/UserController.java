@@ -24,7 +24,12 @@ public class UserController {
     public MainDto getMainInfo(User user) {
         int monthTotal = transactionService.getMonthTotal(user.getId(), LocalDate.now().getYear(), LocalDate.now().getMonthValue());
         int remainingBudget = userService.getRemainingBudget(user.getId());
-        // TODO
         Transaction lastTransaction = transactionService.getLastTransaction(user.getId());
+
+        return MainDto.builder()
+                .monthTotal(monthTotal)
+                .remainingBudget(remainingBudget)
+                .lastTransaction(lastTransaction)
+                .build();
     }
 }

@@ -32,7 +32,7 @@ public class UserService {
     }
 
     public int getBudget(String userId) {
-        userRepository.findById(userId)
+        return userRepository.findById(userId)
                 .map(User::getBudget)
                 .filter(Objects::nonNull)
                 .orElse(0);
