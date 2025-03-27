@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mulga.feature.calendar.components.CalendarHeaderView
+import com.example.mulga.feature.calendar.components.TransactionList
 import com.example.mulga.ui.theme.LocalMulGaTypography
 import org.koin.androidx.compose.koinViewModel
 
@@ -34,7 +35,7 @@ fun CalendarScreen(viewModel: CalendarViewModel = koinViewModel()) {
             Text("캘린더형 요소")
         } else {
             // TODO: 리스트형
-            Text("목록형 요소")
+            TransactionList(dayModels = uiState.dayModels)
         }
     }
 }
