@@ -1,5 +1,7 @@
 package com.example.mugbackend.user.dto;
 
+import java.time.LocalDateTime;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -26,6 +28,7 @@ public record UserCreateDto (
 			.budget(this.budget)
 			.isWithdrawn(false)
 			.receivesNotification(true)
+			.createdAt(LocalDateTime.now())
 			.build();
 	}
 }
