@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.mugbackend.transaction.dto.TransactionCreateDto;
+import com.example.mugbackend.transaction.dto.TransactionUpdateDto;
 import com.example.mugbackend.transaction.service.TransactionService;
 import com.example.mugbackend.user.dto.CustomUserDetails;
 
@@ -32,6 +34,14 @@ public class TransactionController {
         @RequestBody @Valid TransactionCreateDto dto
     ) {
         return ResponseEntity.ok(transactionService.createTransaction(userDetails, dto));
+    }
+
+    @PatchMapping
+    public ResponseEntity<?> updateTransaction(
+        @AuthenticationPrincipal CustomUserDetails userDetails,
+        @RequestBody @Valid TransactionUpdateDto dto
+    ) {
+        return ResponseEntity.ok(transactionService.updateTransaction(userDetails, dto));
     }
 
     @DeleteMapping

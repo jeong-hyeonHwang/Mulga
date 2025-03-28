@@ -26,12 +26,12 @@ public record TransactionCreateDto (
 	String title,
 	@NotNull
 	Integer cost,
-	@ValidCategory
+	@NotNull @ValidCategory
 	String category,
 	String memo,
 	String vendor,
 	String bank,
-	@ValidDateTimeFormat
+	@NotNull @ValidDateTimeFormat
 	String time,
 	@NotBlank @Size(max = 50)
 	String paymentMethod
