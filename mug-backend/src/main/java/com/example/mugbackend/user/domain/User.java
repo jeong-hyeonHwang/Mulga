@@ -1,5 +1,8 @@
 package com.example.mugbackend.user.domain;
 
+import java.time.LocalDateTime;
+
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -21,4 +24,6 @@ public class User {
 	private Integer budget;
 	private Boolean isWithdrawn;
 	private Boolean receivesNotification;
+	private LocalDateTime createdAt;
+	private LocalDateTime withdrawnAt;
 }
