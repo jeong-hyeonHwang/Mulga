@@ -14,7 +14,7 @@ public class DateTimeFormatValidator implements ConstraintValidator<ValidDateTim
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
 		if (value == null) {
-			return false; // Reject null values
+			return true;
 		}
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_TIME_PATTERN);
