@@ -22,7 +22,7 @@ public class Transaction {
 	@Id
 	private String id;
 
-	@Field(name = "user_id", targetType = FieldType.OBJECT_ID)
+	@Field(name = "user_id")
 	private String userId;
 
 	private Integer year;

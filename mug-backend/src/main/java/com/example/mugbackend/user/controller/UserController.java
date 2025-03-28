@@ -40,10 +40,11 @@ public class UserController {
 
     @GetMapping("/main")
     public ResponseEntity<?> getMainInfo(@AuthenticationPrincipal CustomUserDetails userDetails) {
-		int monthTotal = transactionService.getMonthTotal(userDetails.id(), LocalDate.now().getYear(), LocalDate.now().getMonthValue());
-		int remainingBudget = userService.calRemainingBudget(userDetails.id(), monthTotal);
-        Transaction lastTransaction = transactionService.getLastTransaction(userDetails.id());
+		String userId = userDetails.id();
+		int monthTotal = transactionService.getMonthTotal(userId, LocalDate.now().getYear(), LocalDate.now().getMonthValue());
+		int remainingBudget = userService.calRemainingBudget(userId, monthTotal);
 
+        Transaction lastTransaction = transactionService.getLastTransaction(userId);
         MainDto dto = MainDto.builder()
                 .monthTotal(monthTotal)
                 .remainingBudget(remainingBudget)
