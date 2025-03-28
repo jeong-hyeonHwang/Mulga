@@ -4,7 +4,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -15,17 +17,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.mulga.model.TransactionItemModel
-import com.example.mulga.model.enums.Category
+import com.example.mulga.R
+import com.example.mulga.presentation.model.TransactionItemData
+import com.example.mulga.presentation.model.type.Category
 import com.example.mulga.ui.theme.MulGaTheme
 import com.example.mulga.util.extension.withCommas
 
 @Composable
 fun TransactionItem(
-    item: TransactionItemModel
+    item: TransactionItemData
 ) {
     // category가 null이면 아이콘 영역은 LightGray 색상, 있으면 배경은 Transparent
     val iconBackgroundColor = if (item.category == null) MulGaTheme.colors.grey2 else Color.Transparent
@@ -69,6 +72,7 @@ fun TransactionItem(
                 color = MulGaTheme.colors.black1,
                 style = MulGaTheme.typography.bodySmall
             )
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = item.subtitle,
                 color = MulGaTheme.colors.grey2,
@@ -83,7 +87,7 @@ fun TransactionItem(
             verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(4.dp)
         ) {
             Text(
-                text = item.price.withCommas(),
+                stringResource(id = R.string.budget_value_unit, item.price.withCommas()),
                 color = MulGaTheme.colors.black1,
                 style = MulGaTheme.typography.bodySmall
             )
@@ -102,7 +106,7 @@ fun TransactionItemPreview() {
     // Preview에서 category가 없는 경우와 있는 경우를 테스트합니다.
     Column {
         TransactionItem(
-            TransactionItemModel(
+            TransactionItemData(
                 category = null,
                 title = "무엇인지 잘 몰라요잉",
                 subtitle = "LGU+ 카드의 정식 | 메가커피",
@@ -112,7 +116,7 @@ fun TransactionItemPreview() {
         )
 
         TransactionItem(
-            TransactionItemModel(
+            TransactionItemData(
                 category = Category.CAFE,
                 title = "아이스 아메리카노",
                 subtitle = "LGU+ 카드의 정식 | 메가커피",

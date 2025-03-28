@@ -22,14 +22,17 @@ import com.example.mulga.R
 import com.example.mulga.ui.theme.MulGaTheme
 import java.util.Calendar
 
-@SuppressLint("RememberReturnType")
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
+
 @Composable
 fun MonthSelector(
     currentYear: Int,
     currentMonth: Int,
-    onPrevClick: () -> Unit,
-    onNextClick: () -> Unit
+    onPrevClick: suspend () -> Unit,
+    onNextClick: suspend () -> Unit
 ) {
+    val coroutineScope = rememberCoroutineScope()
     val caretImageSize = 16.dp
 
     // 시스템의 현재 연도와 월
@@ -37,15 +40,12 @@ fun MonthSelector(
     val systemYear = calendar.get(Calendar.YEAR)
     val systemMonth = calendar.get(Calendar.MONTH) + 1
 
-    // 월 표시 텍스트 구성
     val monthDisplayText = if (currentYear == systemYear) {
         stringResource(id = R.string.calendar_month, currentMonth)
     } else {
         stringResource(id = R.string.calendar_year_month, currentYear, currentMonth)
     }
 
-    // 오른쪽 화살표 색상을 조건에 따라 변경:
-    // 올해의 이번 달이면 비활성화된 색상(예: grey2), 아니면 활성화 색상(primary)
     val rightArrowColor = if (currentYear == systemYear && currentMonth == systemMonth) {
         MulGaTheme.colors.grey3
     } else {
@@ -61,7 +61,9 @@ fun MonthSelector(
                 .clickable(
                     indication = null,
                     interactionSource = remember { MutableInteractionSource() }
-                ) { onPrevClick() },
+                ) {
+                    coroutineScope.launch { onPrevClick() }
+                },
             colorFilter = ColorFilter.tint(MulGaTheme.colors.grey1)
         )
         Text(
@@ -77,13 +79,11 @@ fun MonthSelector(
             modifier = Modifier
                 .size(caretImageSize)
                 .clickable(
-                    // 만약 비활성화 상태라면 클릭 액션을 막을 수도 있음
                     indication = null,
                     interactionSource = remember { MutableInteractionSource() }
                 ) {
-                    // 비활성화 상태라면 아무 작업도 수행하지 않도록 할 수 있음
                     if (!(currentYear == systemYear && currentMonth == systemMonth)) {
-                        onNextClick()
+                        coroutineScope.launch { onNextClick() }
                     }
                 },
             colorFilter = ColorFilter.tint(rightArrowColor)

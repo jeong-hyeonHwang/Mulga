@@ -8,25 +8,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.mulga.R
-import com.example.mulga.model.TransactionDayModel
+import com.example.mulga.presentation.model.DailyTransactionData
 
 @Composable
 fun TransactionDaySection(
-    dayModel: TransactionDayModel
+    dailyTransactionData: DailyTransactionData
 ) {
     Column {
         // 날짜 헤더
         TransactionDayHeader(
             dateLabel = stringResource(
                 id = R.string.calendar_month_day,
-                dayModel.month,
-                dayModel.day
+                dailyTransactionData.month,
+                dailyTransactionData.day
             )
         )
         Spacer(modifier = Modifier.height(16.dp))
         // 거래 내역 리스트
-        dayModel.transactions.forEach { item ->
+        dailyTransactionData.transactions.forEach { item ->
             TransactionItem(item = item)
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
