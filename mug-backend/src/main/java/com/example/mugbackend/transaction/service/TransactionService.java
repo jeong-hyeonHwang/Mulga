@@ -2,14 +2,13 @@ package com.example.mugbackend.transaction.service;
 
 import com.example.mugbackend.analysis.repository.AnalysisRepository;
 import com.example.mugbackend.analysis.domain.Analysis;
-import com.example.mugbackend.common.exception.ErrorCode;
 import com.example.mugbackend.common.exception.MulgaException;
-import com.example.mugbackend.common.exception.TransactionErrorCode;
+import com.example.mugbackend.transaction.exception.TransactionErrorCode;
 import com.example.mugbackend.transaction.domain.Transaction;
+import com.example.mugbackend.transaction.exception.TransactionNoHistoryException;
 import com.example.mugbackend.transaction.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.time.LocalDateTime;
 
 
 import java.util.*;
@@ -59,6 +58,6 @@ public class TransactionService {
         return transactionRepository
                 .findTopByUserIdOrderByTimeDesc(userId)
                 .orElseThrow(() ->
-                        new MulgaException(TransactionErrorCode.TRANSACTION_NOT_FOUND));
+                        new TransactionNoHistoryException());
     }
 }
