@@ -3,9 +3,14 @@ package com.example.mugbackend.transaction.service;
 import com.example.mugbackend.analysis.repository.AnalysisRepository;
 import com.example.mugbackend.analysis.domain.Analysis;
 import com.example.mugbackend.transaction.domain.Transaction;
+import com.example.mugbackend.transaction.dto.TransactionCreateDto;
+import com.example.mugbackend.transaction.dto.TransactionDetailDto;
 import com.example.mugbackend.transaction.repository.TransactionRepository;
+import com.example.mugbackend.user.dto.CustomUserDetails;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -48,6 +53,14 @@ public class TransactionService {
         }
 
         return transactions;
+    }
+
+    @Transactional
+    public TransactionDetailDto createTransaction(CustomUserDetails userDetails, TransactionCreateDto dto) {
+        Transaction transaction = dto.toEntity();
+        transaction.setUserId(userDetails.id());
+        transactionRepository.save(transaction);
+        return TransactionDetailDto.of(transaction);
     }
 
 }
