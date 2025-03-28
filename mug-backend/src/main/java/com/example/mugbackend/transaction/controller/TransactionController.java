@@ -1,10 +1,13 @@
 package com.example.mugbackend.transaction.controller;
 
+import java.util.List;
+
 import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +31,15 @@ public class TransactionController {
         @AuthenticationPrincipal CustomUserDetails userDetails,
         @RequestBody @Valid TransactionCreateDto dto
     ) {
-
         return ResponseEntity.ok(transactionService.createTransaction(userDetails, dto));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteTransaction(
+        @AuthenticationPrincipal CustomUserDetails userDetails,
+        @RequestBody List<String> transactionIds
+    ) {
+        transactionService.deleteTransaction(userDetails, transactionIds);
+        return ResponseEntity.ok().build();
     }
 }
