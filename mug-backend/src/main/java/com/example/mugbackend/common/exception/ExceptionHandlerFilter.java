@@ -20,8 +20,11 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
 		try{
 			filterChain.doFilter(request,response);
 		} catch (MulgaException ex){
+			System.out.println(ex.getErrorCode());
+			System.out.println(ex.getMessage());
 			setErrorResponse(response, ex.getErrorCode());
 		} catch (Exception ex){
+			System.out.println(ex.getMessage());
 			setErrorResponse(response, CommonErrorCode.INTERNAL_SERVER_ERROR);
 		}
 	}

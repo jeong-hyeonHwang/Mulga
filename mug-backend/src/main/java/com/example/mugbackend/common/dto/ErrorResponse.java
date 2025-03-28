@@ -48,7 +48,7 @@ public class ErrorResponse {
 
 	public static ResponseEntity<Object> toResponseEntity(HttpStatus status, String detail) {
 		return ResponseEntity
-			.status(status)
+			.status(HttpStatus.OK)
 			.contentType(MediaType.APPLICATION_JSON)
 			.body(
 				ErrorResponse.builder()

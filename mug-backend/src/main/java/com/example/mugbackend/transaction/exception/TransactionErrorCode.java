@@ -7,6 +7,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum TransactionErrorCode implements ErrorCode {
+	TRANSACTION_NOT_FOUND("TRANSACTION_1000"),
+	TRANSACTION_ACCESS_DENIED("TRANSACTION_1001"),
     TRANSACTION_NO_HISTORY("TRANSACTION_1002");
 
     private final String code;
