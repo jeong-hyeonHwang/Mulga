@@ -1,7 +1,7 @@
 package com.example.mulga
 
 import android.app.Application
-import com.example.mulga.di.calendarModule
+import com.example.mulga.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -10,7 +10,7 @@ class MulGaApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MulGaApplication)
-            modules(listOf(calendarModule))
+            modules(appModule)
         }
     }
 }
