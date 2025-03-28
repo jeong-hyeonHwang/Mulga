@@ -45,5 +45,6 @@ public class Analysis {
 	public static class DailyAmount {
 		private Integer income;
 		private Integer expense;
+		private Boolean isValid;
 	}
 }
