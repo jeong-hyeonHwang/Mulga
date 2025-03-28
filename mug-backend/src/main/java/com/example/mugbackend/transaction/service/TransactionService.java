@@ -19,14 +19,19 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.mugbackend.analysis.domain.Analysis;
 import com.example.mugbackend.analysis.repository.AnalysisRepository;
 import com.example.mugbackend.transaction.domain.Transaction;
+import com.example.mugbackend.transaction.exception.TransactionNoHistoryException;
 import com.example.mugbackend.transaction.dto.TransactionCreateDto;
 import com.example.mugbackend.transaction.dto.TransactionDetailDto;
 import com.example.mugbackend.transaction.dto.TransactionUpdateDto;
 import com.example.mugbackend.transaction.exception.TransactionNotFoundException;
 import com.example.mugbackend.transaction.repository.TransactionRepository;
 import com.example.mugbackend.user.dto.CustomUserDetails;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -69,6 +74,13 @@ public class TransactionService {
         return transactions;
     }
 
+    public Transaction getLastTransaction(String userId) {
+        return transactionRepository
+                .findTopByUserIdOrderByTimeDesc(userId)
+                .orElseThrow(() ->
+                        new TransactionNoHistoryException());
+    }
+
     @Transactional
     public TransactionDetailDto createTransaction(CustomUserDetails userDetails, TransactionCreateDto dto) {
         Transaction transaction = dto.toEntity();
@@ -98,4 +110,5 @@ public class TransactionService {
     public void deleteTransaction(CustomUserDetails userDetails, List<String> transactionIds) {
         transactionRepository.deleteAllByIdIn(transactionIds);
     }
+
 }

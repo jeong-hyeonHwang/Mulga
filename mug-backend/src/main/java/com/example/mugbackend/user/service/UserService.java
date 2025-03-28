@@ -1,7 +1,6 @@
 package com.example.mugbackend.user.service;
 
 import org.springframework.stereotype.Service;
-
 import com.example.mugbackend.user.domain.User;
 import com.example.mugbackend.user.dto.CustomUserDetails;
 import com.example.mugbackend.user.dto.UserCreateDto;
@@ -9,13 +8,19 @@ import com.example.mugbackend.user.exception.ActiveUserNotFoundException;
 import com.example.mugbackend.user.exception.UserAlreadyExistsException;
 import com.example.mugbackend.user.repository.UserRepository;
 import com.example.mugbackend.user.exception.UserNotFoundException;
-
 import lombok.RequiredArgsConstructor;
+import com.example.mugbackend.analysis.repository.AnalysisRepository;
+import com.example.mugbackend.transaction.service.TransactionService;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
-	private final UserRepository userRepository;
+
+    private final AnalysisRepository analysisRepository;
+    private final UserRepository userRepository;
+    private final TransactionService transactionService;
 
 	public User findUserById(String id) {
 		return userRepository.findById(id)
@@ -37,4 +42,20 @@ public class UserService {
 
 		return userRepository.save(user);
 	}
+
+    public int calRemainingBudget(String userId, int monthTotal) {
+        int budget = getBudget(userId);
+        int remainingBudget = budget - monthTotal;
+        if(remainingBudget > 0) {
+            return remainingBudget;
+        }
+        return 0;
+    }
+
+    public int getBudget(String userId) {
+        return userRepository.findById(userId)
+                .map(User::getBudget)
+                .filter(Objects::nonNull)
+                .orElse(0);
+    }
 }
