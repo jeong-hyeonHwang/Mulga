@@ -43,10 +43,8 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
-    public int getRemainingBudget(String userId) {
+    public int calRemainingBudget(String userId, int monthTotal) {
         int budget = getBudget(userId);
-        int monthTotal =transactionService.getMonthTotal(userId,
-                LocalDate.now().getYear(), LocalDate.now().getMonthValue());
         int remainingBudget = budget - monthTotal;
         if(remainingBudget > 0) {
             return remainingBudget;

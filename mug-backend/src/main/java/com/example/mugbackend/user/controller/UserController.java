@@ -32,22 +32,24 @@ public class UserController {
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> signup(
-		@AuthenticationPrincipal CustomUserDetails userDetails,
-		@RequestBody @Valid UserCreateDto dto
+			@AuthenticationPrincipal CustomUserDetails userDetails,
+			@RequestBody @Valid UserCreateDto dto
 	) {
 		return ResponseEntity.ok(userService.signUp(userDetails, dto));
 	}
 
     @GetMapping("/main")
-    public MainDto getMainInfo(User user) {
-        int monthTotal = transactionService.getMonthTotal(user.getId(), LocalDate.now().getYear(), LocalDate.now().getMonthValue());
-        int remainingBudget = userService.getRemainingBudget(user.getId());
-        Transaction lastTransaction = transactionService.getLastTransaction(user.getId());
+    public ResponseEntity<?> getMainInfo(@AuthenticationPrincipal CustomUserDetails userDetails) {
+		int monthTotal = transactionService.getMonthTotal(userDetails.id(), LocalDate.now().getYear(), LocalDate.now().getMonthValue());
+		int remainingBudget = userService.calRemainingBudget(userDetails.id(), monthTotal);
+        Transaction lastTransaction = transactionService.getLastTransaction(userDetails.id());
 
-        return MainDto.builder()
+        MainDto dto = MainDto.builder()
                 .monthTotal(monthTotal)
                 .remainingBudget(remainingBudget)
                 .lastTransaction(lastTransaction)
                 .build();
+
+		return ResponseEntity.ok(dto);
     }
 }
