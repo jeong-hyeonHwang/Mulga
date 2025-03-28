@@ -63,4 +63,8 @@ public class TransactionService {
         return TransactionDetailDto.of(transaction);
     }
 
+    @Transactional
+    public void deleteTransaction(CustomUserDetails userDetails, List<String> transactionIds) {
+        transactionRepository.deleteAllByIdIn(transactionIds);
+    }
 }
