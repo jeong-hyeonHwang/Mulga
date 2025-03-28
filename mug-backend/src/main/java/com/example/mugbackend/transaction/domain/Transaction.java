@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.data.mongodb.core.mapping.FieldType;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +21,7 @@ public class Transaction {
 	@Id
 	private String id;
 
-	@Field(name = "user_id", targetType = FieldType.OBJECT_ID)
+	@Field(name = "user_id")
 	private String userId;
 
 	private Integer year;
@@ -34,6 +33,7 @@ public class Transaction {
 	private String category;
 	private String memo;
 	private String vendor;
+	private String bank;
 	private LocalDateTime time;
 	private String paymentMethod;
 	private List<Transaction> group;

@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: mug-back
+  config:
+    import: configserver:${CONFIG_SERVER_URL}
+  profiles:
+    active: dev
