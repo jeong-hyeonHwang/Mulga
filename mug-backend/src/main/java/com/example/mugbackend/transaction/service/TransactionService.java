@@ -1,19 +1,32 @@
 package com.example.mugbackend.transaction.service;
 
-import com.example.mugbackend.analysis.repository.AnalysisRepository;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.springframework.data.mongodb.core.FindAndModifyOptions;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.mugbackend.analysis.domain.Analysis;
+import com.example.mugbackend.analysis.repository.AnalysisRepository;
 import com.example.mugbackend.transaction.domain.Transaction;
 import com.example.mugbackend.transaction.dto.TransactionCreateDto;
 import com.example.mugbackend.transaction.dto.TransactionDetailDto;
+import com.example.mugbackend.transaction.dto.TransactionUpdateDto;
+import com.example.mugbackend.transaction.exception.TransactionNotFoundException;
 import com.example.mugbackend.transaction.repository.TransactionRepository;
 import com.example.mugbackend.user.dto.CustomUserDetails;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +34,7 @@ public class TransactionService {
 
     private final AnalysisRepository analysisRepository;
     private final TransactionRepository transactionRepository;
+    private final MongoTemplate mongoTemplate;
 
     public int getMonthTotal(String userId, int year, int month) {
         String id = userId + "_" + year + "_" + month;
@@ -63,4 +77,21 @@ public class TransactionService {
         return TransactionDetailDto.of(transaction);
     }
 
+    @Transactional
+    public TransactionDetailDto updateTransaction(CustomUserDetails userDetails, TransactionUpdateDto dto) {
+        Update update = dto.toUpdate();
+        Criteria criteria = Criteria.where("_id").is(dto.id()).and("userId").is(userDetails.id());
+
+        Transaction updatedTransaction = mongoTemplate.findAndModify(
+            new Query(criteria),
+            update,
+            new FindAndModifyOptions().returnNew(true),
+            Transaction.class
+        );
+
+        Optional.ofNullable(updatedTransaction)
+            .orElseThrow(TransactionNotFoundException::new);
+
+        return TransactionDetailDto.of(updatedTransaction);
+    }
 }
