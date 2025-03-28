@@ -19,6 +19,6 @@ public class User {
 	private String name;
 	private String email;
 	private Integer budget;
-	private boolean isWithdrawn;
-	private boolean receivesNotification;
+	private Boolean isWithdrawn;
+	private Boolean receivesNotification;
 }

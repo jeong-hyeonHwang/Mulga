@@ -1,11 +1,14 @@
 package com.example.mugbackend.user.repository;
 
-import com.example.mugbackend.transaction.domain.Transaction;
-import com.example.mugbackend.user.domain.User;
+import java.util.Optional;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.example.mugbackend.user.domain.User;
 
+@Repository
 public interface UserRepository extends MongoRepository<User, String> {
-
+	Optional<User> findById(String id);
+	Optional<User> findByIdAndIsWithdrawnFalse(String id);
 }
