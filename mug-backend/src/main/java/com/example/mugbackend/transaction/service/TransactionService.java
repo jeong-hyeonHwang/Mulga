@@ -94,4 +94,8 @@ public class TransactionService {
 
         return TransactionDetailDto.of(updatedTransaction);
     }
+
+    public void deleteTransaction(CustomUserDetails userDetails, List<String> transactionIds) {
+        transactionRepository.deleteAllByIdIn(transactionIds);
+    }
 }
