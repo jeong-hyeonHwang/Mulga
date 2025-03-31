@@ -60,10 +60,7 @@ public class TransactionService {
         List<Transaction> thisMonthTransactions = transactionRepository
                 .findAllByUserIdAndYearAndMonth(userId, year, month);
 
-        Map<Integer, List<Transaction>> groupByDay = thisMonthTransactions.stream()
-                .collect(Collectors.groupingBy(Transaction::getDay));
-
-        Map<Integer, List<Transaction>> groupByDay = thisMonthTransactions.stream()
+        Map<Integer, List<Transaction>> groupByDaySortByTimeDesc = thisMonthTransactions.stream()
                 .collect(Collectors.groupingBy(
                         Transaction::getDay,
                         Collectors.collectingAndThen(Collectors.toList(), list -> {
@@ -77,10 +74,8 @@ public class TransactionService {
         int days = 31;
         LinkedHashMap<Integer, List<Transaction>> transactions = new LinkedHashMap<>();
         for (int d = 1; d <= days; d++) {
-            transactions.put(d, groupByDay.getOrDefault(d, new ArrayList<>()));
+            transactions.put(d, groupByDaySortByTimeDesc.getOrDefault(d, new ArrayList<>()));
         }
-
-        // transactions를 늦은 시간이 앞에 있도록 정렬
 
         return transactions;
     }
