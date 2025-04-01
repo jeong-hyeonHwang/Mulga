@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.example.mugbackend.transaction.dto.MonthlyTransactionDto;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -40,6 +41,25 @@ public class TransactionService {
     private final AnalysisRepository analysisRepository;
     private final TransactionRepository transactionRepository;
     private final MongoTemplate mongoTemplate;
+
+    public MonthlyTransactionDto buildMonthlyTransactionDto(CustomUserDetails userDetails, int year, int month) {
+
+        String id = userDetails.id();
+
+        int monthTotal = getMonthTotal(id, year, month);
+        Map<Integer, Analysis.DailyAmount> daily = getDaily(id, year, month);
+        LinkedHashMap<Integer, List<Transaction>> transactions = getTransactionsByTimeDESC(id, year, month);
+
+        MonthlyTransactionDto dto = MonthlyTransactionDto.builder()
+                .monthTotal(monthTotal)
+                .year(year)
+                .month(month)
+                .daily(daily)
+                .transactions(transactions)
+                .build();
+
+        return dto;
+    }
 
     public int getMonthTotal(String userId, int year, int month) {
         String id = userId + "_" + year + "_" + month;
