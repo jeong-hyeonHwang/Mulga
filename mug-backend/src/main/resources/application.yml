@@ -5,5 +5,3 @@ spring:
     import: configserver:CONFIG_SERVER_URL_PLACEHOLDER
   profiles:
     active: dev
-server:
-  port: 1111
