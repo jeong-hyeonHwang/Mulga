@@ -55,20 +55,26 @@ public class TransactionService {
                 .orElse(Collections.emptyMap());
     }
 
-    public LinkedHashMap<Integer, List<Transaction>> getTransactions(String userId, int year, int month) {
+    public LinkedHashMap<Integer, List<Transaction>> getTransactionsByTimeDESC(String userId, int year, int month) {
 
         List<Transaction> thisMonthTransactions = transactionRepository
                 .findAllByUserIdAndYearAndMonth(userId, year, month);
 
-        Map<Integer, List<Transaction>> groupByDay = thisMonthTransactions.stream()
-                .collect(Collectors.groupingBy(Transaction::getDay));
+        Map<Integer, List<Transaction>> groupByDaySortByTimeDesc = thisMonthTransactions.stream()
+                .collect(Collectors.groupingBy(
+                        Transaction::getDay,
+                        Collectors.collectingAndThen(Collectors.toList(), list -> {
+                            list.sort(Comparator.comparing(Transaction::getTime).reversed());
+                            return list;
+                        })
+                ));
 
         // 거래 내역이 없는 날은 빈 리스트로 채워준다.
         // 31일이 없는 달에도 31일을 빈 리스트로 채워준다.
         int days = 31;
         LinkedHashMap<Integer, List<Transaction>> transactions = new LinkedHashMap<>();
         for (int d = 1; d <= days; d++) {
-            transactions.put(d, groupByDay.getOrDefault(d, new ArrayList<>()));
+            transactions.put(d, groupByDaySortByTimeDesc.getOrDefault(d, new ArrayList<>()));
         }
 
         return transactions;
