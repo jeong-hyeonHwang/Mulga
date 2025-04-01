@@ -8,6 +8,8 @@ import com.example.mulga.presentation.model.MonthlyTotalTransactionData
 import com.example.mulga.presentation.model.TransactionItemData
 import com.example.mulga.presentation.model.type.Category
 import com.example.mulga.util.extension.formatTimeToHourMinute
+import java.time.LocalDate
+import java.time.YearMonth
 
 // Domain Model → Presentation Model 변환 확장 함수
 
@@ -24,7 +26,7 @@ fun MonthlyTransactionEntity.toMonthlyTotalTransactionData(): MonthlyTotalTransa
 fun MonthlyTransactionEntity.toDailyTransactionSummariesData(): List<DailyTransactionSummaryData> {
     return dailySummaries.entries.sortedBy { it.key }.map { (day, summaryEntity) ->
         DailyTransactionSummaryData(
-            day = day,
+            date = createValidDate(year, this.month, day),
             isValid = summaryEntity.isValid,
             income = summaryEntity.income.toInt(),
             expense = summaryEntity.expense.toInt()
@@ -34,10 +36,9 @@ fun MonthlyTransactionEntity.toDailyTransactionSummariesData(): List<DailyTransa
 
 // 3. 일자별 거래 내역 변환
 fun MonthlyTransactionEntity.toDailyTransactionData(): List<DailyTransactionData> {
-    return transactions.entries.sortedBy { it.key }.map { (day, transactionEntities) ->
+    return transactions.entries.sortedByDescending { it.key }.map { (day, transactionEntities) ->
         DailyTransactionData(
-            month = this.month,
-            day = day,
+            date = createValidDate(year, this.month, day),
             transactions = transactionEntities.map { it.toTransactionItemData() }
         )
     }
@@ -72,3 +73,8 @@ fun TransactionEntity.toTransactionItemData(): TransactionItemData {
     )
 }
 
+fun createValidDate(year: Int, month: Int, day: Int): LocalDate {
+    val daysInMonth = YearMonth.of(year, month).lengthOfMonth()
+    val validDay = if (day > daysInMonth) daysInMonth else day
+    return LocalDate.of(year, month, validDay)
+}

@@ -29,7 +29,10 @@ fun CalendarHeaderView(viewModel: CalendarViewModel) {
     // ViewModel의 UI 상태를 구독합니다.
     val uiState by viewModel.uiState.collectAsState()
 
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp)) {
         // 상단 Row: MonthSelector와 우측 plus 버튼
         Row(
             modifier = Modifier
