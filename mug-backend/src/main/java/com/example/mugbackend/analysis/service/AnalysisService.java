@@ -10,17 +10,33 @@ import com.example.mugbackend.user.dto.CustomUserDetails;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.HashMap;
+
 @Service
 @RequiredArgsConstructor
 public class AnalysisService {
 	private final AnalysisRepository analysisRepository;
 
 	public AnalysisDetailDto getAnalysisDetail(CustomUserDetails userDetails, Integer year, Integer month) {
-		String id = String.format("%s_%d_%d", userDetails.id(), year, month);
+		final int lastYear = (month == 1) ? year - 1 : year;
+		final int lastMonth = (month == 1) ? 12 : month - 1;
 
-		System.out.println(id);
-		Analysis analysis = analysisRepository.findById(id)
-			.orElseThrow(AnalysisNotFoundException::new);
-		return AnalysisDetailDto.of(analysis);
+		String thisMonthId = String.format("%s_%d_%d", userDetails.id(), year, month);
+		String lastMonthId = String.format("%s_%d_%d", userDetails.id(), lastYear, lastMonth);
+
+		Analysis lastMonthAnalysis = analysisRepository.findById(lastMonthId)
+				.orElseGet(() -> Analysis.builder()
+						.id(lastMonthId)
+						.year(lastYear)
+						.month(lastMonth)
+						.monthTotal(0)
+						.category(new HashMap<>())
+						.paymentMethod(new HashMap<>())
+						.daily(new HashMap<>())
+						.build());
+		Analysis thisMonthAnalysis = analysisRepository.findById(thisMonthId)
+				.orElseThrow(AnalysisNotFoundException::new);
+
+		return AnalysisDetailDto.of(lastMonthAnalysis, thisMonthAnalysis);
 	}
 }
