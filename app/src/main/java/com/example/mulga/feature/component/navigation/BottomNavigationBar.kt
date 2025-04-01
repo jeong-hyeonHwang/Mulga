@@ -15,7 +15,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.mulga.ui.theme.LocalMulGaColors
 import com.example.mulga.ui.theme.LocalMulGaTypography
-import com.example.mulga.ui.theme.MulGaColors
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
