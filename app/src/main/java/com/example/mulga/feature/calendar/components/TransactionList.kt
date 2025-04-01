@@ -1,24 +1,27 @@
 package com.example.mulga.feature.calendar.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.mulga.model.TransactionDayModel
-import com.example.mulga.model.TransactionItemModel
-import com.example.mulga.model.enums.Category
+import com.example.mulga.presentation.model.DailyTransactionData
+import com.example.mulga.presentation.model.TransactionItemData
+import com.example.mulga.presentation.model.type.Category
 
 @Composable
 fun TransactionList(
-    dayModels: List<TransactionDayModel>
+    dailyTransactionDataList: List<DailyTransactionData>
 ) {
-    // 만약 스크롤이 필요한 양이라면 LazyColumn을 사용
-    androidx.compose.foundation.lazy.LazyColumn(
+    // 거래 내역이 있는 날만 필터링
+    val filteredList = dailyTransactionDataList.filter { it.transactions.isNotEmpty() }
+
+    LazyColumn(
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
-        items(dayModels.size) { index ->
-            val dayModel = dayModels[index]
-            TransactionDaySection(dayModel)
+        items(filteredList) { dailyTransactionData ->
+            TransactionDaySection(dailyTransactionData)
         }
     }
 }
@@ -27,19 +30,19 @@ fun TransactionList(
 @Composable
 fun TransactionListPreview() {
     // 1) 날짜별로 TransactionItemModel 리스트를 만든다
-    val day1 = TransactionDayModel(
-        year = 2025,
+    val day1 = DailyTransactionData(
         month = 3,
         day = 27,
         transactions = listOf(
-            TransactionItemModel(
+            TransactionItemData(
                 category = Category.CAFE,
                 title = "아이스 아메리카노",
                 subtitle = "LGU+ 카드의 정식 | 메가커피",
                 price = "-1500",
                 time = "08:23"
             ),
-            TransactionItemModel(
+
+            TransactionItemData(
                 category = null,
                 title = "무엇인지 잘 몰라요",
                 subtitle = "LGU+ 카드의 정식 | 메가커피",
@@ -48,20 +51,22 @@ fun TransactionListPreview() {
             )
         )
     )
-
-    val day2 = TransactionDayModel(
-        year = 2025,
+    val day2 = DailyTransactionData(
         month = 3,
-        day = 26,
+        day = 25,
+        transactions = listOf())
+    val day3 = DailyTransactionData(
+        month = 3,
+        day = 25,
         transactions = listOf(
-            TransactionItemModel(
+            TransactionItemData(
                 category = Category.BEAUTY,
                 title = "화장품",
                 subtitle = "쿠팡 | 로드샵",
                 price = "-12400",
                 time = "09:10"
             ),
-            TransactionItemModel(
+            TransactionItemData(
                 category = Category.FOOD,
                 title = "점심 식사",
                 subtitle = "배달의 민족 | 국밥",
@@ -72,8 +77,8 @@ fun TransactionListPreview() {
     )
 
     // 2) 여러 날짜 묶어서 리스트 생성
-    val dayModels = listOf(day1, day2)
+    val dayModels = listOf(day1, day2, day3)
 
     // 3) TransactionListScreen에 전달
-    TransactionList(dayModels = dayModels)
+    TransactionList(dailyTransactionDataList = dayModels)
 }

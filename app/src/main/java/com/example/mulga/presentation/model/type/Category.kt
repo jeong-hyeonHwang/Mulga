@@ -1,4 +1,4 @@
-package com.example.mulga.model.enums
+package com.example.mulga.presentation.model.type
 
 import com.example.mulga.R
 

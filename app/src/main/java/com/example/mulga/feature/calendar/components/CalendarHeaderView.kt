@@ -68,7 +68,7 @@ fun CalendarHeaderView(viewModel: CalendarViewModel) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            MonthlyTotalSpendingText(amount = uiState.totalSpending)
+            MonthlyTotalSpendingText(amount = uiState.monthlyTotalData?.monthTotal.toString())
             ToggleSwitch(
                 selectedIndex = uiState.selectedToggleIndex,
                 onOptionSelected = { newIndex -> viewModel.onToggleOptionSelected(newIndex) },
