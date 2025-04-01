@@ -1,7 +1,8 @@
 package com.example.mulga.presentation.model
 
+import java.time.LocalDate
+
 data class DailyTransactionData(
-    var month: Int,
-    var day: Int,
+    var date: LocalDate,
     val transactions: List<TransactionItemData>
 )

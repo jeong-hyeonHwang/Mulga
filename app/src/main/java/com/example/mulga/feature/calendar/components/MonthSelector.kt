@@ -1,6 +1,5 @@
 package com.example.mulga.feature.calendar.components
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
