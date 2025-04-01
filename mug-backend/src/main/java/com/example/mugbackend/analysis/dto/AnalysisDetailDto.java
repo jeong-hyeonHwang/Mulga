@@ -80,7 +80,7 @@ public record AnalysisDetailDto(
 			daily = new HashMap<>();
 		}
 
-		Map<Integer, Integer> cumulativeExpense = new HashMap<>();
+		Map<Integer, Integer> cumulativeExpense = new LinkedHashMap<>();
 		int sum = 0;
 
 		for(int day=1; day<=31; day++) {
@@ -88,6 +88,7 @@ public record AnalysisDetailDto(
 			sum += daily.get(day).getExpense();
 			cumulativeExpense.put(day, sum);
 		}
+		System.out.println(cumulativeExpense);
 
 		return cumulativeExpense;
 	}
