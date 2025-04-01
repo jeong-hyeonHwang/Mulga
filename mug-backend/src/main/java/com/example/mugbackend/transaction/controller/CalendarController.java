@@ -33,20 +33,7 @@ public class CalendarController{
 			@PathVariable int year,
 			@PathVariable int month) {
 
-		String id = userDetails.id();
-
-		int monthTotal = transactionService.getMonthTotal(id, year, month);
-		Map<Integer, Analysis.DailyAmount> daily = transactionService.getDaily(id, year, month);
-		LinkedHashMap<Integer, List<Transaction>> transactions = transactionService.getTransactionsByTimeDESC(id, year, month);
-
-		MonthlyTransactionDto dto = MonthlyTransactionDto.builder()
-										.monthTotal(monthTotal)
-										.year(year)
-										.month(month)
-										.daily(daily)
-										.transactions(transactions)
-										.build();
-
+		MonthlyTransactionDto dto = transactionService.buildMonthlyTransactionDto(userDetails, year, month);
 		return ResponseEntity.ok(dto);
 	}
 }
