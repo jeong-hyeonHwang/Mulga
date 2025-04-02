@@ -4,7 +4,6 @@ import android.content.pm.PackageManager
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 import android.util.Log
-import com.example.mulga.domain.model.AppEntity
 import com.example.mulga.domain.model.NotificationEntity
 import com.example.mulga.domain.repository.local.NotificationLocalRepository
 import kotlinx.coroutines.CoroutineScope
@@ -15,18 +14,21 @@ import org.koin.core.component.inject
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.TimeZone
 
 class NotificationService : NotificationListenerService(), KoinComponent {
     private val repository: NotificationLocalRepository by inject()
 
     override fun onNotificationPosted(sbn: StatusBarNotification) {
-//        Log.d("🔔NotificationService", "Notification received from: ${sbn.packageName}")
-
         val notification = sbn.notification
         val extras = notification.extras
         val title = extras.getCharSequence("android.title")?.toString() ?: ""
         val text = extras.getCharSequence("android.text")?.toString() ?: ""
 
+        if (title.isBlank() && text.isBlank()) {
+            Log.d("🔁중복 필터", "빈 알림 → 저장하지 않음")
+            return
+        }
 
         val appName = try {
             val pm = packageManager
@@ -42,34 +44,31 @@ class NotificationService : NotificationListenerService(), KoinComponent {
             }
         }
 
-//        Log.d("🔔NotificationService", "appName: $appName, title: $title, text: $text")
+        if (appName == "시스템 UI") {
+            return
+        }
+
+        val formattedTime = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).apply {
+            timeZone = TimeZone.getTimeZone("UTC")
+        }.format(Date())
+
+        Log.d("🔔NotificationService", "appName: $appName, title: $title, text: $text, time: $formattedTime")
+
         CoroutineScope(Dispatchers.IO).launch {
-            var appEntity = repository.getAppByName(appName)
-            if (appEntity == null) {
-                val newAppId = repository.insertApp(AppEntity(appName = appName))
-                appEntity = AppEntity(newAppId, appName)
-            }
-
-
-            val existing = repository.getNotificationByTitleAndContent(appEntity.id, title, text)
+            val existing = repository.getNotificationByTitleAndContent(title, text)
             if (existing != null) {
-//                Log.d("🔔NotificationService", "중복 알림으로 저장하지 않음: $title")
+                Log.d("🔁중복 필터", "중복 알림 → 저장하지 않음")
                 return@launch
             }
 
-            val formattedTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault()).format(
-                Date()
-            )
             val entity = NotificationEntity(
-                appId = appEntity.id,
                 appName = appName,
                 title = title,
                 content = text,
                 timestamp = formattedTime
             )
             repository.insertNotification(entity)
-//            Log.d("📦DB", "Notification saved: $entity")
-
+            Log.d("📦DB", "Notification saved: $entity")
         }
     }
 }
