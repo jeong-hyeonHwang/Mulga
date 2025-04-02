@@ -33,7 +33,6 @@ public class Transaction {
 	private String category;
 	private String memo;
 	private String vendor;
-	private String bank;
 	private LocalDateTime time;
 	private String paymentMethod;
 	private List<Transaction> group;
