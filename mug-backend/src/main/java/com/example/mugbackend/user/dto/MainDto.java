@@ -1,14 +1,11 @@
 package com.example.mugbackend.user.dto;
 
-import com.example.mugbackend.analysis.domain.Analysis;
-import com.example.mugbackend.transaction.domain.Transaction;
+import com.example.mugbackend.transaction.dto.TransactionDetailDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
-import java.util.Map;
 
 @Data
 @Builder
@@ -17,5 +14,5 @@ import java.util.Map;
 public class MainDto {
     private int monthTotal;
     private int remainingBudget;
-    private Transaction lastTransaction;
+    private TransactionDetailDto lastTransaction;
 }

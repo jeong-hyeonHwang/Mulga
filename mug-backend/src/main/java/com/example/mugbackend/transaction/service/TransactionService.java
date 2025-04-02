@@ -2,13 +2,13 @@ package com.example.mugbackend.transaction.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.example.mugbackend.transaction.dto.MonthlyTransactionDto;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -20,19 +20,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.mugbackend.analysis.domain.Analysis;
 import com.example.mugbackend.analysis.repository.AnalysisRepository;
 import com.example.mugbackend.transaction.domain.Transaction;
-import com.example.mugbackend.transaction.exception.TransactionNoHistoryException;
+import com.example.mugbackend.transaction.dto.MonthlyTransactionDto;
 import com.example.mugbackend.transaction.dto.TransactionCreateDto;
 import com.example.mugbackend.transaction.dto.TransactionDetailDto;
 import com.example.mugbackend.transaction.dto.TransactionUpdateDto;
+import com.example.mugbackend.transaction.exception.TransactionNoHistoryException;
 import com.example.mugbackend.transaction.exception.TransactionNotFoundException;
 import com.example.mugbackend.transaction.repository.TransactionRepository;
 import com.example.mugbackend.user.dto.CustomUserDetails;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -48,7 +45,7 @@ public class TransactionService {
 
         int monthTotal = getMonthTotal(id, year, month);
         Map<Integer, Analysis.DailyAmount> daily = getDaily(id, year, month);
-        LinkedHashMap<Integer, List<Transaction>> transactions = getTransactionsByTimeDESC(id, year, month);
+        LinkedHashMap<Integer, List<TransactionDetailDto>> transactions = getTransactionsByTimeDESC(id, year, month);
 
         MonthlyTransactionDto dto = MonthlyTransactionDto.builder()
                 .monthTotal(monthTotal)
@@ -75,24 +72,29 @@ public class TransactionService {
                 .orElse(Collections.emptyMap());
     }
 
-    public LinkedHashMap<Integer, List<Transaction>> getTransactionsByTimeDESC(String userId, int year, int month) {
+    public LinkedHashMap<Integer, List<TransactionDetailDto>> getTransactionsByTimeDESC(String userId, int year, int month) {
 
         List<Transaction> thisMonthTransactions = transactionRepository
                 .findAllByUserIdAndYearAndMonth(userId, year, month);
 
-        Map<Integer, List<Transaction>> groupByDaySortByTimeDesc = thisMonthTransactions.stream()
-                .collect(Collectors.groupingBy(
-                        Transaction::getDay,
-                        Collectors.collectingAndThen(Collectors.toList(), list -> {
-                            list.sort(Comparator.comparing(Transaction::getTime).reversed());
-                            return list;
-                        })
-                ));
+        Map<Integer, List<TransactionDetailDto>> groupByDaySortByTimeDesc = thisMonthTransactions.stream()
+            .collect(Collectors.groupingBy(
+                Transaction::getDay,
+                Collectors.mapping(
+                    TransactionDetailDto::of,
+                    Collectors.collectingAndThen(
+                        Collectors.toList(),
+                        list -> list.stream()
+                            .sorted(Comparator.comparing(TransactionDetailDto::time).reversed())
+                            .collect(Collectors.toList())
+                    )
+                )
+            ));
 
         // 거래 내역이 없는 날은 빈 리스트로 채워준다.
         // 31일이 없는 달에도 31일을 빈 리스트로 채워준다.
         int days = 31;
-        LinkedHashMap<Integer, List<Transaction>> transactions = new LinkedHashMap<>();
+        LinkedHashMap<Integer, List<TransactionDetailDto>> transactions = new LinkedHashMap<>();
         for (int d = 1; d <= days; d++) {
             transactions.put(d, groupByDaySortByTimeDesc.getOrDefault(d, new ArrayList<>()));
         }
