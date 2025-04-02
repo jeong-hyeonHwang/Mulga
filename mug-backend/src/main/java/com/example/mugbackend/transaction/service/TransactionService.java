@@ -2,6 +2,7 @@ package com.example.mugbackend.transaction.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import com.example.mugbackend.analysis.domain.Analysis;
 import com.example.mugbackend.analysis.repository.AnalysisRepository;
 import com.example.mugbackend.analysis.service.AnalysisService;
 import com.example.mugbackend.transaction.domain.Transaction;
+import com.example.mugbackend.transaction.dto.MonthlyTransactionDto;
 import com.example.mugbackend.transaction.dto.TransactionCreateDto;
 import com.example.mugbackend.transaction.dto.TransactionDetailDto;
 import com.example.mugbackend.transaction.dto.TransactionUpdateDto;
@@ -35,6 +37,25 @@ public class TransactionService {
     private final MongoTemplate mongoTemplate;
     private final AnalysisService analysisService;
 
+    public MonthlyTransactionDto buildMonthlyTransactionDto(CustomUserDetails userDetails, int year, int month) {
+
+        String id = userDetails.id();
+
+        int monthTotal = getMonthTotal(id, year, month);
+        Map<Integer, Analysis.DailyAmount> daily = getDaily(id, year, month);
+        LinkedHashMap<Integer, List<Transaction>> transactions = getTransactionsByTimeDESC(id, year, month);
+
+        MonthlyTransactionDto dto = MonthlyTransactionDto.builder()
+                .monthTotal(monthTotal)
+                .year(year)
+                .month(month)
+                .daily(daily)
+                .transactions(transactions)
+                .build();
+
+        return dto;
+    }
+
     public int getMonthTotal(String userId, int year, int month) {
         String id = userId + "_" + year + "_" + month;
         return analysisRepository.findById(id)
@@ -49,20 +70,26 @@ public class TransactionService {
                 .orElse(Collections.emptyMap());
     }
 
-    public LinkedHashMap<Integer, List<Transaction>> getTransactions(String userId, int year, int month) {
+    public LinkedHashMap<Integer, List<Transaction>> getTransactionsByTimeDESC(String userId, int year, int month) {
 
         List<Transaction> thisMonthTransactions = transactionRepository
                 .findAllByUserIdAndYearAndMonth(userId, year, month);
 
-        Map<Integer, List<Transaction>> groupByDay = thisMonthTransactions.stream()
-                .collect(Collectors.groupingBy(Transaction::getDay));
+        Map<Integer, List<Transaction>> groupByDaySortByTimeDesc = thisMonthTransactions.stream()
+                .collect(Collectors.groupingBy(
+                        Transaction::getDay,
+                        Collectors.collectingAndThen(Collectors.toList(), list -> {
+                            list.sort(Comparator.comparing(Transaction::getTime).reversed());
+                            return list;
+                        })
+                ));
 
         // 거래 내역이 없는 날은 빈 리스트로 채워준다.
         // 31일이 없는 달에도 31일을 빈 리스트로 채워준다.
         int days = 31;
         LinkedHashMap<Integer, List<Transaction>> transactions = new LinkedHashMap<>();
         for (int d = 1; d <= days; d++) {
-            transactions.put(d, groupByDay.getOrDefault(d, new ArrayList<>()));
+            transactions.put(d, groupByDaySortByTimeDesc.getOrDefault(d, new ArrayList<>()));
         }
 
         return transactions;

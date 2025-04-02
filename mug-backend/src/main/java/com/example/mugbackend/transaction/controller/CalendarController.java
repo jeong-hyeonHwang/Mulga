@@ -4,6 +4,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.example.mugbackend.user.dto.CustomUserDetails;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,21 +28,12 @@ public class CalendarController{
 	private final TransactionService transactionService;
 
 	@GetMapping("/{year}/{month}")
-	public MonthlyTransactionDto getMonthlyTransactions(
-		User user,
-		@PathVariable int year,
-		@PathVariable int month) {
+	public ResponseEntity<?> getMonthlyTransactions(
+			@AuthenticationPrincipal CustomUserDetails userDetails,
+			@PathVariable int year,
+			@PathVariable int month) {
 
-		int monthTotal = transactionService.getMonthTotal(user.getId(), year, month);
-		Map<Integer, Analysis.DailyAmount> daily = transactionService.getDaily(user.getId(), year, month);
-		LinkedHashMap<Integer, List<Transaction>> transactions = transactionService.getTransactions(user.getId(), year, month);
-
-		return MonthlyTransactionDto.builder()
-			.monthTotal(monthTotal)
-			.year(year)
-			.month(month)
-			.daily(daily)
-			.transactions(transactions)
-			.build();
+		MonthlyTransactionDto dto = transactionService.buildMonthlyTransactionDto(userDetails, year, month);
+		return ResponseEntity.ok(dto);
 	}
 }
