@@ -108,6 +108,7 @@ public class TransactionService {
     }
 
     public void deleteTransaction(CustomUserDetails userDetails, List<String> transactionIds) {
+    public void deleteTransactions(CustomUserDetails userDetails, List<String> transactionIds) {
         transactionRepository.deleteAllByIdIn(transactionIds);
     }
 
