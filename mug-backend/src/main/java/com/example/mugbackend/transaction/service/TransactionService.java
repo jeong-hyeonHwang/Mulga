@@ -43,7 +43,7 @@ public class TransactionService {
 
         int monthTotal = getMonthTotal(id, year, month);
         Map<Integer, Analysis.DailyAmount> daily = getDaily(id, year, month);
-        LinkedHashMap<Integer, List<Transaction>> transactions = getTransactionsByTimeDESC(id, year, month);
+        LinkedHashMap<Integer, List<TransactionDetailDto>> transactions = getTransactionsByTimeDESC(id, year, month);
 
         MonthlyTransactionDto dto = MonthlyTransactionDto.builder()
                 .monthTotal(monthTotal)
@@ -70,24 +70,29 @@ public class TransactionService {
                 .orElse(Collections.emptyMap());
     }
 
-    public LinkedHashMap<Integer, List<Transaction>> getTransactionsByTimeDESC(String userId, int year, int month) {
+    public LinkedHashMap<Integer, List<TransactionDetailDto>> getTransactionsByTimeDESC(String userId, int year, int month) {
 
         List<Transaction> thisMonthTransactions = transactionRepository
                 .findAllByUserIdAndYearAndMonth(userId, year, month);
 
-        Map<Integer, List<Transaction>> groupByDaySortByTimeDesc = thisMonthTransactions.stream()
-                .collect(Collectors.groupingBy(
-                        Transaction::getDay,
-                        Collectors.collectingAndThen(Collectors.toList(), list -> {
-                            list.sort(Comparator.comparing(Transaction::getTime).reversed());
-                            return list;
-                        })
-                ));
+        Map<Integer, List<TransactionDetailDto>> groupByDaySortByTimeDesc = thisMonthTransactions.stream()
+            .collect(Collectors.groupingBy(
+                Transaction::getDay,
+                Collectors.mapping(
+                    TransactionDetailDto::of,
+                    Collectors.collectingAndThen(
+                        Collectors.toList(),
+                        list -> list.stream()
+                            .sorted(Comparator.comparing(TransactionDetailDto::time).reversed())
+                            .collect(Collectors.toList())
+                    )
+                )
+            ));
 
         // 거래 내역이 없는 날은 빈 리스트로 채워준다.
         // 31일이 없는 달에도 31일을 빈 리스트로 채워준다.
         int days = 31;
-        LinkedHashMap<Integer, List<Transaction>> transactions = new LinkedHashMap<>();
+        LinkedHashMap<Integer, List<TransactionDetailDto>> transactions = new LinkedHashMap<>();
         for (int d = 1; d <= days; d++) {
             transactions.put(d, groupByDaySortByTimeDesc.getOrDefault(d, new ArrayList<>()));
         }
