@@ -23,4 +23,12 @@ public class AnalysisService {
 			.orElseThrow(AnalysisNotFoundException::new);
 		return AnalysisDetailDto.of(analysis);
 	}
+	private Analysis getAnalysisById(CustomUserDetails userDetails, Integer year, Integer month) {
+		String id = String.format("%s_%d_%d", userDetails.id(), year, month);
+
+		Analysis analysis = analysisRepository.findById(id)
+			.orElseThrow(AnalysisNotFoundException::new);
+
+		return analysis;
+	}
 }
