@@ -30,7 +30,6 @@ public record TransactionCreateDto (
 	String category,
 	String memo,
 	String vendor,
-	String bank,
 	@NotNull @ValidDateTimeFormat
 	String time,
 	@NotBlank @Size(max = 50)
@@ -47,7 +46,6 @@ public record TransactionCreateDto (
 			.category(category)
 			.memo(Optional.ofNullable(memo).orElse(""))
 			.vendor(Optional.ofNullable(vendor).orElse(""))
-			.bank(Optional.ofNullable(bank).orElse(""))
 			.time(LocalDateTime.parse(time))
 			.paymentMethod(paymentMethod)
 			.group(new ArrayList<>())

@@ -28,7 +28,6 @@ public record TransactionUpdateDto (
 	String category,
 	String memo,
 	String vendor,
-	String bank,
 	@ValidDateTimeFormat
 	String time,
 	@Size(max = 50)
@@ -46,7 +45,6 @@ public record TransactionUpdateDto (
 		if (category != null) transaction.setCategory(category);
 		if (memo != null) transaction.setMemo(memo);
 		if (vendor != null) transaction.setVendor(vendor);
-		if (bank != null) transaction.setBank(bank);
 		if (time != null) transaction.setTime(LocalDateTime.parse(time));
 		if (paymentMethod != null) transaction.setPaymentMethod(paymentMethod);
 		return transaction;
