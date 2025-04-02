@@ -94,14 +94,7 @@ public class TransactionService {
         Update update = dto.toUpdate();
         Criteria criteria = Criteria.where("_id").is(dto.id()).and("userId").is(userDetails.id());
 
-        Transaction updatedTransaction = mongoTemplate.findAndModify(
-            new Query(criteria),
-            update,
-            new FindAndModifyOptions().returnNew(true),
-            Transaction.class
-        );
-
-        Optional.ofNullable(updatedTransaction)
+        Transaction updatedTransaction = transactionRepository.updateTransaction(userDetails, dto.toEntity())
             .orElseThrow(TransactionNotFoundException::new);
 
         return TransactionDetailDto.of(updatedTransaction);

@@ -1,14 +1,15 @@
 package com.example.mugbackend.transaction.dto;
 
+import java.time.LocalDateTime;
+
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import org.springframework.data.mongodb.core.query.Update;
-
 import com.example.mugbackend.common.annotation.ValidCategory;
 import com.example.mugbackend.common.annotation.ValidDateTimeFormat;
+import com.example.mugbackend.transaction.domain.Transaction;
 
 public record TransactionUpdateDto (
 	@NotNull
@@ -33,22 +34,22 @@ public record TransactionUpdateDto (
 	@Size(max = 50)
 	String paymentMethod
 ) {
-	public Update toUpdate() {
-		Update update = new Update();
+	public Transaction toEntity() {
+		Transaction transaction = new Transaction();
 
-		if (year != null) update.set("year", year);
-		if (month != null) update.set("month", month);
-		if (day != null) update.set("day", day);
-		if (title != null) update.set("title", title);
-		if (cost != null) update.set("cost", cost);
-		if (category != null) update.set("category", category);
-		if (memo != null) update.set("memo", memo);
-		if (vendor != null) update.set("vendor", vendor);
-		if (bank != null) update.set("bank", bank);
-		if (time != null) update.set("time", time);
-		if (paymentMethod != null) update.set("paymentMethod", paymentMethod);
-
-		return update;
+		transaction.setId(id);
+		if (year != null) transaction.setYear(year);
+		if (month != null) transaction.setMonth(month);
+		if (day != null) transaction.setDay(day);
+		if (title != null) transaction.setTitle(title);
+		if (cost != null) transaction.setCost(cost);
+		if (category != null) transaction.setCategory(category);
+		if (memo != null) transaction.setMemo(memo);
+		if (vendor != null) transaction.setVendor(vendor);
+		if (bank != null) transaction.setBank(bank);
+		if (time != null) transaction.setTime(LocalDateTime.parse(time));
+		if (paymentMethod != null) transaction.setPaymentMethod(paymentMethod);
+		return transaction;
 	}
 }
 
