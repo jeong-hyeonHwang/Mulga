@@ -2,37 +2,31 @@ package com.example.mugbackend.transaction.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.example.mugbackend.transaction.dto.MonthlyTransactionDto;
-import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.mugbackend.analysis.domain.Analysis;
 import com.example.mugbackend.analysis.repository.AnalysisRepository;
+import com.example.mugbackend.analysis.service.AnalysisService;
 import com.example.mugbackend.transaction.domain.Transaction;
-import com.example.mugbackend.transaction.exception.TransactionNoHistoryException;
+import com.example.mugbackend.transaction.dto.MonthlyTransactionDto;
 import com.example.mugbackend.transaction.dto.TransactionCreateDto;
 import com.example.mugbackend.transaction.dto.TransactionDetailDto;
 import com.example.mugbackend.transaction.dto.TransactionUpdateDto;
+import com.example.mugbackend.transaction.exception.TransactionAccessDeniedException;
+import com.example.mugbackend.transaction.exception.TransactionNoHistoryException;
 import com.example.mugbackend.transaction.exception.TransactionNotFoundException;
 import com.example.mugbackend.transaction.repository.TransactionRepository;
 import com.example.mugbackend.user.dto.CustomUserDetails;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -41,6 +35,7 @@ public class TransactionService {
     private final AnalysisRepository analysisRepository;
     private final TransactionRepository transactionRepository;
     private final MongoTemplate mongoTemplate;
+    private final AnalysisService analysisService;
 
     public MonthlyTransactionDto buildMonthlyTransactionDto(CustomUserDetails userDetails, int year, int month) {
 
@@ -111,30 +106,44 @@ public class TransactionService {
     public TransactionDetailDto createTransaction(CustomUserDetails userDetails, TransactionCreateDto dto) {
         Transaction transaction = dto.toEntity();
         transaction.setUserId(userDetails.id());
+
+        analysisService.addTransactionToAnalysis(userDetails, transaction);
+
         transactionRepository.save(transaction);
+
         return TransactionDetailDto.of(transaction);
     }
 
     @Transactional
     public TransactionDetailDto updateTransaction(CustomUserDetails userDetails, TransactionUpdateDto dto) {
-        Update update = dto.toUpdate();
-        Criteria criteria = Criteria.where("_id").is(dto.id()).and("userId").is(userDetails.id());
+        Transaction transaction = findById(userDetails, dto.id());
 
-        Transaction updatedTransaction = mongoTemplate.findAndModify(
-            new Query(criteria),
-            update,
-            new FindAndModifyOptions().returnNew(true),
-            Transaction.class
-        );
-
-        Optional.ofNullable(updatedTransaction)
+        Transaction updatedTransaction = transactionRepository.updateTransaction(userDetails, dto.toEntity())
             .orElseThrow(TransactionNotFoundException::new);
+
+        analysisService.alterTransactionToAnalysis(userDetails, transaction, updatedTransaction);
 
         return TransactionDetailDto.of(updatedTransaction);
     }
 
-    public void deleteTransaction(CustomUserDetails userDetails, List<String> transactionIds) {
+    @Transactional
+    public void deleteTransactions(CustomUserDetails userDetails, List<String> transactionIds) {
+        for(String transactionId : transactionIds) {
+            Transaction transaction = findById(userDetails, transactionId);
+            analysisService.removeTransactionFromAnalysis(userDetails, transaction);
+        }
+
         transactionRepository.deleteAllByIdIn(transactionIds);
+    }
+
+    private Transaction findById(CustomUserDetails userDetails, String id) {
+        Transaction transaction = transactionRepository.findById(id)
+            .orElseThrow(() -> new TransactionNotFoundException());
+
+        if(!userDetails.id().equals(transaction.getUserId())) {
+            throw new TransactionAccessDeniedException();
+        }
+        return transaction;
     }
 
 }
