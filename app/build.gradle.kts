@@ -1,14 +1,22 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("org.jetbrains.kotlin.kapt")
+//    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.21"
     kotlin("plugin.serialization") version "2.1.0"
 }
 
 android {
     namespace = "com.example.mulga"
     compileSdk = 35
+
+    val localProperties = Properties()
+    localProperties.load(FileInputStream(rootProject.file("local.properties")))
 
     defaultConfig {
         applicationId = "com.example.mulga"
@@ -18,6 +26,21 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val props = gradleLocalProperties(
+            rootDir,
+            providers
+        )
+
+        val rabbitHost = props.getProperty("rabbitmq.host") ?: throw GradleException("❌ rabbitmq.host 없음")
+        val rabbitPort = props.getProperty("rabbitmq.port")?.toIntOrNull() ?: throw GradleException("❌ rabbitmq.port 없음")
+        val rabbitUser = props.getProperty("rabbitmq.username") ?: throw GradleException("❌ rabbitmq.username 없음")
+        val rabbitPass = props.getProperty("rabbitmq.password") ?: throw GradleException("❌ rabbitmq.password 없음")
+
+        buildConfigField("String", "RABBITMQ_HOST", "\"$rabbitHost\"")
+        buildConfigField("int", "RABBITMQ_PORT", rabbitPort.toString())
+        buildConfigField("String", "RABBITMQ_USERNAME", "\"$rabbitUser\"")
+        buildConfigField("String", "RABBITMQ_PASSWORD", "\"$rabbitPass\"")
     }
 
     buildTypes {
@@ -38,6 +61,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -57,6 +81,10 @@ dependencies {
     implementation("io.insert-koin:koin-android:4.0.2")
     implementation("io.insert-koin:koin-androidx-compose:4.0.2")
     implementation("androidx.navigation:navigation-compose:2.5.3")
+    implementation("com.rabbitmq:amqp-client:5.21.0")
+    implementation("org.slf4j:slf4j-simple:2.0.16")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+    implementation("androidx.lifecycle:lifecycle-process:2.6.2")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.9.3")

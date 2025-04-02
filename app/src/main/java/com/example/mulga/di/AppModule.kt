@@ -3,5 +3,7 @@ package com.example.mulga.di
 val appModule = listOf(
     repositoryModule,
     roomModule,
-    calendarModule
+    calendarModule,
+    useCaseModule,
+    serviceModule
 )
