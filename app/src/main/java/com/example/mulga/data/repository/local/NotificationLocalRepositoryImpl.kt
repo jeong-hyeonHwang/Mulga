@@ -1,8 +1,8 @@
-package com.example.mulga.data.repository.local
+package com.ilm.mulga.data.repository.local
 
-import com.example.mulga.data.datasource.local.NotificationDao
-import com.example.mulga.domain.model.NotificationEntity
-import com.example.mulga.domain.repository.local.NotificationLocalRepository
+import com.ilm.mulga.data.datasource.local.NotificationDao
+import com.ilm.mulga.domain.model.NotificationEntity
+import com.ilm.mulga.domain.repository.local.NotificationLocalRepository
 
 class NotificationLocalRepositoryImpl(
     private val dao: NotificationDao

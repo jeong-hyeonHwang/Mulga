@@ -1,11 +1,11 @@
-package com.example.mulga.domain.usecase
+package com.ilm.mulga.domain.usecase
 
 import android.content.Context
 import android.util.Log
-import com.example.mulga.data.dto.request.NotificationMessageDto
-import com.example.mulga.data.network.NetworkUtil
-import com.example.mulga.data.service.RabbitMqPublisher
-import com.example.mulga.domain.repository.local.NotificationLocalRepository
+import com.ilm.mulga.data.dto.request.NotificationMessageDto
+import com.ilm.mulga.data.network.NetworkUtil
+import com.ilm.mulga.data.service.RabbitMqPublisher
+import com.ilm.mulga.domain.repository.local.NotificationLocalRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext

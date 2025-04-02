@@ -1,11 +1,11 @@
-package com.example.mulga.domain.mapper
+package com.ilm.mulga.domain.mapper
 
-import com.example.mulga.data.dto.response.DailyTransactionSummaryDto
-import com.example.mulga.data.dto.response.MonthlyTransactionResponseDto
-import com.example.mulga.data.dto.response.TransactionDto
-import com.example.mulga.domain.model.DailyTransactionSummaryEntity
-import com.example.mulga.domain.model.MonthlyTransactionEntity
-import com.example.mulga.domain.model.TransactionEntity
+import com.ilm.mulga.data.dto.response.DailyTransactionSummaryDto
+import com.ilm.mulga.data.dto.response.MonthlyTransactionResponseDto
+import com.ilm.mulga.data.dto.response.TransactionDto
+import com.ilm.mulga.domain.model.DailyTransactionSummaryEntity
+import com.ilm.mulga.domain.model.MonthlyTransactionEntity
+import com.ilm.mulga.domain.model.TransactionEntity
 
 // DailyDto -> DailySummary 변환
 fun DailyTransactionSummaryDto.toDailySummary(): DailyTransactionSummaryEntity {

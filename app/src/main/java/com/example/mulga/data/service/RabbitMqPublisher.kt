@@ -1,4 +1,4 @@
-package com.example.mulga.data.service
+package com.ilm.mulga.data.service
 
 import android.util.Log
 import com.rabbitmq.client.Channel

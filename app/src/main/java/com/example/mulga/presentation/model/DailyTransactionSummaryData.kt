@@ -1,4 +1,4 @@
-package com.example.mulga.presentation.model
+package com.ilm.mulga.presentation.model
 
 import java.time.LocalDate
 

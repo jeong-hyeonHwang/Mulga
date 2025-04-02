@@ -1,4 +1,4 @@
-package com.example.mulga
+package com.ilm.mulga
 
 import org.junit.Test
 

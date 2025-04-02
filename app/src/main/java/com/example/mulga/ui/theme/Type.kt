@@ -1,4 +1,4 @@
-package com.example.mulga.ui.theme
+package com.ilm.mulga.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Immutable
@@ -8,7 +8,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.example.mulga.R
+import com.ilm.mulga.R
 
 // Sokcho Bada Dotum 폰트 정의 (정규체)
 val SokchoBadaDotum = FontFamily(

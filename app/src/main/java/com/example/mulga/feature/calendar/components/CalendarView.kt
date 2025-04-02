@@ -1,4 +1,4 @@
-package com.example.mulga.feature.calendar.components
+package com.ilm.mulga.feature.calendar.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,8 +16,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.mulga.presentation.model.DailyTransactionSummaryData
-import com.example.mulga.ui.theme.MulGaTheme
+import com.ilm.mulga.presentation.model.DailyTransactionSummaryData
+import com.ilm.mulga.ui.theme.MulGaTheme
 import java.time.LocalDate
 import java.time.YearMonth
 

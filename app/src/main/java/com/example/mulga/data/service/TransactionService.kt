@@ -1,6 +1,6 @@
-package com.example.mulga.data.service
+package com.ilm.mulga.data.service
 
-import com.example.mulga.data.dto.response.MonthlyTransactionResponseDto
+import com.ilm.mulga.data.dto.response.MonthlyTransactionResponseDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,4 +1,4 @@
-package com.example.mulga.feature.component.toggle
+package com.ilm.mulga.feature.component.toggle
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.core.animateDpAsState
@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.mulga.ui.theme.MulGaTheme
+import com.ilm.mulga.ui.theme.MulGaTheme
 
 @SuppressLint("RememberReturnType")
 @Composable

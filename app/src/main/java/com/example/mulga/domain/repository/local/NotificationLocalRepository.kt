@@ -1,6 +1,6 @@
-package com.example.mulga.domain.repository.local
+package com.ilm.mulga.domain.repository.local
 
-import com.example.mulga.domain.model.NotificationEntity
+import com.ilm.mulga.domain.model.NotificationEntity
 
 interface NotificationLocalRepository {
     suspend fun insertNotification(notification: NotificationEntity): Long

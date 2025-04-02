@@ -1,4 +1,4 @@
-package com.example.mulga.util.extension
+package com.ilm.mulga.util.extension
 
 import java.text.NumberFormat
 import java.util.Locale

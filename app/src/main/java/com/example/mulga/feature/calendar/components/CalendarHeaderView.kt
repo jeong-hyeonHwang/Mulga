@@ -1,4 +1,4 @@
-package com.example.mulga.feature.calendar.components
+package com.ilm.mulga.feature.calendar.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -19,10 +19,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.mulga.R
-import com.example.mulga.feature.calendar.CalendarViewModel
-import com.example.mulga.feature.component.toggle.ToggleSwitch
-import com.example.mulga.ui.theme.MulGaTheme
+import com.ilm.mulga.R
+import com.ilm.mulga.feature.calendar.CalendarViewModel
+import com.ilm.mulga.feature.component.toggle.ToggleSwitch
+import com.ilm.mulga.ui.theme.MulGaTheme
 
 @Composable
 fun CalendarHeaderView(viewModel: CalendarViewModel) {

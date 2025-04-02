@@ -1,4 +1,4 @@
-package com.example.mulga.feature.analysis.components
+package com.ilm.mulga.feature.analysis.components
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable

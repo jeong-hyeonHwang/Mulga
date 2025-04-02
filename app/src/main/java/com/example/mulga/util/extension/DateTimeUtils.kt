@@ -1,4 +1,4 @@
-package com.example.mulga.util.extension
+package com.ilm.mulga.util.extension
 
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter

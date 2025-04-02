@@ -1,4 +1,4 @@
-package com.example.mulga.feature.calendar
+package com.ilm.mulga.feature.calendar
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,10 +11,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.mulga.feature.calendar.components.CalendarHeaderView
-import com.example.mulga.feature.calendar.components.CustomCalendarView
-import com.example.mulga.feature.calendar.components.TransactionDaySection
-import com.example.mulga.feature.calendar.components.TransactionList
+import com.ilm.mulga.feature.calendar.components.CalendarHeaderView
+import com.ilm.mulga.feature.calendar.components.CustomCalendarView
+import com.ilm.mulga.feature.calendar.components.TransactionDaySection
+import com.ilm.mulga.feature.calendar.components.TransactionList
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

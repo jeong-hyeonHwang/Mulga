@@ -1,4 +1,4 @@
-package com.example.mulga.feature.calendar.components
+package com.ilm.mulga.feature.calendar.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -20,11 +20,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.mulga.R
-import com.example.mulga.presentation.model.TransactionItemData
-import com.example.mulga.presentation.model.type.Category
-import com.example.mulga.ui.theme.MulGaTheme
-import com.example.mulga.util.extension.withCommas
+import com.ilm.mulga.R
+import com.ilm.mulga.presentation.model.TransactionItemData
+import com.ilm.mulga.presentation.model.type.Category
+import com.ilm.mulga.ui.theme.MulGaTheme
+import com.ilm.mulga.util.extension.withCommas
 
 @Composable
 fun TransactionItem(

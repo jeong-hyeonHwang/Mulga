@@ -1,6 +1,6 @@
-package com.example.mulga.data.network
+package com.ilm.mulga.data.network
 
-import com.example.mulga.data.service.TransactionService
+import com.ilm.mulga.data.service.TransactionService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

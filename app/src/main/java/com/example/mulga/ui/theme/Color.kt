@@ -1,4 +1,4 @@
-package com.example.mulga.ui.theme
+package com.ilm.mulga.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

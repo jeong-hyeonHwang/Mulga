@@ -1,6 +1,6 @@
-package com.example.mulga.presentation.model.type
+package com.ilm.mulga.presentation.model.type
 
-import com.example.mulga.R
+import com.ilm.mulga.R
 
 enum class Category(
     val backendKey: String,

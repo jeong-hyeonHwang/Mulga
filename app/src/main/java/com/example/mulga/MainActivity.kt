@@ -1,4 +1,4 @@
-package com.example.mulga
+package com.ilm.mulga
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,9 +14,9 @@ import androidx.compose.material3.Button
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.mulga.feature.component.main.MainScreen
-import com.example.mulga.feature.login.LoginScreen
-import com.example.mulga.ui.theme.MulGaTheme
+import com.ilm.mulga.feature.component.main.MainScreen
+import com.ilm.mulga.feature.login.LoginScreen
+import com.ilm.mulga.ui.theme.MulGaTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

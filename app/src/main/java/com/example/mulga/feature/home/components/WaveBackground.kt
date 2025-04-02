@@ -21,7 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kotlin.math.sin
-import com.example.mulga.ui.theme.MulGaTheme
+import com.ilm.mulga.ui.theme.MulGaTheme
 
 @Composable
 

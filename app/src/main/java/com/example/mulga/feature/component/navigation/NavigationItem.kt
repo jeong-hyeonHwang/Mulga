@@ -1,7 +1,7 @@
-package com.example.mulga.feature.component.navigation
+package com.ilm.mulga.feature.component.navigation
 
 import androidx.annotation.StringRes
-import com.example.mulga.R
+import com.ilm.mulga.R
 
 sealed class NavigationItem(
     val route: String,

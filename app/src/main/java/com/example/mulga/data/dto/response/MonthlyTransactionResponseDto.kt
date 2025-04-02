@@ -1,4 +1,4 @@
-package com.example.mulga.data.dto.response
+package com.ilm.mulga.data.dto.response
 
 import kotlinx.serialization.Serializable
 

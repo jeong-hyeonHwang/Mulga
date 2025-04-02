@@ -1,4 +1,4 @@
-package com.example.mulga.feature.home
+package com.ilm.mulga.feature.home
 
 import WaveBackground
 import androidx.compose.foundation.layout.Column
@@ -12,10 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.mulga.feature.home.components.ExpenseSummaryView
-import com.example.mulga.feature.home.components.RecentExpenseView
-import com.example.mulga.presentation.model.TransactionItemData
-import com.example.mulga.presentation.model.type.Category
+import com.ilm.mulga.feature.home.components.ExpenseSummaryView
+import com.ilm.mulga.feature.home.components.RecentExpenseView
+import com.ilm.mulga.presentation.model.TransactionItemData
+import com.ilm.mulga.presentation.model.type.Category
 
 @Composable
 fun HomeScreen() {

@@ -1,4 +1,4 @@
-package com.example.mulga.feature.calendar.components
+package com.ilm.mulga.feature.calendar.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,9 +10,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.mulga.presentation.model.DailyTransactionData
-import com.example.mulga.presentation.model.TransactionItemData
-import com.example.mulga.presentation.model.type.Category
+import com.ilm.mulga.presentation.model.DailyTransactionData
+import com.ilm.mulga.presentation.model.TransactionItemData
+import com.ilm.mulga.presentation.model.type.Category
 import java.time.LocalDate
 
 @Composable

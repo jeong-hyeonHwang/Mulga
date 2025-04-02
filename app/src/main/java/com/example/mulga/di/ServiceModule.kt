@@ -1,7 +1,7 @@
-package com.example.mulga.di
+package com.ilm.mulga.di
 
-import com.example.mulga.data.service.RabbitMqPublisher
-import com.example.mulga.BuildConfig
+import com.ilm.mulga.data.service.RabbitMqPublisher
+import com.ilm.mulga.BuildConfig
 import org.koin.dsl.module
 
 val serviceModule = module {

@@ -1,6 +1,6 @@
-package com.example.mulga.presentation.model
+package com.ilm.mulga.presentation.model
 
-import com.example.mulga.presentation.model.type.Category
+import com.ilm.mulga.presentation.model.type.Category
 
 data class TransactionItemData(
     val category: Category?,

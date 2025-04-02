@@ -1,4 +1,4 @@
-package com.example.mulga.domain.model
+package com.ilm.mulga.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

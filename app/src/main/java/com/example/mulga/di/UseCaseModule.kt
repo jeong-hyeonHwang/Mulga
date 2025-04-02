@@ -1,6 +1,6 @@
-package com.example.mulga.di
+package com.ilm.mulga.di
 
-import com.example.mulga.domain.usecase.NotificationPublisherUseCase
+import com.ilm.mulga.domain.usecase.NotificationPublisherUseCase
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 

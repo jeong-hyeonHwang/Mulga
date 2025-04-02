@@ -1,7 +1,7 @@
-package com.example.mulga.di
+package com.ilm.mulga.di
 
 import androidx.room.Room
-import com.example.mulga.data.datasource.local.NotificationDatabase
+import com.ilm.mulga.data.datasource.local.NotificationDatabase
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 

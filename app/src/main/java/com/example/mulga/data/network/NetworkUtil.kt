@@ -1,4 +1,4 @@
-package com.example.mulga.data.network
+package com.ilm.mulga.data.network
 
 import android.content.Context
 import android.net.ConnectivityManager

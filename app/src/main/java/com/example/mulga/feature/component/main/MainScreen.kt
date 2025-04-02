@@ -1,4 +1,4 @@
-package com.example.mulga.feature.component.main
+package com.ilm.mulga.feature.component.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
@@ -9,12 +9,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.mulga.feature.analysis.AnalysisScreen
-import com.example.mulga.feature.calendar.CalendarScreen
-import com.example.mulga.feature.component.navigation.BottomNavigationBar
-import com.example.mulga.feature.component.navigation.NavigationItem
-import com.example.mulga.feature.home.HomeScreen
-import com.example.mulga.feature.mypage.MypageScreen
+import com.ilm.mulga.feature.analysis.AnalysisScreen
+import com.ilm.mulga.feature.calendar.CalendarScreen
+import com.ilm.mulga.feature.component.navigation.BottomNavigationBar
+import com.ilm.mulga.feature.component.navigation.NavigationItem
+import com.ilm.mulga.feature.home.HomeScreen
+import com.ilm.mulga.feature.mypage.MypageScreen
 
 @Composable
 fun MainScreen() {

@@ -1,4 +1,4 @@
-package com.example.mulga.feature.calendar.components
+package com.ilm.mulga.feature.calendar.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -17,8 +17,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.mulga.R
-import com.example.mulga.ui.theme.MulGaTheme
+import com.ilm.mulga.R
+import com.ilm.mulga.ui.theme.MulGaTheme
 import java.util.Calendar
 
 import androidx.compose.runtime.rememberCoroutineScope

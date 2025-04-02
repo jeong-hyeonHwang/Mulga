@@ -1,13 +1,13 @@
-package com.example.mulga.feature.calendar.components
+package com.ilm.mulga.feature.calendar.components
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.mulga.R
-import com.example.mulga.ui.theme.MulGaTheme
-import com.example.mulga.util.extension.withCommas
+import com.ilm.mulga.R
+import com.ilm.mulga.ui.theme.MulGaTheme
+import com.ilm.mulga.util.extension.withCommas
 
 @Composable
 fun MonthlyTotalSpendingText(

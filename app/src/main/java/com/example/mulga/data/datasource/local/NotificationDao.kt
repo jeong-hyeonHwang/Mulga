@@ -1,9 +1,9 @@
-package com.example.mulga.data.datasource.local
+package com.ilm.mulga.data.datasource.local
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.mulga.domain.model.NotificationEntity
+import com.ilm.mulga.domain.model.NotificationEntity
 
 @Dao
 interface NotificationDao {

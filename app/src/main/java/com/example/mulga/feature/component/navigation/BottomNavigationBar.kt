@@ -1,4 +1,4 @@
-package com.example.mulga.feature.component.navigation
+package com.ilm.mulga.feature.component.navigation
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.*
@@ -13,8 +13,8 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.mulga.ui.theme.LocalMulGaColors
-import com.example.mulga.ui.theme.LocalMulGaTypography
+import com.ilm.mulga.ui.theme.LocalMulGaColors
+import com.ilm.mulga.ui.theme.LocalMulGaTypography
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {

@@ -1,4 +1,4 @@
-package com.example.mulga.feature.home.components
+package com.ilm.mulga.feature.home.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,11 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.mulga.R
-import com.example.mulga.feature.calendar.components.TransactionItem
-import com.example.mulga.presentation.model.TransactionItemData
-import com.example.mulga.presentation.model.type.Category
-import com.example.mulga.ui.theme.MulGaTheme
+import com.ilm.mulga.R
+import com.ilm.mulga.feature.calendar.components.TransactionItem
+import com.ilm.mulga.presentation.model.TransactionItemData
+import com.ilm.mulga.presentation.model.type.Category
+import com.ilm.mulga.ui.theme.MulGaTheme
 
 @Composable
 fun RecentExpenseView(

@@ -12,14 +12,14 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mulga"
+    namespace = "com.ilm.mulga"
     compileSdk = 35
 
     val localProperties = Properties()
     localProperties.load(FileInputStream(rootProject.file("local.properties")))
 
     defaultConfig {
-        applicationId = "com.example.mulga"
+        applicationId = "com.ilm.mulga"
         minSdk = 31
         targetSdk = 35
         versionCode = 1

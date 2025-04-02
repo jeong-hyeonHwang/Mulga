@@ -1,8 +1,8 @@
-package com.example.mulga
+package com.ilm.mulga
 
 import android.app.Application
-import com.example.mulga.di.appModule
-import com.example.mulga.domain.usecase.NotificationPublisherUseCase
+import com.ilm.mulga.di.appModule
+import com.ilm.mulga.domain.usecase.NotificationPublisherUseCase
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin

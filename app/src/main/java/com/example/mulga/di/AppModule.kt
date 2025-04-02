@@ -1,4 +1,4 @@
-package com.example.mulga.di
+package com.ilm.mulga.di
 
 val appModule = listOf(
     repositoryModule,
