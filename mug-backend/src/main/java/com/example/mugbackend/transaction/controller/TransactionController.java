@@ -49,7 +49,7 @@ public class TransactionController {
         @AuthenticationPrincipal CustomUserDetails userDetails,
         @RequestBody List<String> transactionIds
     ) {
-        transactionService.deleteTransaction(userDetails, transactionIds);
+        transactionService.deleteTransactions(userDetails, transactionIds);
         return ResponseEntity.ok().build();
     }
 }
