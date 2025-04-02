@@ -45,7 +45,6 @@ public class CustomTransactionRepositoryImpl implements CustomTransactionReposit
 		String category = transaction.getCategory();
 		String memo = transaction.getMemo();
 		String vendor = transaction.getVendor();
-		String bank = transaction.getBank();
 		LocalDateTime time = transaction.getTime();
 		String paymentMethod = transaction.getPaymentMethod();
 
@@ -57,7 +56,6 @@ public class CustomTransactionRepositoryImpl implements CustomTransactionReposit
 		if (category != null) update.set("category", category);
 		if (memo != null) update.set("memo", memo);
 		if (vendor != null) update.set("vendor", vendor);
-		if (bank != null) update.set("bank", bank);
 		if (time != null) update.set("time", time);
 		if (paymentMethod != null) update.set("paymentMethod", paymentMethod);
 

@@ -22,7 +22,6 @@ public record TransactionDetailDto (
 	String category,
 	String memo,
 	String vendor,
-	String bank,
 	LocalDateTime time,
 	String paymentMethod,
 	List<Transaction> group
@@ -40,7 +39,6 @@ public record TransactionDetailDto (
 			.category(Optional.ofNullable(transaction.getCategory()).orElse(""))
 			.memo(Optional.ofNullable(transaction.getMemo()).orElse(""))
 			.vendor(Optional.ofNullable(transaction.getVendor()).orElse(""))
-			.bank(Optional.ofNullable(transaction.getBank()).orElse(""))
 			.time(transaction.getTime())
 			.paymentMethod(Optional.ofNullable(transaction.getPaymentMethod()).orElse(""))
 			.group(Optional.ofNullable(transaction.getGroup()).orElse(new ArrayList<>()))
