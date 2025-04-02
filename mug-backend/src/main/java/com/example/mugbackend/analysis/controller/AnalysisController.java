@@ -27,6 +27,6 @@ public class AnalysisController {
 		@PathVariable @Min(2000) @Max(2100) Integer year,
 		@PathVariable @Min(1) @Max(12) Integer month
 	) {
-		return ResponseEntity.ok(analysisService.getAnalysisDetail(userDetails, year, month));
+		return ResponseEntity.ok(analysisService.getAnalysisFullDetail(userDetails, year, month));
 	}
 }

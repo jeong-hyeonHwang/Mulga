@@ -10,24 +10,24 @@ import lombok.Builder;
 
 @Builder
 public record AnalysisDetailDto(
-	String id, // Format: userId_year_month
-	Integer year,
-	Integer month,
-	Integer monthTotal,
-	Map<String, Integer> category,
-	Map<String, Integer> paymentMethod,
-	Map<Integer, Analysis.DailyAmount> daily
+		String id, // Format: userId_year_month
+		Integer year,
+		Integer month,
+		Integer monthTotal,
+		Map<String, Integer> category,
+		Map<String, Integer> paymentMethod,
+		Map<Integer, Analysis.DailyAmount> daily
 ) {
 	public static AnalysisDetailDto of(Analysis analysis) {
 		return AnalysisDetailDto.builder()
-			.id(analysis.getId())
-			.year(analysis.getYear())
-			.month(analysis.getMonth())
-			.monthTotal(analysis.getMonthTotal())
-			.category(getFormattedCategory(analysis.getCategory()))
-			.paymentMethod(getFormattedPaymentMethod(analysis.getPaymentMethod()))
-			.daily(getFormattedDaily(analysis.getDaily()))
-			.build();
+				.id(analysis.getId())
+				.year(analysis.getYear())
+				.month(analysis.getMonth())
+				.monthTotal(analysis.getMonthTotal())
+				.category(getFormattedCategory(analysis.getCategory()))
+				.paymentMethod(getFormattedPaymentMethod(analysis.getPaymentMethod()))
+				.daily(getFormattedDaily(analysis.getDaily()))
+				.build();
 	}
 
 	private static Map<String, Integer> getFormattedCategory(Map<String, Integer> category) {
@@ -36,13 +36,13 @@ public record AnalysisDetailDto(
 		}
 
 		for (CategoryEnum categoryName : CategoryEnum.values()) {
-			category.putIfAbsent(categoryName.name(), 0);
-		}
-
-		return category;
+		category.putIfAbsent(categoryName.name(), 0);
 	}
 
-	private static Map<String, Integer> getFormattedPaymentMethod(Map<String, Integer> paymentMethod) {
+		return category;
+}
+
+private static Map<String, Integer> getFormattedPaymentMethod(Map<String, Integer> paymentMethod) {
 		if (paymentMethod == null) {
 			paymentMethod = new HashMap<>();
 		}
