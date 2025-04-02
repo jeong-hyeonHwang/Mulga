@@ -1,5 +1,6 @@
 package com.example.mugbackend.user.service;
 
+import com.example.mugbackend.user.dto.UserResponseDto;
 import org.springframework.stereotype.Service;
 import com.example.mugbackend.user.domain.User;
 import com.example.mugbackend.user.dto.CustomUserDetails;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import com.example.mugbackend.analysis.repository.AnalysisRepository;
 import com.example.mugbackend.transaction.service.TransactionService;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -32,7 +34,7 @@ public class UserService {
 			.orElseThrow(ActiveUserNotFoundException::new);
 	}
 
-	public User signUp(CustomUserDetails userDetails, UserCreateDto dto) {
+	public UserResponseDto signUp(CustomUserDetails userDetails, UserCreateDto dto) {
 		User user = dto.toEntity();
 		user.setId(userDetails.id());
 
@@ -40,7 +42,23 @@ public class UserService {
 			throw new UserAlreadyExistsException();
 		}
 
-		return userRepository.save(user);
+		userRepository.save(user);
+
+		return convertToResponseDto(user);
+	}
+
+	public UserResponseDto convertToResponseDto(User user) {
+		DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+		return UserResponseDto.builder()
+				.id(user.getId())
+				.name(user.getName())
+				.email(user.getEmail())
+				.budget(user.getBudget())
+				.isWithdrawn(user.getIsWithdrawn())
+				.receivesNotification(user.getReceivesNotification())
+				.createdAt(user.getCreatedAt() == null ? "" : user.getCreatedAt().format(formatter))
+				.withdrawnAt(user.getWithdrawnAt() == null ? "" : user.getWithdrawnAt().format(formatter))
+				.build();
 	}
 
     public int calRemainingBudget(String userId, int monthTotal) {
