@@ -1,5 +1,6 @@
 package com.example.mulga.data.network
 
+import com.example.mulga.data.service.AnalysisService
 import com.example.mulga.data.service.TransactionService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,4 +23,5 @@ object RetrofitClient {
         .build()
 
     val apiService: TransactionService = retrofit.create(TransactionService::class.java)
+    val apiAnalysisService: AnalysisService = retrofit.create(AnalysisService::class.java)
 }
