@@ -15,8 +15,7 @@ fun CategoryList(items: List<CategoryItemData>) {
         LazyColumn {
             items(items) { item ->
                 CategoryItem(
-                    circleColor = item.circleColor,
-                    firstText = item.firstText,
+                    category = item.category,
                     secondText = item.secondText,
                     rightText = item.rightText
                 )

@@ -9,6 +9,7 @@ import com.example.mulga.feature.analysis.components.CategoryList
 import com.example.mulga.feature.analysis.components.DonutChart
 import com.example.mulga.feature.analysis.components.PaymentItemData
 import com.example.mulga.feature.analysis.components.PaymentList
+import com.example.mulga.presentation.model.type.Category
 import com.example.mulga.ui.theme.MulGaTheme
 
 @Preview(showBackground = true)
@@ -24,20 +25,17 @@ fun PreviewCategoryItem() {
     // Example list of items passed to CategoryList
     val itemList = listOf(
         CategoryItemData(
-            circleColor = MulGaTheme.colors.categoryShopping.copy(alpha = 0.1f),
-            firstText = "쇼핑",
+            category = "shopping",
             secondText = "50%",
             rightText = "501,250"
         ),
         CategoryItemData(
-            circleColor = MulGaTheme.colors.categoryFood.copy(alpha = 0.1f),
-            firstText = "식사",
+            category = "food",
             secondText = "30%",
             rightText = "200,000"
         ),
         CategoryItemData(
-            circleColor = MulGaTheme.colors.categoryTravel.copy(alpha = 0.1f),
-            firstText = "여행",
+            category = "travel",
             secondText = "20%",
             rightText = "100,000"
         )
