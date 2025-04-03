@@ -30,13 +30,13 @@ fun CategoryItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 6.dp, bottom = 6.dp, start = 30.dp, end = 30.dp),
+            .padding(top = 12.dp, bottom = 0.dp, start = 8.dp, end = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         // Circle on the left with customizable color
         Box(
             modifier = Modifier
-                .size(40.dp) // Adjust size as necessary
+                .size(36.dp) // Adjust size as necessary
                 .clip(CircleShape)
                 .background(circleColor) // Set circle color from parameter
         )
