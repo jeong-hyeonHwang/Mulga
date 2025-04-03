@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class DailyTransactionSummaryDto(
     val isValid: Boolean,
-    val income: Long,
-    val expense: Long
+    val income: Int,
+    val expense: Int
 )

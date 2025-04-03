@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,7 +19,9 @@ import com.example.mulga.util.extension.withCommas
 
 @Composable
 fun ExpenseSummaryView(
-    modifier: Modifier
+    monthTotal: String,
+    remainingBudget: String,
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier,
@@ -28,21 +31,27 @@ fun ExpenseSummaryView(
         Text(
             text = stringResource(R.string.main_expense_this_month),
             style = MulGaTheme.typography.bodyLarge,
-            textAlign = TextAlign.Center)
+            textAlign = TextAlign.Center
+        )
         Text(
-            text = stringResource(R.string.budget_value_unit, "10000000".withCommas()),
+            text = stringResource(R.string.budget_value_unit, monthTotal.withCommas()),
             style = MulGaTheme.typography.display,
-            textAlign = TextAlign.Center)
+            textAlign = TextAlign.Center,
+            modifier = Modifier.height(48.dp)
+        )
         Text(
-            text = stringResource(R.string.main_remaining_budget, "3000000".withCommas()),
+            text = stringResource(R.string.main_remaining_budget, remainingBudget.withCommas()),
             style = MulGaTheme.typography.caption,
-            textAlign = TextAlign.Center)
+            textAlign = TextAlign.Center
+        )
     }
-
 }
 
 @Preview
 @Composable
 fun ExpenseSummaryViewPreview() {
-    ExpenseSummaryView(Modifier.fillMaxWidth())
+    ExpenseSummaryView(
+        monthTotal = "100000",
+        remainingBudget = "10000000",
+        Modifier.fillMaxWidth())
 }

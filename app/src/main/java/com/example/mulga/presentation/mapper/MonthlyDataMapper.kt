@@ -8,6 +8,7 @@ import com.example.mulga.presentation.model.MonthlyTotalTransactionData
 import com.example.mulga.presentation.model.TransactionItemData
 import com.example.mulga.presentation.model.type.Category
 import com.example.mulga.util.extension.formatTimeToHourMinute
+import com.example.mulga.util.extension.formatTimeToHourMinuteForMain
 import java.time.LocalDate
 import java.time.YearMonth
 
@@ -44,8 +45,36 @@ fun MonthlyTransactionEntity.toDailyTransactionData(): List<DailyTransactionData
     }
 }
 
-// 4. 개별 거래 내역을 TransactionItemData로 변환
+// 4. 개별 거래 내역을 TransactionItemData로 변환 (캘린더용)
 fun TransactionEntity.toTransactionItemData(): TransactionItemData {
+    // title, vendor, paymentMethod은 null 또는 빈 문자열일 수 있으므로 안전하게 확인합니다.
+    val hasTitle = this.title.isNotEmpty()
+    val hasVendor = this.vendor.isNotEmpty()
+
+    // title은 존재하면 title, 없으면 vendor가 있으면 vendor, 둘 다 없으면 "-"
+    val newTitle = when {
+        hasTitle -> this.title
+        !hasTitle && hasVendor -> this.vendor
+        else -> "-"
+    }
+
+    // subtitle은 title과 vendor 모두 있을 때 "paymentMethod | vendor", 그 외에는 paymentMethod만 사용
+    val newSubtitle = if (hasTitle && hasVendor) {
+        "${this.paymentMethod} | ${this.vendor}"
+    } else {
+        this.paymentMethod ?: ""
+    }
+
+    return TransactionItemData(
+        category = Category.fromBackendKey(this.category),
+        title = newTitle,
+        subtitle = newSubtitle,
+        price = this.cost.toString(), // 필요시 포맷팅 추가 가능
+        time = formatTimeToHourMinute(this.time)
+    )
+}
+
+fun TransactionEntity.toTransactionItemDataForMain(): TransactionItemData {
     // title, vendor, paymentMethod은 null 또는 빈 문자열일 수 있으므로 안전하게 확인합니다.
     val hasTitle = !this.title.isNullOrEmpty()
     val hasVendor = !this.vendor.isNullOrEmpty()
@@ -69,7 +98,7 @@ fun TransactionEntity.toTransactionItemData(): TransactionItemData {
         title = newTitle,
         subtitle = newSubtitle,
         price = this.cost.toString(), // 필요시 포맷팅 추가 가능
-        time = formatTimeToHourMinute(this.time)
+        time = formatTimeToHourMinuteForMain(this.time)
     )
 }
 
