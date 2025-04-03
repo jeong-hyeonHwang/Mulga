@@ -1,6 +1,7 @@
 package com.example.mugbackend.transaction.repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
@@ -33,6 +34,17 @@ public class CustomTransactionRepositoryImpl implements CustomTransactionReposit
 		);
 
 		return Optional.ofNullable(updatedTransaction);
+	}
+
+	@Override
+	public void updateGroupAndCostById(String transactionId, List<Transaction> newGroup, Integer newCost) {
+		Query query = new Query(Criteria.where("_id").is(transactionId));
+
+		Update update = new Update()
+			.set("group", newGroup) // Update the `group` field
+			.set("cost", newCost);  // Update the `cost` field
+
+		mongoTemplate.updateFirst(query, update, Transaction.class);
 	}
 
 	private Update toUpdate(Transaction transaction) {
