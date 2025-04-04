@@ -1,25 +1,28 @@
 package com.example.mugbackend.analysis.service;
 
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-import com.example.mugbackend.analysis.dto.AnalysisFullDetailDto;
-import com.example.mugbackend.analysis.dto.MonthlyTrendDto;
-import com.example.mugbackend.common.enumeration.CategoryEnum;
-import com.example.mugbackend.analysis.dto.AnalysisFullDetailDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.mugbackend.analysis.domain.Analysis;
 import com.example.mugbackend.analysis.dto.AnalysisDetailDto;
+import com.example.mugbackend.analysis.dto.AnalysisFullDetailDto;
+import com.example.mugbackend.analysis.dto.MonthlyTrendDto;
 import com.example.mugbackend.analysis.exception.AnalysisNotFoundException;
 import com.example.mugbackend.analysis.repository.AnalysisRepository;
+import com.example.mugbackend.common.enumeration.CategoryEnum;
 import com.example.mugbackend.transaction.domain.Transaction;
 import com.example.mugbackend.user.dto.CustomUserDetails;
 
 import lombok.RequiredArgsConstructor;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -115,9 +118,6 @@ public class AnalysisService {
         return sortedPaymentMethod;
     }
 
-
-
-
     private Analysis getAnalysis(String userId, Integer year, Integer month) {
 
         String id = getId(userId, year, month);
@@ -199,6 +199,119 @@ public class AnalysisService {
 		}
 	}
 
+	@Transactional
+	public AnalysisDetailDto addCombinedTransactiontoAnalysis(CustomUserDetails userDetails, Transaction mainTransaction) {
+		Analysis analysis = getAnalysisById(userDetails, mainTransaction.getYear(), mainTransaction.getMonth());
+		Map<Integer, Analysis.DailyAmount> daily = analysis.getDaily();
+
+		for(Transaction transaction: mainTransaction.getGroup()) {
+			int day = transaction.getDay();
+			String category = transaction.getCategory();
+			int cost = transaction.getCost();
+
+			if(cost >= 0) {
+				int updatedIncome = Math.max(0, daily.get(day).getIncome() - cost);
+				daily.get(day).setIncome(updatedIncome);
+
+				if(daily.get(day).getIncome() == 0 && daily.get(day).getExpense() == 0) {
+					daily.get(day).setIsValid(false);
+				}
+			}
+			else {
+				int updatedExpense = Math.max(0, daily.get(day).getExpense() + cost);
+				daily.get(day).setExpense(updatedExpense);
+				if(daily.get(day).getIncome() == 0 && daily.get(day).getExpense() == 0) {
+					daily.get(day).setIsValid(false);
+				}
+
+				int updatedCategoryCost = Math.max(0, analysis.getCategory().get(category) + cost);
+				analysis.getCategory().put(category, updatedCategoryCost);
+
+				int updatedMonthTotal = Math.max(0, analysis.getMonthTotal() + cost);
+				analysis.setMonthTotal(updatedMonthTotal);
+			}
+		}
+
+		int day = mainTransaction.getDay();
+		String category = mainTransaction.getCategory();
+		int cost = mainTransaction.getCost();
+
+		if(cost >= 0) {
+			daily.get(day).setIncome(daily.get(day).getIncome() + cost);
+			if(daily.get(day).getIncome() != 0) {
+				daily.get(day).setIsValid(true);
+			}
+		}
+		else { // make daily isvalid true
+			cost = Math.abs(cost);
+			daily.get(day).setExpense(daily.get(day).getExpense() + cost);
+			if(daily.get(day).getExpense() != 0) {
+				daily.get(day).setIsValid(true);
+			}
+			analysis.getCategory().put(category, analysis.getCategory().get(category) + cost);
+			analysis.setMonthTotal(analysis.getMonthTotal() + cost);
+		}
+
+		analysisRepository.save(analysis);
+		return AnalysisDetailDto.of(analysis);
+	}
+
+	@Transactional
+	public AnalysisDetailDto removeCombinedTransactionfromAnalysis(CustomUserDetails userDetails, Transaction mainTransaction) {
+		Analysis analysis = getAnalysisById(userDetails, mainTransaction.getYear(), mainTransaction.getMonth());
+		Map<Integer, Analysis.DailyAmount> daily = analysis.getDaily();
+
+		// undo main transaction
+		int day = mainTransaction.getDay();
+		String category = mainTransaction.getCategory();
+		int cost = mainTransaction.getCost();
+
+		if(cost >= 0) {
+			daily.get(day).setIncome(daily.get(day).getIncome() - cost);
+		}
+		else { // make isvalid false
+			daily.get(day).setExpense(daily.get(day).getExpense() + cost);
+			if(daily.get(day).getIncome() == 0 && daily.get(day).getExpense() == 0) {
+				daily.get(day).setIsValid(false);
+			}
+			analysis.getCategory().put(category, analysis.getCategory().get(category) + cost);
+			analysis.setMonthTotal(analysis.getMonthTotal() + cost);
+		}
+
+		// apply sub transactions
+		for(Transaction transaction: mainTransaction.getGroup()) {
+			day = transaction.getDay();
+			category = transaction.getCategory();
+			cost = transaction.getCost();
+
+			if(cost >= 0) {
+				int updatedIncome = Math.max(0, daily.get(day).getIncome() + cost);
+				daily.get(day).setIncome(updatedIncome);
+
+				if(daily.get(day).getIncome() != 0) {
+					daily.get(day).setIsValid(true);
+				}
+			}
+			else {
+				cost = Math.abs(cost);
+				int updatedExpense = Math.max(0, daily.get(day).getExpense() + cost);
+				daily.get(day).setExpense(updatedExpense);
+				if(daily.get(day).getExpense() != 0) {
+					daily.get(day).setIsValid(true);
+				}
+
+				int updatedCategoryCost = Math.max(0, analysis.getCategory().get(category) + cost);
+				analysis.getCategory().put(category, updatedCategoryCost);
+
+				int updatedMonthTotal = Math.max(0, analysis.getMonthTotal() + cost);
+				analysis.setMonthTotal(updatedMonthTotal);
+			}
+		}
+
+		analysisRepository.save(analysis);
+		return AnalysisDetailDto.of(analysis);
+	}
+
 	private void applyChangeToAnalysis(Analysis analysis, Transaction transaction, Boolean isAdded) {
 		Integer cost = transaction.getCost();
 		String category = transaction.getCategory();
@@ -235,8 +348,6 @@ public class AnalysisService {
 
 		dailyAmount.setIsValid(!(dailyIncome == 0 && dailyExpense == 0));
 	}
-
-
 
 	private Analysis getAnalysisById(CustomUserDetails userDetails, Integer year, Integer month) {
 		String id = String.format("%s_%d_%d", userDetails.id(), year, month);
