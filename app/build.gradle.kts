@@ -12,14 +12,14 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mulga"
+    namespace = "com.ilm.mulga"
     compileSdk = 35
 
     val localProperties = Properties()
     localProperties.load(FileInputStream(rootProject.file("local.properties")))
 
     defaultConfig {
-        applicationId = "com.example.mulga"
+        applicationId = "com.ilm.mulga"
         minSdk = 31
         targetSdk = 35
         versionCode = 1
@@ -82,6 +82,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation("androidx.compose.material3:material3:1.1.0")
     implementation("io.insert-koin:koin-core:4.0.2")
     implementation("io.insert-koin:koin-android:4.0.2")
     implementation("io.insert-koin:koin-androidx-compose:4.0.2")
