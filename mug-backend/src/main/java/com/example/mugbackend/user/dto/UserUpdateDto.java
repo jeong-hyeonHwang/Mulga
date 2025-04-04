@@ -1,6 +1,7 @@
 package com.example.mugbackend.user.dto;
 
 import com.example.mugbackend.user.domain.User;
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 
