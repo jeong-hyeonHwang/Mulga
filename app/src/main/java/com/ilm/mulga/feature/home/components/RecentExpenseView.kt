@@ -47,7 +47,7 @@ fun RecentExpenseView(
                 .height(contentHeight),
         ) {
             if (item != null) {
-                TransactionItem(item = item)
+                TransactionItem(item = item, onClick = {})
             } else {
                 Text(
                     text = stringResource(R.string.main_no_recent_expense),
@@ -63,11 +63,12 @@ fun RecentExpenseView(
 @Composable
 fun RecentExpenseViewPreview() {
     val item: TransactionItemData = TransactionItemData(
+        id = "sad....",
         category = Category.FOOD,
         title = "냠",
         subtitle = "어딘가 어떤 카드로",
         price = "50000",
-        time = "some"
+        time = "some",
     )
     RecentExpenseView(item, Modifier.padding(32.dp))
 }

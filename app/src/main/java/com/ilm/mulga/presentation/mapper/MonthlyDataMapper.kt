@@ -66,6 +66,7 @@ fun TransactionEntity.toTransactionItemData(): TransactionItemData {
     }
 
     return TransactionItemData(
+        id = this.id,
         category = Category.fromBackendKey(this.category),
         title = newTitle,
         subtitle = newSubtitle,
@@ -94,6 +95,7 @@ fun TransactionEntity.toTransactionItemDataForMain(): TransactionItemData {
     }
 
     return TransactionItemData(
+        id = this.id,
         category = Category.fromBackendKey(this.category),
         title = newTitle,
         subtitle = newSubtitle,

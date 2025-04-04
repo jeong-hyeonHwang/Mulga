@@ -20,7 +20,8 @@ import com.ilm.mulga.presentation.model.DailyTransactionData
 fun TransactionDaySection(
     dailyTransactionData: DailyTransactionData,
     modifier: Modifier = Modifier,
-    standalone: Boolean = false  // true면 standalone 모드, false면 List 모드
+    standalone: Boolean = false,  // true면 standalone 모드, false면 List 모드
+    onTransactionClick: (String) -> Unit
 ) {
     if (standalone) {
         // standalone 모드: 헤더는 고정, 거래 내역 부분은 스크롤 가능하도록 분리
@@ -48,7 +49,7 @@ fun TransactionDaySection(
                         )
                     } else {
                         dailyTransactionData.transactions.forEach { item ->
-                            TransactionItem(item = item)
+                            TransactionItem(item = item, onClick = { onTransactionClick(item.id) })
                             Spacer(modifier = Modifier.height(16.dp))
                         }
                     }
@@ -68,7 +69,7 @@ fun TransactionDaySection(
             Spacer(modifier = Modifier.height(16.dp))
             if (dailyTransactionData.transactions.isNotEmpty()) {
                 dailyTransactionData.transactions.forEach { item ->
-                    TransactionItem(item = item)
+                    TransactionItem(item = item, onClick = { onTransactionClick(item.id) })
                     Spacer(modifier = Modifier.height(16.dp))
                 }
             }

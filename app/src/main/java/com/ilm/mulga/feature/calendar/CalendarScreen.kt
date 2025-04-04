@@ -11,14 +11,21 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.ilm.mulga.feature.calendar.components.CalendarHeaderView
 import com.ilm.mulga.feature.calendar.components.CustomCalendarView
 import com.ilm.mulga.feature.calendar.components.TransactionDaySection
 import com.ilm.mulga.feature.calendar.components.TransactionList
+import com.ilm.mulga.presentation.mapper.toPresentation
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.koin.androidx.compose.koinViewModel
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 @Composable
-fun CalendarScreen(viewModel: CalendarViewModel = koinViewModel()) {
+fun CalendarScreen(viewModel: CalendarViewModel = koinViewModel(),
+                   navController: NavController) {
     val uiState by viewModel.uiState.collectAsState()
 
     Column(
@@ -45,7 +52,24 @@ fun CalendarScreen(viewModel: CalendarViewModel = koinViewModel()) {
                     TransactionDaySection(
                         dailyTransactionData = dailyTransaction,
                         modifier = Modifier.padding(horizontal = 12.dp),
-                        standalone = true
+                        standalone = true,
+                        onTransactionClick = { transactionId ->
+                            // 월간 데이터의 transactions에서 해당 거래를 찾는다.
+                            val transactionEntity = uiState.monthlyTransactionEntity
+                                ?.transactions
+                                ?.values
+                                ?.flatten()
+                                ?.find { it.id == transactionId }
+                            transactionEntity?.let { entity ->
+                                // 확장 함수 toPresentation()을 사용해 Presentation 데이터로 변환
+                                val detailData = entity.toPresentation()
+                                // JSON으로 인코딩
+                                val jsonData = Json.encodeToString(detailData)
+                                // URL 안전하게 인코딩
+                                val encodedData = URLEncoder.encode(jsonData, StandardCharsets.UTF_8.toString())
+                                navController.navigate("transaction_detail?data=$encodedData")
+                            }
+                        },
                     )
                 }
             }
@@ -53,7 +77,21 @@ fun CalendarScreen(viewModel: CalendarViewModel = koinViewModel()) {
             uiState.dailyTransactionsData?.let {
                 TransactionList(
                     dailyTransactionDataList = it,
-                    selectedDate = uiState.selectedDate
+                    selectedDate = uiState.selectedDate,
+                    onTransactionClick = { transactionId ->
+                        // 위와 동일한 로직으로 상세 데이터 찾기
+                        val transactionEntity = uiState.monthlyTransactionEntity
+                            ?.transactions
+                            ?.values
+                            ?.flatten()
+                            ?.find { it.id == transactionId }
+                        transactionEntity?.let { entity ->
+                            val detailData = entity.toPresentation()
+                            val jsonData = Json.encodeToString(detailData)
+                            val encodedData = URLEncoder.encode(jsonData, StandardCharsets.UTF_8.toString())
+                            navController.navigate("transaction_detail?data=$encodedData")
+                        }
+                    }
                 )
             }
         }
@@ -61,9 +99,9 @@ fun CalendarScreen(viewModel: CalendarViewModel = koinViewModel()) {
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun CalendarScreenPreview() {
-    val fakeViewModel = CalendarViewModel()
-    CalendarScreen(viewModel = fakeViewModel)
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun CalendarScreenPreview() {
+//    val fakeViewModel = CalendarViewModel()
+//    CalendarScreen(viewModel = fakeViewModel)
+//}

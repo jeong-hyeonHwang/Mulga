@@ -74,7 +74,7 @@
     <string name="field_transaction_name">내역명</string>
     <string name="field_category">카테고리</string>
     <string name="field_merchant">거래처</string>
-    <string name="field_payment_method">결제수단</string>
+    <string name="field_payment_method">거래수단</string>
     <string name="field_transaction_date_time">거래일시</string>
     <string name="field_memo">메모</string>
     <string name="field_amount">금액</string>
