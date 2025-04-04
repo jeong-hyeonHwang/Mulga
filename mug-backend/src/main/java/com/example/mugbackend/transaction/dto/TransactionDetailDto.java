@@ -24,7 +24,7 @@ public record TransactionDetailDto (
 	String vendor,
 	LocalDateTime time,
 	String paymentMethod,
-	List<Transaction> group
+	List<TransactionDetailDto> group
 ){
 	static public TransactionDetailDto of(Transaction transaction) {
 		return TransactionDetailDto.builder()
@@ -41,7 +41,8 @@ public record TransactionDetailDto (
 			.vendor(Optional.ofNullable(transaction.getVendor()).orElse(""))
 			.time(transaction.getTime())
 			.paymentMethod(Optional.ofNullable(transaction.getPaymentMethod()).orElse(""))
-			.group(Optional.ofNullable(transaction.getGroup()).orElse(new ArrayList<>()))
+			.group(Optional.ofNullable(transaction.getGroup()).map(list ->
+				list.stream().map(TransactionDetailDto::of).toList()).orElseGet(ArrayList::new))
 			.build();
 	}
 }

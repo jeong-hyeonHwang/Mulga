@@ -64,7 +64,6 @@ public class AnalysisService {
         return monthlyTrend;
     }
 
-
     public Map<String, Integer> getSortedCategory(Map<String, Integer> category) {
         if (category == null) {
             category = new HashMap<>();
@@ -166,6 +165,119 @@ public class AnalysisService {
 
 			return AnalysisDetailDto.of(analysis);
 		}
+	}
+
+	@Transactional
+	public AnalysisDetailDto addCombinedTransactiontoAnalysis(CustomUserDetails userDetails, Transaction mainTransaction) {
+		Analysis analysis = getAnalysis(userDetails, mainTransaction.getYear(), mainTransaction.getMonth());
+		Map<Integer, Analysis.DailyAmount> daily = analysis.getDaily();
+
+		for(Transaction transaction: mainTransaction.getGroup()) {
+			int day = transaction.getDay();
+			String category = transaction.getCategory();
+			int cost = transaction.getCost();
+
+			if(cost >= 0) {
+				int updatedIncome = Math.max(0, daily.get(day).getIncome() - cost);
+				daily.get(day).setIncome(updatedIncome);
+
+				if(daily.get(day).getIncome() == 0 && daily.get(day).getExpense() == 0) {
+					daily.get(day).setIsValid(false);
+				}
+			}
+			else {
+				int updatedExpense = Math.max(0, daily.get(day).getExpense() + cost);
+				daily.get(day).setExpense(updatedExpense);
+				if(daily.get(day).getIncome() == 0 && daily.get(day).getExpense() == 0) {
+					daily.get(day).setIsValid(false);
+				}
+
+				int updatedCategoryCost = Math.max(0, analysis.getCategory().get(category) + cost);
+				analysis.getCategory().put(category, updatedCategoryCost);
+
+				int updatedMonthTotal = Math.max(0, analysis.getMonthTotal() + cost);
+				analysis.setMonthTotal(updatedMonthTotal);
+			}
+		}
+
+		int day = mainTransaction.getDay();
+		String category = mainTransaction.getCategory();
+		int cost = mainTransaction.getCost();
+
+		if(cost >= 0) {
+			daily.get(day).setIncome(daily.get(day).getIncome() + cost);
+			if(daily.get(day).getIncome() != 0) {
+				daily.get(day).setIsValid(true);
+			}
+		}
+		else { // make daily isvalid true
+			cost = Math.abs(cost);
+			daily.get(day).setExpense(daily.get(day).getExpense() + cost);
+			if(daily.get(day).getExpense() != 0) {
+				daily.get(day).setIsValid(true);
+			}
+			analysis.getCategory().put(category, analysis.getCategory().get(category) + cost);
+			analysis.setMonthTotal(analysis.getMonthTotal() + cost);
+		}
+
+		analysisRepository.save(analysis);
+		return AnalysisDetailDto.of(analysis);
+	}
+
+	@Transactional
+	public AnalysisDetailDto removeCombinedTransactionfromAnalysis(CustomUserDetails userDetails, Transaction mainTransaction) {
+		Analysis analysis = getAnalysis(userDetails, mainTransaction.getYear(), mainTransaction.getMonth());
+		Map<Integer, Analysis.DailyAmount> daily = analysis.getDaily();
+
+		// undo main transaction
+		int day = mainTransaction.getDay();
+		String category = mainTransaction.getCategory();
+		int cost = mainTransaction.getCost();
+
+		if(cost >= 0) {
+			daily.get(day).setIncome(daily.get(day).getIncome() - cost);
+		}
+		else { // make isvalid false
+			daily.get(day).setExpense(daily.get(day).getExpense() + cost);
+			if(daily.get(day).getIncome() == 0 && daily.get(day).getExpense() == 0) {
+				daily.get(day).setIsValid(false);
+			}
+			analysis.getCategory().put(category, analysis.getCategory().get(category) + cost);
+			analysis.setMonthTotal(analysis.getMonthTotal() + cost);
+		}
+
+		// apply sub transactions
+		for(Transaction transaction: mainTransaction.getGroup()) {
+			day = transaction.getDay();
+			category = transaction.getCategory();
+			cost = transaction.getCost();
+
+			if(cost >= 0) {
+				int updatedIncome = Math.max(0, daily.get(day).getIncome() + cost);
+				daily.get(day).setIncome(updatedIncome);
+
+				if(daily.get(day).getIncome() != 0) {
+					daily.get(day).setIsValid(true);
+				}
+			}
+			else {
+				cost = Math.abs(cost);
+				int updatedExpense = Math.max(0, daily.get(day).getExpense() + cost);
+				daily.get(day).setExpense(updatedExpense);
+				if(daily.get(day).getExpense() != 0) {
+					daily.get(day).setIsValid(true);
+				}
+
+				int updatedCategoryCost = Math.max(0, analysis.getCategory().get(category) + cost);
+				analysis.getCategory().put(category, updatedCategoryCost);
+
+				int updatedMonthTotal = Math.max(0, analysis.getMonthTotal() + cost);
+				analysis.setMonthTotal(updatedMonthTotal);
+			}
+		}
+
+		analysisRepository.save(analysis);
+		return AnalysisDetailDto.of(analysis);
 	}
 
 	private void applyChangeToAnalysis(Analysis analysis, Transaction transaction, Boolean isAdded) {
