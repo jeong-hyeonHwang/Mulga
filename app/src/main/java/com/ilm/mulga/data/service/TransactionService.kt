@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface TransactionService {
-    @GET("{year}/{month}")
+    @GET("/calendar/{year}/{month}")
     suspend fun getMonthlyTransactions(
         @Path("year") year: Int,
         @Path("month") month: Int

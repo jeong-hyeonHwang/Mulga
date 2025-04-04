@@ -5,9 +5,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MonthlyTransactionResponseDto(
-    val monthTotal: Long,
-    val year: Int,
-    val month: Int,
-    val daily: Map<String, DailyTransactionSummaryDto>,
-    val transactions: Map<String, List<TransactionDto>>
+    val monthTotal: Int = 0,
+    val year: Int = 0,
+    val month: Int = 0,
+    val daily: Map<String, DailyTransactionSummaryDto> = emptyMap(),
+    val transactions: Map<String, List<TransactionDto>> = emptyMap()
 )

@@ -41,6 +41,11 @@ android {
         buildConfigField("int", "RABBITMQ_PORT", rabbitPort.toString())
         buildConfigField("String", "RABBITMQ_USERNAME", "\"$rabbitUser\"")
         buildConfigField("String", "RABBITMQ_PASSWORD", "\"$rabbitPass\"")
+
+        val backendHost = props.getProperty("backend.host") ?: throw GradleException("❌ backend.host 없음")
+        val testAccessToken = props.getProperty("testAccessToken") ?: throw GradleException("❌ testAccessToken 없음")
+        buildConfigField("String", "BACKEND_HOST", "\"$backendHost\"")
+        buildConfigField("String", "TEST_ACCESS_TOKEN", "\"$testAccessToken\"")
     }
 
     buildTypes {
@@ -85,6 +90,7 @@ dependencies {
     implementation("com.rabbitmq:amqp-client:5.21.0")
     implementation("org.slf4j:slf4j-simple:2.0.16")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+    implementation ("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
     implementation("androidx.lifecycle:lifecycle-process:2.6.2")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")

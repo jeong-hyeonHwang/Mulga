@@ -25,7 +25,9 @@ fun TransactionList(
 
     LaunchedEffect(selectedDate) {
         val newIndex = filteredList.indexOfFirst { it.date == selectedDate }
-        listState.scrollToItem(newIndex)
+        if (newIndex >= 0) {
+            listState.scrollToItem(newIndex)
+        }
     }
 
     LazyColumn(

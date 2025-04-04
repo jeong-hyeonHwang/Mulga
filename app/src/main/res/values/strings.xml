@@ -44,6 +44,7 @@
     <string name="main_recent_expense">최근소비</string>
     <string name="main_expense_this_month">이번 달 지출</string>
     <string name="main_remaining_budget">남은 예산: %s원</string>
+    <string name="main_no_recent_expense">최근 소비한 내역이 없습니다.</string>
 
     <!-- 버튼 타이틀 관련 (btn_title_) -->
     <string name="btn_title_withdrawal">탈퇴</string>
