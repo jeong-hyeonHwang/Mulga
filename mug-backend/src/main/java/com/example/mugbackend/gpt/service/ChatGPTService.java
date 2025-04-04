@@ -25,10 +25,15 @@ public class ChatGPTService {
     @Value("${openapi.api.model}")
     private String model;
 
+    @Value("${gpt.system.prompt}")
+    private String systemPrompt;
+
     public String getChatResponse(PromptRequest promptRequest) {
         ChatGPTRequest chatGPTRequest = new ChatGPTRequest(
                 model,
-                List.of(new ChatGPTRequest.Message("user", promptRequest.prompt()))
+                List.of(
+                        new ChatGPTRequest.Message("system", systemPrompt),
+                        new ChatGPTRequest.Message("user", promptRequest.prompt()))
         );
 
         ChatGPTResponse response = restClient.post()
