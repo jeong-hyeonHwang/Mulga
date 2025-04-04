@@ -1,4 +1,4 @@
-package com.example.mulga.feature.transaction_detail
+package com.ilm.mulga.feature.transaction_detail
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
@@ -7,7 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.example.mulga.feature.transaction_detail.components.CategorySelectButton
+import com.ilm.mulga.feature.transaction_detail.components.CategorySelectButton
 import com.ilm.mulga.features.category.components.CategoryModal
 import org.koin.androidx.compose.koinViewModel
 

@@ -1,4 +1,4 @@
-package com.example.mulga.feature.transaction_detail.components
+package com.ilm.mulga.feature.transaction_detail.components
 
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text

@@ -1,4 +1,4 @@
-package com.example.mulga.feature.transaction_detail
+package com.ilm.mulga.feature.transaction_detail
 
 import androidx.lifecycle.ViewModel
 import com.ilm.mulga.presentation.model.type.Category
