@@ -280,6 +280,55 @@ public class AnalysisService {
 		return AnalysisDetailDto.of(analysis);
 	}
 
+	@Transactional
+	public AnalysisDetailDto deleteCombinedTransactionfromAnalysis(CustomUserDetails userDetails, Transaction mainTransaction) {
+		int year = mainTransaction.getYear();
+		int month = mainTransaction.getMonth();
+
+		Analysis analysis = getAnalysis(userDetails, year, month);
+		Map<Integer, Analysis.DailyAmount> daily = analysis.getDaily();
+
+		// undo main transaction
+		int day = mainTransaction.getDay();
+		String category = mainTransaction.getCategory();
+		int cost = mainTransaction.getCost();
+
+		if(cost >= 0) {
+			daily.get(day).setIncome(daily.get(day).getIncome() - cost);
+			if(daily.get(day).getIncome() == 0 && daily.get(day).getExpense() == 0) {
+				daily.get(day).setIsValid(false);
+			}
+		}
+		else {
+			daily.get(day).setExpense(daily.get(day).getExpense() + cost);
+			if(daily.get(day).getIncome() == 0 && daily.get(day).getExpense() == 0) {
+				daily.get(day).setIsValid(false);
+			}
+			analysis.getCategory().put(category, analysis.getCategory().get(category) + cost);
+			analysis.setMonthTotal(analysis.getMonthTotal() + cost);
+		}
+
+		// undo changes in payment method
+		for(Transaction transaction: mainTransaction.getGroup()) {
+			cost = transaction.getCost();
+			String paymentMethod = transaction.getPaymentMethod();
+
+			if(cost >= 0) {
+				continue;
+			}
+
+			int updatedPaymentExpense = Math.max(0, analysis.getPaymentMethod().get(paymentMethod) + cost);
+			if(updatedPaymentExpense == 0){
+				analysis.getPaymentMethod().remove(paymentMethod);
+			}
+			else {
+				analysis.getPaymentMethod().put(paymentMethod, updatedPaymentExpense);
+			}
+		}
+		analysisRepository.save(analysis);
+		return AnalysisDetailDto.of(analysis);
+	}
+
 	private void applyChangeToAnalysis(Analysis analysis, Transaction transaction, Boolean isAdded) {
 		Integer cost = transaction.getCost();
 		String category = transaction.getCategory();
@@ -316,8 +365,6 @@ public class AnalysisService {
 
 		dailyAmount.setIsValid(!(dailyIncome == 0 && dailyExpense == 0));
 	}
-
-
 
 	private Analysis getAnalysis(CustomUserDetails userDetails, Integer year, Integer month) {
 		String id = String.format("%s_%d_%d", userDetails.id(), year, month);

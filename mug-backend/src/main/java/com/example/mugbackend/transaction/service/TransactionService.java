@@ -138,7 +138,12 @@ public class TransactionService {
     public void deleteTransactions(CustomUserDetails userDetails, List<String> transactionIds) {
         for(String transactionId : transactionIds) {
             Transaction transaction = findById(userDetails, transactionId);
-            analysisService.removeTransactionFromAnalysis(userDetails, transaction);
+            if(transaction.getIsCombined()) {
+                analysisService.deleteCombinedTransactionfromAnalysis(userDetails, transaction);
+            }
+            else {
+                analysisService.removeTransactionFromAnalysis(userDetails, transaction);
+            }
         }
 
         transactionRepository.deleteAllByIdIn(transactionIds);
