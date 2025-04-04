@@ -2,6 +2,8 @@ package com.ilm.mulga.feature.calendar.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,7 +31,8 @@ import com.ilm.mulga.util.extension.withCommas
 
 @Composable
 fun TransactionItem(
-    item: TransactionItemData
+    item: TransactionItemData,
+    onClick: () -> Unit
 ) {
     // category가 null이면 아이콘 영역은 LightGray 색상, 있으면 배경은 Transparent
     val iconBackgroundColor = if (item.category == null) MulGaTheme.colors.grey2 else Color.Transparent
@@ -37,7 +41,11 @@ fun TransactionItem(
         modifier = Modifier
             .fillMaxWidth()
             .background(Color.White)
-            .padding(vertical = 4.dp),
+            .padding(vertical = 4.dp)
+            .clickable(
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() }
+            ) { onClick() },
         verticalAlignment = Alignment.CenterVertically
     ) {
         // 아이콘 영역
@@ -97,32 +105,5 @@ fun TransactionItem(
                 style = MulGaTheme.typography.caption
             )
         }
-    }
-}
-
-@Preview
-@Composable
-fun TransactionItemPreview() {
-    // Preview에서 category가 없는 경우와 있는 경우를 테스트합니다.
-    Column {
-        TransactionItem(
-            TransactionItemData(
-                category = null,
-                title = "무엇인지 잘 몰라요잉",
-                subtitle = "LGU+ 카드의 정식 | 메가커피",
-                price = "-2455500",
-                time = "08:23"
-            )
-        )
-
-        TransactionItem(
-            TransactionItemData(
-                category = Category.CAFE,
-                title = "아이스 아메리카노",
-                subtitle = "LGU+ 카드의 정식 | 메가커피",
-                price = "-1500",
-                time = "08:23"
-            )
-        )
     }
 }

@@ -1,20 +1,14 @@
 package com.ilm.mulga
 
+import MainScreen
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.Button
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.ilm.mulga.feature.component.main.MainScreen
 import com.ilm.mulga.feature.login.LoginScreen
 import com.ilm.mulga.ui.theme.MulGaTheme
 
