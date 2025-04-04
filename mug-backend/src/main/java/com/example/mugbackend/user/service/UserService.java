@@ -1,10 +1,8 @@
 package com.example.mugbackend.user.service;
 
-import com.example.mugbackend.user.dto.UserResponseDto;
+import com.example.mugbackend.user.dto.*;
 import org.springframework.stereotype.Service;
 import com.example.mugbackend.user.domain.User;
-import com.example.mugbackend.user.dto.CustomUserDetails;
-import com.example.mugbackend.user.dto.UserCreateDto;
 import com.example.mugbackend.user.exception.ActiveUserNotFoundException;
 import com.example.mugbackend.user.exception.UserAlreadyExistsException;
 import com.example.mugbackend.user.repository.UserRepository;
@@ -76,4 +74,13 @@ public class UserService {
                 .filter(Objects::nonNull)
                 .orElse(0);
     }
+
+	public UserDetailDto updateUser(CustomUserDetails userDetails, UserUpdateDto dto) {
+		User user = userDetails.toEntity();
+		dto.applyChangesToUser(user);
+
+		userRepository.save(user);
+
+		return UserDetailDto.of(user);
+	}
 }

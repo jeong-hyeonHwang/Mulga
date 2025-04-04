@@ -2,15 +2,13 @@ package com.example.mugbackend.user.controller;
 
 import java.time.LocalDate;
 
+import com.example.mugbackend.user.dto.UserUpdateDto;
 import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.mugbackend.transaction.domain.Transaction;
 import com.example.mugbackend.transaction.dto.TransactionDetailDto;
@@ -32,6 +30,14 @@ public class UserController {
     @GetMapping("/me")
 	public ResponseEntity<?> me(@AuthenticationPrincipal CustomUserDetails userDetails) {
 		return ResponseEntity.ok(userDetails.toEntity());
+	}
+
+	@PatchMapping("/me")
+	public ResponseEntity<?> update(
+			@AuthenticationPrincipal CustomUserDetails userDetails,
+			@RequestBody @Valid UserUpdateDto updateDto
+	) {
+		return ResponseEntity.ok(userService.updateUser(userDetails, updateDto));
 	}
 
 	@PostMapping("/signup")
