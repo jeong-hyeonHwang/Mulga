@@ -238,6 +238,9 @@ public class AnalysisService {
 
 		if(cost >= 0) {
 			daily.get(day).setIncome(daily.get(day).getIncome() + cost);
+			if(daily.get(day).getIncome() != 0) {
+				daily.get(day).setIsValid(true);
+			}
 		}
 		else { // make daily isvalid true
 			cost = Math.abs(cost);
