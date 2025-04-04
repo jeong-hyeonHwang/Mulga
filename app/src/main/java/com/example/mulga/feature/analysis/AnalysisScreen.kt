@@ -1,12 +1,15 @@
 package com.example.mulga.feature.analysis
 
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mulga.feature.analysis.components.CategoryItemData
 import com.example.mulga.feature.analysis.components.CategoryList
 import com.example.mulga.feature.analysis.components.DonutChart
+import com.example.mulga.feature.analysis.components.MonthlyBarGraph
 import com.example.mulga.feature.analysis.components.PaymentItemData
 import com.example.mulga.feature.analysis.components.PaymentList
 import com.example.mulga.presentation.model.type.Category
