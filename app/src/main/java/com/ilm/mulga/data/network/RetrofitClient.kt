@@ -3,6 +3,7 @@ package com.ilm.mulga.data.network
 import com.ilm.mulga.data.service.HomeService
 import com.ilm.mulga.BuildConfig
 import com.ilm.mulga.data.service.TransactionService
+import com.ilm.mulga.data.service.UserService
 import com.ilm.mulga.domain.repository.local.UserLocalRepository
 import com.ilm.mulga.domain.usecase.GetTokenUseCase
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -59,4 +60,5 @@ object RetrofitClient : KoinComponent {
 
     val transactionService: TransactionService = retrofit.create(TransactionService::class.java)
     val homeService: HomeService = retrofit.create(HomeService::class.java)
+    val userService: UserService = retrofit.create(UserService::class.java)
 }

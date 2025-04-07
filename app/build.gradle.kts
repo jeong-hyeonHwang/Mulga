@@ -73,10 +73,26 @@ android {
         compose = true
         buildConfig = true
     }
+
+    signingConfigs {
+        getByName("debug") {
+            storeFile = properties["storeFile"]?.toString()?.let { file(it) }
+            storePassword = properties["storePassword"]?.toString()
+            keyAlias = properties["keyAlias"]?.toString()
+            keyPassword = properties["keyPassword"]?.toString()
+        }
+        create("release") {
+            storeFile = properties["storeFile"]?.toString()?.let { file(it) }
+            storePassword = properties["storePassword"]?.toString()
+            keyAlias = properties["keyAlias"]?.toString()
+            keyPassword = properties["keyPassword"]?.toString()
+        }
+    }
 }
 
 dependencies {
     implementation(libs.androidx.runtime.livedata)
+    implementation(libs.googleid)
     val room_version = "2.6.1"
 
     implementation(libs.androidx.core.ktx)
@@ -103,6 +119,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
     implementation("androidx.room:room-ktx:$room_version")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+    ksp("androidx.room:room-compiler:$room_version")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -111,4 +128,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation("io.github.thechance101:chart:Beta-0.0.5")
+    implementation(platform("com.google.firebase:firebase-bom:33.11.0"))
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.android.gms:play-services-auth:21.3.0")
 }
