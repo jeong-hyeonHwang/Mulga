@@ -1,6 +1,7 @@
 package com.example.mugbackend.message.service;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +18,27 @@ public class MessageService {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public List<String> fetchMessages(int count) {
-        System.out.println("서비스: fetchMessages 메서드 진입");
+    // 10초마다 실행
+    @Scheduled(fixedRate = 10000)
+    public void pollMessages() {
 
+        // TODO: 출력문 삭제
+        System.out.println("pollingMessage메서드 실행");
+
+        List<String> messages = fetchMessages(2);
+        if (!messages.isEmpty()) {
+
+            // TODO: 출력문 삭제
+            System.out.println("가져온 메시지 개수: " + messages.size());
+
+            for(String message : messages) {
+                System.out.println(message);
+            }
+
+        }
+    }
+
+    public List<String> fetchMessages(int count) {
 
         List<String> messages = new ArrayList<>();
 
@@ -38,8 +57,6 @@ public class MessageService {
                     message = obj.toString();
                 }
 
-                System.out.println("서비스: message from rabbitMQ: " + message);
-
 
                 if (message == null) {
                     break;
@@ -54,9 +71,8 @@ public class MessageService {
 
         }
 
-        // 큐에서 메시지를 하나도 가져오지 못했을 경우, 대체 메시지를 추가
         if (messages.isEmpty()) {
-            messages.add("요청한 메시지가 충분하지 않습니다.");
+            messages.add("큐에서 메시지를 가져오지 못했습니다.");
         }
 
         return messages;
