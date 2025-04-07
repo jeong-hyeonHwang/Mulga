@@ -1,52 +1,61 @@
 package com.example.mulga.feature.analysis.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
-import com.example.mulga.ui.theme.MulGaTheme
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.draw.clip
-import androidx.compose.material3.Icon
+import androidx.compose.foundation.Image
+import com.example.mulga.ui.theme.MulGaTheme
+import com.example.mulga.R // Make sure to import your drawable resources
 
 data class PaymentItemData(
-    val iconColor: Color,
-    val firstText: String,
-    val rightText: String
+    val source: String,
+    val amount: String
 )
+
+// Function to map firstText to corresponding icon
+fun getIconResource(firstText: String): Int {
+    return when (firstText) {
+        "신한은행" -> R.drawable.ic_pay_shinhanbank
+        "네이버페이" -> R.drawable.ic_pay_naverpay
+        "국민은행" -> R.drawable.ic_pay_kbbank
+        "카카오뱅크" -> R.drawable.ic_pay_kakaobank
+        "카카오페이" -> R.drawable.ic_pay_kakaopay
+        else -> R.drawable.ic_pay_naverpay // Fallback icon if no match
+    }
+}
 
 // PaymentItem Composable for individual items
 @Composable
 fun PaymentItem(
-    iconColor: Color = MulGaTheme.colors.categoryCafe.copy(alpha = 0.1f),
-    firstText: String = "쇼핑",
+    firstText: String = "신한은행", // Example, you can pass this dynamically
     rightText: String = "501,250"
 ) {
+    val icon = getIconResource(firstText) // Get the icon resource dynamically based on firstText
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 12.dp, bottom = 0.dp, start = 8.dp, end = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Placeholder Icon inside a curved square
+        // Icon from drawable resource
         Box(
             modifier = Modifier
-                .size(36.dp) // Adjust size as necessary
-                .clip(RoundedCornerShape(4.dp)) // Curved square
-                .background(iconColor) // Set background color
-                .padding(10.dp) // Padding for icon
+                .size(36.dp) // Size of the box
+                .clip(RoundedCornerShape(4.dp)) // Curved square shape
         ) {
-            // Placeholder Icon (currently Info icon, you can change this)
-            Icon(
-                imageVector = Icons.Default.Info, // You can replace with your desired icon
+            // Image from drawable resource filling the box
+            Image(
+                painter = painterResource(id = icon), // Load the image from resources
                 contentDescription = null, // Optional: content description for accessibility
-                modifier = Modifier.fillMaxSize() // Icon takes up full size of the box
+                modifier = Modifier.fillMaxSize() // Makes the image fill the entire box
             )
         }
 
@@ -64,4 +73,11 @@ fun PaymentItem(
         // Text box on the far right with customizable text
         Text(rightText, style = MulGaTheme.typography.bodySmall) // Right text, customizable
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewPaymentItem() {
+    // You can test it with different firstText values
+    PaymentItem(firstText = "네이버페이", rightText = "200,500")
 }

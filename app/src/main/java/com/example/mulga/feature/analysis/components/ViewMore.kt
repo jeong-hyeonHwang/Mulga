@@ -12,13 +12,13 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import com.example.mulga.ui.theme.MulGaTheme
 
 @Composable
-fun MoreView() {
+fun ViewMore() {
     Column(modifier = Modifier.fillMaxWidth()) {
         // Full-width horizontal line
         HorizontalDivider(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 12.dp),
+                .padding(horizontal = 8.dp, vertical = 12.dp),
             thickness = 1.dp,
             color = MulGaTheme.colors.grey4
         )
@@ -26,8 +26,7 @@ fun MoreView() {
         // "더보기" text with right chevron below
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 12.dp),
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -51,6 +50,6 @@ fun MoreView() {
 
 @Preview(showBackground = true)
 @Composable
-fun MoreViewPreview() {
-    MoreView()
+fun ViewMorePreview() {
+    ViewMore()
 }

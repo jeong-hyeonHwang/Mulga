@@ -22,7 +22,7 @@ import com.example.mulga.feature.analysis.components.YearMonthSelector
 
 @Preview(showBackground = true)
 @Composable
-fun AnalysisScreen() {
+fun AnalysisDetailScreen() {
     // Example list of items passed to CategoryList
     val itemList = listOf(
         CategoryItemData(
@@ -70,7 +70,7 @@ fun AnalysisScreen() {
         modifier = Modifier.fillMaxSize().verticalScroll(scrollState),  // Make sure it takes up the full screen or container space
         horizontalAlignment = Alignment.CenterHorizontally,  // Center the content horizontally
     ) {
-        YearMonthSelector(detail = false)
+        YearMonthSelector(detail = true)
 
         DonutChart(
             slices = listOf(
@@ -85,7 +85,7 @@ fun AnalysisScreen() {
             modifier = Modifier.size(300.dp)
         )
 
-        CategoryList(items = itemList, detail = false)
+        CategoryList(items = itemList, detail = true)
     }
 
 }

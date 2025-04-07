@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -13,15 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.mulga.ui.theme.MulGaTheme
-import kotlin.math.cos
-import kotlin.math.sin
 
 data class DonutSlice(val value: Float)
 
@@ -45,7 +41,7 @@ fun DonutChart(slices: List<DonutSlice>, modifier: Modifier = Modifier) {
             var currentAngle = startAngle
             val radius = size.minDimension / 3
             val thickness = size.minDimension / 9 // Thickness of the donut's ring
-            val gapAngle = 2f // Angle for the gap between slices
+            val gapAngle = 3f // Angle for the gap between slices
 
             slices.forEachIndexed { index, slice ->
                 // Get the color for the slice (reuse the 6th color if there are more than 6 slices)
@@ -145,6 +141,6 @@ fun PreviewDonutGraph() {
             DonutSlice(50f),
             DonutSlice(30f)  // More than 6 slices to see color reuse
         ),
-        modifier = Modifier.size(300.dp)
+        modifier = Modifier.fillMaxWidth()
     )
 }

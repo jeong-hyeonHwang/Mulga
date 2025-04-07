@@ -15,7 +15,7 @@ import com.example.mulga.ui.theme.MulGaTheme
 import java.time.LocalDate
 
 @Composable
-fun YearMonthSelector() {
+fun YearMonthSelector(detail: Boolean) {
     // Get the current year and month
     val currentDate = LocalDate.now()
     val currentYear = currentDate.year
@@ -39,7 +39,10 @@ fun YearMonthSelector() {
             } else {
                 selectedMonth -= 1
             }
-        }) {
+        },
+            enabled = detail,
+            modifier = Modifier.alpha(if (detail) 0f else 1f)
+        ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft, // Left chevron icon
                 contentDescription = "Previous Month",
@@ -65,8 +68,8 @@ fun YearMonthSelector() {
                     selectedMonth += 1
                 }
             },
-            enabled = selectedYear < currentYear || (selectedYear == currentYear && selectedMonth < currentMonth), // Disable if current month
-            modifier = Modifier.alpha(if (selectedYear == currentYear && selectedMonth == currentMonth) 0f else 1f) // Make chevron invisible if current month
+            enabled = selectedYear < currentYear || (selectedYear == currentYear && selectedMonth < currentMonth) || detail, // Disable if current month
+            modifier = Modifier.alpha(if ((selectedYear == currentYear && selectedMonth == currentMonth) || detail) 0f else 1f) // Make chevron invisible if current month
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight, // Right chevron icon
@@ -80,5 +83,5 @@ fun YearMonthSelector() {
 @Preview(showBackground = true)
 @Composable
 fun YearMonthSelectorPreview() {
-    YearMonthSelector()
+    YearMonthSelector(detail = false)
 }
