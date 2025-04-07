@@ -33,8 +33,8 @@ fun MonthlyLineGraph(
     modifier: Modifier = Modifier,
     year: Int, // Year for the graph
     month: Int, // Month for the graph
-    line1Data: List<Float>, // Data for the first line (last month)
-    line2Data: List<Float>, // Data for the second line (current month)
+    prevMonthData: List<Float>, // Data for the first line (last month)
+    currMonthData: List<Float>, // Data for the second line (current month)
 ) {
     // Fetch colors from MaterialTheme here, outside of Canvas
     val grey1Color = MulGaTheme.colors.grey1
@@ -65,17 +65,17 @@ fun MonthlyLineGraph(
             val valueToDisplay = if (today.year == year && today.monthValue == month) {
                 // If today is within the month, use today's value or the last available value
                 val todayIndex = today.dayOfMonth - 1 // Index starts from 0
-                line2Data.getOrElse(todayIndex) { line2Data.last() }
+                currMonthData.getOrElse(todayIndex) { currMonthData.last() }
             } else {
                 // Otherwise, use the last value of line2Data
-                line2Data.last()
+                currMonthData.last()
             }
 
             // Get the corresponding value from line1Data for the same day
             val line1Value = if (today.year == year && today.monthValue == month) {
-                line1Data.getOrElse(today.dayOfMonth - 1) { line1Data.last() }
+                prevMonthData.getOrElse(today.dayOfMonth - 1) { prevMonthData.last() }
             } else {
-                line1Data.last()
+                prevMonthData.last()
             }
 
             // Calculate the difference
@@ -131,7 +131,7 @@ fun MonthlyLineGraph(
 
                 // Helper function to get scaled data points
                 fun scaleDataPoint(value: Float): Float {
-                    val maxDataValue = maxOf(line1Data.maxOrNull() ?: 0f, line2Data.maxOrNull() ?: 0f)
+                    val maxDataValue = maxOf(prevMonthData.maxOrNull() ?: 0f, currMonthData.maxOrNull() ?: 0f)
                     return (value / maxDataValue) * availableHeightForGraph
                 }
 
@@ -140,7 +140,7 @@ fun MonthlyLineGraph(
 
                 // Draw the lines for both data sets (line2 and line1) in this order to layer correctly
                 for (lineIndex in 0..1) {
-                    val data = if (lineIndex == 0) line2Data else line1Data // Swap order for layering
+                    val data = if (lineIndex == 0) currMonthData else prevMonthData // Swap order for layering
                     val lineColor = if (lineIndex == 0) grey2Color else primaryColor // Reverse colors to match layer order
 
                     // Limit the number of points for line1 (up to today) if today is within the given month and year
@@ -259,7 +259,7 @@ fun PreviewMonthlyLineGraph() {
         modifier = Modifier.fillMaxWidth().wrapContentHeight(),
         year = 2025,
         month = 4, // April
-        line1Data = listOf(0f, 0f, 20f, 20f, 20f, 20f, 20f, 20f, 20f, 40f, 50f, 50f, 50f, 50f, 50f, 70f, 70f, 80f, 100f, 120f, 120f, 150f, 150f, 150f, 190f, 200f, 200f, 200f, 200f, 200f, 200f), // Data for the first line
-        line2Data = listOf(0f, 10f, 10f, 10f, 10f, 20f, 20f, 20f, 20f, 40f, 50f, 50f, 50f, 50f, 50f, 70f, 70f, 80f, 100f, 120f, 120f, 150f, 150f, 150f, 190f, 210f, 240f, 250f, 250f, 250f, 250f) // Data for the second line
+        prevMonthData = listOf(0f, 0f, 20f, 20f, 20f, 20f, 20f, 20f, 20f, 40f, 50f, 50f, 50f, 50f, 50f, 70f, 70f, 80f, 100f, 120f, 120f, 150f, 150f, 150f, 190f, 200f, 200f, 200f, 200f, 200f, 200f), // Data for the first line
+        currMonthData = listOf(0f, 10f, 10f, 10f, 10f, 20f, 20f, 20f, 20f, 40f, 50f, 50f, 50f, 50f, 50f, 70f, 70f, 80f, 100f, 120f, 120f, 150f, 150f, 150f, 190f, 210f, 240f, 250f, 250f, 250f, 250f) // Data for the second line
     )
 }

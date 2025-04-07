@@ -15,8 +15,8 @@ fun CategoryList(items: List<CategoryItemData>, detail: Boolean) {
         items.forEach { item ->
             CategoryItem(
                 category = item.category,
-                secondText = item.secondText,
-                rightText = item.rightText
+                portion = item.portion,
+                amount = item.amount
             )
         }
         // Optionally, display "View More" button or text at the bottom
@@ -31,11 +31,11 @@ fun CategoryList(items: List<CategoryItemData>, detail: Boolean) {
 fun PreviewCategoryList() {
     // Example list of CategoryItemData for the preview
     val sampleItems = listOf(
-        CategoryItemData(category = "Shopping", secondText = "50%", rightText = "501,250"),
-        CategoryItemData(category = "Food", secondText = "30%", rightText = "200,000"),
-        CategoryItemData(category = "Travel", secondText = "20%", rightText = "100,000"),
-        CategoryItemData(category = "Travel", secondText = "20%", rightText = "100,000"),
-        CategoryItemData(category = "Travel", secondText = "20%", rightText = "100,000")
+        CategoryItemData(category = "Shopping", portion = "50%", amount = "501,250"),
+        CategoryItemData(category = "Food", portion = "30%", amount = "200,000"),
+        CategoryItemData(category = "Travel", portion = "20%", amount = "100,000"),
+        CategoryItemData(category = "Travel", portion = "20%", amount = "100,000"),
+        CategoryItemData(category = "Travel", portion = "20%", amount = "100,000")
     )
 
     // Display the CategoryList with the sample items

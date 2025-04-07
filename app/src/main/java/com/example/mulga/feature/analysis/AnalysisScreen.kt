@@ -27,18 +27,18 @@ fun AnalysisScreen() {
     val itemList = listOf(
         CategoryItemData(
             category = "shopping",
-            secondText = "50%",
-            rightText = "501,250"
+            portion = "50%",
+            amount = "501,250"
         ),
         CategoryItemData(
             category = "food",
-            secondText = "30%",
-            rightText = "200,000"
+            portion = "30%",
+            amount = "200,000"
         ),
         CategoryItemData(
             category = "travel",
-            secondText = "20%",
-            rightText = "100,000"
+            portion = "20%",
+            amount = "100,000"
         )
     )
 
@@ -86,6 +86,14 @@ fun AnalysisScreen() {
         )
 
         CategoryList(items = itemList, detail = false)
+
+        Separator()
+
+        PaymentList(items = itemList2)
+
+        Separator()
+
+        Graphs(barHeights, labelTexts, line1Data, line2Data, year, month)
     }
 
 }

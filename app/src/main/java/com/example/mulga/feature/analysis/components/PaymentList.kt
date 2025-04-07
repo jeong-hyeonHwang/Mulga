@@ -24,8 +24,8 @@ fun PaymentList(items: List<PaymentItemData>) {
 
         items.forEach { item ->
             PaymentItem(
-                firstText = item.source,
-                rightText = item.amount
+                source = item.source,
+                amount = item.amount
             )
         }
     }

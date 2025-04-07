@@ -29,11 +29,11 @@ import com.example.mulga.ui.theme.MulGaTheme
 @Composable
 fun MonthlyBarGraph(
     modifier: Modifier = Modifier,
-    barHeights: List<Float>, // Custom heights for each bar
+    amount: List<Float>, // Custom heights for each bar
     labelTexts: List<String> = List(6) { "Label ${it + 1}" } // Default labels if not provided
 ) {
     // Compute the average of the barHeights
-    val averageHeight = barHeights.average()
+    val averageHeight = amount.average()
 
     // Fetch colors from MaterialTheme here, outside of Canvas
     val grey2Color = MulGaTheme.colors.grey2
@@ -45,8 +45,6 @@ fun MonthlyBarGraph(
     // Fetch typography details from the theme
     val labelTextStyle = MulGaTheme.typography.title // You can change this to a different style if needed
     val labelTextSize = labelTextStyle.fontSize.value
-    val labelFontFamily = labelTextStyle.fontFamily
-    val labelFontWeight = labelTextStyle.fontWeight
 
     // Define the height of the rounded border container to wrap both text and graph
     Box(
@@ -113,8 +111,8 @@ fun MonthlyBarGraph(
 
                 // Drawing the bars with rounded top corners using Path
                 for (i in 0 until numberOfBars) {
-                    val barHeight = barHeights.getOrElse(i) { availableHeightForBars } // Use custom height, default if missing
-                    val scaledHeight = (barHeight / barHeights.maxOrNull()!!) * maxHeight // Scale the height proportionally
+                    val barHeight = amount.getOrElse(i) { availableHeightForBars } // Use custom height, default if missing
+                    val scaledHeight = (barHeight / amount.maxOrNull()!!) * maxHeight // Scale the height proportionally
 
                     val left = xAxisStart + i * (barWidth + paddingBetweenBars) + (paddingBetweenBars / 2) // Start position of the bar
                     val top = availableHeightForBars - scaledHeight // Adjust the height of each bar
@@ -210,7 +208,7 @@ fun PreviewMonthlyBarGraph() {
     // Customizing the graph with custom bar heights and labels
     MonthlyBarGraph(
         modifier = Modifier.size(412.dp),
-        barHeights = listOf(100f, 120f, 80f, 150f, 90f, 110f), // Custom heights for each bar
+        amount = listOf(100f, 120f, 80f, 150f, 90f, 110f), // Custom heights for each bar
         labelTexts = listOf("10월", "11월", "12월", "1월", "2월", "3월") // Custom labels
     )
 }

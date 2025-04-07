@@ -15,16 +15,16 @@ import com.example.mulga.ui.theme.MulGaTheme
 
 data class CategoryItemData(
     val category: String,
-    val secondText: String,
-    val rightText: String
+    val portion: String,
+    val amount: String
 )
 
 // CategoryItem Composable for individual items
 @Composable
 fun CategoryItem(
     category: String,
-    secondText: String = "50%", // Customize this text as needed
-    rightText: String = "501,250" // Customize this text as needed
+    portion: String = "50%", // Customize this text as needed
+    amount: String = "501,250" // Customize this text as needed
 ) {
     val categoryEnum = Category.entries.find { it.backendKey.equals(category, ignoreCase = true) }
 
@@ -56,12 +56,12 @@ fun CategoryItem(
             modifier = Modifier.weight(1f) // Makes this column take available space
         ) {
             Text(categoryEnum.displayName, style = MulGaTheme.typography.bodySmall) // Display the displayName from the Category enum
-            Text(secondText, style = MulGaTheme.typography.caption, color = MulGaTheme.colors.grey1) // Second line text, customizable
+            Text(portion, style = MulGaTheme.typography.caption, color = MulGaTheme.colors.grey1) // Second line text, customizable
         }
 
         Spacer(modifier = Modifier.width(16.dp)) // Spacer between text column and the far-right text box
 
         // Text box on the far right with customizable text
-        Text(rightText, style = MulGaTheme.typography.bodySmall) // Right text, customizable
+        Text(amount, style = MulGaTheme.typography.bodySmall) // Right text, customizable
     }
 }

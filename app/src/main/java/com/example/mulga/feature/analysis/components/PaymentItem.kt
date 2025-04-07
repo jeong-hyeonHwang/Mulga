@@ -20,8 +20,8 @@ data class PaymentItemData(
 )
 
 // Function to map firstText to corresponding icon
-fun getIconResource(firstText: String): Int {
-    return when (firstText) {
+fun getIconResource(source: String): Int {
+    return when (source) {
         "신한은행" -> R.drawable.ic_pay_shinhanbank
         "네이버페이" -> R.drawable.ic_pay_naverpay
         "국민은행" -> R.drawable.ic_pay_kbbank
@@ -34,10 +34,10 @@ fun getIconResource(firstText: String): Int {
 // PaymentItem Composable for individual items
 @Composable
 fun PaymentItem(
-    firstText: String = "신한은행", // Example, you can pass this dynamically
-    rightText: String = "501,250"
+    source: String = "기타", // Example, you can pass this dynamically
+    amount: String = "0"
 ) {
-    val icon = getIconResource(firstText) // Get the icon resource dynamically based on firstText
+    val icon = getIconResource(source) // Get the icon resource dynamically based on firstText
 
     Row(
         modifier = Modifier
@@ -65,13 +65,13 @@ fun PaymentItem(
         Column(
             modifier = Modifier.weight(1f) // Makes this column take available space
         ) {
-            Text(firstText, style = MulGaTheme.typography.bodySmall) // First line text, customizable
+            Text(source, style = MulGaTheme.typography.bodySmall) // First line text, customizable
         }
 
         Spacer(modifier = Modifier.width(16.dp)) // Spacer between text column and the far-right text box
 
         // Text box on the far right with customizable text
-        Text(rightText, style = MulGaTheme.typography.bodySmall) // Right text, customizable
+        Text(amount, style = MulGaTheme.typography.bodySmall) // Right text, customizable
     }
 }
 
@@ -79,5 +79,5 @@ fun PaymentItem(
 @Composable
 fun PreviewPaymentItem() {
     // You can test it with different firstText values
-    PaymentItem(firstText = "네이버페이", rightText = "200,500")
+    PaymentItem(source = "네이버페이", amount = "200,500")
 }

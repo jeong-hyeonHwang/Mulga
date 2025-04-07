@@ -14,10 +14,7 @@ import com.example.mulga.feature.analysis.components.CategoryItemData
 import com.example.mulga.feature.analysis.components.CategoryList
 import com.example.mulga.feature.analysis.components.DonutChart
 import com.example.mulga.feature.analysis.components.DonutSlice
-import com.example.mulga.feature.analysis.components.Graphs
 import com.example.mulga.feature.analysis.components.PaymentItemData
-import com.example.mulga.feature.analysis.components.PaymentList
-import com.example.mulga.feature.analysis.components.Separator
 import com.example.mulga.feature.analysis.components.YearMonthSelector
 
 @Preview(showBackground = true)
@@ -27,18 +24,18 @@ fun AnalysisDetailScreen() {
     val itemList = listOf(
         CategoryItemData(
             category = "shopping",
-            secondText = "50%",
-            rightText = "501,250"
+            portion = "50%",
+            amount = "501,250"
         ),
         CategoryItemData(
             category = "food",
-            secondText = "30%",
-            rightText = "200,000"
+            portion = "30%",
+            amount = "200,000"
         ),
         CategoryItemData(
             category = "travel",
-            secondText = "20%",
-            rightText = "100,000"
+            portion = "20%",
+            amount = "100,000"
         )
     )
 
@@ -56,13 +53,6 @@ fun AnalysisDetailScreen() {
             amount = "100,000"
         )
     )
-
-    val barHeights = listOf(100f, 120f, 80f, 150f, 90f, 110f) // Custom heights for each bar
-    val labelTexts = listOf("10월", "11월", "12월", "1월", "2월", "3월") // Custom labels
-    val year = 2025
-    val month = 4 // April
-    val line1Data = listOf(0f, 0f, 20f, 20f, 20f, 20f, 20f, 20f, 20f, 40f, 50f, 50f, 50f, 50f, 50f, 70f, 70f, 80f, 100f, 120f, 120f, 150f, 150f, 150f, 190f, 200f, 200f, 200f, 200f, 200f, 200f) // Data for the first line
-    val line2Data = listOf(0f, 10f, 10f, 10f, 10f, 20f, 20f, 20f, 20f, 40f, 50f, 50f, 50f, 50f, 50f, 70f, 70f, 80f, 100f, 120f, 120f, 150f, 150f, 150f, 190f, 210f, 240f, 250f, 250f, 250f, 250f) // Data for the second line
 
     val scrollState = rememberScrollState()
 

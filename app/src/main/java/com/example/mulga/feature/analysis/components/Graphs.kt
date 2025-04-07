@@ -23,7 +23,7 @@ fun Graphs(
         // Bar Graph
         MonthlyBarGraph(
             modifier = Modifier.fillMaxWidth(),
-            barHeights = barHeights,
+            amount = barHeights,
             labelTexts = barLabels
         )
         Spacer(modifier = Modifier.height(16.dp)) // Add some space between graphs
@@ -33,8 +33,8 @@ fun Graphs(
             modifier = Modifier.fillMaxWidth().wrapContentHeight(),
             year = year,
             month = month,
-            line1Data = lineData1,
-            line2Data = lineData2
+            prevMonthData = lineData1,
+            currMonthData = lineData2
         )
     }
 }
