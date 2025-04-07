@@ -118,7 +118,7 @@ class LoginViewModel(
                 if (userEntity != null) {
                     // 회원가입 성공 시 UserState와 LoginUiState 업데이트
                     _userState.value = UserState.Exists(userEntity)
-                    val authDto = userEntity.toAuthDto() // 확장 함수 또는 변환 로직 필요
+                    val authDto = userEntity.toDto() // 확장 함수 또는 변환 로직 필요
                     _uiState.value = LoginUiState.Success(authDto)
                 } else {
                     // 실패 시 에러 상태 업데이트

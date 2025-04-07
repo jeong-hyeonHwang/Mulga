@@ -1,5 +1,6 @@
 package com.ilm.mulga.presentation.mapper
 
+import com.ilm.mulga.data.dto.response.AuthDto
 import com.ilm.mulga.data.dto.response.UserDto
 import com.ilm.mulga.domain.model.UserEntity
 
@@ -14,13 +15,10 @@ fun UserDto.toDomain(): UserEntity {
     )
 }
 
-fun UserEntity.toDto(): UserDto {
-    return UserDto(
-        id = id,
+fun UserEntity.toDto(): AuthDto {
+    return AuthDto(
+        uid = id,
         name = name,
         email = email,
-        budget = budget,
-        isWithdrawn = isWithdrawn,
-        receivesNotification = receivesNotification
     )
 }
