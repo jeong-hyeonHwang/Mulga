@@ -15,14 +15,15 @@ import com.example.mulga.ui.theme.MulGaTheme
 import java.time.LocalDate
 
 @Composable
-fun YearMonthSelector(detail: Boolean) {
-    // Get the current year and month
+fun YearMonthSelector(
+    detail: Boolean,
+    selectedYear: Int,
+    selectedMonth: Int,
+    onYearMonthChanged: (Int, Int) -> Unit // Callback to update year and month
+) {
     val currentDate = LocalDate.now()
     val currentYear = currentDate.year
     val currentMonth = currentDate.monthValue
-
-    var selectedYear by remember { mutableStateOf(2025) }
-    var selectedMonth by remember { mutableStateOf(4) }
 
     Row(
         modifier = Modifier
@@ -34,13 +35,12 @@ fun YearMonthSelector(detail: Boolean) {
         // Left Chevron button (for previous month)
         IconButton(onClick = {
             if (selectedMonth == 1) {
-                selectedMonth = 12
-                selectedYear -= 1
+                onYearMonthChanged(selectedYear - 1, 12)
             } else {
-                selectedMonth -= 1
+                onYearMonthChanged(selectedYear, selectedMonth - 1)
             }
         },
-            enabled = detail,
+            enabled = !detail,
             modifier = Modifier.alpha(if (detail) 0f else 1f)
         ) {
             Icon(
@@ -62,10 +62,9 @@ fun YearMonthSelector(detail: Boolean) {
         IconButton(
             onClick = {
                 if (selectedMonth == 12) {
-                    selectedMonth = 1
-                    selectedYear += 1
+                    onYearMonthChanged(selectedYear + 1, 1)
                 } else {
-                    selectedMonth += 1
+                    onYearMonthChanged(selectedYear, selectedMonth + 1)
                 }
             },
             enabled = selectedYear < currentYear || (selectedYear == currentYear && selectedMonth < currentMonth) || detail, // Disable if current month
@@ -83,5 +82,10 @@ fun YearMonthSelector(detail: Boolean) {
 @Preview(showBackground = true)
 @Composable
 fun YearMonthSelectorPreview() {
-    YearMonthSelector(detail = false)
+    YearMonthSelector(
+        detail = false,
+        selectedYear = 2025,
+        selectedMonth = 4,
+        onYearMonthChanged = { _, _ -> }
+    )
 }

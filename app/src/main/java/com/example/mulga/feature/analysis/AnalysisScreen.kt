@@ -5,7 +5,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -15,14 +21,66 @@ import com.example.mulga.feature.analysis.components.CategoryList
 import com.example.mulga.feature.analysis.components.DonutChart
 import com.example.mulga.feature.analysis.components.DonutSlice
 import com.example.mulga.feature.analysis.components.Graphs
-import com.example.mulga.feature.analysis.components.PaymentItemData
 import com.example.mulga.feature.analysis.components.PaymentList
 import com.example.mulga.feature.analysis.components.Separator
 import com.example.mulga.feature.analysis.components.YearMonthSelector
+import java.time.LocalDate
+
+
+import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.Color
+import com.example.mulga.data.network.RetrofitClient
+import com.example.mulga.data.dto.response.AnalysisDto
+import com.example.mulga.feature.analysis.components.PaymentItemData
+import kotlinx.coroutines.launch
+import retrofit2.Response
 
 @Preview(showBackground = true)
 @Composable
 fun AnalysisScreen() {
+    // Get today's date for initializing
+    val currentDate = LocalDate.now()
+    var selectedYear by remember { mutableStateOf(currentDate.year) }
+    var selectedMonth by remember { mutableStateOf(currentDate.monthValue) }
+
+    // State to hold the API response data
+    var analysisData by remember { mutableStateOf<AnalysisDto?>(null) }
+    var loading by remember { mutableStateOf(false) }
+    var errorMessage by remember { mutableStateOf<String?>(null) }
+
+    // CoroutineScope to make the API request
+    val scope = rememberCoroutineScope()
+
+    // Function to fetch data from API
+    fun fetchAnalysisData(year: Int, month: Int) {
+        loading = true
+        scope.launch {
+            try {
+                // Make the API call
+                val response: Response<AnalysisDto> = RetrofitClient.apiAnalysisService.getAnalysis(year, month)
+
+                if (response.isSuccessful) {
+                    // Handle successful response
+                    analysisData = response.body()
+                    errorMessage = null
+                } else {
+                    // Handle API failure
+                    errorMessage = "Error: ${response.code()} - ${response.message()}"
+                }
+            } catch (e: Exception) {
+                // Handle network errors or other exceptions
+                errorMessage = "Error: ${e.message}"
+            } finally {
+                loading = false
+            }
+        }
+    }
+
+    // Call the API whenever the year or month changes
+    LaunchedEffect(selectedYear, selectedMonth) {
+        fetchAnalysisData(selectedYear, selectedMonth)
+    }
+
     // Example list of items passed to CategoryList
     val itemList = listOf(
         CategoryItemData(
@@ -59,18 +117,38 @@ fun AnalysisScreen() {
 
     val barHeights = listOf(100f, 120f, 80f, 150f, 90f, 110f) // Custom heights for each bar
     val labelTexts = listOf("10월", "11월", "12월", "1월", "2월", "3월") // Custom labels
-    val year = 2025
-    val month = 4 // April
     val line1Data = listOf(0f, 0f, 20f, 20f, 20f, 20f, 20f, 20f, 20f, 40f, 50f, 50f, 50f, 50f, 50f, 70f, 70f, 80f, 100f, 120f, 120f, 150f, 150f, 150f, 190f, 200f, 200f, 200f, 200f, 200f, 200f) // Data for the first line
     val line2Data = listOf(0f, 10f, 10f, 10f, 10f, 20f, 20f, 20f, 20f, 40f, 50f, 50f, 50f, 50f, 50f, 70f, 70f, 80f, 100f, 120f, 120f, 150f, 150f, 150f, 190f, 210f, 240f, 250f, 250f, 250f, 250f) // Data for the second line
 
-    val scrollState = rememberScrollState()
-
+    // Handle loading, error, or success state in the UI
     Column(
-        modifier = Modifier.fillMaxSize().verticalScroll(scrollState),  // Make sure it takes up the full screen or container space
-        horizontalAlignment = Alignment.CenterHorizontally,  // Center the content horizontally
+        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        YearMonthSelector(detail = false)
+        YearMonthSelector(
+            detail = false,
+            selectedYear = selectedYear,
+            selectedMonth = selectedMonth,
+            onYearMonthChanged = { year, month ->
+                selectedYear = year
+                selectedMonth = month
+            }
+        )
+
+        // Show loading indicator
+        if (loading) {
+            CircularProgressIndicator()
+        }
+
+        // Show error message if something went wrong
+        errorMessage?.let {
+            Text(text = it, color = Color.Red)
+        }
+
+        // Show fetched data if available
+        analysisData?.let { data ->
+            Text("Fetched Analysis Data: ${data.toString()}")
+        }
 
         DonutChart(
             slices = listOf(
@@ -80,7 +158,7 @@ fun AnalysisScreen() {
                 DonutSlice(10f),
                 DonutSlice(40f),
                 DonutSlice(50f),
-                DonutSlice(30f)  // More than 6 slices to see color reuse
+                DonutSlice(30f)
             ),
             modifier = Modifier.size(300.dp)
         )
@@ -93,7 +171,6 @@ fun AnalysisScreen() {
 
         Separator()
 
-        Graphs(barHeights, labelTexts, line1Data, line2Data, year, month)
+        Graphs(barHeights, labelTexts, line1Data, line2Data, selectedYear, selectedMonth)
     }
-
 }

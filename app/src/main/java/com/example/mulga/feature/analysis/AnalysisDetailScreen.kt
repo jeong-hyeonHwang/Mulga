@@ -60,7 +60,9 @@ fun AnalysisDetailScreen() {
         modifier = Modifier.fillMaxSize().verticalScroll(scrollState),  // Make sure it takes up the full screen or container space
         horizontalAlignment = Alignment.CenterHorizontally,  // Center the content horizontally
     ) {
-        YearMonthSelector(detail = true)
+        YearMonthSelector(detail = true, selectedYear = 2025,
+            selectedMonth = 4,
+            onYearMonthChanged = { _, _ -> })
 
         DonutChart(
             slices = listOf(
