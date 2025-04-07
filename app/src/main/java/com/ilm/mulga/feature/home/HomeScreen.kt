@@ -1,6 +1,7 @@
 package com.ilm.mulga.feature.home
 
 import WaveBackground
+import android.view.WindowInsets
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
@@ -33,35 +35,33 @@ fun HomeScreen(viewModel: HomeViewModel = koinViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
 
     // Box를 사용하여 전체 레이아웃을 감싸면, 자식들을 Z-축으로 쌓을 수 있음
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box() {
         // 기본 콘텐츠: Column에 배치
         Column(
             modifier = Modifier
-                .fillMaxSize()
                 .statusBarsPadding()
         ) {
-            Spacer(modifier = Modifier.height(90.dp))
+            Spacer(modifier = Modifier.weight(0.1f))
             ExpenseSummaryView(
                 monthTotal = uiState.monthTotal,
                 remainingBudget = uiState.remainingBudget,
                 modifier = Modifier.fillMaxWidth()
+                    .weight(0.2f)
             )
-            Spacer(modifier = Modifier.height(40.dp))
-            // WaveBackground는 Column의 weight(1f)를 사용해 나머지 영역을 채웁니다.
 
             WaveBackground(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1f),
+                    .weight(0.5f),
                 baselineFraction = uiState.baselineFraction
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.weight(0.05f))
 
             RecentExpenseView(
                 item = uiState.lastTransaction,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 48.dp)
+                    .weight(0.15f)
             )
         }
 

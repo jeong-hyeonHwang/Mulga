@@ -23,7 +23,7 @@ data class CalendarUiState(
     val monthlyTransactionEntity: MonthlyTransactionEntity? = null,
 
     // Presentation Model로 변환한 데이터들
-    val monthlyTotalData: MonthlyTotalTransactionData? = null,
+    val monthlyTotalData: MonthlyTotalTransactionData? = MonthlyTotalTransactionData(),
     val dailySummariesData: List<DailyTransactionSummaryData>? = null,
     val dailyTransactionsData: List<DailyTransactionData>? = null,
 
