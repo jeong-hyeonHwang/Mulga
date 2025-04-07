@@ -1,21 +1,24 @@
 package com.ilm.mulga
 
-import MainScreen
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
-import com.ilm.mulga.data.network.RetrofitClient
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.ilm.mulga.feature.component.dialog.GlobalErrorDialog
+import com.ilm.mulga.feature.component.main.MainScreen
 import com.ilm.mulga.feature.login.LoginScreen
 import com.ilm.mulga.feature.login.LoginUiState
+import com.ilm.mulga.feature.transaction_detail.TransactionAddScreen
 import com.ilm.mulga.ui.theme.MulGaTheme
-import com.ilm.mulga.util.handler.GlobalErrorHandler
 import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
@@ -23,25 +26,36 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         // 알림 권한 확인 → 없으면 설정으로 이동
-//        if (!isNotificationServiceEnabled()) {
-//            startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS).apply {
-//                flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            })
-//        }
-        
+        if (!isNotificationServiceEnabled()) {
+            startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            })
+        }
+
         enableEdgeToEdge()
         setContent {
             MulGaTheme {
                 GlobalErrorDialog()
-
                 // LoginViewModel을 koin을 통해 주입받음
                 val loginViewModel: com.ilm.mulga.feature.login.LoginViewModel = koinViewModel()
                 val uiState by loginViewModel.uiState.collectAsState()
+                val rootNavController = rememberNavController()
 
                 when (uiState) {
                     is LoginUiState.Success -> {
                         // Firebase에서 로그인 상태면 MainScreen 표시
-                        MainScreen()
+                        NavHost(navController = rootNavController, startDestination = "main") {
+                            composable("main") {
+                                MainScreen(
+                                    onNavigateToTransactionAdd = {
+                                        rootNavController.navigate("transaction_add")
+                                    }
+                                )
+                            }
+                            composable("transaction_add") {
+                                TransactionAddScreen(navController = rootNavController)
+                            }
+                        }
                     }
                     is LoginUiState.NotLoggedIn,
                     is LoginUiState.Initial,
