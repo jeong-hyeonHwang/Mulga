@@ -7,6 +7,7 @@ import com.ilm.mulga.domain.model.DailyTransactionSummaryEntity
 import com.ilm.mulga.domain.model.MonthlyTransactionEntity
 import com.ilm.mulga.domain.model.TransactionEntity
 import java.time.LocalDateTime
+import java.time.format.DateTimeParseException
 
 // DailyDto -> DailySummary 변환
 fun DailyTransactionSummaryDto.toDailySummary(): DailyTransactionSummaryEntity {
@@ -31,7 +32,11 @@ fun TransactionDto.toDomain(): TransactionEntity {
         category = this.category,
         memo = this.memo,
         vendor = this.vendor,
-        time =  LocalDateTime.parse(this.time),
+        time = try {
+            if (this.time.isNotBlank()) LocalDateTime.parse(this.time) else LocalDateTime.now()
+        } catch (e: DateTimeParseException) {
+            LocalDateTime.now()
+        },
         paymentMethod = this.paymentMethod,
         group = this.group.map { it.toDomain() }
     )

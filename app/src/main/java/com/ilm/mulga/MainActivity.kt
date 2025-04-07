@@ -8,9 +8,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.ilm.mulga.data.network.RetrofitClient
 import com.ilm.mulga.feature.login.LoginScreen
+import com.ilm.mulga.feature.login.LoginUiState
 import com.ilm.mulga.ui.theme.MulGaTheme
+import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,16 +30,29 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MulGaTheme {
-                // 로그인 상태를 판단하는 예시 변수 (실제 구현에서는 ViewModel이나 Repository에서 처리)
-                var isLoggedIn by remember { mutableStateOf(false) }
+                // LoginViewModel을 koin을 통해 주입받음
+                val loginViewModel: com.ilm.mulga.feature.login.LoginViewModel = koinViewModel()
+                val uiState by loginViewModel.uiState.collectAsState()
 
-                // 조건에 따라 화면 전환
-                if (isLoggedIn) {
-                    // 로그인된 경우: 네비게이션이 있는 메인 화면으로 이동
-                    MainScreen()
-                } else {
-                    // 로그인되지 않은 경우: 로그인 화면 표시
-                    LoginScreen(onLoginSuccess = { isLoggedIn = true })
+                when (uiState) {
+                    is LoginUiState.Success -> {
+                        // Firebase에서 로그인 상태면 MainScreen 표시
+                        MainScreen()
+                    }
+                    is LoginUiState.NotLoggedIn,
+                    is LoginUiState.Initial,
+                    is LoginUiState.Error -> {
+                        // 로그인되지 않은 상태면 LoginScreen 표시
+                        LoginScreen(onLoginSuccess = {
+                            // 실제 로그인은 ViewModel의 signInWithCredential 호출로 진행
+                            // 예시: 구글 로그인 버튼 클릭 시 Google 로그인 플로우를 시작하고,
+                            // 성공 시 signInWithCredential을 호출하도록 처리합니다.
+                        })
+                    }
+                    is LoginUiState.Loading -> {
+                        // 로딩 상태일 때 로딩 화면을 표시하거나 ProgressIndicator를 띄울 수 있음
+                        // LoadingScreen()
+                    }
                 }
             }
         }

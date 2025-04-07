@@ -31,6 +31,7 @@
     <string name="category_travel">여행</string>
 
     <!-- 로그인 관련 (login_) -->
+    <string name="login_google">구글 로그인</string>
     <string name="login_naver">네이버 로그인</string>
     <string name="login_kakao">카카오 로그인</string>
 
@@ -100,4 +101,9 @@
     <string name="user_account">계정</string>
     <string name="user_logout">로그아웃</string>
     <string name="user_withdrawal">회원탈퇴</string>
+
+    <!-- OAuth 관련 -->
+    <string name="web_client_id">987610457102-c65471urjttmp0crfp0jfdqlb0jgc19e.apps.googleusercontent.com</string>
+    <string name="web_client_id2">987610457102-5pa5rvehmo3aa86pscrcfbgt8srecabb.apps.googleusercontent.com</string>
+
 </resources>

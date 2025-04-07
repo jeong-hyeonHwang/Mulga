@@ -22,6 +22,7 @@ data class MulGaColors(
     val grey4: Color,        // 기존 Grey4
     val grey5: Color,        // 기존 Grey5
     val white1: Color,        // 기존 White1
+    val transparent: Color,   // 기존 투명
 
     // Category Colors
     val categoryBeauty: Color,         // 기존 CategoryBeauty
@@ -38,7 +39,10 @@ data class MulGaColors(
     val categoryShopping: Color,       // 기존 CategoryShopping
     val categoryTravel: Color,         // 기존 CategoryTravel
     val categoryTraffic: Color,        // 기존 CategoryTraffic
-    val categoryPet: Color             // 기존 CategoryPet
+    val categoryPet: Color,            // 기존 CategoryPet
+
+    val google_border: Color,
+    val google_font: Color
 )
 
 val defaultMulGaColors = MulGaColors(
@@ -56,6 +60,7 @@ val defaultMulGaColors = MulGaColors(
     grey4 = Color(0xFFE6ECF0),
     grey5 = Color(0xFFF6F8FB),
     white1 = Color(0xFFFFFFFF),
+    transparent = Color(0x00000000),
 
     // Category Colors
     categoryBeauty = Color(0xFFE81E63),
@@ -72,7 +77,10 @@ val defaultMulGaColors = MulGaColors(
     categoryShopping = Color(0xFF006FFF),
     categoryTravel = Color(0xFF3C2DDB),
     categoryTraffic = Color(0xFF9C27B0),
-    categoryPet = Color(0xFF795548)
+    categoryPet = Color(0xFF795548),
+
+    google_border = Color(0xFF747775),
+    google_font = Color(0xFF1F1F1F)
 )
 
 val LocalMulGaColors = staticCompositionLocalOf { defaultMulGaColors }

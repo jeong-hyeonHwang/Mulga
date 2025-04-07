@@ -7,5 +7,8 @@ val appModule = listOf(
     calendarModule,
     transactionDetailModule,
     useCaseModule,
-    serviceModule
+    serviceModule,
+    loginModule,
+    mypageModule,
+    userLocalModule
 )

@@ -23,6 +23,11 @@ val Pretendard = FontFamily(
     Font(R.font.pretendard_bold, FontWeight.Bold)
 )
 
+// Roboto 폰트 정의
+val Roboto = FontFamily(
+    Font(R.font.roboto_variable, FontWeight.Normal)
+)
+
 // MulGaTypography 데이터 클래스 정의
 @Immutable
 data class MulGaTypography(
@@ -36,7 +41,8 @@ data class MulGaTypography(
     val bodyMedium: TextStyle,
     val bodySmall: TextStyle,
     val caption: TextStyle,
-    val label: TextStyle
+    val label: TextStyle,
+    val google: TextStyle
 )
 
 
@@ -107,6 +113,12 @@ val defaultMulGaTypography = MulGaTypography(
         fontFamily = Pretendard,
         fontWeight = FontWeight.Medium,
         fontSize = 8.sp
+    ),
+    // google: Roboto Normal 18
+    google = TextStyle(
+        fontFamily = Roboto,
+        fontWeight = FontWeight.Normal,
+        fontSize = 18.sp
     )
 )
 
