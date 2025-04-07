@@ -42,11 +42,11 @@ public class MessageService {
 
 
                 if (message == null) {
-                    break; // 더 이상 메시지가 없으면 종료
+                    break;
                 }
                 messages.add(message);
             } catch(Exception e) {
-                // 예외 발생 시 로그에 찍고 루프 종료
+
                 System.err.println("메시지를 가져오는 중 예외 발생: " + e.getMessage());
                 e.printStackTrace();
                 break;
