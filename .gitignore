@@ -1,3 +1,8 @@
+# auth
+app/key.jks
+app/key.properties
+app/google-services.json
+
 # env
 .env
 

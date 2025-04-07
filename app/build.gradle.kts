@@ -6,10 +6,15 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("org.jetbrains.kotlin.kapt")
 //    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.21"
     kotlin("plugin.serialization") version "2.1.0"
+    id("com.google.gms.google-services")
+    id("com.google.devtools.ksp") version "2.0.21-1.0.28"
 }
+
+val keyPropertiesFile = rootProject.file("./app/key.properties")
+val properties = Properties()
+properties.load(FileInputStream(keyPropertiesFile))
 
 android {
     namespace = "com.ilm.mulga"
@@ -98,7 +103,6 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
     implementation("androidx.room:room-ktx:$room_version")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
-    kapt("androidx.room:room-compiler:$room_version")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
