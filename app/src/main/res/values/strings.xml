@@ -1,0 +1,109 @@
+<resources>
+
+    <!-- 앱 관련(app_) -->
+    <string name="app_name">물가</string>
+    <string name="app_subtitle">물고기 가계부</string>
+
+    <!-- 예산 관련 (budget_) -->
+    <string name="budget_greeting">안녕하세요, %s님!\n한 달에 사용할 예산을 설정해주세요.</string>
+    <string name="budget_unit">원</string>
+    <string name="budget_value_unit">%s원</string>
+    <string name="budget_plus">+</string>
+    <string name="budget_minus">-</string>
+    <string name="budget_monthly_expense_setting">월 소비 금액 설정</string>
+
+    <!-- 카테고리 관련 (category_) -->
+    <string name="category_beauty">뷰티/미용</string>
+    <string name="category_cafe">카페/간식</string>
+    <string name="category_education">교육</string>
+    <string name="category_etc">기타</string>
+    <string name="category_food">식비</string>
+    <string name="category_health">의료/건강</string>
+    <string name="category_home">주거/통신</string>
+    <string name="category_leisure">취미/여가</string>
+    <string name="category_liquor">주류/펍</string>
+    <string name="category_living">주거/통신</string>
+    <string name="category_pet">반려동물</string>
+    <string name="category_shopping">쇼핑</string>
+    <string name="category_subscription">구독</string>
+    <string name="category_traffic">교통</string>
+    <string name="category_transfer">이체</string>
+    <string name="category_travel">여행</string>
+
+    <!-- 로그인 관련 (login_) -->
+    <string name="login_google">구글 로그인</string>
+    <string name="login_naver">네이버 로그인</string>
+    <string name="login_kakao">카카오 로그인</string>
+
+    <!-- 네비게이션 바 타이틀 (nav_title_) -->
+    <string name="nav_title_home">홈</string>
+    <string name="nav_title_calendar">캘린더</string>
+    <string name="nav_title_analytics">분석</string>
+    <string name="nav_title_profile">프로필</string>
+
+    <!-- 메인 화면 관련 (main_) -->
+    <string name="main_recent_expense">최근소비</string>
+    <string name="main_expense_this_month">이번 달 지출</string>
+    <string name="main_remaining_budget">남은 예산: %s원</string>
+    <string name="main_no_recent_expense">최근 소비한 내역이 없습니다.</string>
+
+    <!-- 버튼 타이틀 관련 (btn_title_) -->
+    <string name="btn_title_withdrawal">탈퇴</string>
+    <string name="btn_title_cancel">취소</string>
+    <string name="btn_title_start">시작하기</string>
+    <string name="btn_title_confirm">확인</string>
+    <string name="btn_title_complete">완료</string>
+    <string name="btn_title_merge">합치기</string>
+    <string name="btn_title_delete">삭제</string>
+
+    <!-- 탈퇴 관련 (withdrawal_) -->
+    <string name="withdrawal_confirmation">탈퇴하시겠어요?</string>
+    <string name="withdrawal_warning">탈퇴하시면 모든 정보는 삭제됩니다.</string>
+
+    <!-- 달력 관련 (calendar_) -->
+    <string name="calendar_year_month">%s년 %s월</string>
+    <string name="calendar_month">%s월</string>
+    <string name="calendar_month_day">%s월 %s일</string>
+    <string name="calendar_option_calendar">달력</string>
+    <string name="calendar_option_list">목록</string>
+
+    <!-- 분석 관련 (analysis_) -->
+    <string name="analysis_detail_info">상세 정보</string>
+    <string name="analysis_more">더보기</string>
+
+    <!-- 결제내역 입력 필드 (field_) -->
+    <string name="field_transaction_name">내역명</string>
+    <string name="field_category">카테고리</string>
+    <string name="field_merchant">거래처</string>
+    <string name="field_payment_method">거래수단</string>
+    <string name="field_transaction_date_time">거래일시</string>
+    <string name="field_memo">메모</string>
+    <string name="field_amount">금액</string>
+
+    <!-- 합치기 관련 (merge_) -->
+    <string name="merge_result_count">%s개 합쳤어요</string>
+    <string name="merge_undo">합치기 해제하기</string>
+
+    <!-- 지출 금액 관련 (expense_) -->
+    <string name="expense_amount">지출 금액</string>
+
+    <!-- 설정 관련 (settings_) -->
+    <string name="settings">설정</string>
+    <string name="settings_notification">알림 설정</string>
+    <string name="settings_monthly_expense">월 소비 금액 설정</string>
+
+    <!-- 약관 및 처리방침 (policy_) -->
+    <string name="policy_terms_and_guidelines">약관 및 방침</string>
+    <string name="policy_terms_of_use">이용약관</string>
+    <string name="policy_privacy">개인정보처리방침</string>
+
+    <!-- 사용자 계정 관련 (user_) -->
+    <string name="user_account">계정</string>
+    <string name="user_logout">로그아웃</string>
+    <string name="user_withdrawal">회원탈퇴</string>
+
+    <!-- OAuth 관련 -->
+    <string name="web_client_id">987610457102-c65471urjttmp0crfp0jfdqlb0jgc19e.apps.googleusercontent.com</string>
+    <string name="web_client_id2">987610457102-5pa5rvehmo3aa86pscrcfbgt8srecabb.apps.googleusercontent.com</string>
+
+</resources>
