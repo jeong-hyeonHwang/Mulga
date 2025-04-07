@@ -1,5 +1,7 @@
 package com.example.mugbackend.message.service;
 
+import com.example.mugbackend.gpt.dto.PromptRequest;
+import com.example.mugbackend.gpt.service.ChatGPTService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.parameters.P;
@@ -13,26 +15,32 @@ public class MessageService {
 
     private final RabbitTemplate rabbitTemplate;
     private final String QUEUE_NAME = "q.mulga";
+    private final ChatGPTService chatGPTService;
 
-    public MessageService(RabbitTemplate rabbitTemplate) {
+    public MessageService(RabbitTemplate rabbitTemplate, ChatGPTService chatGPTService) {
         this.rabbitTemplate = rabbitTemplate;
+        this.chatGPTService = chatGPTService;
     }
 
     // 10초마다 실행
     @Scheduled(fixedRate = 10000)
     public void pollMessages() {
 
-        // TODO: 출력문 삭제
-        System.out.println("pollingMessage메서드 실행");
-
         List<String> messages = fetchMessages(2);
         if (!messages.isEmpty()) {
 
-            // TODO: 출력문 삭제
-            System.out.println("가져온 메시지 개수: " + messages.size());
-
             for(String message : messages) {
-                System.out.println(message);
+                // 메시지 하나마다 gpt를 돌려야 한다.
+
+                System.out.println("메시지 큐에서 온 메시지 원본 : " + message);
+
+                PromptRequest promptRequest = PromptRequest.builder()
+                        .prompt(message)
+                        .build();
+
+                String gptMessage = chatGPTService.getChatResponse(promptRequest);
+                System.out.println("GPT API 응답 : " + gptMessage);
+
             }
 
         }

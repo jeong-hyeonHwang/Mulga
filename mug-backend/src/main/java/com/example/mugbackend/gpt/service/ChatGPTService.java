@@ -43,11 +43,6 @@ public class ChatGPTService {
                 .retrieve()
                 .body(ChatGPTResponse.class);
 
-
-        // TODO: 출력문 삭제
-        System.out.println("GPT API 응답: " +  response.choices().get(0).message().content());
-
-
         return response.choices().get(0).message().content();
     }
 
