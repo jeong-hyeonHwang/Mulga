@@ -1,0 +1,35 @@
+package com.ilm.mulga.ui.theme
+
+import androidx.compose.ui.graphics.Color
+
+val Red1 = Color(0xFFDC444E)
+val PrimaryColor = Color(0xFF00A4CD)
+val Gradient1 = Color(0xFF1FC6E1)
+val Gradient2 = Color(0xFF2DC0F6)
+val Black1 = Color(0xFF171717)
+val Grey1 = Color(0xFF344A53)
+val Grey2 = Color(0xFF98AFBA)
+val Grey3 = Color(0xFFCDDAE0)
+val Grey4 = Color(0xFFE6ECF0)
+val Grey5 = Color(0xFFF6F8FB)
+val White1 = Color(0xFFFFFFFF)
+val transparent = Color(0x00000000)
+
+val CategoryBeauty = Color(0xFFE81E63)
+val CategorySubscription = Color(0xFFCD382D)
+val CategoryLeisure = Color(0xFFFF5722)
+val CategoryHome = Color(0xFFFF9800)
+val CategoryLiquor = Color(0xFFF0B400)
+val CategoryCafe = Color(0xFFD1BB00)
+val CategoryEducation = Color(0xFFAEBB2D)
+val CategoryTransfer = Color(0xFF8BC34A)
+val CategoryHealth = Color(0xFF4CAF50)
+val CategoryLiving = Color(0xFF009688)
+val CategoryFood = Color(0xFF00BCD4)
+val CategoryShopping = Color(0xFF006FFF)
+val CategoryTravel = Color(0xFF3C2DDB)
+val CategoryTraffic = Color(0xFF9C27B0)
+val CategoryPet = Color(0xFF795548)
+
+val google_border = Color(0xFF747775)
+val google_font = Color(0xFF1F1F1F)

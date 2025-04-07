@@ -6,20 +6,25 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("org.jetbrains.kotlin.kapt")
 //    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.21"
     kotlin("plugin.serialization") version "2.1.0"
+    id("com.google.gms.google-services")
+    id("com.google.devtools.ksp") version "2.0.21-1.0.28"
 }
 
+val keyPropertiesFile = rootProject.file("./app/key.properties")
+val properties = Properties()
+properties.load(FileInputStream(keyPropertiesFile))
+
 android {
-    namespace = "com.example.mulga"
+    namespace = "com.ilm.mulga"
     compileSdk = 35
 
     val localProperties = Properties()
     localProperties.load(FileInputStream(rootProject.file("local.properties")))
 
     defaultConfig {
-        applicationId = "com.example.mulga"
+        applicationId = "com.ilm.mulga"
         minSdk = 31
         targetSdk = 35
         versionCode = 1
@@ -41,6 +46,11 @@ android {
         buildConfigField("int", "RABBITMQ_PORT", rabbitPort.toString())
         buildConfigField("String", "RABBITMQ_USERNAME", "\"$rabbitUser\"")
         buildConfigField("String", "RABBITMQ_PASSWORD", "\"$rabbitPass\"")
+
+        val backendHost = props.getProperty("backend.host") ?: throw GradleException("❌ backend.host 없음")
+        val testAccessToken = props.getProperty("testAccessToken") ?: throw GradleException("❌ testAccessToken 없음")
+        buildConfigField("String", "BACKEND_HOST", "\"$backendHost\"")
+        buildConfigField("String", "TEST_ACCESS_TOKEN", "\"$testAccessToken\"")
     }
 
     buildTypes {
@@ -63,10 +73,26 @@ android {
         compose = true
         buildConfig = true
     }
+
+    signingConfigs {
+        getByName("debug") {
+            storeFile = properties["storeFile"]?.toString()?.let { file(it) }
+            storePassword = properties["storePassword"]?.toString()
+            keyAlias = properties["keyAlias"]?.toString()
+            keyPassword = properties["keyPassword"]?.toString()
+        }
+        create("release") {
+            storeFile = properties["storeFile"]?.toString()?.let { file(it) }
+            storePassword = properties["storePassword"]?.toString()
+            keyAlias = properties["keyAlias"]?.toString()
+            keyPassword = properties["keyPassword"]?.toString()
+        }
+    }
 }
 
 dependencies {
     implementation(libs.androidx.runtime.livedata)
+    implementation(libs.googleid)
     val room_version = "2.6.1"
 
     implementation(libs.androidx.core.ktx)
@@ -77,6 +103,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation("androidx.compose.material3:material3:1.1.0")
     implementation("io.insert-koin:koin-core:4.0.2")
     implementation("io.insert-koin:koin-android:4.0.2")
     implementation("io.insert-koin:koin-androidx-compose:4.0.2")
@@ -84,6 +111,7 @@ dependencies {
     implementation("com.rabbitmq:amqp-client:5.21.0")
     implementation("org.slf4j:slf4j-simple:2.0.16")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+    implementation ("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
     implementation("androidx.lifecycle:lifecycle-process:2.6.2")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
@@ -91,7 +119,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
     implementation("androidx.room:room-ktx:$room_version")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
-    kapt("androidx.room:room-compiler:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -100,4 +128,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation("io.github.thechance101:chart:Beta-0.0.5")
+    implementation(platform("com.google.firebase:firebase-bom:33.11.0"))
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.android.gms:play-services-auth:21.3.0")
 }

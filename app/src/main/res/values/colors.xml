@@ -11,6 +11,7 @@
     <color name="grey4">#E6ECF0</color>
     <color name="grey5">#F6F8FB</color>
     <color name="white1">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
 
     <color name="category_beauty">#E81E63</color>
     <color name="category_subscription">#CD382D</color>
@@ -27,4 +28,7 @@
     <color name="category_travel">#3C2DDB</color>
     <color name="category_traffic">#9C27B0</color>
     <color name="category_pet">#795548</color>
+
+    <color name="google_stroke">#747775</color>
+    <color name="google_font">#1F1F1F</color>
 </resources>
