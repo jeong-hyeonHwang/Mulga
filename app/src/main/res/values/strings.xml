@@ -109,4 +109,8 @@
     <string name="web_client_id">987610457102-c65471urjttmp0crfp0jfdqlb0jgc19e.apps.googleusercontent.com</string>
     <string name="web_client_id2">987610457102-5pa5rvehmo3aa86pscrcfbgt8srecabb.apps.googleusercontent.com</string>
 
+    <!-- 에러 관련 -->
+    <string name="error_title">에러 발생</string>
+    <string name="error_code_message">에러 코드: %s\n앱을 재시작해주세요.</string>
+
 </resources>

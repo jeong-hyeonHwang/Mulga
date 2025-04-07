@@ -11,9 +11,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ilm.mulga.data.network.RetrofitClient
+import com.ilm.mulga.feature.component.dialog.GlobalErrorDialog
 import com.ilm.mulga.feature.login.LoginScreen
 import com.ilm.mulga.feature.login.LoginUiState
 import com.ilm.mulga.ui.theme.MulGaTheme
+import com.ilm.mulga.util.handler.GlobalErrorHandler
 import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
@@ -21,15 +23,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         // 알림 권한 확인 → 없으면 설정으로 이동
-        if (!isNotificationServiceEnabled()) {
-            startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            })
-        }
+//        if (!isNotificationServiceEnabled()) {
+//            startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS).apply {
+//                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//            })
+//        }
         
         enableEdgeToEdge()
         setContent {
             MulGaTheme {
+                GlobalErrorDialog()
+
                 // LoginViewModel을 koin을 통해 주입받음
                 val loginViewModel: com.ilm.mulga.feature.login.LoginViewModel = koinViewModel()
                 val uiState by loginViewModel.uiState.collectAsState()
