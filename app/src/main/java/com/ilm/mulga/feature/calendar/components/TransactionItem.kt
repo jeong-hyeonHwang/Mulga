@@ -1,9 +1,9 @@
-package com.ilm.mulga.feature.calendar.components
-
-import androidx.compose.foundation.Image
+import android.util.Log
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,43 +14,46 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ilm.mulga.R
 import com.ilm.mulga.presentation.model.TransactionItemData
-import com.ilm.mulga.presentation.model.type.Category
 import com.ilm.mulga.ui.theme.MulGaTheme
 import com.ilm.mulga.util.extension.withCommas
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TransactionItem(
     item: TransactionItemData,
-    onClick: () -> Unit
+    isDeleteMode: Boolean,
+    isSelected: Boolean,
+    onClick: () -> Unit,
+    onLongPress: () -> Unit
 ) {
-    // category가 null이면 아이콘 영역은 LightGray 색상, 있으면 배경은 Transparent
-    val iconBackgroundColor = if (item.category == null) MulGaTheme.colors.grey2 else Color.Transparent
+    // category가 null이면 아이콘 영역은 LightGray, 있으면 투명 배경
+    val iconBackgroundColor = when {
+        isSelected -> MulGaTheme.colors.primary
+        item.category == null -> MulGaTheme.colors.grey2
+        else -> Color.Transparent
+    }
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.White)
             .padding(vertical = 4.dp)
-            .clickable(
-                indication = null,
-                interactionSource = remember { MutableInteractionSource() }
-            ) { onClick() },
+            .combinedClickable(
+                onClick = onClick,
+                onLongClick = onLongPress
+            ),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // 아이콘 영역
-        // category가 있으면 해당 아이콘 이미지, 없으면 회색 원만 표시
-        androidx.compose.foundation.layout.Box(
+        Box(
             modifier = Modifier
                 .size(40.dp)
                 .clip(CircleShape)
@@ -60,16 +63,23 @@ fun TransactionItem(
                 ),
             contentAlignment = Alignment.Center
         ) {
-            if (item.category != null) {
-                Image(
+            if (item.category != null && !isSelected) {
+                androidx.compose.foundation.Image(
                     painter = painterResource(id = item.category.iconResId),
                     contentDescription = null,
                     modifier = Modifier.size(40.dp)
                 )
             }
+            if (isDeleteMode && isSelected) {
+                androidx.compose.foundation.Image(
+                    painter = painterResource(id = R.drawable.ic_util_check),
+                    colorFilter = ColorFilter.tint(MulGaTheme.colors.white1),
+                    contentDescription = "선택됨",
+                    modifier = Modifier.size(20.dp)
+                )
+            }
         }
 
-        // 텍스트 영역 (제목, 부제목)
         Column(
             modifier = Modifier
                 .weight(0.65f)
@@ -88,11 +98,10 @@ fun TransactionItem(
             )
         }
 
-        // 오른쪽: 가격, 시간 영역
         Column(
             modifier = Modifier.weight(0.25f),
             horizontalAlignment = Alignment.End,
-            verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(4.dp)
+            verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             Text(
                 stringResource(id = R.string.budget_value_unit, item.price.withCommas()),

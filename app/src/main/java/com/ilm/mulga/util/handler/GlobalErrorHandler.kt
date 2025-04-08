@@ -9,6 +9,7 @@ object GlobalErrorHandler {
     val errorEvents = _errorEvents.asSharedFlow()
 
     fun emitError(error: String) {
+        if (error.contains("USER")) return
         _errorEvents.tryEmit(error)
     }
 }
