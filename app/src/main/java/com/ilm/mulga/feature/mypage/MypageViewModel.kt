@@ -8,8 +8,11 @@ import com.ilm.mulga.data.repository.UserRepository
 import com.ilm.mulga.domain.usecase.LogoutUseCase
 import com.ilm.mulga.feature.login.UserState
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 // 로그아웃 후 UI 상태를 나타내는 sealed class 정의
@@ -36,15 +39,18 @@ class MypageViewModel(
     private val _userInfo = MutableStateFlow(UserInfo())
     val userInfo: StateFlow<UserInfo> = _userInfo.asStateFlow()
 
-    // 편의를 위한 getter 속성들
-    var userName = userInfo.value.name
-
-    var userEmail = userInfo.value.email
-
     // 초기화 시 사용자 정보 불러오기
     init {
         loadUserInfo()
     }
+
+    val userNameFlow: StateFlow<String> = userInfo
+        .map { it.name }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, userInfo.value.name)
+
+    val userEmailFlow: StateFlow<String> = userInfo
+        .map { it.email }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, userInfo.value.email)
 
     // 사용자 정보 불러오기
     fun loadUserInfo() {
@@ -57,8 +63,6 @@ class MypageViewModel(
                         email = user.email
                     )
                     Log.d("MypageViewModel", "사용자 정보 : ${userInfo.value.name} ${userInfo.value.email}")
-                    userName = userInfo.value.name
-                    userEmail = userInfo.value.email
                     _uiState.value = MypageUiState.Idle
                 } else {
                     Log.d("MypageViewModel", "사용자 정보 없음")
