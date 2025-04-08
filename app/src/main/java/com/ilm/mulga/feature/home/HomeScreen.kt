@@ -1,54 +1,79 @@
 package com.ilm.mulga.feature.home
 
 import WaveBackground
-import android.view.WindowInsets
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ilm.mulga.R
 import com.ilm.mulga.feature.home.components.ExpenseSummaryView
 import com.ilm.mulga.feature.home.components.RecentExpenseView
-import com.ilm.mulga.presentation.model.TransactionItemData
-import com.ilm.mulga.presentation.model.type.Category
 import org.koin.androidx.compose.koinViewModel
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.rememberScrollState
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = koinViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
+    val isRefreshing = remember { mutableStateOf(false) }
+    val coroutineScope = rememberCoroutineScope()
 
-    // Box를 사용하여 전체 레이아웃을 감싸면, 자식들을 Z-축으로 쌓을 수 있음
-    Box() {
-        // 기본 콘텐츠: Column에 배치
+    val pullRefreshState = rememberPullRefreshState(
+        refreshing = isRefreshing.value,
+        onRefresh = {
+            coroutineScope.launch {
+                isRefreshing.value = true
+                viewModel.loadAndConvertHomeData()
+                isRefreshing.value = false
+            }
+        }
+    )
+
+    LaunchedEffect(Unit) {
+        viewModel.loadAndConvertHomeData()
+    }
+
+    // 최상위 Box에 pullRefresh 적용
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .pullRefresh(pullRefreshState)
+    ) {
+        // 스크롤 가능한 컨테이너로 변경 (verticalScroll 추가)
         Column(
             modifier = Modifier
-                .statusBarsPadding()
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .statusBarsPadding(),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Spacer(modifier = Modifier.weight(0.1f))
             ExpenseSummaryView(
                 monthTotal = uiState.monthTotal,
                 remainingBudget = uiState.remainingBudget,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .weight(0.2f)
             )
-
             WaveBackground(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -56,7 +81,6 @@ fun HomeScreen(viewModel: HomeViewModel = koinViewModel()) {
                 baselineFraction = uiState.baselineFraction
             )
             Spacer(modifier = Modifier.weight(0.05f))
-
             RecentExpenseView(
                 item = uiState.lastTransaction,
                 modifier = Modifier
@@ -65,21 +89,14 @@ fun HomeScreen(viewModel: HomeViewModel = koinViewModel()) {
             )
         }
 
-        // Box의 최상단 레이어에, baselineFraction이 1.0f일 때 물고기 이미지를 중앙에 오버레이합니다.
-        if (uiState.baselineFraction == 1.0f) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_util_fish),
-                contentDescription = "Fish",
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .clickable(
-                        indication = null,
-                        interactionSource = remember { MutableInteractionSource() }
-                    ) { /* 물고기 이미지 클릭 시 액션 */}
-            )
-        }
+        PullRefreshIndicator(
+            refreshing = isRefreshing.value,
+            state = pullRefreshState,
+            modifier = Modifier.align(Alignment.TopCenter)
+        )
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable
