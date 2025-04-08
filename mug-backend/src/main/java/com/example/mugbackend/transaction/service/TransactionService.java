@@ -1,5 +1,7 @@
 package com.example.mugbackend.transaction.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -106,8 +108,24 @@ public class TransactionService {
     public Transaction getLastTransaction(String userId) {
         return transactionRepository
                 .findTopByUserIdOrderByTimeDesc(userId)
-                .orElseThrow(() ->
-                        new TransactionNoHistoryException());
+                .orElseGet(() -> {
+                    LocalDateTime today = LocalDateTime.now();
+                    return Transaction.builder()
+                            .userId(userId)
+                            .year(today.getYear())
+                            .month(today.getMonthValue())
+                            .day(today.getDayOfMonth())
+                            .isCombined(false)
+                            .title("")
+                            .cost(0)
+                            .category("")
+                            .memo("")
+                            .vendor("")
+                            .time(today)
+                            .paymentMethod("")
+                            .group(new ArrayList<>())
+                            .build();
+                });
     }
 
     @Transactional
