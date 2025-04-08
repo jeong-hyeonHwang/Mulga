@@ -4,9 +4,15 @@ import com.ilm.mulga.data.dto.request.SignUpRequestDto
 import com.ilm.mulga.data.service.UserService
 import com.ilm.mulga.domain.mapper.toDomain
 import com.ilm.mulga.domain.model.UserEntity
+import com.ilm.mulga.feature.login.UserState
 import com.ilm.mulga.presentation.mapper.toDomain
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class UserRepository (private val userService: UserService) {
+    private val _userState = MutableStateFlow<UserState>(UserState.Initial)
+    val userState: StateFlow<UserState> = _userState.asStateFlow()
 
     suspend fun signup(name: String, email: String, budget: Int): UserEntity? {
         val signUpRequest = SignUpRequestDto(

@@ -3,7 +3,10 @@ package com.ilm.mulga.feature.mypage
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ilm.mulga.data.network.RetrofitClient
+import com.ilm.mulga.data.repository.UserRepository
 import com.ilm.mulga.domain.usecase.LogoutUseCase
+import com.ilm.mulga.feature.login.UserState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -16,11 +19,16 @@ sealed class MypageUiState {
 }
 
 class MypageViewModel(
-    private val logoutUseCase: LogoutUseCase
+    private val logoutUseCase: LogoutUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<MypageUiState>(MypageUiState.Idle)
-    val uiState: StateFlow<MypageUiState> = _uiState
+
+    private val userRepository: UserRepository = UserRepository(RetrofitClient.userService)
+    val userState: StateFlow<UserState> = userRepository.userState
+
+    val userName = (userState as? UserState.Exists)?.user?.name ?: "이름"
+    val userEmail = (userState as? UserState.Exists)?.user?.email?: "이메일@email.com"
 
     // 로그아웃 수행 함수
     fun logout() {

@@ -14,8 +14,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,11 +22,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ilm.mulga.R
+import com.ilm.mulga.data.repository.UserRepository
 import com.ilm.mulga.feature.component.toggle.ToggleSwitch
 import com.ilm.mulga.ui.theme.MulGaTheme
 import org.koin.androidx.compose.koinViewModel
@@ -48,7 +46,7 @@ fun MypageScreen(
         Spacer(modifier = Modifier.height(60.dp))
 
         // 상단 사용자 정보
-        UserInfoSection()
+        UserInfoSection(viewModel.userName, viewModel.userEmail)
 
         HorizontalDivider(modifier = Modifier.padding(vertical = 28.dp), color = MulGaTheme.colors.grey3)
 
@@ -108,17 +106,17 @@ fun MypageScreen(
 }
 
 @Composable
-fun UserInfoSection() {
+fun UserInfoSection(userName: String, userEmail: String) {
     Column() {
         Text(
-            text = "이규리",
+            text = userName,
             style = MulGaTheme.typography.headline
         )
 
         Spacer(modifier = Modifier.height(4.dp))
 
         Text(
-            text = "yolee123@naver.com",
+            text = userEmail,
             style = MulGaTheme.typography.caption,
             color = MulGaTheme.colors.grey2
         )
