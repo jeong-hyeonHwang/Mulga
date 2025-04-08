@@ -11,6 +11,10 @@ import com.ilm.mulga.presentation.mapper.toUser
 import kotlinx.coroutines.tasks.await
 import android.util.Log
 import com.ilm.mulga.domain.repository.local.UserLocalRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class AuthRepositoryImpl(
     private val authRemoteDataSource: AuthRemoteDataSource,
@@ -21,6 +25,11 @@ class AuthRepositoryImpl(
 
     // FirebaseAuth 인스턴스를 선언 및 초기화
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+
+    init {
+        // 55분마다 토큰 갱신하는 코루틴 루프 시작
+        startTokenRefreshLoop()
+    }
 
     override suspend fun signInWithCredential(credential: AuthCredential): Result<AuthDto> {
         return try {
@@ -78,6 +87,18 @@ class AuthRepositoryImpl(
             }
         } catch (e: Exception) {
             Result.failure(e)
+        }
+    }
+
+    // 55분마다 토큰을 강제 갱신하는 코루틴 루프
+    private fun startTokenRefreshLoop() {
+        CoroutineScope(Dispatchers.IO).launch {
+            while (true) {
+                // 55분 대기 (55 * 60 * 1000 ms)
+                delay(55 * 60 * 1000L)
+                Log.d("AuthRepository", "55분 경과, 토큰 갱신 시도")
+                getCurrentUserToken(forceRefresh = true)
+            }
         }
     }
 

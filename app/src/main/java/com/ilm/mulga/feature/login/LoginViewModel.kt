@@ -35,11 +35,9 @@ class LoginViewModel(
 
     private val userRepository: UserRepository = UserRepository(RetrofitClient.userService)
 
-    // Firebase 인증 상태 리스너 추가 (자동 토큰 갱신도 내부적으로 처리됨)
     private val authStateListener = FirebaseAuth.AuthStateListener { auth ->
         val firebaseUser = auth.currentUser
         if (firebaseUser != null) {
-            // 로그인 상태이면 자동으로 최신 토큰을 관리함
             _uiState.value = LoginUiState.Success(firebaseUser.toUser())
         } else {
             _uiState.value = LoginUiState.NotLoggedIn
@@ -118,7 +116,7 @@ class LoginViewModel(
                 if (userEntity != null) {
                     // 회원가입 성공 시 UserState와 LoginUiState 업데이트
                     _userState.value = UserState.Exists(userEntity)
-                    val authDto = userEntity.toAuthDto() // 확장 함수 또는 변환 로직 필요
+                    val authDto = userEntity.toDto() // 확장 함수 또는 변환 로직 필요
                     _uiState.value = LoginUiState.Success(authDto)
                 } else {
                     // 실패 시 에러 상태 업데이트
