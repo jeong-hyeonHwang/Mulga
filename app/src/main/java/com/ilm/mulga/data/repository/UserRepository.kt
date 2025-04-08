@@ -100,7 +100,13 @@ class UserRepository (
             if (body?.code == "USER_1000") {
                 null // 유저 없음
             } else {
-                body?.toDomain() // 유저 있음 → 도메인 모델로 변환
+                // 서버의 응답을 도메인 모델로 변환
+                val userEntity = body?.toDomain()
+                // userEntity가 null이 아니라면 저장 후 userEntity를 반환
+                if (userEntity != null) {
+                    saveUser(userEntity)
+                }
+                userEntity
             }
         } else {
             null // 에러 처리 간단하게 null 리턴

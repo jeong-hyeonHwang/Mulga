@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
-import com.ilm.mulga.data.network.RetrofitClient
 import com.ilm.mulga.data.repository.UserRepository
 import com.ilm.mulga.domain.usecase.GetCurrentUserUseCase
 import com.ilm.mulga.domain.usecase.LoginWithCredentialUseCase

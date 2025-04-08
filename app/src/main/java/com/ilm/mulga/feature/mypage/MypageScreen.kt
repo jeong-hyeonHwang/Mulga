@@ -18,6 +18,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,6 +42,10 @@ fun MypageScreen(
 
     val showLogoutConfirmDialog = remember { mutableStateOf(false) }
 
+    // 화면 진입 시마다 loadUserInfo 호출
+    LaunchedEffect(Unit) {
+        viewModel.loadUserInfo() // loadUserInfo를 public으로 변경하거나 별도 함수를 호출
+    }
 
     Column(
         modifier = Modifier
