@@ -28,7 +28,15 @@ public class ChatGPTService {
     @Value("${gpt.system.prompt}")
     private String systemPrompt;
 
-    public String getChatResponse(PromptRequest promptRequest) {
+    public String getChatResponse(String message) {
+
+        if(message.equals("큐에서 메시지를 가져오지 못했습니다.")) {
+            return "";
+        }
+        PromptRequest promptRequest = PromptRequest.builder()
+                .prompt(message)
+                .build();
+
         ChatGPTRequest chatGPTRequest = new ChatGPTRequest(
                 model,
                 List.of(

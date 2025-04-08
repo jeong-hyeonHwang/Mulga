@@ -22,23 +22,19 @@ public class MessageService {
         this.chatGPTService = chatGPTService;
     }
 
-    // 10초마다 실행
+    // 20초마다 실행
     @Scheduled(fixedRate = 10000)
     public void pollMessages() {
 
-        List<String> messages = fetchMessages(2);
+        List<String> messages = fetchMessages(5);
         if (!messages.isEmpty()) {
 
             for(String message : messages) {
                 // 메시지 하나마다 gpt를 돌려야 한다.
 
-                System.out.println("메시지 큐에서 온 메시지 원본 : " + message);
+                System.out.println("메시지 원본 : " + message);
 
-                PromptRequest promptRequest = PromptRequest.builder()
-                        .prompt(message)
-                        .build();
-
-                String gptMessage = chatGPTService.getChatResponse(promptRequest);
+                String gptMessage = chatGPTService.getChatResponse(message);
                 System.out.println("GPT API 응답 : " + gptMessage);
 
             }
