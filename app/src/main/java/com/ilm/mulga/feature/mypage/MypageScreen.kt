@@ -18,7 +18,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,7 +29,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ilm.mulga.R
-import com.ilm.mulga.data.repository.UserRepository
 import com.ilm.mulga.feature.component.toggle.ToggleSwitch
 import com.ilm.mulga.ui.theme.MulGaTheme
 import org.koin.androidx.compose.koinViewModel
@@ -42,10 +41,10 @@ fun MypageScreen(
 
     val showLogoutConfirmDialog = remember { mutableStateOf(false) }
 
-    // 화면 진입 시마다 loadUserInfo 호출
-    LaunchedEffect(Unit) {
-        viewModel.loadUserInfo() // loadUserInfo를 public으로 변경하거나 별도 함수를 호출
-    }
+    // userNameFlow와 userEmailFlow를 구독하여 최신 값을 가져옴
+    val userName by viewModel.userNameFlow.collectAsState()
+    val userEmail by viewModel.userEmailFlow.collectAsState()
+
 
     Column(
         modifier = Modifier
@@ -56,7 +55,7 @@ fun MypageScreen(
         Spacer(modifier = Modifier.height(60.dp))
 
         // 상단 사용자 정보
-        UserInfoSection(viewModel.userName, viewModel.userEmail)
+        UserInfoSection(userName, userEmail)
 
         HorizontalDivider(modifier = Modifier.padding(vertical = 28.dp), color = MulGaTheme.colors.grey3)
 

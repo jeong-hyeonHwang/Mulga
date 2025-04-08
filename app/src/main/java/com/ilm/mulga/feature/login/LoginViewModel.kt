@@ -43,6 +43,18 @@ class LoginViewModel(
     init {
         firebaseAuth.addAuthStateListener(authStateListener)
         checkCurrentUser()
+        // FirebaseAuth에서 현재 유저 확인 후,
+        // userRepository에도 저장된 데이터가 있는지 확인하여 우선적으로 처리합니다.
+        viewModelScope.launch {
+            // userRepository에 사용자 데이터가 있으면 해당 정보로 로그인 상태로 간주
+            if (userRepository.hasUserData()) {
+                val userFromRepo = userRepository.getUserData()
+                if (userFromRepo != null) {
+                    _uiState.value = LoginUiState.Success(userFromRepo.toDto())
+                    _userState.value = UserState.Exists(userFromRepo)
+                }
+            }
+        }
     }
 
     private fun checkCurrentUser() {
