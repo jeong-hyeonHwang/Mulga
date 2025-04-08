@@ -13,6 +13,11 @@ import androidx.compose.ui.draw.clip
 import com.ilm.mulga.presentation.model.type.Category
 import com.ilm.mulga.ui.theme.MulGaTheme
 
+data class CategoryItemRaw(
+    val category: String,
+    val amount: Int
+)
+
 data class CategoryItemData(
     val category: String,
     val portion: String,

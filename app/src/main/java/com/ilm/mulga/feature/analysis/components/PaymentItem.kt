@@ -8,15 +8,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.Image
 import com.ilm.mulga.ui.theme.MulGaTheme
-import com.ilm.mulga.R // Make sure to import your drawable resources
+import com.ilm.mulga.R
+import java.text.NumberFormat
 
 data class PaymentItemData(
     val source: String,
-    val amount: String
+    val amount: Int
 )
 
 // Function to map firstText to corresponding icon
@@ -35,7 +35,7 @@ fun getIconResource(source: String): Int {
 @Composable
 fun PaymentItem(
     source: String = "기타", // Example, you can pass this dynamically
-    amount: String = "0"
+    amount: Int = 0
 ) {
     val icon = getIconResource(source) // Get the icon resource dynamically based on firstText
 
@@ -71,13 +71,6 @@ fun PaymentItem(
         Spacer(modifier = Modifier.width(16.dp)) // Spacer between text column and the far-right text box
 
         // Text box on the far right with customizable text
-        Text(amount, style = MulGaTheme.typography.bodySmall) // Right text, customizable
+        Text(NumberFormat.getNumberInstance().format(amount), style = MulGaTheme.typography.bodySmall) // Right text, customizable
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewPaymentItem() {
-    // You can test it with different firstText values
-    PaymentItem(source = "네이버페이", amount = "200,500")
 }

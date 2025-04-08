@@ -15,7 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ilm.mulga.feature.analysis.components.CategoryItemData
+import com.ilm.mulga.feature.analysis.components.CategoryItemRaw
 import com.ilm.mulga.feature.analysis.components.CategoryList
 import com.ilm.mulga.feature.analysis.components.DonutChart
 import com.ilm.mulga.feature.analysis.components.DonutSlice
@@ -80,36 +80,28 @@ fun AnalysisScreen() {
     }
 
     // Example list of items passed to CategoryList
-    val itemList = listOf(
-        CategoryItemData(
-            category = "shopping",
-            portion = "50%",
-            amount = "501,250"
-        ),
-        CategoryItemData(
-            category = "food",
-            portion = "30%",
-            amount = "200,000"
-        ),
-        CategoryItemData(
-            category = "travel",
-            portion = "20%",
-            amount = "100,000"
-        )
-    )
+    val itemList = analysisData?.category
+        ?.filter { it.value != 0}
+        ?.map { (category, amount) ->
+        CategoryItemRaw(category, amount) }
+        ?: emptyList()
+
+    val total = analysisData?.monthTotal ?: 0
+
+    val detail = itemList.size > 5
 
     val itemList2 = listOf(
         PaymentItemData(
             source = "신한은행",
-            amount = "501,250"
+            amount = 501250
         ),
         PaymentItemData(
             source = "네이버페이",
-            amount = "200,000"
+            amount = 200000
         ),
         PaymentItemData(
             source = "카카오뱅크",
-            amount = "100,000"
+            amount = 10000
         )
     )
 
@@ -146,7 +138,7 @@ fun AnalysisScreen() {
             modifier = Modifier.size(300.dp)
         )
 
-        CategoryList(items = itemList, detail = false)
+        CategoryList(items = itemList.take(5), total = total, detail = detail)
 
         Separator()
 

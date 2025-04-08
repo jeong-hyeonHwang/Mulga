@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ilm.mulga.feature.analysis.components.CategoryItemData
+import com.ilm.mulga.feature.analysis.components.CategoryItemRaw
 import com.ilm.mulga.feature.analysis.components.CategoryList
 import com.ilm.mulga.feature.analysis.components.DonutChart
 import com.ilm.mulga.feature.analysis.components.PaymentItemData
@@ -42,15 +43,15 @@ fun AnalysisDetailScreen() {
     val itemList2 = listOf(
         PaymentItemData(
             source = "신한은행",
-            amount = "501,250"
+            amount = 501250
         ),
         PaymentItemData(
             source = "네이버페이",
-            amount = "200,000"
+            amount = 200000
         ),
         PaymentItemData(
             source = "카카오뱅크",
-            amount = "100,000"
+            amount = 100000
         )
     )
 
@@ -77,7 +78,9 @@ fun AnalysisDetailScreen() {
             modifier = Modifier.size(300.dp)
         )
 
-        CategoryList(items = itemList, detail = true)
+//        CategoryList(items = analysisData.category.map { (category, amount) ->
+//            CategoryItemRaw(category, amount)
+//        }, total = analysisData.monthTotal, detail = true)
     }
 
 }
