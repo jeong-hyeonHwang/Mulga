@@ -11,8 +11,10 @@ import com.ilm.mulga.presentation.mapper.toMonthlyTotalTransactionData
 import com.ilm.mulga.presentation.model.DailyTransactionData
 import com.ilm.mulga.presentation.model.DailyTransactionSummaryData
 import com.ilm.mulga.presentation.model.MonthlyTotalTransactionData
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.util.Calendar
@@ -23,7 +25,7 @@ data class CalendarUiState(
     val monthlyTransactionEntity: MonthlyTransactionEntity? = null,
 
     // Presentation Model로 변환한 데이터들
-    val monthlyTotalData: MonthlyTotalTransactionData? = null,
+    val monthlyTotalData: MonthlyTotalTransactionData? = MonthlyTotalTransactionData(),
     val dailySummariesData: List<DailyTransactionSummaryData>? = null,
     val dailyTransactionsData: List<DailyTransactionData>? = null,
 
@@ -40,6 +42,8 @@ class CalendarViewModel : ViewModel() {
     val uiState: StateFlow<CalendarUiState> = _uiState
 
     private val repository: TransactionRepository = TransactionRepository(RetrofitClient.transactionService)
+    private val _navigationEvent = MutableSharedFlow<String>()
+    val navigationEvent = _navigationEvent.asSharedFlow()
 
     init {
         viewModelScope.launch {
@@ -116,6 +120,9 @@ class CalendarViewModel : ViewModel() {
 
     fun onPlusClick() {
         // plus 버튼 클릭 시 동작 처리 (예: 소비 내역 추가 화면 전환 등)
+        viewModelScope.launch {
+            _navigationEvent.emit("transaction_add")
+        }
     }
 
     private fun updateSelectedDateBasedOnToday(year: Int, month: Int): CalendarUiState {

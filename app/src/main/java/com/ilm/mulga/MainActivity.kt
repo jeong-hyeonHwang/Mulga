@@ -1,20 +1,25 @@
 package com.ilm.mulga
 
-import MainScreen
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
-import com.ilm.mulga.data.network.RetrofitClient
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.ilm.mulga.feature.component.dialog.GlobalErrorDialog
+import com.ilm.mulga.feature.component.main.MainScreen
 import com.ilm.mulga.feature.login.LoginBudgetScreen
 import com.ilm.mulga.feature.login.LoginScreen
 import com.ilm.mulga.feature.login.LoginUiState
 import com.ilm.mulga.feature.login.UserState
+import com.ilm.mulga.feature.transaction_detail.TransactionAddScreen
 import com.ilm.mulga.ui.theme.MulGaTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -32,10 +37,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MulGaTheme {
+                GlobalErrorDialog()
                 // LoginViewModel을 koin을 통해 주입받음
                 val loginViewModel: com.ilm.mulga.feature.login.LoginViewModel = koinViewModel()
                 val uiState by loginViewModel.uiState.collectAsState()
                 val userState by loginViewModel.userState.collectAsState()
+                val rootNavController = rememberNavController()
 
                 when (uiState) {
                     is LoginUiState.Loading -> {
@@ -59,7 +66,18 @@ class MainActivity : ComponentActivity() {
 
                             is UserState.Exists -> {
                                 // 기존 사용자면 홈 화면으로 이동
-                                MainScreen()
+                                NavHost(navController = rootNavController, startDestination = "main") {
+                                    composable("main") {
+                                        MainScreen(
+                                            onNavigateToTransactionAdd = {
+                                                rootNavController.navigate("transaction_add")
+                                            }
+                                        )
+                                    }
+                                    composable("transaction_add") {
+                                        TransactionAddScreen(navController = rootNavController)
+                                    }
+                                }
                             }
 
                             else -> {

@@ -66,6 +66,9 @@
     <string name="calendar_month_day">%s월 %s일</string>
     <string name="calendar_option_calendar">달력</string>
     <string name="calendar_option_list">목록</string>
+    <string name="calendar_no_selected_date">선택된 날짜가 없습니다.</string>
+    <string name="calendar_no_transaction_in_month">해당 월에 수입/지출 내역이\n존재하지 않습니다.</string>
+
 
     <!-- 분석 관련 (analysis_) -->
     <string name="analysis_detail_info">상세 정보</string>
@@ -105,5 +108,9 @@
     <!-- OAuth 관련 -->
     <string name="web_client_id">987610457102-c65471urjttmp0crfp0jfdqlb0jgc19e.apps.googleusercontent.com</string>
     <string name="web_client_id2">987610457102-5pa5rvehmo3aa86pscrcfbgt8srecabb.apps.googleusercontent.com</string>
+
+    <!-- 에러 관련 -->
+    <string name="error_title">에러 발생</string>
+    <string name="error_code_message">에러 코드: %s\n앱을 재시작해주세요.</string>
 
 </resources>

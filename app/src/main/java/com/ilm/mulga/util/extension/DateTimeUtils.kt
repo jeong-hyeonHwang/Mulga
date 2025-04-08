@@ -2,7 +2,6 @@ package com.ilm.mulga.util.extension
 
 import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
 /**
@@ -30,4 +29,17 @@ fun formatTimeToHourMinuteForMain(dateTime: LocalDateTime): String {
     } catch (e: Exception) {
         "--:--"
     }
+}
+
+fun LocalDateTime.toKoreanDisplayString(): String {
+    return try {
+        val formatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 HH:mm")
+        this.format(formatter)
+    } catch (e: Exception) {
+        "--"
+    }
+}
+
+fun LocalDateTime.toIso8601String(): String {
+    return DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(this)
 }
