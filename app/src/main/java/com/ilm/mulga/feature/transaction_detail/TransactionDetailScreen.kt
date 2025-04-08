@@ -37,7 +37,8 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun TransactionDetailScreen(
     viewModel: TransactionDetailViewModel = koinViewModel(),
-    navController: NavController
+    navController: NavController,
+    rootNavController: NavController
 ) {
     // viewModel에서 관리하는 TransactionDetailData
     val detailData by viewModel.transactionDetailData.collectAsState()
@@ -96,7 +97,7 @@ fun TransactionDetailScreen(
             TransactionHeaderView(
                 category = data.category,
                 cost = data.cost,
-                onEditClick = { viewModel.onEditTransaction() }
+                onEditClick = { viewModel.onEditTransaction(rootNavController) }
             )
 
             Spacer(modifier = Modifier.height(50.dp))
@@ -118,6 +119,10 @@ fun TransactionDetailScreen(
                 )
                 DetailLabel(
                     label = stringResource(id = R.string.field_payment_method),
+                    value = data.paymentMethod
+                )
+                DetailLabel(
+                    label = stringResource(id = R.string.field_transaction_date_time),
                     value = data.time.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm"))
                 )
                 DetailLabel(
@@ -140,7 +145,8 @@ fun TransactionDetailScreenPreview() {
         vendor = "스타벅스",
         time = LocalDateTime.now(),
         cost = 1500,
-        memo = "아침 출근 전 커피"
+        memo = "아침 출근 전 커피",
+        paymentMethod = "카카오 페이"
     )
 
     // fakeViewModel에 더미 데이터를 설정
@@ -149,8 +155,10 @@ fun TransactionDetailScreenPreview() {
     }
     // Preview에서는 rememberNavController()를 사용
     val navController = rememberNavController()
+    val rootNavController = rememberNavController()
     TransactionDetailScreen(
         viewModel = fakeViewModel,
-        navController = navController
+        navController = navController,
+        rootNavController = rootNavController
     )
 }

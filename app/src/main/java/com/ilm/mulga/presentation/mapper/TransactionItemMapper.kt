@@ -13,6 +13,7 @@ fun TransactionEntity.toPresentation(): TransactionDetailData {
         vendor = vendor,
         time = time,
         cost = cost,
-        memo = memo
+        memo = memo,
+        paymentMethod = paymentMethod
     )
 }

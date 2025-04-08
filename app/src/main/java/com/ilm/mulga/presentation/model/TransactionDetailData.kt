@@ -13,5 +13,6 @@ data class TransactionDetailData (
     val vendor: String,
     @Serializable(with = LocalDateTimeSerializer::class) val time: LocalDateTime,
     var cost: Int,
-    val memo: String
+    val memo: String,
+    val paymentMethod: String
 )
