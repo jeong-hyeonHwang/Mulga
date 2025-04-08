@@ -37,16 +37,14 @@ class MypageViewModel(
     val userInfo: StateFlow<UserInfo> = _userInfo.asStateFlow()
 
     // 편의를 위한 getter 속성들
-    val userName: String
-        get() = userInfo.value.name
+    var userName = userInfo.value.name
 
-    val userEmail: String
-        get() = userInfo.value.email
+    var userEmail = userInfo.value.email
 
     // 초기화 시 사용자 정보 불러오기
-//    init {
-//        loadUserInfo()
-//    }
+    init {
+        loadUserInfo()
+    }
 
     // 사용자 정보 불러오기
     fun loadUserInfo() {
@@ -58,6 +56,9 @@ class MypageViewModel(
                         name = user.name,
                         email = user.email
                     )
+                    Log.d("MypageViewModel", "사용자 정보 : ${userInfo.value.name} ${userInfo.value.email}")
+                    userName = userInfo.value.name
+                    userEmail = userInfo.value.email
                     _uiState.value = MypageUiState.Idle
                 } else {
                     Log.d("MypageViewModel", "사용자 정보 없음")
