@@ -157,4 +157,8 @@ class FakeTransactionService : TransactionService {
         val response = json.decodeFromString<MonthlyTransactionResponseDto>(jsonString)
         return Response.success(response)
     }
+
+    override suspend fun deleteTransactions(ids: List<String>): Response<Unit> {
+        TODO("Not yet implemented")
+    }
 }

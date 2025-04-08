@@ -12,6 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.res.stringResource
 import com.ilm.mulga.R
+import com.ilm.mulga.ui.theme.MulGaTheme
 import com.ilm.mulga.util.handler.GlobalErrorHandler
 
 @Composable
@@ -31,7 +32,8 @@ fun GlobalErrorDialog() {
             title = stringResource(R.string.error_title),
             message = stringResource(R.string.error_code_message, errorCode),
             onDismiss = { errorMessage.value = null },
-            onConfirm = { errorMessage.value = null }
+            onConfirm = { errorMessage.value = null },
+            backgroundColor = MulGaTheme.colors.red1
         )
     }
 }

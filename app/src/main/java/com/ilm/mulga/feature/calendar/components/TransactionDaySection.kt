@@ -1,5 +1,6 @@
 package com.ilm.mulga.feature.calendar.components
 
+import TransactionItem
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,9 +20,14 @@ import com.ilm.mulga.presentation.model.DailyTransactionData
 @Composable
 fun TransactionDaySection(
     dailyTransactionData: DailyTransactionData,
+    onTransactionClick: (String) -> Unit,
+    onTransactionLongClick: (String) -> Unit,
+
+    isDeleteMode: Boolean,
+    selectedItemIds: Set<String>,
+
     modifier: Modifier = Modifier,
     standalone: Boolean = false,  // true면 standalone 모드, false면 List 모드
-    onTransactionClick: (String) -> Unit
 ) {
     if (standalone) {
         // standalone 모드: 헤더는 고정, 거래 내역 부분은 스크롤 가능하도록 분리
@@ -49,7 +55,13 @@ fun TransactionDaySection(
                         )
                     } else {
                         dailyTransactionData.transactions.forEach { item ->
-                            TransactionItem(item = item, onClick = { onTransactionClick(item.id) })
+                            TransactionItem(
+                                item = item,
+                                onClick = { onTransactionClick(item.id) },
+                                onLongPress = { onTransactionLongClick(item.id) },
+                                isDeleteMode = isDeleteMode,
+                                isSelected = selectedItemIds.contains(item.id)
+                            )
                             Spacer(modifier = Modifier.height(16.dp))
                         }
                     }
@@ -69,7 +81,13 @@ fun TransactionDaySection(
             Spacer(modifier = Modifier.height(16.dp))
             if (dailyTransactionData.transactions.isNotEmpty()) {
                 dailyTransactionData.transactions.forEach { item ->
-                    TransactionItem(item = item, onClick = { onTransactionClick(item.id) })
+                    TransactionItem(
+                        item = item,
+                        onClick = { onTransactionClick(item.id) },
+                        onLongPress = { onTransactionLongClick(item.id) },
+                        isDeleteMode = isDeleteMode,
+                        isSelected = selectedItemIds.contains(item.id)
+                    )
                     Spacer(modifier = Modifier.height(16.dp))
                 }
             }
