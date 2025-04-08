@@ -121,7 +121,6 @@ public class AnalysisService {
 
 	@Transactional
 	public AnalysisDetailDto addTransactionToAnalysis(CustomUserDetails userDetails, Transaction transaction) {
-		// 이 사용자의 analysis가 없어도 id, month, year만 있는 analysis를 db에 저장하고 리턴
 		Analysis analysis = getAnalysis(userDetails, transaction.getYear(), transaction.getMonth());
 
 		applyChangeToAnalysis(analysis, transaction, true);
