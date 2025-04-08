@@ -13,8 +13,10 @@ import com.ilm.mulga.presentation.mapper.toPresentation
 import com.ilm.mulga.presentation.model.DailyTransactionData
 import com.ilm.mulga.presentation.model.DailyTransactionSummaryData
 import com.ilm.mulga.presentation.model.MonthlyTotalTransactionData
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.serialization.encodeToString
@@ -42,8 +44,10 @@ class CalendarViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(CalendarUiState())
     val uiState: StateFlow<CalendarUiState> = _uiState
 
-    private val repository: TransactionRepository =
-        TransactionRepository(RetrofitClient.transactionService)
+    private val repository: TransactionRepository = TransactionRepository(RetrofitClient.transactionService)
+
+    private val _navigationEvent = MutableSharedFlow<String>()
+    val navigationEvent = _navigationEvent.asSharedFlow()
 
     init {
         viewModelScope.launch {
@@ -107,7 +111,10 @@ class CalendarViewModel : ViewModel() {
     }
 
     fun onPlusClick() {
-        // 처리 로직 구현
+        // plus 버튼 클릭 시 동작 처리 (예: 소비 내역 추가 화면 전환 등)
+        viewModelScope.launch {
+            _navigationEvent.emit("transaction_add")
+        }
     }
 
     fun onTransactionClick(transactionId: String, navController: NavController) {

@@ -7,6 +7,4 @@ data class UserEntity(
     val budget: Int,
     val isWithdrawn: Boolean,
     val receivesNotification: Boolean,
-    val createdAt: String,
-    val withdrawnAt: String
 )

@@ -1,5 +1,6 @@
 package com.ilm.mulga.data.service
 
+import com.ilm.mulga.data.dto.request.TransactionRequestDto
 import com.ilm.mulga.data.dto.response.MonthlyTransactionResponseDto
 import kotlinx.serialization.json.Json
 import retrofit2.Response
@@ -7,6 +8,7 @@ import java.time.YearMonth
 import kotlin.random.Random
 
 class FakeTransactionService : TransactionService {
+
     override suspend fun getMonthlyTransactions(year: Int, month: Int): Response<MonthlyTransactionResponseDto> {
         val daysInMonth = YearMonth.of(year, month).lengthOfMonth()
 
@@ -157,6 +159,12 @@ class FakeTransactionService : TransactionService {
         val response = json.decodeFromString<MonthlyTransactionResponseDto>(jsonString)
         return Response.success(response)
     }
+
+    override suspend fun postTransaction(request: TransactionRequestDto): Response<Unit> {
+        return Response.success(Unit)
+    }
+
+
 
     override suspend fun deleteTransactions(ids: List<String>): Response<Unit> {
         TODO("Not yet implemented")
