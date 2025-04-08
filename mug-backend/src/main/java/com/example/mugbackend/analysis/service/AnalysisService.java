@@ -121,6 +121,7 @@ public class AnalysisService {
 
 	@Transactional
 	public AnalysisDetailDto addTransactionToAnalysis(CustomUserDetails userDetails, Transaction transaction) {
+		// 이 사용자의 analysis가 없어도 id, month, year만 있는 analysis를 db에 저장하고 리턴
 		Analysis analysis = getAnalysis(userDetails, transaction.getYear(), transaction.getMonth());
 
 		applyChangeToAnalysis(analysis, transaction, true);
@@ -375,6 +376,13 @@ public class AnalysisService {
 				newAnalysis.setYear(year);
 				newAnalysis.setMonth(month);
 				newAnalysis.setId(id);
+
+				for (CategoryEnum categoryEnum : CategoryEnum.values()) {
+					newAnalysis.getCategory().put(categoryEnum.name(), 0);
+				}
+				for(int day = 1; day <=31; day++) {
+					newAnalysis.getDaily().put(day, new Analysis.DailyAmount(0, 0, false));
+				}
 				return analysisRepository.save(newAnalysis);
 			});
 

@@ -1,6 +1,7 @@
 package com.example.mugbackend.analysis.domain;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.springframework.data.annotation.Id;
@@ -36,7 +37,7 @@ public class Analysis {
 	private Map<String, Integer> paymentMethod = new HashMap<>();
 
 	@Builder.Default
-	private Map<Integer, DailyAmount> daily = new HashMap<>();
+	private Map<Integer, DailyAmount> daily = new LinkedHashMap<>();
 
 	@Data
 	@Builder
