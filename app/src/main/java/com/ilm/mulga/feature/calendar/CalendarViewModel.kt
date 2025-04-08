@@ -2,12 +2,14 @@ package com.ilm.mulga.feature.calendar
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
 import com.ilm.mulga.data.network.RetrofitClient
 import com.ilm.mulga.data.repository.TransactionRepository
 import com.ilm.mulga.domain.model.MonthlyTransactionEntity
 import com.ilm.mulga.presentation.mapper.toDailyTransactionData
 import com.ilm.mulga.presentation.mapper.toDailyTransactionSummariesData
 import com.ilm.mulga.presentation.mapper.toMonthlyTotalTransactionData
+import com.ilm.mulga.presentation.mapper.toPresentation
 import com.ilm.mulga.presentation.model.DailyTransactionData
 import com.ilm.mulga.presentation.model.DailyTransactionSummaryData
 import com.ilm.mulga.presentation.model.MonthlyTotalTransactionData
@@ -15,107 +17,97 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 import java.time.LocalDate
 import java.util.Calendar
 
 // UI 상태를 담는 데이터 클래스
 data class CalendarUiState(
-    // Domain Model (원본) 보관 – 필요하면 UI에서 활용
     val monthlyTransactionEntity: MonthlyTransactionEntity? = null,
-
-    // Presentation Model로 변환한 데이터들
     val monthlyTotalData: MonthlyTotalTransactionData? = MonthlyTotalTransactionData(),
     val dailySummariesData: List<DailyTransactionSummaryData>? = null,
     val dailyTransactionsData: List<DailyTransactionData>? = null,
-
     val selectedToggleIndex: Int = 0,
     val currentYear: Int = Calendar.getInstance().get(Calendar.YEAR),
-    val currentMonth: Int = Calendar.getInstance().get(Calendar.MONTH) + 1, // Calendar.MONTH는 0부터 시작하므로 +1
+    val currentMonth: Int = Calendar.getInstance().get(Calendar.MONTH) + 1,
     val totalSpending: String = "0",
-
     val selectedDate: LocalDate? = null
 )
 
 class CalendarViewModel : ViewModel() {
+
     private val _uiState = MutableStateFlow(CalendarUiState())
     val uiState: StateFlow<CalendarUiState> = _uiState
 
     private val repository: TransactionRepository = TransactionRepository(RetrofitClient.transactionService)
+
     private val _navigationEvent = MutableSharedFlow<String>()
     val navigationEvent = _navigationEvent.asSharedFlow()
 
     init {
         viewModelScope.launch {
+            // 초기 현재 연/월의 데이터 로드
             loadAndConvertMonthlyData(_uiState.value.currentYear, _uiState.value.currentMonth)
-            updateSelectedDateBasedOnToday(_uiState.value.currentYear, _uiState.value.currentMonth)
+            // 오늘 날짜가 있으면 선택
+            _uiState.update { old ->
+                updateSelectedDateBasedOnToday(old.currentYear, old.currentMonth, old)
+            }
         }
     }
 
-    // 도메인 모델을 불러와 Presentation Model로 변환하고 UI 상태에 저장하는 함수
     suspend fun loadAndConvertMonthlyData(year: Int, month: Int) {
         val monthlyEntity = repository.getMonthlyData(year, month)
         if (monthlyEntity != null) {
-            // Domain Model을 Presentation Model로 변환
             val monthlyTotalData = monthlyEntity.toMonthlyTotalTransactionData()
             val dailySummariesData = monthlyEntity.toDailyTransactionSummariesData()
             val dailyTransactionsData = monthlyEntity.toDailyTransactionData()
 
-            // UI 상태에 변환 결과 저장
-            _uiState.value = _uiState.value.copy(
-                monthlyTransactionEntity = monthlyEntity,
-                monthlyTotalData = monthlyTotalData,
-                dailySummariesData = dailySummariesData,
-                dailyTransactionsData = dailyTransactionsData
-            )
+            _uiState.update { old ->
+                old.copy(
+                    monthlyTransactionEntity = monthlyEntity,
+                    monthlyTotalData = monthlyTotalData,
+                    dailySummariesData = dailySummariesData,
+                    dailyTransactionsData = dailyTransactionsData
+                )
+            }
         }
     }
 
     fun onToggleOptionSelected(newIndex: Int) {
-        _uiState.value = _uiState.value.copy(selectedToggleIndex = newIndex)
+        _uiState.update { old ->
+            old.copy(selectedToggleIndex = newIndex)
+        }
     }
 
     suspend fun onPrevMonthClick() {
-        val state = _uiState.value
-        var year = state.currentYear
-        var month = state.currentMonth
+        val current = _uiState.value
+        val (year, month) = currentYearMonth(current.currentYear, current.currentMonth, goNext = false)
 
-        if (month == 1) {
-            month = 12
-            year -= 1
-        } else {
-            month -= 1
-        }
-        _uiState.value = state.copy(currentYear = year, currentMonth = month)
+        _uiState.update { old -> old.copy(currentYear = year, currentMonth = month) }
         loadAndConvertMonthlyData(year, month)
-
-        // 현재 시스템 연월과 비교해서, 이번 달이 아니라면 마지막 날짜를 선택
-        val systemCalendar = Calendar.getInstance()
-        val systemYear = systemCalendar.get(Calendar.YEAR)
-        val systemMonth = systemCalendar.get(Calendar.MONTH) + 1
-
-        _uiState.value = updateSelectedDateBasedOnToday(year, month)
+        _uiState.update { old ->
+            updateSelectedDateBasedOnToday(year, month, old)
+        }
     }
 
     suspend fun onNextMonthClick() {
-        val state = _uiState.value
-        var year = state.currentYear
-        var month = state.currentMonth
+        val current = _uiState.value
+        val (year, month) = currentYearMonth(current.currentYear, current.currentMonth, goNext = true)
 
-        if (month == 12) {
-            month = 1
-            year += 1
-        } else {
-            month += 1
-        }
-        _uiState.value = state.copy(currentYear = year, currentMonth = month)
+        _uiState.update { old -> old.copy(currentYear = year, currentMonth = month) }
         loadAndConvertMonthlyData(year, month)
-
-        _uiState.value = updateSelectedDateBasedOnToday(year, month)
+        _uiState.update { old ->
+            updateSelectedDateBasedOnToday(year, month, old)
+        }
     }
-    // 선택된 날짜를 업데이트하는 함수
+
     fun onDateSelected(date: LocalDate) {
-        _uiState.value = _uiState.value.copy(selectedDate = date)
+        _uiState.update { old -> old.copy(selectedDate = date) }
     }
 
     fun onPlusClick() {
@@ -125,17 +117,65 @@ class CalendarViewModel : ViewModel() {
         }
     }
 
-    private fun updateSelectedDateBasedOnToday(year: Int, month: Int): CalendarUiState {
+    fun onTransactionClick(transactionId: String, navController: NavController) {
+        val monthlyEntity = _uiState.value.monthlyTransactionEntity ?: return
+        val transactionEntity = monthlyEntity.transactions
+            .values
+            .flatten()
+            .find { it.id == transactionId }
+
+        transactionEntity?.let { entity ->
+            val detailData = entity.toPresentation()
+            val jsonData = Json.encodeToString(detailData)
+            val encodedData = URLEncoder.encode(jsonData, StandardCharsets.UTF_8.toString())
+
+            navController.navigate("transaction_detail?data=$encodedData")
+        }
+    }
+
+    fun deleteTransactionItems(deletedIds: Set<String>) {
+        viewModelScope.launch {
+            repository.deleteTransactions(deletedIds)
+            loadAndConvertMonthlyData(_uiState.value.currentYear, _uiState.value.currentMonth)
+        }
+    }
+
+    private fun currentYearMonth(year: Int, month: Int, goNext: Boolean): Pair<Int, Int> {
+        var y = year
+        var m = month
+        if (goNext) {
+            if (m == 12) {
+                y += 1
+                m = 1
+            } else {
+                m += 1
+            }
+        } else {
+            if (m == 1) {
+                y -= 1
+                m = 12
+            } else {
+                m -= 1
+            }
+        }
+        return y to m
+    }
+
+    private fun updateSelectedDateBasedOnToday(
+        year: Int,
+        month: Int,
+        old: CalendarUiState
+    ): CalendarUiState {
         val systemCalendar = Calendar.getInstance()
         val systemYear = systemCalendar.get(Calendar.YEAR)
         val systemMonth = systemCalendar.get(Calendar.MONTH) + 1
         val today = LocalDate.now()
-        val hasTodayData = _uiState.value.dailySummariesData?.any { it.date == today && it.isValid == true } ?: false
+        val hasTodayData = old.dailySummariesData?.any { it.date == today && it.isValid } ?: false
 
         return if (year == systemYear && month == systemMonth && hasTodayData) {
-            _uiState.value.copy(selectedDate = today)
+            old.copy(selectedDate = today)
         } else {
-            _uiState.value.copy(selectedDate = null)
+            old.copy(selectedDate = null)
         }
     }
 }

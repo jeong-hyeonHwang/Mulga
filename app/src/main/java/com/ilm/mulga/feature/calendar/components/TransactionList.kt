@@ -8,18 +8,20 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ilm.mulga.presentation.model.DailyTransactionData
-import com.ilm.mulga.presentation.model.TransactionItemData
-import com.ilm.mulga.presentation.model.type.Category
 import java.time.LocalDate
 
 @Composable
 fun TransactionList(
     dailyTransactionDataList: List<DailyTransactionData>,
     selectedDate: LocalDate?,
-    onTransactionClick: (transactionId: String) -> Unit
+
+    onTransactionClick: (String) -> Unit,
+    onTransactionLongClick: (String) -> Unit,
+
+    isDeleteMode: Boolean,
+    selectedItemIds: Set<String>
 ) {
     val filteredList = dailyTransactionDataList.filter { it.transactions.isNotEmpty() }
     val listState = rememberLazyListState()
@@ -33,14 +35,17 @@ fun TransactionList(
 
     LazyColumn(
         state = listState,
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
         items(filteredList) { dailyTransactionData ->
             TransactionDaySection(
                 dailyTransactionData = dailyTransactionData,
-                onTransactionClick = onTransactionClick)
+                onTransactionClick = onTransactionClick,
+                onTransactionLongClick = onTransactionLongClick,
+                isDeleteMode = isDeleteMode,
+                selectedItemIds = selectedItemIds
+            )
         }
     }
 }

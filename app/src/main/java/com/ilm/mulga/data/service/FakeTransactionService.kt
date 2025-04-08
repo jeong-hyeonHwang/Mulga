@@ -165,4 +165,8 @@ class FakeTransactionService : TransactionService {
     }
 
 
+
+    override suspend fun deleteTransactions(ids: List<String>): Response<Unit> {
+        TODO("Not yet implemented")
+    }
 }
