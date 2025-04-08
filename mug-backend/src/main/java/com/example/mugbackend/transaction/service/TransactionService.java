@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.example.mugbackend.transaction.dto.*;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,11 +20,6 @@ import com.example.mugbackend.analysis.domain.Analysis;
 import com.example.mugbackend.analysis.repository.AnalysisRepository;
 import com.example.mugbackend.analysis.service.AnalysisService;
 import com.example.mugbackend.transaction.domain.Transaction;
-import com.example.mugbackend.transaction.dto.MonthlyTransactionDto;
-import com.example.mugbackend.transaction.dto.TransactionCombineDto;
-import com.example.mugbackend.transaction.dto.TransactionCreateDto;
-import com.example.mugbackend.transaction.dto.TransactionDetailDto;
-import com.example.mugbackend.transaction.dto.TransactionUpdateDto;
 import com.example.mugbackend.transaction.exception.TransactionAccessDeniedException;
 import com.example.mugbackend.transaction.exception.TransactionCombineConflictException;
 import com.example.mugbackend.transaction.exception.TransactionNoHistoryException;
@@ -111,6 +107,7 @@ public class TransactionService {
                 .orElseGet(() -> {
                     LocalDateTime today = LocalDateTime.now();
                     return Transaction.builder()
+                            .id("")
                             .userId(userId)
                             .year(today.getYear())
                             .month(today.getMonthValue())
