@@ -67,10 +67,20 @@ class UserRepository (
     suspend fun clearUser(): Boolean {
         return try {
             withContext(Dispatchers.IO) {
-                sharedPreferences.edit()
-                    .remove(KEY_USER)
-                    .apply()
-                true
+                // 전체 SharedPreferences 데이터 초기화
+                val editor = sharedPreferences.edit()
+                editor.clear() // 모든 데이터 삭제
+                val result = editor.commit()
+
+                // 확인
+                val userJson = sharedPreferences.getString(KEY_USER, null)
+                if (userJson == null) {
+                    Log.d("UserRepository", "사용자 정보가 모두 삭제되었습니다.")
+                } else {
+                    Log.d("UserRepository", "사용자 정보 삭제 실패: 남아있는 데이터 - $userJson")
+                }
+
+                result
             }
         } catch (e: Exception) {
             Log.e("UserRepository", "사용자 정보 삭제 실패", e)
@@ -111,5 +121,15 @@ class UserRepository (
         } else {
             null // 에러 처리 간단하게 null 리턴
         }
+    }
+
+    suspend fun hasUserData(): Boolean = withContext(Dispatchers.IO) {
+        // 캐시를 거치지 않고 직접 확인하기 위해 새로운 SharedPreferences 인스턴스를 가져옵니다
+        val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val userJson = prefs.getString(KEY_USER, null)
+
+        val result = userJson != null
+        Log.d("UserRepository", "SharedPreferences에 사용자 데이터 ${if(result) "존재" else "없음"}")
+        result
     }
 }

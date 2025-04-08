@@ -79,6 +79,7 @@ class MypageViewModel(
     fun logout() {
         Log.d("MypageViewModel", "로그아웃 시도")
         viewModelScope.launch {
+            userRepository.clearUser()
             logoutUseCase().onSuccess {
                 _uiState.value = MypageUiState.LoggedOut
             }.onFailure { error ->
