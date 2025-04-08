@@ -32,6 +32,7 @@ import com.ilm.mulga.feature.calendar.components.CustomCalendarView
 import com.ilm.mulga.feature.calendar.components.TransactionBatchPanel
 import com.ilm.mulga.feature.calendar.components.TransactionDaySection
 import com.ilm.mulga.feature.calendar.components.TransactionList
+import com.ilm.mulga.feature.navigation.LocalNavController
 import com.ilm.mulga.ui.theme.MulGaTheme
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
@@ -41,12 +42,13 @@ import org.koin.androidx.compose.koinViewModel
 fun CalendarScreen(
     calendarViewModel: CalendarViewModel = koinViewModel(),
     transactionItemViewModel: TransactionItemViewModel = koinViewModel(),
-    onNavigateToTransactionAdd: () -> Unit = {},
-    navController: NavController
+    onNavigateToTransactionAdd: () -> Unit = {}
 ) {
     val uiState by calendarViewModel.uiState.collectAsState()
     val isDeleteMode by transactionItemViewModel.isDeleteMode.collectAsState()
     val selectedItemIds by transactionItemViewModel.selectedItemIds.collectAsState()
+
+    val navController = LocalNavController.current
 
     // 삭제 확인 다이얼로그 표시 여부 상태
     val showDeleteConfirmDialog = remember { mutableStateOf(false) }
