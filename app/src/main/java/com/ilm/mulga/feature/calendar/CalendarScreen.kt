@@ -211,9 +211,12 @@ fun CalendarScreen(
         )
     }
 
+    // 삭제 확인 다이얼로그를 조건부로 표시
     if (showDeleteConfirmDialog.value) {
         DeleteConfirmDialog(
-            dataCount = selectedItemIds.size,
+            stringResource(id = R.string.dialog_delete_confirmation_title),
+            stringResource(id = R.string.dialog_delete_confirmation_message, selectedItemIds.size),
+            stringResource(R.string.btn_title_delete),
             onCancel = { showDeleteConfirmDialog.value = false },
             onConfirm = {
                 calendarViewModel.deleteTransactionItems(selectedItemIds)

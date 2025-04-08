@@ -5,13 +5,16 @@ import com.ilm.mulga.R
 
 @Composable
 fun DeleteConfirmDialog(
-    dataCount: Int,
+    title: String,
+    message: String,
+    actionText: String,
     onCancel: () -> Unit,
     onConfirm: () -> Unit
 ) {
     CustomDialogWithCancel(
-        title = stringResource(id = R.string.dialog_delete_confirmation_title),
-        message = stringResource(id = R.string.dialog_delete_confirmation_message, dataCount),
+        title = title,
+        message = message,
+        actionText = actionText,
         onCancel = onCancel,
         onConfirm = onConfirm
     )

@@ -30,12 +30,13 @@ import com.ilm.mulga.ui.theme.MulGaTheme
 fun CustomDialogWithCancel(
     title: String,
     message: String,
+    actionText: String,
     onCancel: () -> Unit,
     onConfirm: () -> Unit
 ) {
     Dialog(
         onDismissRequest = onCancel,
-        properties = DialogProperties(dismissOnClickOutside = false)
+        properties = DialogProperties(dismissOnClickOutside = true)
     ) {
         Surface(
             shape = RoundedCornerShape(16.dp),
@@ -81,7 +82,7 @@ fun CustomDialogWithCancel(
                         )
                     ) {
                         Text(
-                            text = stringResource(R.string.btn_title_delete),
+                            text = actionText,
                             style = MulGaTheme.typography.bodySmall
                         )
                     }
