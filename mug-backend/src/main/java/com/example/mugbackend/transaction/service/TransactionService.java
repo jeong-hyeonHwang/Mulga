@@ -106,7 +106,6 @@ public class TransactionService {
     }
 
     public Transaction getLastTransaction(String userId) {
-        //
         return transactionRepository
                 .findTopByUserIdOrderByTimeDesc(userId)
                 .orElseGet(() -> {
