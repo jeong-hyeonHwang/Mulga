@@ -1,13 +1,12 @@
 package com.ilm.mulga.feature.transaction_detail
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.ilm.mulga.domain.model.TransactionEntity
+import androidx.navigation.NavController
 import com.ilm.mulga.presentation.model.TransactionDetailData
-import com.ilm.mulga.presentation.model.type.Category
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 class TransactionDetailViewModel : ViewModel() {
 
@@ -18,7 +17,11 @@ class TransactionDetailViewModel : ViewModel() {
         _transactionDetailData.value = data
     }
 
-    fun onEditTransaction() {
-        // 편집 버튼 클릭 시 로직 처리
+    fun onEditTransaction(navController: NavController) {
+        transactionDetailData.value?.let { data ->
+            val json = Json.encodeToString(data)
+            navController.currentBackStackEntry?.savedStateHandle?.set("editDataJson", json) // ✅ JSON 저장
+            navController.navigate("transaction_edit/${data.id}")
+        }
     }
 }

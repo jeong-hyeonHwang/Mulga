@@ -20,6 +20,7 @@ import com.ilm.mulga.feature.login.LoginScreen
 import com.ilm.mulga.feature.login.LoginUiState
 import com.ilm.mulga.feature.login.UserState
 import com.ilm.mulga.feature.transaction_detail.TransactionAddScreen
+import com.ilm.mulga.presentation.model.TransactionDetailData
 import com.ilm.mulga.ui.theme.MulGaTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -71,12 +72,31 @@ class MainActivity : ComponentActivity() {
                                         MainScreen(
                                             onNavigateToTransactionAdd = {
                                                 rootNavController.navigate("transaction_add")
-                                            }
+                                            },
+                                            rootNavController = rootNavController
                                         )
                                     }
                                     composable("transaction_add") {
                                         TransactionAddScreen(navController = rootNavController)
                                     }
+                                    composable("transaction_edit/{id}") { backStackEntry ->
+                                        val id = backStackEntry.arguments?.getString("id")
+
+                                        // ✅ JSON 문자열 불러오기
+                                        val json = rootNavController.previousBackStackEntry?.savedStateHandle?.get<String>("editDataJson")
+
+                                        // ✅ JSON → 객체 변환
+                                        val initialData = json?.let {
+                                            kotlinx.serialization.json.Json.decodeFromString<TransactionDetailData>(it)
+                                        }
+
+                                        TransactionAddScreen(
+                                            navController = rootNavController,
+                                            transactionId = id,
+                                            initialData = initialData
+                                        )
+                                    }
+
                                 }
                             }
 
