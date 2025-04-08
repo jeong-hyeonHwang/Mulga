@@ -1,6 +1,8 @@
 package com.ilm.mulga.feature.mypage
 
+import DeleteConfirmDialog
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -36,6 +38,9 @@ fun MypageScreen(
     viewModel: MypageViewModel = koinViewModel()
 ) {
     val scrollState = rememberScrollState()
+
+    val showLogoutConfirmDialog = remember { mutableStateOf(false) }
+
 
     Column(
         modifier = Modifier
@@ -94,13 +99,27 @@ fun MypageScreen(
         SettingItem(
             title = "로그아웃",
             hasArrow = true,
-            onClick = {}
+            onClick = { showLogoutConfirmDialog.value = true }
         )
 
         SettingItem(
             title = "회원탈퇴",
             hasArrow = true,
             onClick = {}
+        )
+    }
+    // 로그아웃 확인 다이얼로그를 조건부로 표시
+    if (showLogoutConfirmDialog.value) {
+        DeleteConfirmDialog (
+            title = "로그아웃하시겠습니까?",
+            message = "",
+            actionText = "로그아웃",
+            onCancel = { showLogoutConfirmDialog.value = false },
+            onConfirm = {
+                // 로그아웃 로직 처리. 예) UserRepository.logout() 등
+                viewModel.logout()
+                showLogoutConfirmDialog.value = false
+            }
         )
     }
 }
@@ -144,7 +163,8 @@ fun SettingItem(
     Spacer(modifier = Modifier.height(14.dp))
     Row(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable { onClick() },
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {

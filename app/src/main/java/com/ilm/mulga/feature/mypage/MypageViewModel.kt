@@ -9,6 +9,7 @@ import com.ilm.mulga.domain.usecase.LogoutUseCase
 import com.ilm.mulga.feature.login.UserState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 // 로그아웃 후 UI 상태를 나타내는 sealed class 정의
@@ -20,15 +21,13 @@ sealed class MypageUiState {
 
 class MypageViewModel(
     private val logoutUseCase: LogoutUseCase,
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<MypageUiState>(MypageUiState.Idle)
 
-    private val userRepository: UserRepository = UserRepository(RetrofitClient.userService)
-    val userState: StateFlow<UserState> = userRepository.userState
-
-    val userName = (userState as? UserState.Exists)?.user?.name ?: "이름"
-    val userEmail = (userState as? UserState.Exists)?.user?.email?: "이메일@email.com"
+    val userName = "이름"
+    val userEmail = "이메일@email.com"
 
     // 로그아웃 수행 함수
     fun logout() {
