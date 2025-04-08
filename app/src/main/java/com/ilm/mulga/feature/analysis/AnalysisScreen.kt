@@ -18,26 +18,30 @@ import androidx.compose.ui.unit.dp
 import com.ilm.mulga.feature.analysis.components.CategoryItemRaw
 import com.ilm.mulga.feature.analysis.components.CategoryList
 import com.ilm.mulga.feature.analysis.components.DonutChart
-import com.ilm.mulga.feature.analysis.components.DonutSlice
 import com.ilm.mulga.feature.analysis.components.Graphs
 import com.ilm.mulga.feature.analysis.components.PaymentList
 import com.ilm.mulga.feature.analysis.components.Separator
 import com.ilm.mulga.feature.analysis.components.YearMonthSelector
 import java.time.LocalDate
 import androidx.compose.runtime.*
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.ilm.mulga.data.network.RetrofitClient
 import com.ilm.mulga.data.dto.response.AnalysisDto
 import com.ilm.mulga.feature.analysis.components.PaymentItemData
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun AnalysisScreen() {
+
+    val viewModel: AnalysisViewModel = viewModel()
+
     // Get today's date for initializing
-    val currentDate = LocalDate.now()
-    var selectedYear by remember { mutableStateOf(currentDate.year) }
-    var selectedMonth by remember { mutableStateOf(currentDate.monthValue) }
+    val selectedYear = viewModel.selectedYear.value
+    val selectedMonth = viewModel.selectedMonth.value
 
     // State to hold the API response data
     var analysisData by remember { mutableStateOf<AnalysisDto?>(null) }
@@ -59,6 +63,9 @@ fun AnalysisScreen() {
                     // Handle successful response
                     analysisData = response.body()
                     errorMessage = null
+                    viewModel.setTotal(analysisData?.monthTotal ?: 0)
+                    viewModel.setSlices(analysisData?.category?.map { it.value } ?: emptyList())
+                    viewModel.setItems(analysisData?.category?.filter { it.value != 0 }?.map { CategoryItemRaw(it.key, it.value) } ?: emptyList())
                     Log.d("APIResponse", "Response body: ${response.body()}")
                 } else {
                     // Handle API failure
@@ -80,30 +87,24 @@ fun AnalysisScreen() {
     }
 
     // Example list of items passed to CategoryList
-    val itemList = analysisData?.category
-        ?.filter { it.value != 0}
-        ?.map { (category, amount) ->
-        CategoryItemRaw(category, amount) }
+    val categoryItems = viewModel.items.value
+
+    val total = viewModel.total.value
+
+    val detail = categoryItems.size <= 5
+
+    val paymentItems = analysisData?.paymentMethod
+        ?.map { (source, amount) ->
+        PaymentItemData(source, amount) }
         ?: emptyList()
 
-    val total = analysisData?.monthTotal ?: 0
+    val chartSlices = viewModel.slices.value
 
-    val detail = itemList.size > 5
-
-    val itemList2 = listOf(
-        PaymentItemData(
-            source = "신한은행",
-            amount = 501250
-        ),
-        PaymentItemData(
-            source = "네이버페이",
-            amount = 200000
-        ),
-        PaymentItemData(
-            source = "카카오뱅크",
-            amount = 10000
-        )
-    )
+    val chartSlicesSimplified = if (chartSlices.size > 5) {
+        chartSlices.take(5) + listOf(total - chartSlices.take(5).sum())
+    } else {
+        chartSlices
+    }
 
     val barHeights = listOf(100f, 120f, 80f, 150f, 90f, 110f) // Custom heights for each bar
     val labelTexts = listOf("10월", "11월", "12월", "1월", "2월", "3월") // Custom labels
@@ -120,29 +121,22 @@ fun AnalysisScreen() {
             selectedYear = selectedYear,
             selectedMonth = selectedMonth,
             onYearMonthChanged = { year, month ->
-                selectedYear = year
-                selectedMonth = month
+                viewModel.setSelectedYear(year)
+                viewModel.setSelectedMonth(month)
             }
         )
 
         DonutChart(
-            slices = listOf(
-                DonutSlice(30f),
-                DonutSlice(50f),
-                DonutSlice(20f),
-                DonutSlice(10f),
-                DonutSlice(40f),
-                DonutSlice(50f),
-                DonutSlice(30f)
-            ),
+            slices = chartSlicesSimplified,
+            total = total,
             modifier = Modifier.size(300.dp)
         )
 
-        CategoryList(items = itemList.take(5), total = total, detail = detail)
+        CategoryList(items = categoryItems.take(5), total = total, detail = detail)
 
         Separator()
 
-        PaymentList(items = itemList2)
+        PaymentList(items = paymentItems)
 
         Separator()
 

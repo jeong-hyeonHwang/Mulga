@@ -1,14 +1,14 @@
 package com.ilm.mulga.feature.analysis.components
 
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,13 +16,12 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.ilm.mulga.ui.theme.MulGaTheme
-
-data class DonutSlice(val value: Float)
+import java.text.NumberFormat
+import kotlinx.coroutines.delay
 
 @Composable
-fun DonutChart(slices: List<DonutSlice>, modifier: Modifier = Modifier) {
+fun DonutChart(slices: List<Int>, total: Int, modifier: Modifier = Modifier) {
     // Define a set of 6 colors for the donut chart
     val colors = listOf(
         Color(0xFF006EFF),
@@ -30,42 +29,52 @@ fun DonutChart(slices: List<DonutSlice>, modifier: Modifier = Modifier) {
         Color(0xFF8BC34A),
         Color(0xFFFAE000),
         Color(0xFFFF9800),
-        Color(0xFF888787)
+        Color(0xFF888787) // gray color
     )
 
+    // If total is zero, create a single slice with the last gray color
+    val adjustedSlices = if (total == 0) {
+        listOf(1) // A slice with a value of 1 to be drawn with the gray color
+    } else {
+        slices
+    }
+
     Box(modifier = modifier) {
-        Canvas(modifier = Modifier.fillMaxSize()) {
-            // Convert the sum to Double
-            val totalValue = slices.sumOf { it.value.toDouble() }
-            val startAngle = -90f // Start from top
-            var currentAngle = startAngle
-            val radius = size.minDimension / 3
-            val thickness = size.minDimension / 9 // Thickness of the donut's ring
-            val gapAngle = 3f // Angle for the gap between slices
+        // Animate the angle for each slice
+        val gapAngle = 3f
+        val totalValue = adjustedSlices.sum().toDouble()
+        val startAngle = -90f // Start from top
+        var currentAngle = startAngle
 
-            slices.forEachIndexed { index, slice ->
-                // Get the color for the slice (reuse the 6th color if there are more than 6 slices)
-                val sliceColor = if (index < colors.size) colors[index] else colors.last()
-
-                // Calculate the sweep angle for each slice
-                val sweepAngle = (slice.value.toDouble() / totalValue) * 360f - gapAngle // Subtract gap to create space between slices
-
-                // Draw each slice with the gap
-                drawDonutSliceWithGap(
-                    startAngle = currentAngle,
-                    sweepAngle = sweepAngle.toFloat(),
-                    color = sliceColor,
-                    radius = radius,
-                    thickness = thickness
-                )
-
-                // Move the current angle by the sweep angle + the gap angle
-                currentAngle += sweepAngle.toFloat() + gapAngle
-            }
+        // Set up animated sweep angles for each slice
+        val animatedSlices = adjustedSlices.map { slice ->
+            animateFloatAsState(
+                targetValue = ((slice.toDouble() / totalValue) * (360f - adjustedSlices.size * gapAngle)).toFloat()
+            )
         }
 
-        // Calculate the total value to display as text
-        val totalAmount = slices.sumOf { it.value.toDouble() }.toInt()
+        // Canvas for drawing the donut chart
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            // Gap angle for spacing between slices
+            var currentSweepAngle = startAngle
+
+            // Loop through each slice and animate its appearance
+            animatedSlices.forEachIndexed { index, animatedValue ->
+                val sweepAngle = animatedValue.value
+                val sliceColor = if (total == 0) colors.last() else (if (index < colors.size) colors[index] else colors.last())
+
+                drawDonutSliceWithGap(
+                    startAngle = currentSweepAngle,
+                    sweepAngle = sweepAngle,
+                    color = sliceColor,
+                    radius = size.minDimension / 3,
+                    thickness = size.minDimension / 9
+                )
+
+                // Update the current angle for the next slice, adding the gap angle after each slice
+                currentSweepAngle += sweepAngle + gapAngle
+            }
+        }
 
         // Display the text in the center
         Column(
@@ -82,7 +91,7 @@ fun DonutChart(slices: List<DonutSlice>, modifier: Modifier = Modifier) {
                 textAlign = TextAlign.Center
             )
             Text(
-                text = "${totalAmount}원",
+                text = "${NumberFormat.getNumberInstance().format(total)}원",
                 style = MulGaTheme.typography.title,
                 color = MulGaTheme.colors.grey1,
                 textAlign = TextAlign.Center
@@ -130,17 +139,11 @@ fun DrawScope.drawDonutSliceWithGap(
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewDonutGraph() {
+fun PreviewDonutChart() {
+    // Test with a total of 0 to show the gray slice
     DonutChart(
-        slices = listOf(
-            DonutSlice(30f),
-            DonutSlice(50f),
-            DonutSlice(20f),
-            DonutSlice(10f),
-            DonutSlice(40f),
-            DonutSlice(50f),
-            DonutSlice(30f)  // More than 6 slices to see color reuse
-        ),
-        modifier = Modifier.fillMaxWidth()
+        slices = listOf(10, 20, 30, 40, 50),
+        total = 0,
+        modifier = Modifier.fillMaxSize()
     )
 }
