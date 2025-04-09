@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,18 +21,19 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ilm.mulga.ui.theme.MulGaTheme
+import java.text.NumberFormat
+import kotlin.math.ceil
 
 @Composable
 fun MonthlyBarGraph(
     modifier: Modifier = Modifier,
     amount: List<Float>, // Custom heights for each bar
-    labelTexts: List<String> = List(6) { "Label ${it + 1}" } // Default labels if not provided
+    currentMonth: Int // Single int for the current month
 ) {
     // Compute the average of the barHeights
-    val averageHeight = amount.average()
+    val averageHeight = NumberFormat.getInstance().format(ceil(amount.average() / 10000).toFloat())
 
     // Fetch colors from MaterialTheme here, outside of Canvas
     val grey2Color = MulGaTheme.colors.grey2
@@ -45,6 +45,9 @@ fun MonthlyBarGraph(
     // Fetch typography details from the theme
     val labelTextStyle = MulGaTheme.typography.title // You can change this to a different style if needed
     val labelTextSize = labelTextStyle.fontSize.value
+
+    // Generate the labels for the current month and the past 5 months
+    val labelTexts = generateMonthLabels(currentMonth)
 
     // Define the height of the rounded border container to wrap both text and graph
     Box(
@@ -160,7 +163,7 @@ fun MonthlyBarGraph(
                     drawPath(path, barColor)
 
                     // Draw the bar height value above the bar
-                    val heightText = scaledHeight.toInt().toString() // Convert to int and display as a string
+                    val heightText = NumberFormat.getInstance().format(ceil(amount[i] / 10000).toInt()) // Convert to int and display as a string
                     drawContext.canvas.nativeCanvas.apply {
                         drawText(
                             heightText, // The height value text
@@ -202,13 +205,27 @@ fun MonthlyBarGraph(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewMonthlyBarGraph() {
-    // Customizing the graph with custom bar heights and labels
-    MonthlyBarGraph(
-        modifier = Modifier.size(412.dp),
-        amount = listOf(100f, 120f, 80f, 150f, 90f, 110f), // Custom heights for each bar
-        labelTexts = listOf("10월", "11월", "12월", "1월", "2월", "3월") // Custom labels
-    )
+// Function to generate the labels for the current month and the past 5 months
+fun generateMonthLabels(currentMonth: Int): List<String> {
+    val labels = mutableListOf<String>()
+    for (i in 0 until 6) {
+        val month = (currentMonth - i + 12) % 12
+        val monthName = when (month) {
+            0 -> "12월"
+            1 -> "1월"
+            2 -> "2월"
+            3 -> "3월"
+            4 -> "4월"
+            5 -> "5월"
+            6 -> "6월"
+            7 -> "7월"
+            8 -> "8월"
+            9 -> "9월"
+            10 -> "10월"
+            11 -> "11월"
+            else -> "Unknown"
+        }
+        labels.add(monthName)
+    }
+    return labels.reversed() // Reverse to show the current month as the last bar
 }

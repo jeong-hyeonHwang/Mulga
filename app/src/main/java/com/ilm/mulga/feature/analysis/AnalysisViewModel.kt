@@ -18,6 +18,12 @@ class AnalysisViewModel : ViewModel() {
     private val _items = mutableStateOf<List<CategoryItemRaw>>(emptyList())
     val items: State<List<CategoryItemRaw>> = _items
 
+    private val _line1Data = mutableStateOf<List<Float>>(emptyList())  // For line1 data
+    val line1Data: State<List<Float>> = _line1Data
+
+    private val _line2Data = mutableStateOf<List<Float>>(emptyList())  // For line2 data
+    val line2Data: State<List<Float>> = _line2Data
+
     // Private mutable state for selected year and month
     private val _selectedYear = mutableIntStateOf(LocalDate.now().year)  // Default current year
     private val _selectedMonth = mutableIntStateOf(LocalDate.now().monthValue)  // Default current month
@@ -36,6 +42,16 @@ class AnalysisViewModel : ViewModel() {
 
     fun setItems(value: List<CategoryItemRaw>) {
         _items.value = value
+    }
+
+    // Function to update line1Data
+    fun setLine1Data(value: List<Float>) {
+        _line1Data.value = value
+    }
+
+    // Function to update line2Data
+    fun setLine2Data(value: List<Float>) {
+        _line2Data.value = value
     }
 
     // Function to set selected year

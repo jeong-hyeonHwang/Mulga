@@ -8,17 +8,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import com.ilm.mulga.ui.theme.MulGaTheme
 import java.text.NumberFormat
-import kotlinx.coroutines.delay
 
 @Composable
 fun DonutChart(slices: List<Int>, total: Int, modifier: Modifier = Modifier) {
@@ -44,7 +41,6 @@ fun DonutChart(slices: List<Int>, total: Int, modifier: Modifier = Modifier) {
         val gapAngle = 3f
         val totalValue = adjustedSlices.sum().toDouble()
         val startAngle = -90f // Start from top
-        var currentAngle = startAngle
 
         // Set up animated sweep angles for each slice
         val animatedSlices = adjustedSlices.map { slice ->
@@ -134,16 +130,5 @@ fun DrawScope.drawDonutSliceWithGap(
         topLeft = center.copy(x = center.x - innerRadius, y = center.y - innerRadius),
         size = size.copy(width = innerRadius * 2, height = innerRadius * 2),
         style = Stroke(width = thickness)
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewDonutChart() {
-    // Test with a total of 0 to show the gray slice
-    DonutChart(
-        slices = listOf(10, 20, 30, 40, 50),
-        total = 0,
-        modifier = Modifier.fillMaxSize()
     )
 }

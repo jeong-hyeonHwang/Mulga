@@ -33,7 +33,7 @@ import com.ilm.mulga.feature.analysis.components.PaymentItemData
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-//@Preview(showBackground = true)
+@Preview(showBackground = true)
 @Composable
 fun AnalysisScreen() {
 
@@ -66,6 +66,8 @@ fun AnalysisScreen() {
                     viewModel.setTotal(analysisData?.monthTotal ?: 0)
                     viewModel.setSlices(analysisData?.category?.map { it.value } ?: emptyList())
                     viewModel.setItems(analysisData?.category?.filter { it.value != 0 }?.map { CategoryItemRaw(it.key, it.value) } ?: emptyList())
+                    viewModel.setLine1Data(analysisData?.thisMonthAccumulation?.map { it.value.toFloat() } ?: emptyList())
+                    viewModel.setLine2Data(analysisData?.lastMonthAccumulation?.map { it.value.toFloat() } ?: emptyList())
                     Log.d("APIResponse", "Response body: ${response.body()}")
                 } else {
                     // Handle API failure
@@ -106,12 +108,18 @@ fun AnalysisScreen() {
         chartSlices
     }
 
-    val barHeights = listOf(100f, 120f, 80f, 150f, 90f, 110f) // Custom heights for each bar
-    val labelTexts = listOf("10월", "11월", "12월", "1월", "2월", "3월") // Custom labels
-    val line1Data = listOf(0f, 0f, 20f, 20f, 20f, 20f, 20f, 20f, 20f, 40f, 50f, 50f, 50f, 50f, 50f, 70f, 70f, 80f, 100f, 120f, 120f, 150f, 150f, 150f, 190f, 200f, 200f, 200f, 200f, 200f, 200f) // Data for the first line
-    val line2Data = listOf(0f, 10f, 10f, 10f, 10f, 20f, 20f, 20f, 20f, 40f, 50f, 50f, 50f, 50f, 50f, 70f, 70f, 80f, 100f, 120f, 120f, 150f, 150f, 150f, 190f, 210f, 240f, 250f, 250f, 250f, 250f) // Data for the second line
+    val monthTotals = analysisData?.monthlyTrend?.map { it.monthTotal.toFloat() } ?: emptyList()
 
-    // Handle loading, error, or success state in the UI
+    val safeMonthTotals = monthTotals.ifEmpty { List(6) { 0f } }
+
+    val line1Data = viewModel.line1Data.value
+    val line2Data = viewModel.line2Data.value
+
+// Ensure that line1Data and line2Data are not empty before passing to Graphs
+    val safeLine1Data = line1Data.ifEmpty { List(31) { 0f } }
+    val safeLine2Data = line2Data.ifEmpty { List(31) { 0f } }
+
+// Handle loading, error, or success state in the UI
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -140,6 +148,6 @@ fun AnalysisScreen() {
 
         Separator()
 
-        Graphs(barHeights, labelTexts, line1Data, line2Data, selectedYear, selectedMonth)
+        Graphs(safeMonthTotals, safeLine1Data, safeLine2Data, selectedYear, selectedMonth)
     }
 }

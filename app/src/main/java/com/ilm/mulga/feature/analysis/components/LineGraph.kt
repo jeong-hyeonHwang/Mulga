@@ -1,5 +1,6 @@
 package com.ilm.mulga.feature.analysis.components
 
+import android.util.Log
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -8,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,12 +21,14 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ilm.mulga.ui.theme.MulGaTheme
+import java.text.NumberFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
+import kotlin.math.abs
+import kotlin.math.ceil
 
 @Composable
 fun MonthlyLineGraph(
@@ -43,6 +45,8 @@ fun MonthlyLineGraph(
     val primaryColor = MulGaTheme.colors.primary
 
     val captionSize = MulGaTheme.typography.caption.fontSize
+
+    Log.d("curr", currMonthData.toString())
 
     // Define the height of the rounded border container to wrap both text and graph
     Box(
@@ -83,15 +87,20 @@ fun MonthlyLineGraph(
 
             // Title text above the graph, showing the averages
             val annotatedText = buildAnnotatedString {
-                append("오늘까지 ${valueToDisplay.toInt()}만원 썼어요\n")
+                if (today.year == year && today.monthValue == month) {
+                    append("오늘까지 ${NumberFormat.getInstance().format(ceil(valueToDisplay / 10000))}만원 썼어요\n")
+                } else {
+                    append("${NumberFormat.getInstance().format(ceil(valueToDisplay / 10000))}만원 씀\n")
+                }
+
                 withStyle(style = SpanStyle(color = grey1Color, fontSize = captionSize)) { // Use SpanStyle for color styling
                     append("지난달보다 ") // Apply color to the difference
                 }
                 withStyle(style = SpanStyle(color = primaryColor, fontSize = captionSize)) { // Use SpanStyle for color styling
-                    append("${difference.toInt()}만원 ${if (difference >= 0) "더" else "덜"}") // Apply color to the difference
+                    append("${NumberFormat.getInstance().format(ceil(abs(difference) / 10000))}만원 ${if (difference >= 0) "더" else "덜"}") // Apply color to the difference
                 }
                 withStyle(style = SpanStyle(color = grey1Color, fontSize = captionSize)) { // Use SpanStyle for color styling
-                    append(" 쓰는 중") // Apply color to the difference
+                    append(" ${if (today.year == year && today.monthValue == month) "쓰는 중" else "씀"}") // Apply color to the difference
                 }
             }
 
@@ -140,8 +149,9 @@ fun MonthlyLineGraph(
 
                 // Draw the lines for both data sets (line2 and line1) in this order to layer correctly
                 for (lineIndex in 0..1) {
-                    val data = if (lineIndex == 0) currMonthData else prevMonthData // Swap order for layering
-                    val lineColor = if (lineIndex == 0) grey2Color else primaryColor // Reverse colors to match layer order
+                    // Swap logic: line 0 should be for prevMonthData, and line 1 should be for currMonthData
+                    val data = if (lineIndex == 0) prevMonthData else currMonthData // Corrected: prevMonthData is line 0, currMonthData is line 1
+                    val lineColor = if (lineIndex == 0) grey2Color else primaryColor // Color for the respective line (prevMonthData and currMonthData)
 
                     // Limit the number of points for line1 (up to today) if today is within the given month and year
                     val dataLimit = if (lineIndex == 1 && isTodayInMonth) today.dayOfMonth else data.size
@@ -187,12 +197,19 @@ fun MonthlyLineGraph(
                     daysToLabel.add(today) // Add today if it belongs to the specified month and year
                 }
 
+                val padding = 12.dp.toPx()
+
                 daysToLabel.forEach { day ->
-                    val x = xAxisStart + (day.dayOfMonth - 1) * pointWidth + paddingBetweenPoints * (day.dayOfMonth - 1)
+                    // Adjust the x coordinate by adding the left and right padding
+                    val x = xAxisStart + (day.dayOfMonth - 1) * pointWidth + paddingBetweenPoints * (day.dayOfMonth - 1) + padding
+
+                    // Ensure the label stays within the graph width by limiting it with right padding
+                    val adjustedX = x.coerceIn(padding, width - padding)
+
                     drawContext.canvas.nativeCanvas.apply {
                         drawText(
                             day.format(DateTimeFormatter.ofPattern("M.d")), // Format date as M.d (no leading zero)
-                            x,
+                            adjustedX,
                             availableHeightForGraph + 72f, // Position the label just below the graph
                             android.graphics.Paint().apply {
                                 textSize = 36f
@@ -249,17 +266,4 @@ fun MonthlyLineGraph(
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewMonthlyLineGraph() {
-    // Customizing the graph with custom line data and labels (first and last day of the month)
-    MonthlyLineGraph(
-        modifier = Modifier.fillMaxWidth().wrapContentHeight(),
-        year = 2025,
-        month = 4, // April
-        prevMonthData = listOf(0f, 0f, 20f, 20f, 20f, 20f, 20f, 20f, 20f, 40f, 50f, 50f, 50f, 50f, 50f, 70f, 70f, 80f, 100f, 120f, 120f, 150f, 150f, 150f, 190f, 200f, 200f, 200f, 200f, 200f, 200f), // Data for the first line
-        currMonthData = listOf(0f, 10f, 10f, 10f, 10f, 20f, 20f, 20f, 20f, 40f, 50f, 50f, 50f, 50f, 50f, 70f, 70f, 80f, 100f, 120f, 120f, 150f, 150f, 150f, 190f, 210f, 240f, 250f, 250f, 250f, 250f) // Data for the second line
-    )
 }
