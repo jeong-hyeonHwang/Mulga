@@ -28,6 +28,7 @@ val loginModule = module {
 
     // Repositories
     single<AuthRepository> { AuthRepositoryImpl(get(), get(), get()) }
+    single { AuthRepositoryImpl(get(), get(), get()) }
 
     single { RetrofitClient.userService }
     single { UserRepository(get(), get()) }
