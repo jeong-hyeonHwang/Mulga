@@ -54,4 +54,21 @@ public class ChatGPTService {
         return response.choices().get(0).message().content();
     }
 
+    public String getTheBestNoti(String message) {
+
+        ChatGPTRequest chatGPTRequest = new ChatGPTRequest(
+                model,
+                List.of(new ChatGPTRequest.Message("user", message))
+        );
+
+        ChatGPTResponse response = restClient.post()
+                .header("Authorization", "Bearer " + apiKey)
+                .header("Content-Type", "application/json")
+                .body(chatGPTRequest)
+                .retrieve()
+                .body(ChatGPTResponse.class);
+
+        return response.choices().get(0).message().content();
+    }
+
 }
