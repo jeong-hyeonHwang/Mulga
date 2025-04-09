@@ -1,4 +1,3 @@
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -109,7 +108,7 @@ fun TransactionDetailScreen(
         ) {
             // 헤더 영역: 카테고리, 금액, 편집 버튼
             TransactionHeaderView(
-                category = data.category,
+                category = data.category ?: Category.ETC,
                 cost = data.cost,
                 onEditClick = { viewModel.onEditTransaction(rootNavController) }
             )
@@ -125,7 +124,7 @@ fun TransactionDetailScreen(
                 )
                 DetailLabel(
                     label = stringResource(id = R.string.field_category),
-                    value = data.category.displayName
+                    value = data.category?.displayName ?: Category.ETC.displayName
                 )
                 DetailLabel(
                     label = stringResource(id = R.string.field_merchant),

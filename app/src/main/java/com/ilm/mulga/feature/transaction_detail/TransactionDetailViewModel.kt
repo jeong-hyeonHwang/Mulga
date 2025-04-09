@@ -24,4 +24,13 @@ class TransactionDetailViewModel : ViewModel() {
             navController.navigate("transaction_edit/${data.id}")
         }
     }
+
+    fun onEditCombineTransaction(navController: NavController) {
+        transactionDetailData.value?.let { data ->
+            val json = Json.encodeToString(data)
+            navController.currentBackStackEntry?.savedStateHandle?.set("editDataJson", json)
+            navController.navigate("transaction_combine_edit/${data.id}")
+        }
+    }
+
 }

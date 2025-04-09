@@ -1,20 +1,21 @@
 package com.ilm.mulga.presentation.mapper
 
-import com.ilm.mulga.domain.model.TransactionEntity
+import com.ilm.mulga.data.dto.response.TransactionDto
 import com.ilm.mulga.presentation.model.TransactionDetailData
 import com.ilm.mulga.presentation.model.type.Category
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
-
-fun TransactionEntity.toPresentation(): TransactionDetailData {
+fun TransactionDto.toDetailData(): TransactionDetailData {
     return TransactionDetailData(
         id = id,
         title = title,
         category = Category.fromBackendKey(category) ?: Category.ETC,
         vendor = vendor,
-        time = time,
+        time = LocalDateTime.parse(time, DateTimeFormatter.ISO_DATE_TIME),
         cost = cost,
         memo = memo,
         paymentMethod = paymentMethod,
-        group = group.map { item -> item.toPresentation() }
+        group = group.map { it.toDetailData() }
     )
 }
