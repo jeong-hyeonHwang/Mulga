@@ -1,4 +1,4 @@
-package com.ilm.mulga.feature.navigation
+package com.ilm.mulga.feature.local
 
 import androidx.compose.runtime.compositionLocalOf
 import androidx.navigation.NavController

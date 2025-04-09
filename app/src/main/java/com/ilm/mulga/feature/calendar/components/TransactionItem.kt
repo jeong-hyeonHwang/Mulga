@@ -33,6 +33,7 @@ fun TransactionItem(
     item: TransactionItemData,
     isDeleteMode: Boolean,
     isSelected: Boolean,
+    isCombined: Boolean = false,
     onClick: () -> Unit,
     onLongPress: () -> Unit
 ) {
@@ -41,6 +42,16 @@ fun TransactionItem(
         isSelected -> MulGaTheme.colors.primary
         item.category == null -> MulGaTheme.colors.grey2
         else -> Color.Transparent
+    }
+
+    val subTitleText = when {
+        isCombined -> stringResource(id = R.string.merge_result)
+        else -> item.subtitle
+    }
+
+    val subTitleColor = when {
+        isCombined -> MulGaTheme.colors.primary
+        else -> MulGaTheme.colors.grey2
     }
 
     Row(
@@ -92,8 +103,8 @@ fun TransactionItem(
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = item.subtitle,
-                color = MulGaTheme.colors.grey2,
+                text = subTitleText,
+                color = subTitleColor,
                 style = MulGaTheme.typography.caption
             )
         }

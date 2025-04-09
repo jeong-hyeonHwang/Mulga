@@ -27,7 +27,7 @@ import com.ilm.mulga.R
 import com.ilm.mulga.ui.theme.MulGaTheme
 
 @Composable
-fun CustomDialogWithCancel(
+fun CustomDestructiveDialogWithCancel(
     title: String,
     message: String,
     actionText: String,

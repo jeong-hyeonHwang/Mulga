@@ -3,6 +3,7 @@ package com.ilm.mulga.feature.calendar
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
+import com.ilm.mulga.R
 import com.ilm.mulga.data.network.RetrofitClient
 import com.ilm.mulga.data.repository.TransactionRepository
 import com.ilm.mulga.domain.model.MonthlyTransactionEntity
@@ -39,6 +40,10 @@ data class CalendarUiState(
     val selectedDate: LocalDate? = null
 )
 
+sealed class UiEvent {
+    data class ShowToast(val messageResId: Int) : UiEvent()
+}
+
 class CalendarViewModel : ViewModel() {
 
     private val _uiState = MutableStateFlow(CalendarUiState())
@@ -48,6 +53,10 @@ class CalendarViewModel : ViewModel() {
 
     private val _navigationEvent = MutableSharedFlow<String>()
     val navigationEvent = _navigationEvent.asSharedFlow()
+
+    // UI 이벤트를 전달할 SharedFlow
+    private val _uiEvent = MutableSharedFlow<UiEvent>()
+    val uiEvent = _uiEvent.asSharedFlow()
 
     init {
         viewModelScope.launch {
@@ -133,9 +142,50 @@ class CalendarViewModel : ViewModel() {
         }
     }
 
-    fun deleteTransactionItems(deletedIds: Set<String>) {
+    fun deleteTransactionItems(deletedIds: LinkedHashSet<String>) {
+        if (deletedIds.isEmpty()) {
+            viewModelScope.launch {
+                _uiEvent.emit(UiEvent.ShowToast(R.string.toast_delete_minimum_selection_message))
+            }
+            return
+        }
         viewModelScope.launch {
             repository.deleteTransactions(deletedIds)
+            loadAndConvertMonthlyData(_uiState.value.currentYear, _uiState.value.currentMonth)
+        }
+    }
+
+    fun combineTransactionItems(combineIds: LinkedHashSet<String>) {
+        val monthlyEntity = _uiState.value.monthlyTransactionEntity ?: return
+
+        // 삭제할 항목들 필터링 (선택된 ID와 일치하는 항목)
+        val transactionsToDelete = monthlyEntity.transactions
+            .values
+            .flatten()
+            .filter { combineIds.contains(it.id) }
+
+        // 만약 그 중 하나라도 isCombined가 true이면
+        if (transactionsToDelete.any { it.isCombined }) {
+            viewModelScope.launch {
+                _uiEvent.emit(UiEvent.ShowToast(R.string.toast_merge_already_combined_message))
+            }
+            return
+        }
+
+        if (combineIds.size <= 1) {
+            viewModelScope.launch {
+                _uiEvent.emit(UiEvent.ShowToast(R.string.toast_merge_minimum_selection_message))
+            }
+            return
+        }
+
+
+        viewModelScope.launch {
+            val mainTransactionId = combineIds.firstOrNull()
+            val combineTransactionIds = combineIds.drop(1).toCollection(LinkedHashSet())
+            if (mainTransactionId != null) {
+                repository.combineTransactions(mainTransactionId, combineTransactionIds)
+            }
             loadAndConvertMonthlyData(_uiState.value.currentYear, _uiState.value.currentMonth)
         }
     }

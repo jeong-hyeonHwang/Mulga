@@ -1,5 +1,6 @@
 package com.ilm.mulga.data.service
 
+import com.ilm.mulga.data.dto.request.TransactionCombineRequestDto
 import com.ilm.mulga.data.dto.request.TransactionRequestDto
 import com.ilm.mulga.data.dto.request.TransactionUpdateRequestDto
 import com.ilm.mulga.data.dto.response.MonthlyTransactionResponseDto
@@ -171,6 +172,10 @@ class FakeTransactionService : TransactionService {
         TODO("Not yet implemented")
     }
     override suspend fun patchTransaction(request: TransactionUpdateRequestDto): Response<Unit> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun combineTransaction(request: TransactionCombineRequestDto): Response<MonthlyTransactionResponseDto> {
         TODO("Not yet implemented")
     }
 }

@@ -6,60 +6,62 @@ import kotlinx.coroutines.flow.StateFlow
 
 class TransactionItemViewModel : ViewModel() {
 
-    // 전체 삭제 모드 상태
-    private val _isDeleteMode = MutableStateFlow(false)
-    val isDeleteMode: StateFlow<Boolean> = _isDeleteMode
+    // 전체 액션 모드 상태
+    private val _isActionMode = MutableStateFlow(false)
+    val isActionMode: StateFlow<Boolean> = _isActionMode
 
-    // 선택된 transaction ID들을 저장
-    private val _selectedItemIds = MutableStateFlow<Set<String>>(emptySet())
-    val selectedItemIds: StateFlow<Set<String>> = _selectedItemIds
+    // 선택된 transaction ID들을 저장 (빈 LinkedHashSet으로 초기화)
+    private val _selectedItemIds = MutableStateFlow(LinkedHashSet<String>())
+    val selectedItemIds: StateFlow<LinkedHashSet<String>> = _selectedItemIds
 
     /**
-     * 개별 아이템을 길게 누르면 삭제 모드로 진입하거나,
-     * 이미 삭제 모드라면 선택 상태를 토글
+     * 개별 아이템을 길게 누르면 액션 모드로 진입하거나,
+     * 이미 액션 모드라면 선택 상태를 토글
      */
     fun onItemLongPress(itemId: String) {
-        if (!_isDeleteMode.value) {
-            // 삭제 모드가 아니었다면 삭제 모드를 켜고 선택 상태로 진입
-            _isDeleteMode.value = true
-            _selectedItemIds.value = setOf(itemId)
+        if (!_isActionMode.value) {
+            // 액션 모드가 아니었다면 액션 모드를 켜고 해당 아이템 선택
+            _isActionMode.value = true
+            _selectedItemIds.value = LinkedHashSet<String>().apply { add(itemId) }
         } else {
-            // 이미 삭제 모드라면 단순히 선택 상태를 토글
+            // 이미 액션 모드인 경우 단순히 선택 상태 토글
             toggleItemSelected(itemId)
         }
     }
 
     /**
-     * 아이템을 클릭했을 때의 처리
-     * - 이미 삭제 모드인 경우: 해당 아이템의 선택 상태만 토글
-     * - 삭제 모드가 아니면: 일반 onClick 로직 (예: 상세 페이지 이동)
+     * 아이템 클릭 시 처리:
+     * - 액션 모드일 경우, 선택 상태만 토글
+     * - 액션 모드가 아닌 경우 정상 onClick 로직 실행
      */
     fun onItemClick(itemId: String, normalClickAction: () -> Unit) {
-        if (_isDeleteMode.value) {
+        if (_isActionMode.value) {
             toggleItemSelected(itemId)
         } else {
-            // 삭제 모드가 아니면 원래 하던 동작(상세 페이지 이동 등) 실행
             normalClickAction()
         }
     }
 
     /**
-     * 선택 상태를 토글
+     * 선택 상태를 토글하는 메서드 (새 LinkedHashSet을 만들어서 업데이트)
      */
     private fun toggleItemSelected(itemId: String) {
+        // 기존 집합을 복사한 후 수정하여 할당
         val current = _selectedItemIds.value
-        _selectedItemIds.value = if (current.contains(itemId)) {
-            current - itemId
+        val newSet = LinkedHashSet(current)
+        if (current.contains(itemId)) {
+            newSet.remove(itemId)
         } else {
-            current + itemId
+            newSet.add(itemId)
         }
+        _selectedItemIds.value = newSet
     }
 
     /**
-     * 외부에서 '삭제 모드 해제' 등을 할 때
+     * 외부에서 액션 모드를 해제할 때 사용
      */
-    fun clearDeleteMode() {
-        _isDeleteMode.value = false
-        _selectedItemIds.value = emptySet()
+    fun clearActionMode() {
+        _isActionMode.value = false
+        _selectedItemIds.value = LinkedHashSet() // 빈 LinkedHashSet 할당
     }
 }

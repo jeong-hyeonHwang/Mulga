@@ -1,3 +1,4 @@
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -42,6 +43,8 @@ fun TransactionDetailScreen(
 ) {
     // viewModel에서 관리하는 TransactionDetailData
     val detailData by viewModel.transactionDetailData.collectAsState()
+
+    Log.d("HIHIHIHIHI", "TransactionDetailScreen: ${detailData?.group.toString()}")
 
     // 데이터가 아직 없으면 로딩 상태 표시
     if (detailData == null) {
