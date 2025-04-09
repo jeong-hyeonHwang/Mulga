@@ -13,11 +13,12 @@ import androidx.compose.ui.draw.blur
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.style.TextAlign
+import androidx.navigation.NavController
 import com.ilm.mulga.ui.theme.MulGaTheme
 
 // CategoryList Composable to display the list of items (with a fallback and blur when null)
 @Composable
-fun CategoryList(items: List<CategoryItemRaw>?, total: Int, detail: Boolean) {
+fun CategoryList(items: List<CategoryItemRaw>?, total: Int, detail: Boolean, analysisNavController: NavController? = null) {
     // Fallback list of 4 empty CategoryItemRaw objects when items is null
     val fallbackItems = listOf(
         CategoryItemRaw(category = "food", amount = 312400),
@@ -52,7 +53,12 @@ fun CategoryList(items: List<CategoryItemRaw>?, total: Int, detail: Boolean) {
 
             // Optionally, display "View More" button or text at the bottom
             if (!detail) {
-                ViewMore()
+                // Check if analysisNavController is null
+                analysisNavController?.let {
+                    ViewMore(analysisNavController = it) // Use the provided NavController
+                } ?: run {
+                    // Handle case when NavController is null, if needed
+                }
             }
         }
 

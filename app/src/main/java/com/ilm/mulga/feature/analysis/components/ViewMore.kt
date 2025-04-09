@@ -13,7 +13,7 @@ import androidx.navigation.NavController
 import com.ilm.mulga.ui.theme.MulGaTheme
 
 @Composable
-fun ViewMore() {
+fun ViewMore(analysisNavController: NavController) {
 
     Column(modifier = Modifier.fillMaxWidth()) {
         // Full-width horizontal line
@@ -30,8 +30,7 @@ fun ViewMore() {
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable {
-//                    navController.navigate("analysis_detail")
-                    // Navigate to AnalysisDetailScreen when clicked
+                    analysisNavController.navigate("AnalysisDetailScreen")
                 },
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically

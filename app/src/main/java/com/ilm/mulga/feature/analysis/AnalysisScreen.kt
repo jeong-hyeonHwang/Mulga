@@ -1,6 +1,5 @@
 package com.ilm.mulga.feature.analysis
 
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
@@ -8,84 +7,34 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ilm.mulga.feature.analysis.components.CategoryItemRaw
 import com.ilm.mulga.feature.analysis.components.CategoryList
 import com.ilm.mulga.feature.analysis.components.DonutChart
 import com.ilm.mulga.feature.analysis.components.Graphs
 import com.ilm.mulga.feature.analysis.components.PaymentList
 import com.ilm.mulga.feature.analysis.components.Separator
 import com.ilm.mulga.feature.analysis.components.YearMonthSelector
-import java.time.LocalDate
 import androidx.compose.runtime.*
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.ilm.mulga.data.network.RetrofitClient
-import com.ilm.mulga.data.dto.response.AnalysisDto
 import com.ilm.mulga.feature.analysis.components.PaymentItemData
-import kotlinx.coroutines.launch
-import retrofit2.Response
 
-@Preview(showBackground = true)
 @Composable
-fun AnalysisScreen() {
-
-    val viewModel: AnalysisViewModel = viewModel()
+fun AnalysisScreen(analysisNavController: NavController, viewModel: AnalysisViewModel) {
 
     // Get today's date for initializing
     val selectedYear = viewModel.selectedYear.value
     val selectedMonth = viewModel.selectedMonth.value
 
     // State to hold the API response data
-    var analysisData by remember { mutableStateOf<AnalysisDto?>(null) }
-    var loading by remember { mutableStateOf(false) }
-    var errorMessage by remember { mutableStateOf<String?>(null) }
-
-    // CoroutineScope to make the API request
-    val scope = rememberCoroutineScope()
-
-    // Function to fetch data from API
-    fun fetchAnalysisData(year: Int, month: Int) {
-        loading = true
-        scope.launch {
-            try {
-                // Make the API call
-                val response: Response<AnalysisDto> = RetrofitClient.apiAnalysisService.getAnalysis(year, month)
-                Log.d("APIResponse", "Raw Response Body: ${response.raw()}")
-                if (response.isSuccessful) {
-                    // Handle successful response
-                    analysisData = response.body()
-                    errorMessage = null
-                    viewModel.setTotal(analysisData?.monthTotal ?: 0)
-                    viewModel.setSlices(analysisData?.category?.map { it.value } ?: emptyList())
-                    viewModel.setItems(analysisData?.category?.filter { it.value != 0 }?.map { CategoryItemRaw(it.key, it.value) } ?: emptyList())
-                    viewModel.setLine1Data(analysisData?.thisMonthAccumulation?.map { it.value.toFloat() } ?: emptyList())
-                    viewModel.setLine2Data(analysisData?.lastMonthAccumulation?.map { it.value.toFloat() } ?: emptyList())
-                    Log.d("APIResponse", "Response body: ${response.body()}")
-                } else {
-                    // Handle API failure
-                    errorMessage = "Error: ${response.code()} - ${response.message()}"
-                    Log.e("APIResponse", "Error: ${response.errorBody()}")
-                }
-            } catch (e: Exception) {
-                // Handle network errors or other exceptions
-                errorMessage = "Error: ${e.message}"
-            } finally {
-                loading = false
-            }
-        }
-    }
+    val analysisData by viewModel.analysisData
+    val loading by viewModel.loading
+    val errorMessage by viewModel.errorMessage
 
     // Call the API whenever the year or month changes
     LaunchedEffect(selectedYear, selectedMonth) {
-        fetchAnalysisData(selectedYear, selectedMonth)
+        viewModel.fetchAnalysisData(selectedYear, selectedMonth)
     }
 
     // Example list of items passed to CategoryList
@@ -97,8 +46,8 @@ fun AnalysisScreen() {
 
     val paymentItems = analysisData?.paymentMethod
         ?.map { (source, amount) ->
-        PaymentItemData(source, amount) }
-        ?: emptyList()
+            PaymentItemData(source, amount)
+        } ?: emptyList()
 
     val chartSlices = viewModel.slices.value
 
@@ -115,11 +64,11 @@ fun AnalysisScreen() {
     val line1Data = viewModel.line1Data.value
     val line2Data = viewModel.line2Data.value
 
-// Ensure that line1Data and line2Data are not empty before passing to Graphs
+    // Ensure that line1Data and line2Data are not empty before passing to Graphs
     val safeLine1Data = line1Data.ifEmpty { List(31) { 0f } }
     val safeLine2Data = line2Data.ifEmpty { List(31) { 0f } }
 
-// Handle loading, error, or success state in the UI
+    // Handle loading, error, or success state in the UI
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -134,13 +83,21 @@ fun AnalysisScreen() {
             }
         )
 
+        if (loading) {
+            // Show loading indicator
+        }
+
+        errorMessage?.let {
+            // Show error message
+        }
+
         DonutChart(
             slices = chartSlicesSimplified,
             total = total,
             modifier = Modifier.size(300.dp)
         )
 
-        CategoryList(items = categoryItems.take(5), total = total, detail = detail)
+        CategoryList(items = categoryItems.take(5), total = total, detail = detail, analysisNavController = analysisNavController)
 
         Separator()
 

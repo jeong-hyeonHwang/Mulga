@@ -30,7 +30,7 @@ fun PaymentList(items: List<PaymentItemData>) {
     // Define a fixed title here
     val title = "지출 수단별 이용내역"  // Fixed title
 
-    val modifier = if (items.isNullOrEmpty()) {
+    val modifier = if (items.isEmpty()) {
         Modifier.blur(4.dp).alpha(0.5f)
     } else {
         Modifier
