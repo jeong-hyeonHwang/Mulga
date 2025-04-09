@@ -45,15 +45,19 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ilm.mulga.R
+import com.ilm.mulga.feature.component.dialog.CustomDialog
 import com.ilm.mulga.feature.component.toggle.ToggleSwitch
 import com.ilm.mulga.feature.component.transaction.DatePickerModal
 import com.ilm.mulga.feature.component.transaction.TimePickerModal
+import com.ilm.mulga.feature.login.numberCommaTransformation
 import com.ilm.mulga.feature.transaction_detail.components.UnderlinedTextField
 import com.ilm.mulga.features.category.components.CategoryModal
 import com.ilm.mulga.presentation.model.TransactionDetailData
 import com.ilm.mulga.presentation.model.type.Category
 import com.ilm.mulga.ui.theme.MulGaTheme
 import com.ilm.mulga.util.extension.toKoreanDisplayString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import java.time.LocalDateTime
 import kotlin.math.absoluteValue
 
@@ -82,32 +86,40 @@ fun TransactionAddScreen(
 
     val viewModel: TransactionAddViewModel = viewModel()
     val isSuccess by viewModel.isSuccess
-    val isEditMode = transactionId != null && initialData != null
+    val isEditMode by remember { mutableStateOf(transactionId != null && initialData != null) }
+    var showSuccessDialog by remember { mutableStateOf(false)}
 
     LaunchedEffect(initialData) {
         if (isEditMode) {
-            title = initialData.title
-            amount = initialData.cost.absoluteValue.toString()
-            selectedToggleIndex = if (initialData.cost < 0) 0 else 1
-            selectedCategory = initialData.category
-            vendor = initialData.vendor
-            payment = initialData.paymentMethod
-            selectedDateTime = initialData.time
-            memo = initialData.memo
+            title = initialData?.title ?: ""
+            amount = initialData?.cost?.absoluteValue?.toString() ?: ""
+            selectedToggleIndex = if ((initialData?.cost ?: 0) < 0) 0 else 1
+            selectedCategory = initialData?.category
+            vendor = initialData?.vendor ?: ""
+            payment = initialData?.paymentMethod ?: ""
+            selectedDateTime = initialData?.time ?: LocalDateTime.now()
+            memo = initialData?.memo ?: ""
         }
     }
 
     LaunchedEffect(isSuccess) {
         if (isSuccess) {
-            navController.popBackStack()
+            viewModel.successResponse.value?.let { response ->
+                if (isEditMode) {
+                    val json = Json.encodeToString(response)
+                    navController.previousBackStackEntry?.savedStateHandle?.set("updatedTransactionJson", json)
+                }
+            }
+            showSuccessDialog = true
         }
     }
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        text = "내역 추가",
+                        text = if (isEditMode) "내역 수정" else "내역 추가",
                         style = MulGaTheme.typography.bodyLarge,
                         color = MulGaTheme.colors.grey1
                     )
@@ -236,7 +248,7 @@ fun TransactionAddScreen(
                 UnderlinedTextField(
                     value = amount,
                     onValueChange = {
-                        amount = it.filter { it.isDigit() }
+                        amount = it.filter { char -> char.isDigit() }
                         isAmountError = false
                     },
                     placeholder = "금액",
@@ -245,7 +257,8 @@ fun TransactionAddScreen(
                         .weight(1f)
                         .alignByBaseline(),
                     singleLine = true,
-                    textStyle = MulGaTheme.typography.headline
+                    textStyle = MulGaTheme.typography.headline,
+                    visualTransformation = { text -> numberCommaTransformation(text) }
                 )
 
                 ToggleSwitch(
@@ -402,6 +415,23 @@ fun TransactionAddScreen(
                 onDismiss = { showTimePicker = false }
             )
         }
+
+        if (showSuccessDialog) {
+            CustomDialog(
+                title = if (isEditMode) "수정 완료" else "저장 완료",
+                message = if (isEditMode) "수정이 완료되었습니다." else "저장이 완료되었습니다.",
+                onDismiss = {
+                    showSuccessDialog = false
+                    navController.popBackStack()
+                },
+                onConfirm = {
+                    showSuccessDialog = false
+                    navController.popBackStack()
+                },
+                backgroundColor = MulGaTheme.colors.primary
+            )
+        }
+
     }
 }
 

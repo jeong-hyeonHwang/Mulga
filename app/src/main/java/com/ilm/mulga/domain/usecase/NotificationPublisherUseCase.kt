@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.ilm.mulga.data.dto.request.NotificationMessageDto
 import com.ilm.mulga.data.network.NetworkUtil
+import com.ilm.mulga.data.repository.UserRepository
 import com.ilm.mulga.data.service.RabbitMqPublisher
 import com.ilm.mulga.domain.repository.local.NotificationLocalRepository
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +16,8 @@ import kotlinx.serialization.json.Json
 class NotificationPublisherUseCase(
     private val repository: NotificationLocalRepository,
     private val publisher: RabbitMqPublisher,
-    private val context: Context
+    private val context: Context,
+    private val userRepository: UserRepository
 ) {
     suspend fun connect(): Boolean = withContext(Dispatchers.IO) {
         val result = publisher.connect()
@@ -36,6 +38,7 @@ class NotificationPublisherUseCase(
 
                 for ((index, notification) in notifications.withIndex()) {
                     val dto = NotificationMessageDto(
+                        userId = userRepository.getUserData()?.id ?: "unknown",
                         appName = notification.appName.toString(),
                         title = notification.title ?: "",
                         content = notification.content ?: "",

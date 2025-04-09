@@ -23,6 +23,7 @@ import com.ilm.mulga.feature.login.LoginBudgetScreen
 import com.ilm.mulga.feature.login.LoginScreen
 import com.ilm.mulga.feature.login.LoginUiState
 import com.ilm.mulga.feature.login.LoginViewModel
+import com.ilm.mulga.feature.login.SplashScreen
 import com.ilm.mulga.feature.login.UserState
 import com.ilm.mulga.feature.local.LocalNavController
 import com.ilm.mulga.feature.transaction_detail.TransactionAddScreen
@@ -58,16 +59,21 @@ class MainActivity : ComponentActivity() {
                     val uiState by loginViewModel.uiState.collectAsState()
                     val userState by loginViewModel.userState.collectAsState()
 
-                    when (uiState) {
-                        is LoginUiState.Initial,
-                        is LoginUiState.Loading -> {
-                            // LoadingScreen()
+                    // SplashScreen 표시 여부를 제어하는 상태
+                    val showSplash by loginViewModel.showSplash.collectAsState()
+
+                    when {
+                        // SplashScreen을 표시해야 하는 경우
+                        showSplash -> {
+                            SplashScreen(onSplashComplete = {
+                                loginViewModel.hideSplash()
+                            })
                         }
-                        is LoginUiState.NotLoggedIn,
-                        is LoginUiState.Error -> {
+                        // SplashScreen이 끝난 후 실제 상태에 따른 화면 표시
+                        uiState is LoginUiState.NotLoggedIn || uiState is LoginUiState.Error -> {
                             LoginScreen()
                         }
-                        is LoginUiState.Success -> {
+                        uiState is LoginUiState.Success -> {
                             when (userState) {
                                 is UserState.NotExists -> {
                                     LoginBudgetScreen(
@@ -146,11 +152,13 @@ class MainActivity : ComponentActivity() {
                                 }
                             }
                         }
+                        else -> {
+                            // Loading 상태도 SplashScreen에 포함되므로 여기는 비워둠
+                        }
                     }
                 }
             }
         }
-
     }
 
     private fun isNotificationServiceEnabled(): Boolean {

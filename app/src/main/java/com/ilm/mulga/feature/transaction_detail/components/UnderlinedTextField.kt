@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.ilm.mulga.ui.theme.MulGaTheme
 
@@ -24,7 +25,8 @@ fun UnderlinedTextField(
     singleLine: Boolean = true,
     maxLines: Int = Int.MAX_VALUE,
     textStyle: TextStyle = MulGaTheme.typography.bodyLarge,
-    errorText: String? = null
+    errorText: String? = null,
+    visualTransformation: VisualTransformation = VisualTransformation.None
 
 ) {
     Column(modifier = modifier) {
@@ -46,7 +48,8 @@ fun UnderlinedTextField(
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 8.dp)
+                .padding(bottom = 8.dp),
+            visualTransformation = visualTransformation
         )
         Box(
             modifier = Modifier

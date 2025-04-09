@@ -30,6 +30,14 @@ class LoginViewModel(
     private val _userState = MutableStateFlow<UserState>(UserState.Initial)
     val userState: StateFlow<UserState> = _userState.asStateFlow()
 
+    // SplashScreen 표시 상태
+    private val _showSplash = MutableStateFlow(true)
+    val showSplash = _showSplash.asStateFlow()
+
+    // SplashScreen 숨기기
+    fun hideSplash() {
+        _showSplash.value = false
+    }
 
     private val authStateListener = FirebaseAuth.AuthStateListener { auth ->
         val firebaseUser = auth.currentUser
@@ -55,6 +63,8 @@ class LoginViewModel(
                 }
             }
         }
+        // SplashScreen은 앱 시작 시 기본적으로 표시(true)
+        _showSplash.value = true
     }
 
     private fun checkCurrentUser() {

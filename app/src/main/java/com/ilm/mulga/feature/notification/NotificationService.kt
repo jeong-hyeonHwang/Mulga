@@ -49,7 +49,7 @@ class NotificationService : NotificationListenerService(), KoinComponent {
         }
 
         val formattedTime = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).apply {
-            timeZone = TimeZone.getTimeZone("UTC")
+            timeZone = TimeZone.getTimeZone("Asia/Seoul")
         }.format(Date())
 
         Log.d("🔔NotificationService", "appName: $appName, title: $title, text: $text, time: $formattedTime")
