@@ -3,12 +3,13 @@ package com.ilm.mulga.data.service
 import com.ilm.mulga.data.dto.request.TransactionRequestDto
 import com.ilm.mulga.data.dto.request.TransactionUpdateRequestDto
 import com.ilm.mulga.data.dto.response.MonthlyTransactionResponseDto
+import com.ilm.mulga.presentation.model.TransactionDetailData
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.HTTP
 import retrofit2.http.PATCH
 import retrofit2.http.POST
-import retrofit2.http.HTTP
 import retrofit2.http.Path
 
 interface TransactionService {
@@ -26,10 +27,10 @@ interface TransactionService {
     @POST("/transaction")
     suspend fun postTransaction(
         @Body request: TransactionRequestDto
-    ): Response<Unit>
+    ): Response<TransactionDetailData>
 
     @PATCH("/transaction")
     suspend fun patchTransaction(
         @Body request: TransactionUpdateRequestDto
-    ): Response<Unit>
+    ): Response<TransactionDetailData>
 }
