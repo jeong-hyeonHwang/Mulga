@@ -1,7 +1,7 @@
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -33,6 +34,7 @@ fun TransactionItem(
     item: TransactionItemData,
     isDeleteMode: Boolean,
     isSelected: Boolean,
+    isCombined: Boolean = false,
     onClick: () -> Unit,
     onLongPress: () -> Unit
 ) {
@@ -43,13 +45,25 @@ fun TransactionItem(
         else -> Color.Transparent
     }
 
+    val subTitleText = when {
+        isCombined -> stringResource(id = R.string.merge_result)
+        else -> item.subtitle
+    }
+
+    val subTitleColor = when {
+        isCombined -> MulGaTheme.colors.primary
+        else -> MulGaTheme.colors.grey2
+    }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp)
             .combinedClickable(
                 onClick = onClick,
-                onLongClick = onLongPress
+                onLongClick = onLongPress,
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() }
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -92,8 +106,8 @@ fun TransactionItem(
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = item.subtitle,
-                color = MulGaTheme.colors.grey2,
+                text = subTitleText,
+                color = subTitleColor,
                 style = MulGaTheme.typography.caption
             )
         }

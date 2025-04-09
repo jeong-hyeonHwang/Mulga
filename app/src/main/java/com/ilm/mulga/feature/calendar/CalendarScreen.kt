@@ -1,6 +1,7 @@
 package com.ilm.mulga.feature.calendar
 
 import DeleteConfirmDialog
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,17 +23,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.ilm.mulga.R
 import com.ilm.mulga.feature.calendar.components.CalendarHeaderView
 import com.ilm.mulga.feature.calendar.components.CustomCalendarView
 import com.ilm.mulga.feature.calendar.components.TransactionBatchPanel
 import com.ilm.mulga.feature.calendar.components.TransactionDaySection
 import com.ilm.mulga.feature.calendar.components.TransactionList
-import com.ilm.mulga.feature.navigation.LocalNavController
+import com.ilm.mulga.feature.component.dialog.CustomConfirmDialogWithCancel
+import com.ilm.mulga.feature.local.LocalNavController
 import com.ilm.mulga.ui.theme.MulGaTheme
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
@@ -45,12 +47,13 @@ fun CalendarScreen(
     onNavigateToTransactionAdd: () -> Unit = {}
 ) {
     val uiState by calendarViewModel.uiState.collectAsState()
-    val isDeleteMode by transactionItemViewModel.isDeleteMode.collectAsState()
+    val isDeleteMode by transactionItemViewModel.isActionMode.collectAsState()
     val selectedItemIds by transactionItemViewModel.selectedItemIds.collectAsState()
 
     val navController = LocalNavController.current
 
     // 삭제 확인 다이얼로그 표시 여부 상태
+    val showCombineConfirmDialog = remember { mutableStateOf(false) }
     val showDeleteConfirmDialog = remember { mutableStateOf(false) }
 
     // PullRefresh 관련 상태와 스코프
@@ -67,6 +70,9 @@ fun CalendarScreen(
         }
     )
 
+
+    val context = LocalContext.current
+
     LaunchedEffect(key1 = true) {
         // navigationEvent를 별도 launch로 처리하여 블로킹되지 않도록 함
         launch {
@@ -77,11 +83,20 @@ fun CalendarScreen(
             }
         }
         calendarViewModel.loadAndConvertMonthlyData(uiState.currentYear, uiState.currentMonth)
+
+        calendarViewModel.uiEvent.collect { event ->
+            when (event) {
+                is UiEvent.ShowToast -> {
+                    val message = context.getString(event.messageResId)
+                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     DisposableEffect(Unit) {
         onDispose {
-            transactionItemViewModel.clearDeleteMode()
+            transactionItemViewModel.clearActionMode()
         }
     }
 
@@ -146,7 +161,7 @@ fun CalendarScreen(
                                 transactionItemViewModel.onItemLongPress(transactionId)
                             },
                             isDeleteMode = isDeleteMode,
-                            selectedItemIds = selectedItemIds
+                            selectedItemIds = selectedItemIds,
                         )
                     }
                 }
@@ -191,13 +206,13 @@ fun CalendarScreen(
         if (isDeleteMode) {
             TransactionBatchPanel(
                 onMergeClick = {
-                    // 합치기 처리 로직 구현
+                    showCombineConfirmDialog.value = calendarViewModel.isValidForCombine(selectedItemIds)
                 },
                 onDeleteClick = {
-                    showDeleteConfirmDialog.value = true
+                    showDeleteConfirmDialog.value = calendarViewModel.isValidForDelete(selectedItemIds)
                 },
                 onCancelClick = {
-                    transactionItemViewModel.clearDeleteMode()
+                    transactionItemViewModel.clearActionMode()
                 },
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
@@ -222,8 +237,25 @@ fun CalendarScreen(
             onCancel = { showDeleteConfirmDialog.value = false },
             onConfirm = {
                 calendarViewModel.deleteTransactionItems(selectedItemIds)
-                transactionItemViewModel.clearDeleteMode()
+                transactionItemViewModel.clearActionMode()
                 showDeleteConfirmDialog.value = false
+            }
+        )
+    }
+
+    if (showCombineConfirmDialog.value) {
+        CustomConfirmDialogWithCancel(
+            stringResource(id = R.string.dialog_combine_confirmation_title),
+            stringResource(id = R.string.dialog_combine_confirmation_message, selectedItemIds.size),
+            stringResource(R.string.btn_title_merge),
+            onCancel = { showCombineConfirmDialog.value = false },
+            onConfirm = {
+                calendarViewModel.combineTransactionItems(selectedItemIds)
+                coroutineScope.launch {
+                    calendarViewModel.loadAndConvertMonthlyData(uiState.currentYear, uiState.currentMonth)
+                }
+                transactionItemViewModel.clearActionMode()
+                showCombineConfirmDialog.value = false
             }
         )
     }

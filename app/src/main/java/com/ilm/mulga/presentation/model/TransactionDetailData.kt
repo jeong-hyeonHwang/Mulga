@@ -14,5 +14,6 @@ data class TransactionDetailData (
     @Serializable(with = LocalDateTimeSerializer::class) val time: LocalDateTime,
     var cost: Int,
     val memo: String,
-    val paymentMethod: String
+    val paymentMethod: String,
+    val group: List<TransactionItemData> = emptyList()
 )

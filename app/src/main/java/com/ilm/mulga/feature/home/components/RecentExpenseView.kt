@@ -48,6 +48,7 @@ fun RecentExpenseView(
                     onLongPress = { },
                     isSelected = false,
                     isDeleteMode = false,
+                    isCombined = item.isCombined
                 )
             } else {
                 Text(

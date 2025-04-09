@@ -60,7 +60,8 @@ fun TransactionDaySection(
                                 onClick = { onTransactionClick(item.id) },
                                 onLongPress = { onTransactionLongClick(item.id) },
                                 isDeleteMode = isDeleteMode,
-                                isSelected = selectedItemIds.contains(item.id)
+                                isSelected = selectedItemIds.contains(item.id),
+                                isCombined = item.isCombined
                             )
                             Spacer(modifier = Modifier.height(16.dp))
                         }
@@ -86,7 +87,8 @@ fun TransactionDaySection(
                         onClick = { onTransactionClick(item.id) },
                         onLongPress = { onTransactionLongClick(item.id) },
                         isDeleteMode = isDeleteMode,
-                        isSelected = selectedItemIds.contains(item.id)
+                        isSelected = selectedItemIds.contains(item.id),
+                        isCombined = item.isCombined
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                 }

@@ -65,11 +65,17 @@
     <string name="calendar_no_selected_date">선택된 날짜가 없습니다.</string>
     <string name="calendar_no_transaction_in_month">해당 월에 수입/지출 내역이\n존재하지 않습니다.</string>
 
-    <!-- 알림창 관련 (dialog_) -->
+    <!-- 알림창 관련 (dialog_, toast) -->
     <string name="dialog_withdrawal_confirmation_title">탈퇴하시겠어요?</string>
     <string name="dialog_withdrawal_confirmation_message">탈퇴하시면 모든 정보는 삭제됩니다.</string>
     <string name="dialog_delete_confirmation_title">정말 삭제하시겠습니까?</string>
     <string name="dialog_delete_confirmation_message">%d 개의 데이터가 삭제됩니다.\n이 행동은 취소할 수 없습니다.</string>
+    <string name="toast_delete_minimum_selection_message">삭제할 항목을 1개 이상 선택해주세요.</string>
+    <string name="dialog_combine_confirmation_title">합치시겠어요?</string>
+    <string name="dialog_combine_confirmation_message">%d 개의 데이터가 합쳐집니다.</string>
+    <string name="toast_merge_already_combined_message">이미 합친 항목은 다시 합칠 수 없습니다.</string>
+    <string name="toast_merge_minimum_selection_message">합칠 항목을 2개 이상 선택해주세요.</string>
+
 
     <!-- 분석 관련 (analysis_) -->
     <string name="analysis_detail_info">상세 정보</string>
@@ -85,6 +91,7 @@
     <string name="field_amount">금액</string>
 
     <!-- 합치기 관련 (merge_) -->
+    <string name="merge_result"># 합쳤어요!</string>
     <string name="merge_result_count">%s개 합쳤어요</string>
     <string name="merge_undo">합치기 해제하기</string>
 

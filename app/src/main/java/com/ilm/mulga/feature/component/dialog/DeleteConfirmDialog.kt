@@ -1,7 +1,5 @@
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
-import com.ilm.mulga.feature.component.dialog.CustomDialogWithCancel
-import com.ilm.mulga.R
+import com.ilm.mulga.feature.component.dialog.CustomDestructiveDialogWithCancel
 
 @Composable
 fun DeleteConfirmDialog(
@@ -11,7 +9,7 @@ fun DeleteConfirmDialog(
     onCancel: () -> Unit,
     onConfirm: () -> Unit
 ) {
-    CustomDialogWithCancel(
+    CustomDestructiveDialogWithCancel(
         title = title,
         message = message,
         actionText = actionText,
