@@ -2,6 +2,10 @@ package com.example.mugbackend.message.service;
 
 import com.example.mugbackend.gpt.dto.PromptRequest;
 import com.example.mugbackend.gpt.service.ChatGPTService;
+import com.example.mugbackend.message.dto.FinanceNotiDto;
+import com.example.mugbackend.message.exception.MessageConversionException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.parameters.P;
@@ -22,20 +26,43 @@ public class MessageService {
         this.chatGPTService = chatGPTService;
     }
 
-    // 20초마다 실행
-    @Scheduled(fixedRate = 10000)
+    // 5초마다 실행
+    @Scheduled(fixedRate = 5000)
     public void pollMessages() {
 
-        List<String> messages = fetchMessages(5);
+        List<String> messages = fetchMessages(20);
         if (!messages.isEmpty()) {
 
             for(String message : messages) {
                 // 메시지 하나마다 gpt를 돌려야 한다.
-
                 System.out.println("메시지 원본 : " + message);
+
+                // 카카오톡 메시지면 넘어감
+                if(message.contains("카카오톡")) {
+                    continue;
+                }
 
                 String gptMessage = chatGPTService.getChatResponse(message);
                 System.out.println("GPT API 응답 : " + gptMessage);
+
+                // 금융알림이 아니면 넘어감
+                if(gptMessage.equals("금융 알림이 아닙니다.")) {
+                    continue;
+                }
+                // 금융 알림이면 DTO로 변환
+                FinanceNotiDto financeNotiDto = convertToFinanceNotiDto(gptMessage);
+
+                // 사용자별 시간 제한 1분인 그룹 만들기
+                // 최종적으로 남은 알림 1개만 Transaction 엔티티로 만들어서 저장~
+
+                /*
+                createTransactionFromPush 메서드를 만들어서
+                CustomUserDetails, Transactions를 넘겨줘서 아래 두 줄 실행
+        analysisService.addTransactionToAnalysis(userDetails, transaction);
+        transactionRepository.save(transaction);
+
+                 */
+
 
             }
 
@@ -80,5 +107,20 @@ public class MessageService {
         }
 
         return messages;
+    }
+
+    public FinanceNotiDto convertToFinanceNotiDto(String message) {
+        FinanceNotiDto financeNotiDto = null;
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
+            financeNotiDto = objectMapper.readValue(message, FinanceNotiDto.class);
+
+            System.out.println("변환된 FinanceNotiDto: " + financeNotiDto);
+            return financeNotiDto;
+
+        } catch (Exception e) {
+            throw new MessageConversionException();
+        }
     }
 }
