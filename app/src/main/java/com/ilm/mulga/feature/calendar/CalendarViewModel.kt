@@ -138,7 +138,11 @@ class CalendarViewModel : ViewModel() {
             val jsonData = Json.encodeToString(detailData)
             val encodedData = URLEncoder.encode(jsonData, StandardCharsets.UTF_8.toString())
 
-            navController.navigate("transaction_detail?data=$encodedData")
+            if (entity.isCombined) {
+                navController.navigate("transaction_combine_detail?data=$encodedData")
+            } else {
+                navController.navigate("transaction_detail?data=$encodedData")
+            }
         }
     }
 

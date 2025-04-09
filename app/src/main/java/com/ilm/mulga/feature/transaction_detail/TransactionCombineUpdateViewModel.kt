@@ -4,21 +4,23 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ilm.mulga.data.dto.request.TransactionRequestDto
 import com.ilm.mulga.data.dto.request.TransactionUpdateRequestDto
 import com.ilm.mulga.data.network.RetrofitClient
+import com.ilm.mulga.domain.mapper.toDomain
 import com.ilm.mulga.presentation.mapper.toDetailData
 import com.ilm.mulga.presentation.model.TransactionDetailData
 import com.ilm.mulga.util.extension.toIso8601String
 import com.ilm.mulga.util.handler.GlobalErrorHandler
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import java.time.LocalDateTime
 
-class TransactionAddViewModel : ViewModel() {
+class TransactionCombineUpdateViewModel : ViewModel() {
+
+    var isUncombineSuccess = mutableStateOf(false)
+        private set
 
     var isSuccess = mutableStateOf(false)
         private set
@@ -26,51 +28,23 @@ class TransactionAddViewModel : ViewModel() {
     var successResponse = mutableStateOf<TransactionDetailData?>(null)
         private set
 
-    fun submitTransaction(
-        title: String,
-        cost: Int,
-        category: String,
-        vendor: String,
-        paymentMethod: String,
-        dateTime: LocalDateTime,
-        memo: String
-    ) {
-        val request = TransactionRequestDto(
-            year = dateTime.year,
-            month = dateTime.monthValue,
-            day = dateTime.dayOfMonth,
-            title = title,
-            cost = cost,
-            category = category,
-            time = dateTime.toIso8601String(),
-            vendor = vendor,
-            paymentMethod = paymentMethod,
-            memo = memo
-        )
-
+    fun uncombineTransaction(id: String) {
         viewModelScope.launch {
             try {
-                val response = RetrofitClient.transactionService.postTransaction(request)
+                val response = RetrofitClient.transactionService.uncombineTransaction(id)
                 if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    // ✅ 성공 로그
-                    Log.d("TransactionAdd", "Success: $response")
-                    isSuccess.value = true
-//                    successResponse.value = responseBody
+                    val data = response.body()?.map { it.toDomain() } ?: emptyList()
+                    // 🔸 이 리스트를 활용할 계획이 있다면 변수로 따로 보관해도 됨
+                    isUncombineSuccess.value = true
+                    Log.d("UncombineTransaction", "Success")
                 } else {
-                    // ✅ 실패 시 서버에서 내려주는 에러 바디 파싱
                     val errorJson = response.errorBody()?.string()
                     val parsedError = Json.parseToJsonElement(errorJson ?: "").jsonObject
                     val errorCode = parsedError["code"]?.jsonPrimitive?.content
-                    if (errorCode != null) {
-                        GlobalErrorHandler.emitError(errorCode)
-                    } else {
-                        GlobalErrorHandler.emitError("UNKNOWN_ERROR")
-                    }
+                    GlobalErrorHandler.emitError(errorCode ?: "UNKNOWN_ERROR")
                 }
             } catch (e: Exception) {
-                Log.e("TransactionAdd", "예외 발생: ${e.message}")
-                e.printStackTrace()
+                Log.e("UncombineTransaction", "예외 발생: ${e.message}")
                 GlobalErrorHandler.emitError("NETWORK_ERROR")
             }
         }
@@ -105,18 +79,14 @@ class TransactionAddViewModel : ViewModel() {
                 val response = RetrofitClient.transactionService.patchTransaction(request)
                 if (response.isSuccessful) {
                     val responseBody = response.body()?.toDetailData()
-                    Log.d("TransactionAdd", "Success: $responseBody")
                     isSuccess.value = true
                     successResponse.value = responseBody
+                    Log.d("TransactionEdit", "Success: $responseBody")
                 } else {
                     val errorJson = response.errorBody()?.string()
                     val parsedError = Json.parseToJsonElement(errorJson ?: "").jsonObject
                     val errorCode = parsedError["code"]?.jsonPrimitive?.content
-                    if (errorCode != null) {
-                        GlobalErrorHandler.emitError(errorCode)
-                    } else {
-                        GlobalErrorHandler.emitError("UNKNOWN_ERROR")
-                    }
+                    GlobalErrorHandler.emitError(errorCode ?: "UNKNOWN_ERROR")
                 }
             } catch (e: Exception) {
                 Log.e("TransactionEdit", "예외 발생: ${e.message}")

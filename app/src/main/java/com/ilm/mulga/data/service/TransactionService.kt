@@ -4,6 +4,7 @@ import com.ilm.mulga.data.dto.request.TransactionCombineRequestDto
 import com.ilm.mulga.data.dto.request.TransactionRequestDto
 import com.ilm.mulga.data.dto.request.TransactionUpdateRequestDto
 import com.ilm.mulga.data.dto.response.MonthlyTransactionResponseDto
+import com.ilm.mulga.data.dto.response.TransactionDto
 import com.ilm.mulga.presentation.model.TransactionDetailData
 import retrofit2.Response
 import retrofit2.http.Body
@@ -28,15 +29,20 @@ interface TransactionService {
     @POST("/transaction")
     suspend fun postTransaction(
         @Body request: TransactionRequestDto
-    ): Response<TransactionDetailData>
+    ): Response<TransactionDto>
 
     @PATCH("/transaction")
     suspend fun patchTransaction(
         @Body request: TransactionUpdateRequestDto
-    ): Response<TransactionDetailData>
+    ): Response<TransactionDto>
 
     @POST("/transaction/combine")
     suspend fun combineTransaction(
         @Body request: TransactionCombineRequestDto
     ): Response<MonthlyTransactionResponseDto>
+
+    @POST("transaction/uncombine/{transactionId}")
+    suspend fun uncombineTransaction(
+        @Path("transactionId") transactionId: String
+    ): Response<List<TransactionDto>>
 }

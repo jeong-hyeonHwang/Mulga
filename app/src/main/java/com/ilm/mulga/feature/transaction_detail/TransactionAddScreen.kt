@@ -180,8 +180,8 @@ fun TransactionAddScreen(
                         end = 24.dp,
                         bottom = 24.dp + insets.calculateBottomPadding()
                     )
-                    .height(48.dp),
-                shape = RoundedCornerShape(8.dp),
+                    .height(54.dp),
+                shape = RoundedCornerShape(30.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MulGaTheme.colors.primary,
                     contentColor = MulGaTheme.colors.white1
@@ -354,7 +354,7 @@ fun TransactionAddScreen(
                 ) {
                     Text(
                         text = selectedDateTime.toKoreanDisplayString(),
-                        style = MulGaTheme.typography.bodyMedium,
+                        style = MulGaTheme.typography.bodyLarge,
                         color = MulGaTheme.colors.primary,
                         modifier = Modifier.weight(1f)
                     )
