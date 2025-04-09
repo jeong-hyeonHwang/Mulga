@@ -142,21 +142,18 @@ class CalendarViewModel : ViewModel() {
         }
     }
 
-    fun deleteTransactionItems(deletedIds: LinkedHashSet<String>) {
+    fun isValidForDelete(deletedIds: LinkedHashSet<String>): Boolean {
         if (deletedIds.isEmpty()) {
             viewModelScope.launch {
                 _uiEvent.emit(UiEvent.ShowToast(R.string.toast_delete_minimum_selection_message))
             }
-            return
+            return false
         }
-        viewModelScope.launch {
-            repository.deleteTransactions(deletedIds)
-            loadAndConvertMonthlyData(_uiState.value.currentYear, _uiState.value.currentMonth)
-        }
+        return true
     }
 
-    fun combineTransactionItems(combineIds: LinkedHashSet<String>) {
-        val monthlyEntity = _uiState.value.monthlyTransactionEntity ?: return
+    fun isValidForCombine(combineIds: LinkedHashSet<String>) : Boolean{
+        val monthlyEntity = _uiState.value.monthlyTransactionEntity ?: return false
 
         // 삭제할 항목들 필터링 (선택된 ID와 일치하는 항목)
         val transactionsToDelete = monthlyEntity.transactions
@@ -169,17 +166,26 @@ class CalendarViewModel : ViewModel() {
             viewModelScope.launch {
                 _uiEvent.emit(UiEvent.ShowToast(R.string.toast_merge_already_combined_message))
             }
-            return
+            return false
         }
 
         if (combineIds.size <= 1) {
             viewModelScope.launch {
                 _uiEvent.emit(UiEvent.ShowToast(R.string.toast_merge_minimum_selection_message))
             }
-            return
+            return false
         }
+        return true
+    }
 
+    fun deleteTransactionItems(deletedIds: LinkedHashSet<String>) {
+        viewModelScope.launch {
+            repository.deleteTransactions(deletedIds)
+            loadAndConvertMonthlyData(_uiState.value.currentYear, _uiState.value.currentMonth)
+        }
+    }
 
+    fun combineTransactionItems(combineIds: LinkedHashSet<String>) {
         viewModelScope.launch {
             val mainTransactionId = combineIds.firstOrNull()
             val combineTransactionIds = combineIds.drop(1).toCollection(LinkedHashSet())
