@@ -286,7 +286,8 @@ public class MessageService {
         // 프롬프트 마지막에 요청 사항 추가
         sb.append("위 3개의 거래 내역 중 네이버페이에 충전된 금액(transfer 및 등 기타 내역)이 아닌, **실제 구매 내역**만을 반환해 주세요.\n");
         sb.append("구매 내역은 itemName이 비어있지 않은 내역입니다.\n");
-        sb.append("응답은 줄바꿈을 엄격히 해서 json 형식으로 주세요. json이라는 글자를 포함하지 마세요.\n");
+        sb.append("응답은 줄바꿈을 엄격히 해서 json 형식으로 주세요. json이라는 글자를 포함하지 마세요. 대괄호도 빼주세요\n");
+
         sb.append("### 프롬프트 끝");
 
         return sb.toString();
