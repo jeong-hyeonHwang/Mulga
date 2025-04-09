@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ilm.mulga.data.dto.request.TransactionRequestDto
+import com.ilm.mulga.data.dto.request.TransactionUpdateRequestDto
 import com.ilm.mulga.data.network.RetrofitClient
 import com.ilm.mulga.util.extension.toIso8601String
 import kotlinx.coroutines.launch
@@ -61,6 +62,51 @@ class TransactionAddViewModel : ViewModel() {
             } catch (e: Exception) {
                 Log.e("TransactionAdd", "예외 발생: ${e.message}")
                 e.printStackTrace()
+            }
+        }
+    }
+
+    fun patchTransaction(
+        id: String,
+        title: String,
+        cost: Int,
+        category: String?,
+        vendor: String,
+        paymentMethod: String,
+        dateTime: LocalDateTime,
+        memo: String
+    ) {
+        val request = TransactionUpdateRequestDto(
+            id = id,
+            year = dateTime.year,
+            month = dateTime.monthValue,
+            day = dateTime.dayOfMonth,
+            title = title,
+            cost = cost,
+            category = category ?: "",
+            time = dateTime.toIso8601String(),
+            vendor = vendor,
+            paymentMethod = paymentMethod,
+            memo = memo
+        )
+
+        viewModelScope.launch {
+            try {
+                val response = RetrofitClient.transactionService.patchTransaction(request)
+                if (response.isSuccessful) {
+                    Log.d("TransactionEdit", "Success")
+                    isSuccess.value = true
+                } else {
+                    val errorJson = response.errorBody()?.string()
+                    val parsedError = Json.parseToJsonElement(errorJson ?: "").jsonObject
+                    val errors = parsedError["errors"]?.jsonObject
+
+                    errors?.forEach { (field, messages) ->
+                        Log.e("TransactionEdit", "[$field] ${(messages.jsonArray.joinToString { it.jsonPrimitive.content })}")
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("TransactionEdit", "예외 발생: ${e.message}")
             }
         }
     }

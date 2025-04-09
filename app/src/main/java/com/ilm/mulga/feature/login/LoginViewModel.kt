@@ -1,15 +1,11 @@
 package com.ilm.mulga.feature.login
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
-import com.ilm.mulga.data.network.RetrofitClient
 import com.ilm.mulga.data.repository.UserRepository
-import com.ilm.mulga.domain.model.UserEntity
 import com.ilm.mulga.domain.usecase.GetCurrentUserUseCase
 import com.ilm.mulga.domain.usecase.LoginWithCredentialUseCase
 import com.ilm.mulga.domain.usecase.LogoutUseCase
@@ -24,7 +20,8 @@ class LoginViewModel(
     private val firebaseAuth: FirebaseAuth,
     private val signInWithCredentialUseCase: LoginWithCredentialUseCase,
     private val signOutUseCase: LogoutUseCase,
-    private val getCurrentUserUseCase: GetCurrentUserUseCase
+    private val getCurrentUserUseCase: GetCurrentUserUseCase,
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<LoginUiState>(LoginUiState.Initial)
@@ -33,7 +30,6 @@ class LoginViewModel(
     private val _userState = MutableStateFlow<UserState>(UserState.Initial)
     val userState: StateFlow<UserState> = _userState.asStateFlow()
 
-    private val userRepository: UserRepository = UserRepository(RetrofitClient.userService)
 
     private val authStateListener = FirebaseAuth.AuthStateListener { auth ->
         val firebaseUser = auth.currentUser
@@ -47,6 +43,18 @@ class LoginViewModel(
     init {
         firebaseAuth.addAuthStateListener(authStateListener)
         checkCurrentUser()
+        // FirebaseAuth에서 현재 유저 확인 후,
+        // userRepository에도 저장된 데이터가 있는지 확인하여 우선적으로 처리합니다.
+        viewModelScope.launch {
+            // userRepository에 사용자 데이터가 있으면 해당 정보로 로그인 상태로 간주
+            if (userRepository.hasUserData()) {
+                val userFromRepo = userRepository.getUserData()
+                if (userFromRepo != null) {
+                    _uiState.value = LoginUiState.Success(userFromRepo.toDto())
+                    _userState.value = UserState.Exists(userFromRepo)
+                }
+            }
+        }
     }
 
     private fun checkCurrentUser() {
@@ -114,6 +122,9 @@ class LoginViewModel(
             try {
                 val userEntity = userRepository.signup(name, email, budget)
                 if (userEntity != null) {
+                    // 회원가입 성공 시 사용자 정보를 UserRepository에 저장
+                    userRepository.saveUser(userEntity)
+
                     // 회원가입 성공 시 UserState와 LoginUiState 업데이트
                     _userState.value = UserState.Exists(userEntity)
                     val authDto = userEntity.toDto() // 확장 함수 또는 변환 로직 필요

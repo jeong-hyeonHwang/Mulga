@@ -8,6 +8,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,6 +22,7 @@ import com.ilm.mulga.feature.component.main.MainScreen
 import com.ilm.mulga.feature.login.LoginBudgetScreen
 import com.ilm.mulga.feature.login.LoginScreen
 import com.ilm.mulga.feature.login.LoginUiState
+import com.ilm.mulga.feature.login.LoginViewModel
 import com.ilm.mulga.feature.login.UserState
 import com.ilm.mulga.feature.navigation.LocalNavController
 import com.ilm.mulga.feature.transaction_detail.TransactionAddScreen
@@ -50,9 +52,9 @@ class MainActivity : ComponentActivity() {
 
                 // 최상위 NavController 생성 및 제공
                 val rootNavController = rememberNavController()
-                androidx.compose.runtime.CompositionLocalProvider(LocalNavController provides rootNavController) {
+                CompositionLocalProvider(LocalNavController provides rootNavController) {
                     // 예시: LoginViewModel 및 NavHost 구성
-                    val loginViewModel: com.ilm.mulga.feature.login.LoginViewModel = koinViewModel()
+                    val loginViewModel: LoginViewModel = koinViewModel()
                     val uiState by loginViewModel.uiState.collectAsState()
                     val userState by loginViewModel.userState.collectAsState()
 
@@ -82,26 +84,60 @@ class MainActivity : ComponentActivity() {
                                             MainScreen(
                                                 onNavigateToTransactionAdd = {
                                                     rootNavController.navigate("transaction_add")
-                                                }
+                                                },
+                                                rootNavController = rootNavController
                                             )
                                         }
                                         composable("transaction_add") {
                                             TransactionAddScreen(navController = rootNavController)
                                         }
+                                        composable("transaction_edit/{id}") { backStackEntry ->
+                                            val id = backStackEntry.arguments?.getString("id")
+
+                                            // ✅ JSON 문자열 불러오기
+                                            val json =
+                                                rootNavController.previousBackStackEntry?.savedStateHandle?.get<String>(
+                                                    "editDataJson"
+                                                )
+
+                                            // ✅ JSON → 객체 변환
+                                            val initialData = json?.let {
+                                                Json.decodeFromString<TransactionDetailData>(it)
+                                            }
+
+                                            TransactionAddScreen(
+                                                navController = rootNavController,
+                                                transactionId = id,
+                                                initialData = initialData
+                                            )
+                                        }
                                         composable(
                                             route = "transaction_detail?data={data}",
-                                            arguments = listOf(navArgument("data") { type = NavType.StringType })
+                                            arguments = listOf(navArgument("data") {
+                                                type = NavType.StringType
+                                            })
                                         ) { backStackEntry ->
-                                            val dataParam = backStackEntry.arguments?.getString("data")
+                                            val dataParam =
+                                                backStackEntry.arguments?.getString("data")
                                             val transactionDetailData = dataParam?.let {
-                                                val decodedData = URLDecoder.decode(it, StandardCharsets.UTF_8.toString())
-                                                Json.decodeFromString<TransactionDetailData>(decodedData)
+                                                val decodedData = URLDecoder.decode(
+                                                    it,
+                                                    StandardCharsets.UTF_8.toString()
+                                                )
+                                                Json.decodeFromString<TransactionDetailData>(
+                                                    decodedData
+                                                )
                                             }
-                                            val viewModel: TransactionDetailViewModel = koinViewModel()
+                                            val viewModel: TransactionDetailViewModel =
+                                                koinViewModel()
                                             if (transactionDetailData != null && viewModel.transactionDetailData.value == null) {
                                                 viewModel.setTransactionDetail(transactionDetailData)
                                             }
-                                            TransactionDetailScreen(viewModel = viewModel, navController = rootNavController)
+                                            TransactionDetailScreen(
+                                                viewModel = viewModel,
+                                                navController = rootNavController,
+                                                rootNavController = rootNavController
+                                            )
                                         }
                                     }
                                 }

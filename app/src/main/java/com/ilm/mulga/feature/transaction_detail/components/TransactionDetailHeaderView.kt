@@ -59,7 +59,8 @@ fun TransactionHeaderView(
                 Icon(
                     painter = painterResource(id = R.drawable.ic_util_pencil),
                     contentDescription = "Edit",
-                    tint = MulGaTheme.colors.grey2
+                    tint = MulGaTheme.colors.grey2,
+                    modifier = Modifier.size(24.dp)
                 )
             }
         }
