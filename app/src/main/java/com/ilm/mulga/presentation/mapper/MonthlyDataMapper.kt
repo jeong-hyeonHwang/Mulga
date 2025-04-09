@@ -1,5 +1,8 @@
 package com.ilm.mulga.presentation.mapper
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.ilm.mulga.R
 import com.ilm.mulga.domain.model.MonthlyTransactionEntity
 import com.ilm.mulga.domain.model.TransactionEntity
 import com.ilm.mulga.presentation.model.DailyTransactionData
@@ -40,7 +43,7 @@ fun MonthlyTransactionEntity.toDailyTransactionData(): List<DailyTransactionData
     return transactions.entries.sortedByDescending { it.key }.map { (day, transactionEntities) ->
         DailyTransactionData(
             date = createValidDate(year, this.month, day),
-            transactions = transactionEntities.map { it.toTransactionItemData() }
+            transactions = transactionEntities.map { it.toTransactionItemData() },
         )
     }
 }
@@ -59,11 +62,15 @@ fun TransactionEntity.toTransactionItemData(): TransactionItemData {
     }
 
     // subtitle은 title과 vendor 모두 있을 때 "paymentMethod | vendor", 그 외에는 paymentMethod만 사용
-    val newSubtitle = if (hasTitle && hasVendor) {
+    val newSubtitle = if (isCombined) {
+        "# 합쳤어요!"
+    } else if (hasTitle && hasVendor) {
         "${this.paymentMethod} | ${this.vendor}"
     } else {
         this.paymentMethod ?: ""
     }
+
+    val isCombined = this.group.isNotEmpty()
 
     return TransactionItemData(
         id = this.id,
@@ -71,7 +78,8 @@ fun TransactionEntity.toTransactionItemData(): TransactionItemData {
         title = newTitle,
         subtitle = newSubtitle,
         price = this.cost.toString(), // 필요시 포맷팅 추가 가능
-        time = formatTimeToHourMinute(this.time)
+        time = formatTimeToHourMinute(this.time),
+        isCombined = isCombined
     )
 }
 
@@ -88,7 +96,9 @@ fun TransactionEntity.toTransactionItemDataForMain(): TransactionItemData {
     }
 
     // subtitle은 title과 vendor 모두 있을 때 "paymentMethod | vendor", 그 외에는 paymentMethod만 사용
-    val newSubtitle = if (hasTitle && hasVendor) {
+    val newSubtitle = if (isCombined) {
+        "# 합쳤어요!"
+    } else if (hasTitle && hasVendor) {
         "${this.paymentMethod} | ${this.vendor}"
     } else {
         this.paymentMethod ?: ""
@@ -100,7 +110,8 @@ fun TransactionEntity.toTransactionItemDataForMain(): TransactionItemData {
         title = newTitle,
         subtitle = newSubtitle,
         price = this.cost.toString(), // 필요시 포맷팅 추가 가능
-        time = formatTimeToHourMinuteForMain(this.time)
+        time = formatTimeToHourMinuteForMain(this.time),
+        isCombined = isCombined
     )
 }
 

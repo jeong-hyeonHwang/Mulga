@@ -14,6 +14,7 @@ fun TransactionEntity.toPresentation(): TransactionDetailData {
         time = time,
         cost = cost,
         memo = memo,
-        paymentMethod = paymentMethod
+        paymentMethod = paymentMethod,
+        group = group.map { item -> item.toTransactionItemData() }
     )
 }

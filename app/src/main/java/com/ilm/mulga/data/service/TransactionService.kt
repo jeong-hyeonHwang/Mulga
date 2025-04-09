@@ -1,5 +1,6 @@
 package com.ilm.mulga.data.service
 
+import com.ilm.mulga.data.dto.request.TransactionCombineRequestDto
 import com.ilm.mulga.data.dto.request.TransactionRequestDto
 import com.ilm.mulga.data.dto.request.TransactionUpdateRequestDto
 import com.ilm.mulga.data.dto.response.MonthlyTransactionResponseDto
@@ -33,4 +34,9 @@ interface TransactionService {
     suspend fun patchTransaction(
         @Body request: TransactionUpdateRequestDto
     ): Response<TransactionDetailData>
+
+    @POST("/transaction/combine")
+    suspend fun combineTransaction(
+        @Body request: TransactionCombineRequestDto
+    ): Response<MonthlyTransactionResponseDto>
 }

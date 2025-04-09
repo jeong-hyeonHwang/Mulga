@@ -25,7 +25,7 @@ import com.ilm.mulga.feature.login.LoginUiState
 import com.ilm.mulga.feature.login.LoginViewModel
 import com.ilm.mulga.feature.login.SplashScreen
 import com.ilm.mulga.feature.login.UserState
-import com.ilm.mulga.feature.navigation.LocalNavController
+import com.ilm.mulga.feature.local.LocalNavController
 import com.ilm.mulga.feature.transaction_detail.TransactionAddScreen
 import com.ilm.mulga.feature.transaction_detail.TransactionDetailViewModel
 import com.ilm.mulga.presentation.model.TransactionDetailData
