@@ -1,13 +1,17 @@
 package com.example.mugbackend.transaction.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.example.mugbackend.transaction.dto.*;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,11 +20,8 @@ import com.example.mugbackend.analysis.domain.Analysis;
 import com.example.mugbackend.analysis.repository.AnalysisRepository;
 import com.example.mugbackend.analysis.service.AnalysisService;
 import com.example.mugbackend.transaction.domain.Transaction;
-import com.example.mugbackend.transaction.dto.MonthlyTransactionDto;
-import com.example.mugbackend.transaction.dto.TransactionCreateDto;
-import com.example.mugbackend.transaction.dto.TransactionDetailDto;
-import com.example.mugbackend.transaction.dto.TransactionUpdateDto;
 import com.example.mugbackend.transaction.exception.TransactionAccessDeniedException;
+import com.example.mugbackend.transaction.exception.TransactionCombineConflictException;
 import com.example.mugbackend.transaction.exception.TransactionNoHistoryException;
 import com.example.mugbackend.transaction.exception.TransactionNotFoundException;
 import com.example.mugbackend.transaction.repository.TransactionRepository;
@@ -103,8 +104,25 @@ public class TransactionService {
     public Transaction getLastTransaction(String userId) {
         return transactionRepository
                 .findTopByUserIdOrderByTimeDesc(userId)
-                .orElseThrow(() ->
-                        new TransactionNoHistoryException());
+                .orElseGet(() -> {
+                    LocalDateTime today = LocalDateTime.now();
+                    return Transaction.builder()
+                            .id("")
+                            .userId(userId)
+                            .year(today.getYear())
+                            .month(today.getMonthValue())
+                            .day(today.getDayOfMonth())
+                            .isCombined(false)
+                            .title("")
+                            .cost(0)
+                            .category("")
+                            .memo("")
+                            .vendor("")
+                            .time(today)
+                            .paymentMethod("")
+                            .group(new ArrayList<>())
+                            .build();
+                });
     }
 
     @Transactional
@@ -135,10 +153,86 @@ public class TransactionService {
     public void deleteTransactions(CustomUserDetails userDetails, List<String> transactionIds) {
         for(String transactionId : transactionIds) {
             Transaction transaction = findById(userDetails, transactionId);
-            analysisService.removeTransactionFromAnalysis(userDetails, transaction);
+            if(transaction.getIsCombined()) {
+                analysisService.deleteCombinedTransactionfromAnalysis(userDetails, transaction);
+            }
+            else {
+                analysisService.removeTransactionFromAnalysis(userDetails, transaction);
+            }
         }
 
         transactionRepository.deleteAllByIdIn(transactionIds);
+    }
+
+    @Transactional
+	public TransactionDetailDto combineTransactions(CustomUserDetails userDetails, TransactionCombineDto dto) {
+        Transaction mainTransaction = findById(userDetails, dto.mainTransactionId());
+        List<Transaction> combiningTransactions = findByIds(userDetails, dto.combiningTransactionIds());
+
+        if(!mainTransaction.getGroup().isEmpty()) {
+            throw new TransactionCombineConflictException();
+        }
+
+        Transaction newTransaction = Transaction.builder()
+            .userId(mainTransaction.getUserId())
+            .year(mainTransaction.getYear())
+            .month(mainTransaction.getMonth())
+            .day(mainTransaction.getDay())
+            .isCombined(true)
+            .title(mainTransaction.getTitle())
+            .cost(mainTransaction.getCost())
+            .category(mainTransaction.getCategory())
+            .memo(mainTransaction.getMemo())
+            .vendor(mainTransaction.getVendor())
+            .time(mainTransaction.getTime())
+            .paymentMethod(mainTransaction.getPaymentMethod())
+            .group(new ArrayList<>())
+            .build();
+
+        List<Transaction> newGroup = newTransaction.getGroup();
+        int newCost = 0;
+
+        combiningTransactions.add(mainTransaction);
+        for(Transaction transaction : combiningTransactions) {
+            newGroup.add(transaction);
+            newCost += transaction.getCost();
+        }
+
+        newTransaction.setCost(newCost);
+        newTransaction.setGroup(
+            newGroup.stream()
+                .sorted(Comparator.comparing(Transaction::getTime))
+                .collect(Collectors.toList())
+        );
+
+        List<String> combinedTransactionIds = dto.combiningTransactionIds();
+        combinedTransactionIds.add(mainTransaction.getId());
+
+        transactionRepository.save(newTransaction);
+        transactionRepository.deleteAllByIdIn(combinedTransactionIds);
+
+        analysisService.addCombinedTransactiontoAnalysis(userDetails, newTransaction);
+
+        return TransactionDetailDto.of(newTransaction);
+    }
+
+    @Transactional
+    public List<TransactionDetailDto> uncombineTransactions(CustomUserDetails userDetails, String transactionId) {
+        Transaction mainTransaction = findById(userDetails, transactionId);
+        List<TransactionDetailDto> transactionDetailDtos = new ArrayList<>();
+
+        for(Transaction transaction: mainTransaction.getGroup()) {
+            transactionRepository.save(transaction);
+            transactionDetailDtos.add(TransactionDetailDto.of(transaction));
+
+        }
+
+        analysisService.removeCombinedTransactionfromAnalysis(userDetails, mainTransaction);
+
+        transactionRepository.deleteById(transactionId);
+
+
+        return transactionDetailDtos;
     }
 
     private Transaction findById(CustomUserDetails userDetails, String id) {
@@ -151,4 +245,19 @@ public class TransactionService {
         return transaction;
     }
 
+    private List<Transaction> findByIds(CustomUserDetails userDetails, List<String> ids) {
+        List<Transaction> transactions = transactionRepository.findAllById(ids);
+
+        if(transactions.size() != ids.size()) {
+            throw new TransactionNotFoundException();
+        }
+
+        for(Transaction transaction : transactions) {
+            if(!userDetails.id().equals(transaction.getUserId())) {
+                throw new TransactionAccessDeniedException();
+            }
+        }
+
+        return transactions;
+    }
 }
