@@ -1,7 +1,9 @@
 package com.ilm.mulga.data.service
 
 import com.ilm.mulga.data.dto.request.TransactionRequestDto
+import com.ilm.mulga.data.dto.request.TransactionUpdateRequestDto
 import com.ilm.mulga.data.dto.response.MonthlyTransactionResponseDto
+import com.ilm.mulga.presentation.model.TransactionDetailData
 import kotlinx.serialization.json.Json
 import retrofit2.Response
 import java.time.YearMonth
@@ -160,9 +162,16 @@ class FakeTransactionService : TransactionService {
         return Response.success(response)
     }
 
-    override suspend fun postTransaction(request: TransactionRequestDto): Response<Unit> {
-        return Response.success(Unit)
+    override suspend fun postTransaction(request: TransactionRequestDto): Response<TransactionDetailData> {
+        TODO("Not yet implemented")
     }
 
 
+
+    override suspend fun deleteTransactions(ids: List<String>): Response<Unit> {
+        TODO("Not yet implemented")
+    }
+    override suspend fun patchTransaction(request: TransactionUpdateRequestDto): Response<TransactionDetailData> {
+        TODO("Not yet implemented")
+    }
 }

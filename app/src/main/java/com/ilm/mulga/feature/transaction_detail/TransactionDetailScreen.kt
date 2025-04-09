@@ -13,6 +13,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -29,6 +30,7 @@ import com.ilm.mulga.feature.transaction_detail.components.TransactionHeaderView
 import com.ilm.mulga.presentation.model.TransactionDetailData
 import com.ilm.mulga.presentation.model.type.Category
 import com.ilm.mulga.ui.theme.MulGaTheme
+import kotlinx.serialization.json.Json
 import org.koin.androidx.compose.koinViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -37,10 +39,22 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun TransactionDetailScreen(
     viewModel: TransactionDetailViewModel = koinViewModel(),
-    navController: NavController
+    navController: NavController,
+    rootNavController: NavController
 ) {
     // viewModel에서 관리하는 TransactionDetailData
     val detailData by viewModel.transactionDetailData.collectAsState()
+
+    // LaunchedEffect로 화면 복귀 시 업데이트 확인
+    LaunchedEffect(Unit) {
+        val json = navController.currentBackStackEntry?.savedStateHandle?.get<String>("updatedTransactionJson")
+        val updated = json?.let { Json.decodeFromString<TransactionDetailData>(it) }
+        if (updated != null) {
+            viewModel.setTransactionDetail(updated)
+            navController.currentBackStackEntry?.savedStateHandle?.remove<String>("updatedTransactionJson")
+        }
+    }
+
 
     // 데이터가 아직 없으면 로딩 상태 표시
     if (detailData == null) {
@@ -64,7 +78,7 @@ fun TransactionDetailScreen(
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        text = "내역 추가",
+                        text = "상세 정보",
                         style = MulGaTheme.typography.bodyLarge,
                         color = MulGaTheme.colors.grey1
                     )
@@ -96,7 +110,7 @@ fun TransactionDetailScreen(
             TransactionHeaderView(
                 category = data.category,
                 cost = data.cost,
-                onEditClick = { viewModel.onEditTransaction() }
+                onEditClick = { viewModel.onEditTransaction(rootNavController) }
             )
 
             Spacer(modifier = Modifier.height(50.dp))
@@ -118,6 +132,10 @@ fun TransactionDetailScreen(
                 )
                 DetailLabel(
                     label = stringResource(id = R.string.field_payment_method),
+                    value = data.paymentMethod
+                )
+                DetailLabel(
+                    label = stringResource(id = R.string.field_transaction_date_time),
                     value = data.time.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm"))
                 )
                 DetailLabel(
@@ -140,7 +158,8 @@ fun TransactionDetailScreenPreview() {
         vendor = "스타벅스",
         time = LocalDateTime.now(),
         cost = 1500,
-        memo = "아침 출근 전 커피"
+        memo = "아침 출근 전 커피",
+        paymentMethod = "카카오 페이"
     )
 
     // fakeViewModel에 더미 데이터를 설정
@@ -149,8 +168,10 @@ fun TransactionDetailScreenPreview() {
     }
     // Preview에서는 rememberNavController()를 사용
     val navController = rememberNavController()
+    val rootNavController = rememberNavController()
     TransactionDetailScreen(
         viewModel = fakeViewModel,
-        navController = navController
+        navController = navController,
+        rootNavController = rootNavController
     )
 }

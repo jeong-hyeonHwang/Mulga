@@ -6,6 +6,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -18,6 +19,7 @@ import com.ilm.mulga.feature.component.navigation.BottomNavigationBar
 import com.ilm.mulga.feature.component.navigation.NavigationItem
 import com.ilm.mulga.feature.home.HomeScreen
 import com.ilm.mulga.feature.mypage.MypageScreen
+import com.ilm.mulga.feature.transaction_detail.TransactionAddScreen
 import com.ilm.mulga.feature.transaction_detail.TransactionDetailViewModel
 import com.ilm.mulga.presentation.model.TransactionDetailData
 import kotlinx.serialization.json.Json
@@ -28,7 +30,8 @@ import java.nio.charset.StandardCharsets
 
 @Composable
 fun MainScreen(
-    onNavigateToTransactionAdd: () -> Unit
+    onNavigateToTransactionAdd: () -> Unit,
+    rootNavController: NavController
 ) {
     val tabNavController = rememberNavController()
 
@@ -37,7 +40,8 @@ fun MainScreen(
 
     Scaffold(
         bottomBar = {
-            if (currentRoute !in listOf("transaction_add")) {
+            // "transaction_add"와 "transaction_detail" 경로에서는 BottomNavigationBar를 표시하지 않습니다.
+            if (currentRoute !in listOf("transaction_add", "transaction_detail")) {
                 BottomNavigationBar(navController = tabNavController)
             }
         }
@@ -48,29 +52,14 @@ fun MainScreen(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(NavigationItem.Home.route) { HomeScreen() }
-            composable(NavigationItem.Calendar.route) { CalendarScreen(navController = tabNavController) }
             composable(NavigationItem.Calendar.route) {
-                CalendarScreen(onNavigateToTransactionAdd = onNavigateToTransactionAdd, navController = tabNavController)
+                CalendarScreen(
+                    onNavigateToTransactionAdd = onNavigateToTransactionAdd,
+//                    navController = tabNavController
+                )
             }
             composable(NavigationItem.Analytics.route) { AnalysisScreen() }
             composable(NavigationItem.Profile.route) { MypageScreen() }
-            composable(
-                route = "transaction_detail?data={data}",
-                arguments = listOf(navArgument("data") { type = NavType.StringType })
-            ) { backStackEntry ->
-                val dataParam = backStackEntry.arguments?.getString("data")
-                val transactionDetailData = dataParam?.let {
-                    val decodedData = URLDecoder.decode(it, StandardCharsets.UTF_8.toString())
-                    Json.decodeFromString<TransactionDetailData>(decodedData)
-                }
-                // Koin을 사용하는 경우, koinViewModel()으로 동일한 인스턴스를 받습니다.
-                val viewModel: TransactionDetailViewModel = koinViewModel()
-                if (transactionDetailData != null && viewModel.transactionDetailData.value == null) {
-                    viewModel.setTransactionDetail(transactionDetailData)
-                }
-                TransactionDetailScreen(viewModel = viewModel, navController = tabNavController)
-            }
-
         }
     }
 }

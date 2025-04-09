@@ -1,5 +1,6 @@
 package com.ilm.mulga.feature.home.components
 
+import TransactionItem
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,7 +15,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ilm.mulga.R
-import com.ilm.mulga.feature.calendar.components.TransactionItem
 import com.ilm.mulga.presentation.model.TransactionItemData
 import com.ilm.mulga.presentation.model.type.Category
 import com.ilm.mulga.ui.theme.MulGaTheme
@@ -42,7 +42,13 @@ fun RecentExpenseView(
                 .height(contentHeight),
         ) {
             if (item != null) {
-                TransactionItem(item = item, onClick = {})
+                TransactionItem(
+                    item = item,
+                    onClick = { },
+                    onLongPress = { },
+                    isSelected = false,
+                    isDeleteMode = false,
+                )
             } else {
                 Text(
                     text = stringResource(R.string.main_no_recent_expense),

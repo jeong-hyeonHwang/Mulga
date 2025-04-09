@@ -13,6 +13,8 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 import androidx.credentials.CredentialManager
+import com.ilm.mulga.data.network.RetrofitClient
+import com.ilm.mulga.data.repository.UserRepository
 
 val loginModule = module {
     // Firebase
@@ -27,11 +29,14 @@ val loginModule = module {
     // Repositories
     single<AuthRepository> { AuthRepositoryImpl(get(), get(), get()) }
 
+    single { RetrofitClient.userService }
+    single { UserRepository(get(), get()) }
+
     // Use Cases
     factory { LoginWithCredentialUseCase(get()) }
     factory { LogoutUseCase(get()) }
     factory { GetCurrentUserUseCase(get()) }
 
     // ViewModels
-    viewModel { LoginViewModel(get(), get(), get(), get()) }
+    viewModel { LoginViewModel(get(), get(), get(), get(), get()) }
 }

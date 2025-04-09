@@ -24,7 +24,7 @@ class HomeViewModel : ViewModel() {
     }
 
     // 도메인 모델을 불러와 Presentation Model로 변환하고 UI 상태에 저장하는 함수
-    private suspend fun loadAndConvertHomeData() {
+    suspend fun loadAndConvertHomeData() {
         val homeExpenseSummaryEntity = repository.getHomeData()
         if (homeExpenseSummaryEntity != null) {
             // 도메인 모델 및 Presentation 모델로 매핑하는 함수 사용 (예: toDomain()와 toPresentation())

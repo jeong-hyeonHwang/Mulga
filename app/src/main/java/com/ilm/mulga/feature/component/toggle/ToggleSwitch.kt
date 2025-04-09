@@ -81,7 +81,7 @@ fun ToggleSwitch(
                 color = if (selectedIndex == 0) MulGaTheme.colors.primary else Color.Gray,
                 modifier = Modifier
                     .clickable(
-                        indication = null, // ripple 및 hover 효과 제거
+                        indication = null,
                         interactionSource = remember { MutableInteractionSource() }
                     ) {
                         onOptionSelected(0)
