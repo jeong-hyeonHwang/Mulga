@@ -206,10 +206,10 @@ fun CalendarScreen(
         if (isDeleteMode) {
             TransactionBatchPanel(
                 onMergeClick = {
-                    showCombineConfirmDialog.value = true
+                    showCombineConfirmDialog.value = calendarViewModel.isValidForCombine(selectedItemIds)
                 },
                 onDeleteClick = {
-                    showDeleteConfirmDialog.value = true
+                    showDeleteConfirmDialog.value = calendarViewModel.isValidForDelete(selectedItemIds)
                 },
                 onCancelClick = {
                     transactionItemViewModel.clearActionMode()
@@ -248,7 +248,7 @@ fun CalendarScreen(
             stringResource(id = R.string.dialog_combine_confirmation_title),
             stringResource(id = R.string.dialog_combine_confirmation_message, selectedItemIds.size),
             stringResource(R.string.btn_title_merge),
-            onCancel = { showDeleteConfirmDialog.value = false },
+            onCancel = { showCombineConfirmDialog.value = false },
             onConfirm = {
                 calendarViewModel.combineTransactionItems(selectedItemIds)
                 coroutineScope.launch {

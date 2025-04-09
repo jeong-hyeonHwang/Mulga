@@ -70,10 +70,10 @@
     <string name="dialog_withdrawal_confirmation_message">탈퇴하시면 모든 정보는 삭제됩니다.</string>
     <string name="dialog_delete_confirmation_title">정말 삭제하시겠습니까?</string>
     <string name="dialog_delete_confirmation_message">%d 개의 데이터가 삭제됩니다.\n이 행동은 취소할 수 없습니다.</string>
-    <string name="toast_delete_minimum_selection_message">삭제할 항목을 2개 이상 선택해주세요.</string>
+    <string name="toast_delete_minimum_selection_message">삭제할 항목을 1개 이상 선택해주세요.</string>
     <string name="dialog_combine_confirmation_title">합치시겠어요?</string>
     <string name="dialog_combine_confirmation_message">%d 개의 데이터가 합쳐집니다.</string>
-    <string name="toast_merge_already_combined_message">이미 합쳐진 항목은 합칠 수 없습니다.</string>
+    <string name="toast_merge_already_combined_message">이미 합친 항목은 다시 합칠 수 없습니다.</string>
     <string name="toast_merge_minimum_selection_message">합칠 항목을 2개 이상 선택해주세요.</string>
 
 
