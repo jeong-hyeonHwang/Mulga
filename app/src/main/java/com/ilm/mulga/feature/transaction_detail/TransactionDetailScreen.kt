@@ -13,6 +13,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -29,6 +30,7 @@ import com.ilm.mulga.feature.transaction_detail.components.TransactionHeaderView
 import com.ilm.mulga.presentation.model.TransactionDetailData
 import com.ilm.mulga.presentation.model.type.Category
 import com.ilm.mulga.ui.theme.MulGaTheme
+import kotlinx.serialization.json.Json
 import org.koin.androidx.compose.koinViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -42,6 +44,17 @@ fun TransactionDetailScreen(
 ) {
     // viewModel에서 관리하는 TransactionDetailData
     val detailData by viewModel.transactionDetailData.collectAsState()
+
+    // LaunchedEffect로 화면 복귀 시 업데이트 확인
+    LaunchedEffect(Unit) {
+        val json = navController.currentBackStackEntry?.savedStateHandle?.get<String>("updatedTransactionJson")
+        val updated = json?.let { Json.decodeFromString<TransactionDetailData>(it) }
+        if (updated != null) {
+            viewModel.setTransactionDetail(updated)
+            navController.currentBackStackEntry?.savedStateHandle?.remove<String>("updatedTransactionJson")
+        }
+    }
+
 
     // 데이터가 아직 없으면 로딩 상태 표시
     if (detailData == null) {
@@ -65,7 +78,7 @@ fun TransactionDetailScreen(
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        text = "내역 추가",
+                        text = "상세 정보",
                         style = MulGaTheme.typography.bodyLarge,
                         color = MulGaTheme.colors.grey1
                     )
