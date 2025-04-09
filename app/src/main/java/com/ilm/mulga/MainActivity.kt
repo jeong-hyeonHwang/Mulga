@@ -59,11 +59,11 @@ class MainActivity : ComponentActivity() {
                     val userState by loginViewModel.userState.collectAsState()
 
                     when (uiState) {
+                        is LoginUiState.Initial,
                         is LoginUiState.Loading -> {
                             // LoadingScreen()
                         }
                         is LoginUiState.NotLoggedIn,
-                        is LoginUiState.Initial,
                         is LoginUiState.Error -> {
                             LoginScreen()
                         }
