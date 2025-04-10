@@ -18,6 +18,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -26,8 +28,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ilm.mulga.R
+import com.ilm.mulga.feature.transaction_detail.components.CombinedTransactionInfoModal
 import com.ilm.mulga.feature.transaction_detail.components.DetailLabel
 import com.ilm.mulga.feature.transaction_detail.components.TransactionCombineDetailHeaderView
+import com.ilm.mulga.presentation.mapper.toDailyTransactionData
+import com.ilm.mulga.presentation.mapper.toTransactionItemDataForMain
 import com.ilm.mulga.presentation.model.TransactionDetailData
 import com.ilm.mulga.presentation.model.type.Category
 import com.ilm.mulga.ui.theme.MulGaTheme
@@ -74,6 +79,9 @@ fun TransactionCombineDetailScreen(
     // safe하게 사용할 수 있도록 로컬 변수에 저장
     val data = detailData!!
 
+    // Modal 표시 여부 상태
+    val showCombinedModal = remember { mutableStateOf(false) }
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -113,7 +121,7 @@ fun TransactionCombineDetailScreen(
                 cost = data.cost,
                 onEditClick = { viewModel.onEditCombineTransaction(rootNavController) },
                 combineNum = data.group.size.toString(),
-                onCombineClick = {}
+                onCombineClick = { showCombinedModal.value = true }
             )
 
             Spacer(modifier = Modifier.height(50.dp))
@@ -140,7 +148,19 @@ fun TransactionCombineDetailScreen(
             }
         }
     }
+
+    // 여기서 onCombineClick이 호출되면, data.group (List<TransactionDetailData>)를
+    // TransactionItemData 리스트로 변환해서 CombinedTransactionInfoModal에 전달합니다.
+    if (showCombinedModal.value) {
+        CombinedTransactionInfoModal(
+            combinedTransactions = data.group.toDailyTransactionData(),
+            onDismiss = {
+                showCombinedModal.value = false
+            }
+        )
+    }
 }
+
 
 @Preview(showBackground = true)
 @Composable

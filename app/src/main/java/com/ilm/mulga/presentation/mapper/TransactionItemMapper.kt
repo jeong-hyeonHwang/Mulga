@@ -18,3 +18,4 @@ fun TransactionEntity.toPresentation(): TransactionDetailData {
         group = group.map { item -> item.toPresentation() }
     )
 }
+
