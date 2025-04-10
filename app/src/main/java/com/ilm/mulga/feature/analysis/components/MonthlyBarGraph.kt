@@ -34,7 +34,9 @@ fun MonthlyBarGraph(
     amount: List<Float>,
     currentMonth: Int
 ) {
-    val averageHeight = NumberFormat.getInstance().format(ceil(amount.average() / 10000).toFloat())
+    val filteredAmount = amount.dropLast(1).filter { it != 0f }
+    val average = if (filteredAmount.isNotEmpty()) filteredAmount.average() else 0.0
+    val averageHeight = NumberFormat.getInstance().format(ceil(average / 10000).toFloat())
 
     // Theme colors
     val grey2Color = MulGaTheme.colors.grey2
@@ -68,7 +70,7 @@ fun MonthlyBarGraph(
         ) {
             // Title text
             val annotatedText = buildAnnotatedString {
-                append("월 평균\n")
+                append("월 평균\n약 ")
                 withStyle(style = SpanStyle(color = primaryColor)) {
                     append("${averageHeight.toInt()}만원")
                 }
