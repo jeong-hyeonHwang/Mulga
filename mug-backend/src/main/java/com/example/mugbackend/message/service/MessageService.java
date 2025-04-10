@@ -178,7 +178,7 @@ public class MessageService {
     public void flushStaleGroups() {
         System.out.println("[flushStaleGroups] 시작. userNotiGroups 크기: " + userNotiGroups.size());
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now().plusHours(9);
         Iterator<Map.Entry<String, FinanceNotiGroup>> iterator = userNotiGroups.entrySet().iterator();
         while (iterator.hasNext()) {
 
