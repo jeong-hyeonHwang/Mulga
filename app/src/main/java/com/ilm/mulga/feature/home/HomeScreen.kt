@@ -1,6 +1,9 @@
 package com.ilm.mulga.feature.home
 
 import WaveBackground
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,6 +32,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import kotlinx.coroutines.launch
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.ui.res.painterResource
+import com.ilm.mulga.R
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -86,6 +91,21 @@ fun HomeScreen(viewModel: HomeViewModel = koinViewModel()) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(0.15f)
+            )
+        }
+
+
+        // Box의 최상단 레이어에, baselineFraction이 1.0f일 때 물고기 이미지를 중앙에 오버레이합니다.
+        if (uiState.baselineFraction == 1.0f) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_util_fish),
+                contentDescription = "Fish",
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .clickable(
+                        indication = null,
+                        interactionSource = remember { MutableInteractionSource() }
+                    ) { /* 물고기 이미지 클릭 시 액션 */}
             )
         }
 
