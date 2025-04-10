@@ -176,11 +176,12 @@ public class MessageService {
     // 30초마다 모든 알림 그룹을 검사해서 시작 시각으로부터 1분이 지난 그룹을 flush
     @Scheduled(fixedRate = 30000)
     public void flushStaleGroups() {
-        System.out.println("[flushStaleGroups] 시작");
+        System.out.println("[flushStaleGroups] 시작. userNotiGroups 크기: " + userNotiGroups.size());
 
         LocalDateTime now = LocalDateTime.now();
         Iterator<Map.Entry<String, FinanceNotiGroup>> iterator = userNotiGroups.entrySet().iterator();
         while (iterator.hasNext()) {
+            System.out.println("[flushStaleGroups]에서 그룹 검사 중");
             Map.Entry<String, FinanceNotiGroup> entry = iterator.next();
             String userId = entry.getKey();
             FinanceNotiGroup group = entry.getValue();
