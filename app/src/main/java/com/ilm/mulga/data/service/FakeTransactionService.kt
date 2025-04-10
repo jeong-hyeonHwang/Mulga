@@ -4,6 +4,7 @@ import com.ilm.mulga.data.dto.request.TransactionCombineRequestDto
 import com.ilm.mulga.data.dto.request.TransactionRequestDto
 import com.ilm.mulga.data.dto.request.TransactionUpdateRequestDto
 import com.ilm.mulga.data.dto.response.MonthlyTransactionResponseDto
+import com.ilm.mulga.data.dto.response.TransactionDto
 import com.ilm.mulga.presentation.model.TransactionDetailData
 import kotlinx.serialization.json.Json
 import retrofit2.Response
@@ -163,7 +164,7 @@ class FakeTransactionService : TransactionService {
         return Response.success(response)
     }
 
-    override suspend fun postTransaction(request: TransactionRequestDto): Response<TransactionDetailData> {
+    override suspend fun postTransaction(request: TransactionRequestDto): Response<TransactionDto> {
         TODO("Not yet implemented")
     }
 
@@ -172,11 +173,15 @@ class FakeTransactionService : TransactionService {
     override suspend fun deleteTransactions(ids: List<String>): Response<Unit> {
         TODO("Not yet implemented")
     }
-    override suspend fun patchTransaction(request: TransactionUpdateRequestDto): Response<TransactionDetailData> {
+    override suspend fun patchTransaction(request: TransactionUpdateRequestDto): Response<TransactionDto> {
         TODO("Not yet implemented")
     }
 
     override suspend fun combineTransaction(request: TransactionCombineRequestDto): Response<MonthlyTransactionResponseDto> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun uncombineTransaction(transactionId: String): Response<List<TransactionDto>> {
         TODO("Not yet implemented")
     }
 }

@@ -27,6 +27,8 @@ import com.ilm.mulga.feature.login.SplashScreen
 import com.ilm.mulga.feature.login.UserState
 import com.ilm.mulga.feature.local.LocalNavController
 import com.ilm.mulga.feature.transaction_detail.TransactionAddScreen
+import com.ilm.mulga.feature.transaction_detail.TransactionCombineDetailScreen
+import com.ilm.mulga.feature.transaction_detail.TransactionCombineUpdateScreen
 import com.ilm.mulga.feature.transaction_detail.TransactionDetailViewModel
 import com.ilm.mulga.presentation.model.TransactionDetailData
 import com.ilm.mulga.ui.theme.MulGaTheme
@@ -144,6 +146,43 @@ class MainActivity : ComponentActivity() {
                                                 navController = rootNavController,
                                                 rootNavController = rootNavController
                                             )
+                                        }
+                                        composable(
+                                            route = "transaction_combine_detail?data={data}",
+                                            arguments = listOf(navArgument("data") {
+                                                type = NavType.StringType
+                                            })
+                                        ) { backStackEntry ->
+                                            val dataParam = backStackEntry.arguments?.getString("data")
+                                            val transactionDetailData = dataParam?.let {
+                                                val decodedData = URLDecoder.decode(it, StandardCharsets.UTF_8.toString())
+                                                Json.decodeFromString<TransactionDetailData>(decodedData)
+                                            }
+                                            val viewModel: TransactionDetailViewModel = koinViewModel()
+                                            if (transactionDetailData != null && viewModel.transactionDetailData.value == null) {
+                                                viewModel.setTransactionDetail(transactionDetailData)
+                                            }
+                                            TransactionCombineDetailScreen(
+                                                viewModel = viewModel,
+                                                navController = rootNavController,
+                                                rootNavController = rootNavController
+                                            )
+                                        }
+                                        composable("transaction_combine_edit/{id}") { backStackEntry ->
+                                            val id = backStackEntry.arguments?.getString("id")
+
+                                            val json = rootNavController.previousBackStackEntry?.savedStateHandle?.get<String>("editDataJson")
+                                            val initialData = json?.let {
+                                                Json.decodeFromString<TransactionDetailData>(it)
+                                            }
+
+                                            if (id != null && initialData != null) {
+                                                TransactionCombineUpdateScreen(
+                                                    navController = rootNavController,
+                                                    transactionId = id,
+                                                    initialData = initialData
+                                                )
+                                            }
                                         }
                                     }
                                 }

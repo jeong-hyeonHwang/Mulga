@@ -68,7 +68,7 @@ class AuthRepositoryImpl(
         return firebaseUser?.toUser()
     }
 
-    private suspend fun getCurrentUserToken(forceRefresh: Boolean = false): Result<String> {
+    suspend fun getCurrentUserToken(forceRefresh: Boolean = false): Result<String> {
         return try {
             val currentUser = auth.currentUser
             if (currentUser != null) {
@@ -101,5 +101,4 @@ class AuthRepositoryImpl(
             }
         }
     }
-
 }

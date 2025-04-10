@@ -9,11 +9,11 @@ import java.time.LocalDateTime
 data class TransactionDetailData (
     val id: String,
     val title: String,
-    val category: Category,
+    val category: Category?,
     val vendor: String,
     @Serializable(with = LocalDateTimeSerializer::class) val time: LocalDateTime,
     var cost: Int,
     val memo: String,
     val paymentMethod: String,
-    val group: List<TransactionItemData> = emptyList()
+    val group: List<TransactionDetailData> = emptyList()
 )

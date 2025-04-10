@@ -93,6 +93,7 @@ android {
 dependencies {
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.googleid)
+    implementation(libs.volley)
     val room_version = "2.6.1"
 
     implementation(libs.androidx.core.ktx)
