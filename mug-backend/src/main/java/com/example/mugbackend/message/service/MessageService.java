@@ -207,15 +207,21 @@ public class MessageService {
         /*
         1. appName에 '카드' 또는 'card'가 포함된 경우 카드 결제
         2. title이 '네이버페이' 또는 '네이버 페이'인 경우 -> paymentMethod가 '네이버페이' 인 알림으로 Transaction 처리
-           ->
          */
-        FinanceNotiDto cardNoti = group.getNotifications().stream()
-                .filter(dto -> dto.getPaymentMethod() != null && dto.getPaymentMethod().contains("카드"))
-                .findFirst()
-                .orElse(null);
+        boolean hasCardPayment = group.getNotifications().stream()
+                .filter(dto -> dto.getPaymentMethod() != null)
+                .anyMatch(dto -> dto.getPaymentMethod().contains("카드")
+                        || dto.getPaymentMethod().toLowerCase().contains("card"));
 
-        if (cardNoti != null) {
-            // cardNoti를 Transaction 엔티티로 변환
+        if (hasCardPayment) {
+            System.out.println("userId: " + userId + " 에는 카드 관련 내역이 있습니다.");
+            // 1. 카드 알림인 경우
+            String message = messageHelperService.makeCardPrompt(group.getNotifications());
+            String gptMessage = chatGPTService.getTheBestNoti(message);
+            String normalizedGptMessage = messageHelperService.normalizeGPTResponse(gptMessage);
+            System.out.println("카드결제의 GPT API 응답 : " + normalizedGptMessage);
+
+            FinanceNotiDto cardNoti = convertToFinanceNotiDto(normalizedGptMessage);
             Transaction newTransaction = convertToTransaction(cardNoti);
             // CustomUserDetails 만들기
             User user = userService.findUserById(userId);
@@ -227,7 +233,8 @@ public class MessageService {
 
             System.out.println("[" + userId + "] 그룹 flush: 알림 저장");
         } else {
-            // 2. 카드 알림이 아닌 경우(네이버페이 머니 충전결제라고 가정..) gpt한테 요청
+            System.out.println("userId: " + userId + " 에는 카드 관련 내역이 없습니다.");
+            // 2. 카드 알림이 아닌 경우(네이버페이 머니 충전결제라고 가정..)
             String message = messageHelperService.makeNaverPayPrompt(group.getNotifications());
             String gptMessage = chatGPTService.getTheBestNoti(message);
             String normalizedGptMessage = messageHelperService.normalizeGPTResponse(gptMessage);
