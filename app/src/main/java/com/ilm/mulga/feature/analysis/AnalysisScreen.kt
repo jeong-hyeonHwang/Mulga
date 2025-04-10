@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.ilm.mulga.R
 import com.ilm.mulga.feature.analysis.components.CategoryList
 import com.ilm.mulga.feature.analysis.components.DonutChart
 import com.ilm.mulga.feature.analysis.components.Graphs
@@ -19,6 +20,8 @@ import com.ilm.mulga.feature.analysis.components.YearMonthSelector
 import androidx.compose.runtime.*
 import androidx.navigation.NavController
 import com.ilm.mulga.feature.analysis.components.PaymentItemData
+import com.ilm.mulga.presentation.model.DonutSliceInfo
+import com.ilm.mulga.presentation.model.type.Category
 
 @Composable
 fun AnalysisScreen(analysisNavController: NavController, viewModel: AnalysisViewModel) {
@@ -50,7 +53,12 @@ fun AnalysisScreen(analysisNavController: NavController, viewModel: AnalysisView
     val chartSlices = viewModel.slices.value
 
     val chartSlicesSimplified = if (chartSlices.size > 5) {
-        chartSlices.take(5) + listOf(total - chartSlices.take(5).sum())
+        chartSlices.take(5) + listOf(
+            DonutSliceInfo(
+                category = Category.ETC, // 남은 부분에 사용할 기본 색상 리소스 ID
+                value = total - chartSlices.take(5).sumOf { it.value }
+            )
+        )
     } else {
         chartSlices
     }

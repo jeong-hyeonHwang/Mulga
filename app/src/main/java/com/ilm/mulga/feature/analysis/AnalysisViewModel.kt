@@ -4,11 +4,15 @@ import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.ui.res.colorResource
 import com.ilm.mulga.feature.analysis.components.CategoryItemRaw
 import java.time.LocalDate
 import androidx.lifecycle.viewModelScope
+import com.ilm.mulga.R
 import com.ilm.mulga.data.network.RetrofitClient
 import com.ilm.mulga.data.dto.response.AnalysisDto
+import com.ilm.mulga.presentation.model.DonutSliceInfo
+import com.ilm.mulga.presentation.model.type.Category
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -28,8 +32,8 @@ class AnalysisViewModel : ViewModel() {
     private val _total = mutableIntStateOf(0)
     val total: State<Int> = _total
 
-    private val _slices = mutableStateOf<List<Int>>(emptyList())
-    val slices: State<List<Int>> = _slices
+    private val _slices = mutableStateOf<List<DonutSliceInfo>>(emptyList())
+    val slices: State<List<DonutSliceInfo>> = _slices
 
     private val _items = mutableStateOf<List<CategoryItemRaw>>(emptyList())
     val items: State<List<CategoryItemRaw>> = _items
@@ -69,7 +73,10 @@ class AnalysisViewModel : ViewModel() {
                     _analysisData.value = response.body()
                     _errorMessage.value = null
                     _total.intValue = _analysisData.value?.monthTotal ?: 0
-                    _slices.value = _analysisData.value?.category?.map { it.value } ?: emptyList()
+                    _slices.value = _analysisData.value?.category?.map { (key, value) ->
+                        val category = Category.fromBackendKey(key) ?: Category.ETC
+                        DonutSliceInfo(category, value)
+                    } ?: emptyList()
                     _items.value = _analysisData.value?.category?.filter { it.value != 0 }?.map { CategoryItemRaw(it.key, it.value) } ?: emptyList()
                     _line1Data.value = _analysisData.value?.thisMonthAccumulation?.map { it.value.toFloat() } ?: emptyList()
                     _line2Data.value = _analysisData.value?.lastMonthAccumulation?.map { it.value.toFloat() } ?: emptyList()
