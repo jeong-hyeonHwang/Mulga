@@ -181,11 +181,16 @@ public class MessageService {
         LocalDateTime now = LocalDateTime.now();
         Iterator<Map.Entry<String, FinanceNotiGroup>> iterator = userNotiGroups.entrySet().iterator();
         while (iterator.hasNext()) {
+
             System.out.println("[flushStaleGroups]에서 그룹 검사 중");
+
             Map.Entry<String, FinanceNotiGroup> entry = iterator.next();
             String userId = entry.getKey();
             FinanceNotiGroup group = entry.getValue();
             long secondsElapsed = Duration.between(group.getStartTime(), now).getSeconds();
+
+            System.out.println("group.getStartTime(): " + group.getStartTime() + ", now: " + now + ", secondsElapsed: " + secondsElapsed);
+
             if (secondsElapsed > 60) {
                 // 1분 초과이면 기존 그룹 금융 알림 처리 후 flush
                 System.out.println("시작 시간: " + group.getStartTime() + ", 현재 시간: " + now + ", 경과 시간: " + secondsElapsed + "초");
