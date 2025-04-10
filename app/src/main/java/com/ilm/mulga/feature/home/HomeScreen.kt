@@ -94,6 +94,20 @@ fun HomeScreen(viewModel: HomeViewModel = koinViewModel()) {
             state = pullRefreshState,
             modifier = Modifier.align(Alignment.TopCenter)
         )
+
+        // Box의 최상단 레이어에, baselineFraction이 1.0f일 때 물고기 이미지를 중앙에 오버레이합니다.
+        if (uiState.baselineFraction == 1.0f) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_util_fish),
+                contentDescription = "Fish",
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .clickable(
+                        indication = null,
+                        interactionSource = remember { MutableInteractionSource() }
+                    ) { /* 물고기 이미지 클릭 시 액션 */}
+            )
+        }
     }
 }
 
