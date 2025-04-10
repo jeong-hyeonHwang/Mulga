@@ -13,8 +13,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.Image
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.graphics.drawable.toBitmap
 import com.ilm.mulga.ui.theme.MulGaTheme
 import com.ilm.mulga.R
+import com.ilm.mulga.util.extension.AppIconManager
 import java.text.NumberFormat
 
 data class PaymentItemData(
@@ -31,21 +35,31 @@ fun getIconResource(source: String): @Composable () -> Unit {
         "카카오뱅크" -> { { Image(painter = painterResource(id = R.drawable.ic_pay_kakaobank), contentDescription = null, modifier = Modifier.fillMaxSize()) } }
         "카카오페이" -> { { Image(painter = painterResource(id = R.drawable.ic_pay_kakaopay), contentDescription = null, modifier = Modifier.fillMaxSize()) } }
         else -> {
-            // Fallback: Grey box with the first letter of source
-            {
-                Box(
-                    modifier = Modifier
-                        .size(36.dp) // Size of the box
-                        .clip(RoundedCornerShape(4.dp))
-                        .background(MulGaTheme.colors.grey2) // Grey background color
-                ) {
-                    Text(
-                        text = source.first().toString(), // Display the first letter of the source
-                        modifier = Modifier.align(Alignment.Center),
-                        style = MulGaTheme.typography.bodyLarge.copy(color = MulGaTheme.colors.white1) // White text on the grey box
-                    )
+            // 매칭되는 앱 찾기
+            val matchedApp = AppIconManager.findMostSimilarApp(source)
+            if (matchedApp != null) {
+                {
+                    // Drawable을 Compose용 ImageBitmap으로 변환
+                    val bitmap = matchedApp.appIcon.toBitmap().asImageBitmap()
+                    Image(bitmap = bitmap, contentDescription = null, modifier = Modifier.fillMaxSize())
+                }
+            } else {
+                {
+                    Box(
+                        modifier = Modifier
+                            .size(36.dp) // Size of the box
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(MulGaTheme.colors.grey2) // Grey background color
+                    ) {
+                        Text(
+                            text = source.first().toString(), // Display the first letter of the source
+                            modifier = Modifier.align(Alignment.Center),
+                            style = MulGaTheme.typography.bodyLarge.copy(color = MulGaTheme.colors.white1) // White text on the grey box
+                        )
+                    }
                 }
             }
+            // Fallback: Grey box with the first letter of source
         }
     }
 }
@@ -86,5 +100,14 @@ fun PaymentItem(
 
         // Text box on the far right with customizable text
         Text(NumberFormat.getNumberInstance().format(amount), style = MulGaTheme.typography.bodySmall) // Right text, customizable
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PaymentItemPreview() {
+    MulGaTheme {
+        // 네이버페이와 임의의 금액 예시로 PaymentItem 미리보기
+        PaymentItem(source = "물가ㅇ", amount = 150000)
     }
 }

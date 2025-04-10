@@ -4,6 +4,7 @@ import TransactionDetailScreen
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -17,6 +18,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.ilm.mulga.data.repository.AppRepository
 import com.ilm.mulga.feature.component.dialog.GlobalErrorDialog
 import com.ilm.mulga.feature.component.main.MainScreen
 import com.ilm.mulga.feature.login.LoginBudgetScreen
@@ -32,12 +34,16 @@ import com.ilm.mulga.feature.transaction_detail.TransactionCombineUpdateScreen
 import com.ilm.mulga.feature.transaction_detail.TransactionDetailViewModel
 import com.ilm.mulga.presentation.model.TransactionDetailData
 import com.ilm.mulga.ui.theme.MulGaTheme
+import com.ilm.mulga.util.extension.AppIconManager
 import kotlinx.serialization.json.Json
 import org.koin.androidx.compose.koinViewModel
 import java.net.URLDecoder
 import java.nio.charset.StandardCharsets
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var appRepository: AppRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -46,6 +52,19 @@ class MainActivity : ComponentActivity() {
             startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
             })
+        }
+
+        // 앱 저장소 초기화 및 앱 정보 로드
+        AppIconManager.initialize(this)
+        appRepository = AppRepository(this)
+        appRepository.loadInstalledApps()
+        appRepository.saveAppIcons()
+
+        val installedApps = appRepository.getAppsList()
+
+        installedApps.forEach { app ->
+            // 앱의 패키지명, 이름, 아이콘 등을 로그에 출력하거나 UI에 표시할 수 있습니다.
+            Log.d("AppInfo", "Package: ${app.packageName}, Name: ${app.appName}")
         }
 
         enableEdgeToEdge()
