@@ -47,16 +47,21 @@ public class MessageService {
         this.transactionRepository = transactionRepository;
     }
 
-    // 240초마다 실행
-    @Scheduled(fixedRate = 240000)
+    // 20초마다 실행
+    @Scheduled(fixedRate = 20000)
     public void pollMessages() {
 
-        List<String> messages = fetchMessages(3);
+        List<String> messages = fetchMessages(10);
         if (!messages.isEmpty()) {
 
             for(String message : messages) {
                 // 메시지 하나마다 gpt를 돌려야 한다.
                 System.out.println("메시지 원본 : " + message);
+
+                // 큐에서 메시지 못 가져왔으면 넘어감
+                if(message.equals("큐에서 메시지를 가져오지 못했습니다.")) {
+                    continue;
+                }
 
 //                // 카카오톡 메시지면 넘어감
 //                if(message.contains("카카오톡")) {
@@ -67,9 +72,10 @@ public class MessageService {
                 System.out.println("GPT API 응답 : " + gptMessage);
 
                 // 금융알림이 아니면 넘어감
-                if(gptMessage.equals("금융 알림이 아닙니다.")) {
+                if(gptMessage.equals("금융 알림이 아닙니다")) {
                     continue;
                 }
+
                 // 금융 알림이면 DTO로 변환
                 FinanceNotiDto financeNotiDto = convertToFinanceNotiDto(gptMessage);
 
@@ -159,8 +165,8 @@ public class MessageService {
     }
 
 
-    // 100초마다 모든 알림 그룹을 검사해서 시작 시각으로부터 1분이 지난 그룹을 flush
-    @Scheduled(fixedRate = 100000)
+    // 60초마다 모든 알림 그룹을 검사해서 시작 시각으로부터 1분이 지난 그룹을 flush
+    @Scheduled(fixedRate = 60000)
     public void flushStaleGroups() {
         LocalDateTime now = LocalDateTime.now();
         Iterator<Map.Entry<String, FinanceNotiGroup>> iterator = userNotiGroups.entrySet().iterator();
