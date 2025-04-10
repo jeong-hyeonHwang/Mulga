@@ -1,4 +1,5 @@
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -55,6 +56,8 @@ fun TransactionItem(
         else -> MulGaTheme.colors.grey2
     }
 
+    val isPayService = subTitleText.contains("naver") || subTitleText.contains("네이버")
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -78,14 +81,14 @@ fun TransactionItem(
             contentAlignment = Alignment.Center
         ) {
             if (item.category != null && !isSelected) {
-                androidx.compose.foundation.Image(
+                Image(
                     painter = painterResource(id = item.category.iconResId),
                     contentDescription = null,
                     modifier = Modifier.size(40.dp)
                 )
             }
             if (isDeleteMode && isSelected) {
-                androidx.compose.foundation.Image(
+                Image(
                     painter = painterResource(id = R.drawable.ic_util_check),
                     colorFilter = ColorFilter.tint(MulGaTheme.colors.white1),
                     contentDescription = "선택됨",
@@ -105,11 +108,23 @@ fun TransactionItem(
                 style = MulGaTheme.typography.bodySmall
             )
             Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = subTitleText,
-                color = subTitleColor,
-                style = MulGaTheme.typography.caption
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+                if (isPayService) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_logo_naver),
+                        contentDescription = "로고",
+                        modifier = Modifier
+                            .size(12.dp)
+                    )
+                }
+                Text(
+                    text = subTitleText,
+                    color = subTitleColor,
+                    style = MulGaTheme.typography.caption
+                )
+            }
         }
 
         Column(
