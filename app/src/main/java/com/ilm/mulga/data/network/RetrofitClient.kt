@@ -4,6 +4,7 @@ import android.util.Log
 import com.ilm.mulga.BuildConfig
 import com.ilm.mulga.data.datasource.local.UserLocalDataSource
 import com.ilm.mulga.data.repository.AuthRepositoryImpl
+import com.ilm.mulga.data.service.AnalysisService
 import com.ilm.mulga.data.service.HomeService
 import com.ilm.mulga.data.service.TransactionService
 import com.ilm.mulga.data.service.UserService
@@ -149,4 +150,5 @@ object RetrofitClient : KoinComponent {
     val transactionService: TransactionService = retrofit.create(TransactionService::class.java)
     val homeService: HomeService = retrofit.create(HomeService::class.java)
     val userService: UserService = retrofit.create(UserService::class.java)
+    val apiAnalysisService: AnalysisService = retrofit.create(AnalysisService::class.java)
 }

@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
             })
         }
-        
+
         enableEdgeToEdge()
         setContent {
             MulGaTheme {
