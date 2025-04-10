@@ -1,9 +1,11 @@
 package com.example.mugbackend.message.service;
 
 import com.example.mugbackend.message.dto.FinanceNotiDto;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PromptService {
     public static String makeNaverPayPrompt(List<FinanceNotiDto> notiList) {
         StringBuilder sb = new StringBuilder();
