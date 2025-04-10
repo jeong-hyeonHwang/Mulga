@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PromptService {
+public class MessageHelperService {
     public static String makeNaverPayPrompt(List<FinanceNotiDto> notiList) {
         StringBuilder sb = new StringBuilder();
 
@@ -33,14 +33,20 @@ public class PromptService {
         }
 
         // 프롬프트 마지막에 요청 사항 추가
-        sb.append("위의 거래 내역 중 네이버페이에 충전된 금액(transfer 및 등 기타 내역)이 아닌, **실제 구매 내역**만을 반환해 주세요.\n");
+        sb.append("위의 거래 내역 중 네이버페이에 충전된 금액(transfer 및 등 기타 내역)이 아닌, **실제 구매 내역**을 동일한 JSON 형태로 반환해 주세요.\n");
         sb.append("구매 내역은 itemName이 비어있지 않습니다.\n");
-        sb.append("cost는 0이 아닌 숫자로 넣어주세요.\n");
+        sb.append("cost는 각 Json의 cost중 가장 작은 숫자로 넣어주세요.\n");
         sb.append("응답은 줄바꿈을 엄격히 해서 json 형식으로 주세요. json이라는 글자를 포함하지 마세요. 대괄호도 빼주세요. 백틱도 빼주세요\n");
 
         sb.append("### 프롬프트 끝");
 
         return sb.toString();
+    }
+
+    public static String normalizeGPTResponse(String input) {
+        String result = input.replace("'", "\"");
+        result = result.replaceAll("\"\\s+(?=[A-Za-z])", "\"");
+        return result;
     }
 
 }

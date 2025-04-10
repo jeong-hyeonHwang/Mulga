@@ -12,7 +12,6 @@ import com.example.mugbackend.user.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.Data;
-import lombok.Getter;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -24,7 +23,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 @Service
 public class MessageService {
@@ -34,18 +32,18 @@ public class MessageService {
     private final ChatGPTService chatGPTService;
     private final UserService userService;
     private final AnalysisService analysisService;
-    private final PromptService promptService;
+    private final MessageHelperService messageHelperService;
     private final TransactionRepository transactionRepository;
 
     // 사용자별 금융 알림 그룹을 저장 (추후 동시성 고려를 위해 ConcurrentHashMap 사용)
     private final Map<String, FinanceNotiGroup> userNotiGroups = new ConcurrentHashMap<>();
 
-    public MessageService(RabbitTemplate rabbitTemplate, ChatGPTService chatGPTService, UserService userService, AnalysisService analysisService, PromptService promptService, TransactionRepository transactionRepository) {
+    public MessageService(RabbitTemplate rabbitTemplate, ChatGPTService chatGPTService, UserService userService, AnalysisService analysisService, MessageHelperService messageHelperService, TransactionRepository transactionRepository) {
         this.rabbitTemplate = rabbitTemplate;
         this.chatGPTService = chatGPTService;
         this.userService = userService;
         this.analysisService = analysisService;
-        this.promptService = promptService;
+        this.messageHelperService = messageHelperService;
         this.transactionRepository = transactionRepository;
     }
 
@@ -70,24 +68,22 @@ public class MessageService {
                     continue;
                 }
 
-                String gptMessage = chatGPTService.getChatResponse(message);
-                System.out.println("GPT API 응답 : " + gptMessage);
-
-                // 금융알림이 아니면 넘어감
-                if(gptMessage.equals("금융 알림이 아닙니다")) {
+                // 광고면 넘어감
+                if(message.contains("(광고)")) {
                     continue;
                 }
-                
-                // 광고이면 넘어감
-                if(gptMessage.equals("광고입니다")) {
+
+                String gptMessage = chatGPTService.getChatResponse(message);
+                String normalizedGptMessage = messageHelperService.normalizeGPTResponse(gptMessage);
+                System.out.println("GPT API 응답 : " + normalizedGptMessage);
+
+                // 금융알림이 아니면 넘어감
+                if(normalizedGptMessage.equals("금융 알림이 아닙니다")) {
                     continue;
                 }
 
                 // 금융 알림이면 DTO로 변환
-                FinanceNotiDto financeNotiDto = convertToFinanceNotiDto(gptMessage);
-
-                // 사용자별 시간 제한 1분인 그룹 만들기
-                // 최종적으로 남은 알림 1개만 Transaction 엔티티로 만들어서 저장
+                FinanceNotiDto financeNotiDto = convertToFinanceNotiDto(normalizedGptMessage);
 
                 // userId를 기준으로 그룹에 추가 (GPT 응답의 time 필드를 기준으로 1분동안 살아있음)
                 String userId = financeNotiDto.getUserId();
@@ -182,14 +178,10 @@ public class MessageService {
         Iterator<Map.Entry<String, FinanceNotiGroup>> iterator = userNotiGroups.entrySet().iterator();
         while (iterator.hasNext()) {
 
-            System.out.println("[flushStaleGroups]에서 그룹 검사 중");
-
             Map.Entry<String, FinanceNotiGroup> entry = iterator.next();
             String userId = entry.getKey();
             FinanceNotiGroup group = entry.getValue();
             long secondsElapsed = Duration.between(group.getStartTime(), now).getSeconds();
-
-            System.out.println("group.getStartTime(): " + group.getStartTime() + ", now: " + now + ", secondsElapsed: " + secondsElapsed);
 
             if (secondsElapsed > 60) {
                 // 1분 초과이면 기존 그룹 금융 알림 처리 후 flush
@@ -231,11 +223,12 @@ public class MessageService {
             System.out.println("[" + userId + "] 그룹 flush: 알림 저장");
         } else {
             // 2. 카드 알림이 아닌 경우(네이버페이 머니 충전결제라고 가정..) gpt한테 요청
-            String message = promptService.makeNaverPayPrompt(group.getNotifications());
+            String message = messageHelperService.makeNaverPayPrompt(group.getNotifications());
             String gptMessage = chatGPTService.getTheBestNoti(message);
-            System.out.println("네이버페이의 GPT API 응답 : " + gptMessage);
+            String normalizedGptMessage = messageHelperService.normalizeGPTResponse(gptMessage);
+            System.out.println("네이버페이의 GPT API 응답 : " + normalizedGptMessage);
 
-            FinanceNotiDto naverNoti = convertToFinanceNotiDto(gptMessage);
+            FinanceNotiDto naverNoti = convertToFinanceNotiDto(normalizedGptMessage);
             Transaction newTransaction = convertToTransaction(naverNoti);
             // CustomUserDetails 만들기
             User user = userService.findUserById(userId);
