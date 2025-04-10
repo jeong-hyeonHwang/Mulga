@@ -51,7 +51,7 @@ public class MessageService {
     @Scheduled(fixedRate = 20000)
     public void pollMessages() {
 
-        List<String> messages = fetchMessages(10);
+        List<String> messages = fetchMessages(50);
         if (!messages.isEmpty()) {
 
             for(String message : messages) {
@@ -63,16 +63,21 @@ public class MessageService {
                     continue;
                 }
 
-//                // 카카오톡 메시지면 넘어감
-//                if(message.contains("카카오톡")) {
-//                    continue;
-//                }
+                // 카카오톡 메시지이고 알림톡이 아니면 넘어감
+                if(message.contains("카카오톡") && !message.contains("알림톡")) {
+                    continue;
+                }
 
                 String gptMessage = chatGPTService.getChatResponse(message);
                 System.out.println("GPT API 응답 : " + gptMessage);
 
                 // 금융알림이 아니면 넘어감
                 if(gptMessage.equals("금융 알림이 아닙니다")) {
+                    continue;
+                }
+                
+                // 광고이면 넘어감
+                if(gptMessage.equals("광고입니다")) {
                     continue;
                 }
 
