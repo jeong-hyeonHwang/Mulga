@@ -5,7 +5,8 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.ilm.mulga.ui.theme.MulGaTheme
 import java.text.NumberFormat
 
@@ -40,17 +42,22 @@ fun DonutChart(slices: List<Int>, total: Int, modifier: Modifier = Modifier) {
         // Animate the angle for each slice
         val gapAngle = 3f
         val totalValue = adjustedSlices.sum().toDouble()
-        val startAngle = -90f // Start from top
+        val startAngle = -90f + gapAngle / 2 // Start from top
 
         // Set up animated sweep angles for each slice
         val animatedSlices = adjustedSlices.map { slice ->
             animateFloatAsState(
-                targetValue = ((slice.toDouble() / totalValue) * (360f - adjustedSlices.size * gapAngle)).toFloat()
+                targetValue = (slice / totalValue * 360).toFloat()
             )
         }
 
         // Canvas for drawing the donut chart
-        Canvas(modifier = Modifier.fillMaxSize()) {
+        Canvas(
+            modifier = Modifier
+                .size(200.dp) // Set a specific size
+                .aspectRatio(1f) // Ensure it's a perfect circle
+                .align(Alignment.Center)
+        ) {
             // Gap angle for spacing between slices
             var currentSweepAngle = startAngle
 
@@ -61,14 +68,14 @@ fun DonutChart(slices: List<Int>, total: Int, modifier: Modifier = Modifier) {
 
                 drawDonutSliceWithGap(
                     startAngle = currentSweepAngle,
-                    sweepAngle = sweepAngle,
+                    sweepAngle = sweepAngle - gapAngle,
                     color = sliceColor,
-                    radius = size.minDimension / 3,
-                    thickness = size.minDimension / 9
+                    radius = size.minDimension * 0.6f,
+                    thickness = size.minDimension * 0.22f
                 )
 
                 // Update the current angle for the next slice, adding the gap angle after each slice
-                currentSweepAngle += sweepAngle + gapAngle
+                currentSweepAngle += sweepAngle
             }
         }
 
@@ -76,7 +83,7 @@ fun DonutChart(slices: List<Int>, total: Int, modifier: Modifier = Modifier) {
         Column(
             modifier = Modifier
                 .align(Alignment.Center)
-                .fillMaxSize(), // Fill the available space
+                .size(120.dp), // Match this to the inner circle area
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center // Vertically center the content
         ) {

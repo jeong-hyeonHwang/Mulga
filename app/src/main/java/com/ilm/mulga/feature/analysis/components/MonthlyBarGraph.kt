@@ -4,7 +4,6 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -18,92 +17,93 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ilm.mulga.ui.theme.MulGaTheme
 import java.text.NumberFormat
 import kotlin.math.ceil
+import kotlin.math.max
 
 @Composable
 fun MonthlyBarGraph(
     modifier: Modifier = Modifier,
-    amount: List<Float>, // Custom heights for each bar
-    currentMonth: Int // Single int for the current month
+    amount: List<Float>,
+    currentMonth: Int
 ) {
-    // Compute the average of the barHeights
     val averageHeight = NumberFormat.getInstance().format(ceil(amount.average() / 10000).toFloat())
 
-    // Fetch colors from MaterialTheme here, outside of Canvas
+    // Theme colors
     val grey2Color = MulGaTheme.colors.grey2
     val grey3Color = MulGaTheme.colors.grey3
     val grey4Color = MulGaTheme.colors.grey4
     val primaryColor = MulGaTheme.colors.primary
-    val grey1Color = MulGaTheme.colors.grey1 // Added grey1 color for text
+    val grey1Color = MulGaTheme.colors.grey1
 
-    // Fetch typography details from the theme
-    val labelTextStyle = MulGaTheme.typography.title // You can change this to a different style if needed
+    val labelTextStyle = MulGaTheme.typography.title
     val labelTextSize = labelTextStyle.fontSize.value
-
-    // Generate the labels for the current month and the past 5 months
     val labelTexts = generateMonthLabels(currentMonth)
 
-    // Define the height of the rounded border container to wrap both text and graph
+    // Get the screen width to calculate the canvas height
+    val screenWidthDp = LocalConfiguration.current.screenWidthDp.dp
+    // Calculate desired height based on screen width
+    val desiredGraphHeight = screenWidthDp / 2
+
     Box(
         modifier = modifier
-            .padding(16.dp) // Optional: Add padding around the entire Box
             .border(
-                width = 1.dp, // Border thickness
-                color = grey4Color, // Border color
-                shape = RoundedCornerShape(12.dp) // Correctly use RoundedCornerShape for rounded corners
+                width = 1.dp,
+                color = grey4Color,
+                shape = RoundedCornerShape(12.dp)
             )
-            .clip(RoundedCornerShape(12.dp)) // Ensure the content also respects the rounded corners
+            .clip(RoundedCornerShape(12.dp))
     ) {
         Column(
             modifier = Modifier
-                .fillMaxSize() // Make sure the Column takes up all available space
-                .padding(16.dp) // Padding inside the Box around the content
+                .fillMaxWidth()
+                .padding(16.dp)
         ) {
-            // Title text above the graph, showing the average
+            // Title text
             val annotatedText = buildAnnotatedString {
                 append("월 평균\n")
-                withStyle(style = SpanStyle(color = primaryColor)) { // Use SpanStyle for color styling
-                    append("${averageHeight.toInt()}만원") // Apply color to average amount
+                withStyle(style = SpanStyle(color = primaryColor)) {
+                    append("${averageHeight.toInt()}만원")
                 }
                 append(" 정도 써요")
             }
 
             Text(
-                text = annotatedText, // Using the annotated string with different styles
+                text = annotatedText,
                 style = MulGaTheme.typography.bodySmall,
                 modifier = Modifier
                     .align(Alignment.Start)
-                    .padding(bottom = 64.dp) // Optional: Add spacing below the text
+                    .padding(bottom = 16.dp) // Add some spacing below the text
             )
 
+            // Use a proportional height based on screen width
             Canvas(
                 modifier = Modifier
-                    .fillMaxWidth() // Make the canvas take up the full width
-                    .height(250.dp) // We will dynamically calculate the height based on the width
+                    .fillMaxWidth()
+                    .height(desiredGraphHeight) // This makes the canvas height proportional to screen width
             ) {
-                // Access the size of the canvas inside the draw block
                 val width = size.width
                 val height = size.height
 
-                // Set the max height to be half of the canvas width
-                val maxHeight = width / 2
+                // The max bar height is now based on the canvas height (which is proportional to width)
+                val maxBarHeight = height * 0.75f // Leave room for labels
 
-                // Bottom padding for the bar only (32.dp) and convert to pixels
                 val bottomPadding = 32.dp.toPx()
                 val availableHeightForBars = height - bottomPadding
 
-                val xAxisWidth = width // 90% of the canvas width
-                val xAxisStart = (width - xAxisWidth) / 2 // Center the x-axis
+                val xAxisWidth = width
+                val xAxisStart = 0f // Start from the left edge
 
                 // Number of bars
-                val numberOfBars = labelTexts.size // Dynamic based on the number of labels
-                val paddingBetweenBars = 22.dp.toPx() // Padding between each bar in pixels
+                val numberOfBars = labelTexts.size
+                val paddingBetweenBars = 22.dp.toPx()
 
                 // Calculating the width of each bar
                 val availableWidthForBars = xAxisWidth - (paddingBetweenBars * numberOfBars)
@@ -112,13 +112,18 @@ fun MonthlyBarGraph(
                 // Corner radius for the top corners only
                 val cornerRadius = 6.dp.toPx()
 
-                // Drawing the bars with rounded top corners using Path
-                for (i in 0 until numberOfBars) {
-                    val barHeight = amount.getOrElse(i) { availableHeightForBars } // Use custom height, default if missing
-                    val scaledHeight = (barHeight / amount.maxOrNull()!!) * maxHeight // Scale the height proportionally
+                // Minimum height threshold for showing curved corners
+                // This is twice the corner radius to ensure there's enough space for the curves
+                val minHeightForCurves = cornerRadius * 2
 
-                    val left = xAxisStart + i * (barWidth + paddingBetweenBars) + (paddingBetweenBars / 2) // Start position of the bar
-                    val top = availableHeightForBars - scaledHeight // Adjust the height of each bar
+                // Drawing the bars
+                for (i in 0 until numberOfBars) {
+                    val barValue = amount.getOrElse(i) { 0f }
+                    val maxValue = amount.maxOrNull() ?: 1f
+                    val scaledHeight = (barValue / maxValue) * maxBarHeight
+
+                    val left = xAxisStart + i * (barWidth + paddingBetweenBars) + paddingBetweenBars / 2
+                    val top = availableHeightForBars - scaledHeight
 
                     // Select color based on the bar index
                     val barColor = if (i < 5) {
@@ -127,73 +132,99 @@ fun MonthlyBarGraph(
                         primaryColor
                     }
 
-                    // Create a path to draw the rounded rectangle with custom top corners
-                    val path = Path().apply {
-                        moveTo(left, availableHeightForBars) // Move to the start position of the bar (bottom-left corner)
-                        lineTo(left, top + cornerRadius) // Draw the bottom-left edge (straight)
-                        arcTo(
-                            rect = androidx.compose.ui.geometry.Rect(
-                                left = left,
-                                top = top,
-                                right = left + cornerRadius * 2,
-                                bottom = top + cornerRadius * 2
-                            ),
-                            startAngleDegrees = 180f,
-                            sweepAngleDegrees = 90f,
-                            forceMoveTo = false
+                    // Check if bar height is sufficient for curved corners
+                    if (scaledHeight > minHeightForCurves) {
+                        // Create path for rounded rectangle with curved top corners
+                        val path = Path().apply {
+                            moveTo(left, availableHeightForBars)
+                            lineTo(left, top + cornerRadius)
+                            arcTo(
+                                rect = androidx.compose.ui.geometry.Rect(
+                                    left = left,
+                                    top = top,
+                                    right = left + cornerRadius * 2,
+                                    bottom = top + cornerRadius * 2
+                                ),
+                                startAngleDegrees = 180f,
+                                sweepAngleDegrees = 90f,
+                                forceMoveTo = false
+                            )
+                            lineTo(left + barWidth - cornerRadius, top)
+                            arcTo(
+                                rect = androidx.compose.ui.geometry.Rect(
+                                    left = left + barWidth - cornerRadius * 2,
+                                    top = top,
+                                    right = left + barWidth,
+                                    bottom = top + cornerRadius * 2
+                                ),
+                                startAngleDegrees = 270f,
+                                sweepAngleDegrees = 90f,
+                                forceMoveTo = false
+                            )
+                            lineTo(left + barWidth, availableHeightForBars)
+                            lineTo(left, availableHeightForBars)
+                            close()
+                        }
+
+                        drawPath(path, barColor)
+                    } else if (scaledHeight > 0) {
+                        // For small bars, draw a simple rectangle without curved corners
+                        drawRect(
+                            color = barColor,
+                            topLeft = Offset(left, top),
+                            size = androidx.compose.ui.geometry.Size(barWidth, scaledHeight)
                         )
-                        lineTo(left + barWidth - cornerRadius, top) // Draw the top edge (straight line to top-right corner)
-                        arcTo(
-                            rect = androidx.compose.ui.geometry.Rect(
-                                left = left + barWidth - cornerRadius * 2,
-                                top = top,
-                                right = left + barWidth,
-                                bottom = top + cornerRadius * 2
-                            ),
-                            startAngleDegrees = 270f,
-                            sweepAngleDegrees = 90f,
-                            forceMoveTo = false
+                    } else {
+                        // For zero values, draw a minimal indicator line
+                        drawLine(
+                            color = barColor,
+                            start = Offset(left, availableHeightForBars),
+                            end = Offset(left + barWidth, availableHeightForBars),
+                            strokeWidth = 2f
                         )
-                        lineTo(left + barWidth, availableHeightForBars) // Draw the right edge (straight down to bottom-right corner)
-                        lineTo(left, availableHeightForBars) // Draw the bottom-right corner (straight)
-                        close() // Close the path
                     }
 
-                    // Fill the path with the selected color
-                    drawPath(path, barColor)
+                    // Draw values above bars
+                    val heightText = NumberFormat.getInstance().format(ceil(barValue / 10000).toInt())
 
-                    // Draw the bar height value above the bar
-                    val heightText = NumberFormat.getInstance().format(ceil(amount[i] / 10000).toInt()) // Convert to int and display as a string
+                    // Position text appropriately based on bar height
+                    val textYPosition = if (scaledHeight > 24f) {
+                        top - 24f // Normal position above the bar
+                    } else {
+                        // For very small or zero bars, position text above the axis
+                        availableHeightForBars - max(scaledHeight, 0f) - 24f
+                    }
+
                     drawContext.canvas.nativeCanvas.apply {
                         drawText(
-                            heightText, // The height value text
-                            left + barWidth / 2, // Center the text horizontally above the bar
-                            top - 24f, // Position the text just above the top of the bar
+                            heightText,
+                            left + barWidth / 2,
+                            textYPosition,
                             android.graphics.Paint().apply {
-                                textSize = labelTextSize // Set the text size from the theme
-                                color = grey1Color.toArgb() // Set the color of the label text
-                                textAlign = android.graphics.Paint.Align.CENTER // Center align the text
+                                textSize = labelTextSize
+                                color = grey1Color.toArgb()
+                                textAlign = android.graphics.Paint.Align.CENTER
                             }
                         )
                     }
 
-                    // Draw the label below the bar
-                    val label = labelTexts.getOrElse(i) { "Label ${i + 1}" } // Get the label from the list
+                    // Draw labels below bars
+                    val label = labelTexts[i]
                     drawContext.canvas.nativeCanvas.apply {
                         drawText(
-                            label, // The label text
-                            left + barWidth / 2, // Center the label horizontally under the bar
-                            availableHeightForBars + 48f, // Position the label just below the bar
+                            label,
+                            left + barWidth / 2,
+                            availableHeightForBars + 48f,
                             android.graphics.Paint().apply {
-                                textSize = labelTextSize // Set the text size from the theme
-                                color = grey1Color.toArgb() // Set the color of the label text
-                                textAlign = android.graphics.Paint.Align.CENTER // Center align the text
+                                textSize = labelTextSize
+                                color = grey1Color.toArgb()
+                                textAlign = android.graphics.Paint.Align.CENTER
                             }
                         )
                     }
                 }
 
-                // Drawing the x-axis at the bottom (with padding)
+                // Draw x-axis
                 drawLine(
                     color = grey2Color,
                     start = Offset(x = xAxisStart, y = availableHeightForBars),
@@ -228,4 +259,15 @@ fun generateMonthLabels(currentMonth: Int): List<String> {
         labels.add(monthName)
     }
     return labels.reversed() // Reverse to show the current month as the last bar
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MonthlyBarGraphPreview() {
+    val amounts = listOf(120000f, 5000f, 0f, 90000f, 180000f, 110000f) // Sample with zero and small value
+    MonthlyBarGraph(
+        modifier = Modifier.fillMaxWidth(),
+        amount = amounts,
+        currentMonth = 4 // Current month as May (5th month in the year)
+    )
 }

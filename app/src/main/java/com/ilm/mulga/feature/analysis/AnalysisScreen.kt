@@ -29,8 +29,6 @@ fun AnalysisScreen(analysisNavController: NavController, viewModel: AnalysisView
 
     // State to hold the API response data
     val analysisData by viewModel.analysisData
-    val loading by viewModel.loading
-    val errorMessage by viewModel.errorMessage
 
     // Call the API whenever the year or month changes
     LaunchedEffect(selectedYear, selectedMonth) {
@@ -82,14 +80,6 @@ fun AnalysisScreen(analysisNavController: NavController, viewModel: AnalysisView
                 viewModel.setSelectedMonth(month)
             }
         )
-
-        if (loading) {
-            // Show loading indicator
-        }
-
-        errorMessage?.let {
-            // Show error message
-        }
 
         DonutChart(
             slices = chartSlicesSimplified,
