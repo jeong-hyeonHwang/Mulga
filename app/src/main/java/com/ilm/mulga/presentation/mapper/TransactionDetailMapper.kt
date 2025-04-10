@@ -18,7 +18,9 @@ fun List<TransactionDetailData>.toDailyTransactionData(): List<DailyTransactionD
     return grouped.map { (date, detailsForDate) ->
         DailyTransactionData(
             date = date,
-            transactions = detailsForDate.map { it.toTransactionItemDataForMain() }
+            transactions = detailsForDate
+                .sortedByDescending { it.time }
+                .map { it.toTransactionItemDataForMain() }
         )
     }.sortedByDescending { it.date }
 }
