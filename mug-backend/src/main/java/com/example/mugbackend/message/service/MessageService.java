@@ -18,10 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
@@ -82,8 +79,16 @@ public class MessageService {
                     continue;
                 }
 
-                // 금융 알림이면 DTO로 변환
+                // 금융 알림이면 JSON을 DTO로 변환
                 FinanceNotiDto financeNotiDto = convertToFinanceNotiDto(normalizedGptMessage);
+
+                // 만약 카드알림이면 financeNotiDto에 paymentMethod가 'OO카드' 또는 'OOcard'로 들어감
+                Optional<String> optionalAppName = messageHelperService.getAppName(message);
+                optionalAppName.ifPresent(appName -> {
+                    if(appName.contains("카드") || appName.contains("card")) {
+                        financeNotiDto.setPaymentMethod(appName);
+                    }
+                });
 
                 // userId를 기준으로 그룹에 추가 (GPT 응답의 time 필드를 기준으로 1분동안 살아있음)
                 String userId = financeNotiDto.getUserId();
@@ -200,7 +205,7 @@ public class MessageService {
     public void determineAndSaveTransaction(String userId, FinanceNotiGroup group) {
         // financeNotiGroup이 어떤 금융 알림인지 판단하는 로직
         /*
-        1. appName에 '카드' 또는 'card'가 포함된 경우(오프라인 카드 결제) -> 카드사 알림으로 Transaction 처리
+        1. appName에 '카드' 또는 'card'가 포함된 경우 카드 결제
         2. title이 '네이버페이' 또는 '네이버 페이'인 경우 -> paymentMethod가 '네이버페이' 인 알림으로 Transaction 처리
            ->
          */

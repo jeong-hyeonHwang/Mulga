@@ -1,9 +1,12 @@
 package com.example.mugbackend.message.service;
 
 import com.example.mugbackend.message.dto.FinanceNotiDto;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MessageHelperService {
@@ -49,4 +52,15 @@ public class MessageHelperService {
         return result;
     }
 
+    public Optional<String> getAppName(String message) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            JsonNode root = mapper.readTree(message);
+            String appName = root.path("appName").asText(null);
+            return Optional.ofNullable(appName);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
+    }
 }
