@@ -34,16 +34,18 @@ public class MessageService {
     private final ChatGPTService chatGPTService;
     private final UserService userService;
     private final AnalysisService analysisService;
+    private final PromptService promptService;
     private final TransactionRepository transactionRepository;
 
     // 사용자별 금융 알림 그룹을 저장 (추후 동시성 고려를 위해 ConcurrentHashMap 사용)
     private final Map<String, FinanceNotiGroup> userNotiGroups = new ConcurrentHashMap<>();
 
-    public MessageService(RabbitTemplate rabbitTemplate, ChatGPTService chatGPTService, UserService userService, AnalysisService analysisService, TransactionRepository transactionRepository) {
+    public MessageService(RabbitTemplate rabbitTemplate, ChatGPTService chatGPTService, UserService userService, AnalysisService analysisService, PromptService promptService, TransactionRepository transactionRepository) {
         this.rabbitTemplate = rabbitTemplate;
         this.chatGPTService = chatGPTService;
         this.userService = userService;
         this.analysisService = analysisService;
+        this.promptService = promptService;
         this.transactionRepository = transactionRepository;
     }
 
@@ -93,8 +95,7 @@ public class MessageService {
 
                 // 해당 사용자의 그룹을 일단 가져옴. userId에 해당하는 key가 없으면 null
                 FinanceNotiGroup group = userNotiGroups.get(userId);
-// userNotiGroups가 이것임
-// private final Map<String, FinanceNotiGroup> userNotiGroups = new ConcurrentHashMap<>();
+
                 if (group == null) {
                     // 없으면 만들고 userNotiGroups에 추가
                     group = new FinanceNotiGroup(notiTime);
@@ -111,8 +112,10 @@ public class MessageService {
 
                         System.out.println("[" + userId + "] 그룹에 알림 추가 (" + secondsElapsed + "초 경과), 알림시간: " + notiTime);
                     } else {
-                        // 1분 초과이면 기존 그룹 flush, 기존 그룹의 금융 알림 처리 후 새 그룹 생성
-                        flushGroup(userId, group);
+                        // 1분 초과이면 기존 그룹 금융 알림 처리 후 flush
+                        determineAndSaveTransaction(userId, group);
+                        flushGroup(userId);
+                        // 새로운 그룹 생성
                         FinanceNotiGroup newGroup = new FinanceNotiGroup(notiTime);
                         newGroup.getNotifications().add(financeNotiDto);
                         userNotiGroups.put(userId, newGroup);
@@ -170,9 +173,11 @@ public class MessageService {
     }
 
 
-    // 60초마다 모든 알림 그룹을 검사해서 시작 시각으로부터 1분이 지난 그룹을 flush
-    @Scheduled(fixedRate = 60000)
+    // 30초마다 모든 알림 그룹을 검사해서 시작 시각으로부터 1분이 지난 그룹을 flush
+    @Scheduled(fixedRate = 30000)
     public void flushStaleGroups() {
+        System.out.println("[flushStaleGroups] 시작");
+
         LocalDateTime now = LocalDateTime.now();
         Iterator<Map.Entry<String, FinanceNotiGroup>> iterator = userNotiGroups.entrySet().iterator();
         while (iterator.hasNext()) {
@@ -181,15 +186,20 @@ public class MessageService {
             FinanceNotiGroup group = entry.getValue();
             long secondsElapsed = Duration.between(group.getStartTime(), now).getSeconds();
             if (secondsElapsed > 60) {
-                flushGroup(userId, group);
-                iterator.remove();
+                // 1분 초과이면 기존 그룹 금융 알림 처리 후 flush
+                System.out.println("시작 시간: " + group.getStartTime() + ", 현재 시간: " + now + ", 경과 시간: " + secondsElapsed + "초");
+                determineAndSaveTransaction(userId, group);
+                flushGroup(userId);
             }
         }
     }
 
 
-    private void flushGroup(String userId, FinanceNotiGroup group) {
+    private void flushGroup(String userId) {
+        userNotiGroups.remove(userId);
+    }
 
+    public void determineAndSaveTransaction(String userId, FinanceNotiGroup group) {
         // financeNotiGroup이 어떤 금융 알림인지 판단하는 로직
         /*
         1. appName에 '카드' 또는 'card'가 포함된 경우(오프라인 카드 결제) -> 카드사 알림으로 Transaction 처리
@@ -215,7 +225,7 @@ public class MessageService {
             System.out.println("[" + userId + "] 그룹 flush: 알림 저장");
         } else {
             // 2. 카드 알림이 아닌 경우(네이버페이 머니 충전결제라고 가정..) gpt한테 요청
-            String message = makeNaverPayPrompt(group.getNotifications());
+            String message = promptService.makeNaverPayPrompt(group.getNotifications());
             String gptMessage = chatGPTService.getTheBestNoti(message);
             System.out.println("네이버페이의 GPT API 응답 : " + gptMessage);
 
@@ -230,9 +240,8 @@ public class MessageService {
             transactionRepository.save(newTransaction);
 
             System.out.println("[" + userId + "] 그룹 flush: 알림 저장");
-
-//            System.out.println("[" + userId + "] 그룹 flush: 알림 없음");
         }
+
     }
 
     public Transaction convertToTransaction(FinanceNotiDto dto) {
@@ -269,40 +278,6 @@ public class MessageService {
         }
     }
 
-    public static String makeNaverPayPrompt(List<FinanceNotiDto> notiList) {
-        StringBuilder sb = new StringBuilder();
-
-        // 프롬프트 시작 부분 작성
-        sb.append("### 프롬프트 시작\n");
-        sb.append("다음은 ").append(notiList.size()).append("개의 거래 내역을 나타내는 JSON DTO입니다:\n\n");
-
-        // 각 DTO를 JSON 문자열 형태로 추가 (번호도 붙임)
-        for (int i = 0; i < notiList.size(); i++) {
-            FinanceNotiDto dto = notiList.get(i);
-            sb.append(i + 1).append(".\n");
-            sb.append("{\n");
-            sb.append("  \"userId\": \"").append(dto.getUserId()).append("\",\n");
-            sb.append("  \"year\": ").append(dto.getYear()).append(",\n");
-            sb.append("  \"month\": ").append(dto.getMonth()).append(",\n");
-            sb.append("  \"day\": ").append(dto.getDay()).append(",\n");
-            sb.append("  \"itemName\": \"").append(dto.getItemName() == null ? "" : dto.getItemName()).append("\",\n");
-            sb.append("  \"cost\": ").append(dto.getCost()).append(",\n");
-            sb.append("  \"category\": \"").append(dto.getCategory()).append("\",\n");
-            sb.append("  \"vendor\": \"").append(dto.getVendor()).append("\",\n");
-            sb.append("  \"time\": \"").append(dto.getTime()).append("\",\n");
-            sb.append("  \"paymentMethod\": \"").append(dto.getPaymentMethod()).append("\"\n");
-            sb.append("}\n\n");
-        }
-
-        // 프롬프트 마지막에 요청 사항 추가
-        sb.append("위의 거래 내역 중 네이버페이에 충전된 금액(transfer 및 등 기타 내역)이 아닌, **실제 구매 내역**만을 반환해 주세요.\n");
-        sb.append("구매 내역은 itemName이 비어있지 않은 내역입니다.\n");
-        sb.append("응답은 줄바꿈을 엄격히 해서 json 형식으로 주세요. json이라는 글자를 포함하지 마세요. 대괄호도 빼주세요. 백틱도 빼주세요\n");
-
-        sb.append("### 프롬프트 끝");
-
-        return sb.toString();
-    }
 
     // 한 사용자의 특정 금융 알림 그룹을 관리하기 위한 내부 클래스.
     @Data
