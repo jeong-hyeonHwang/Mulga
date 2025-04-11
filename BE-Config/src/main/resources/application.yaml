@@ -1,0 +1,24 @@
+server:
+  port: ${PORT}
+  ssl:
+    key-store: ${KEY_LOCATION}
+    key-store-password: ${KEY_STORE_PASSWORD}
+    key-store-type: ${KEY_STORE_TYPE}
+    key-alias: ${KEY_ALIAS}
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${GITHUB_URI}
+          username: ${GITHUB_USERNAME}
+          password: ${GITHUB_PASSWORD}
+          clone-on-start: true
+        prefix: /configuration
+encrypt:
+  key-store:
+    location: ${KEY_LOCATION}
+    password: ${KEY_STORE_PASSWORD}
+    alias: ${KEY_ALIAS}
+
+
