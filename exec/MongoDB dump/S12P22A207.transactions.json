@@ -1,0 +1,1821 @@
+[{
+  "_id": {
+    "$oid": "67ecbfb49aa95271b39ee890"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 3,
+  "day": 31,
+  "isCombined": false,
+  "title": "수도2503일반",
+  "cost": -16550,
+  "category": "home",
+  "memo": "",
+  "vendor": "서울시상수도사업본부",
+  "time": {
+    "$date": "2025-03-30T15:35:26.000Z"
+  },
+  "paymentMethod": "카카오뱅크",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67ecc3f09aa95271b39ee891"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 3,
+  "day": 30,
+  "isCombined": false,
+  "title": "",
+  "cost": -16000,
+  "category": "health",
+  "memo": "",
+  "vendor": "수정프라자약국",
+  "time": {
+    "$date": "2025-03-30T15:06:26.000Z"
+  },
+  "paymentMethod": "프렌즈체크카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67ecc83f9aa95271b39ee892"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 3,
+  "day": 27,
+  "isCombined": false,
+  "title": "이*리",
+  "cost": 1300,
+  "category": "transfer",
+  "memo": "",
+  "vendor": "카카오페이머니",
+  "time": {
+    "$date": "2025-03-24T15:13:26.000Z"
+  },
+  "paymentMethod": "카카오뱅크",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67ecc8b19aa95271b39ee893"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 3,
+  "day": 12,
+  "isCombined": false,
+  "title": "",
+  "cost": -6870,
+  "category": "cafe",
+  "memo": "",
+  "vendor": "GS25지에스사랑점",
+  "time": {
+    "$date": "2025-03-12T15:13:26.000Z"
+  },
+  "paymentMethod": "네이버페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67ecc8f39aa95271b39ee894"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 3,
+  "day": 18,
+  "isCombined": false,
+  "title": "",
+  "cost": -4000,
+  "category": "cafe",
+  "memo": "",
+  "vendor": "투썸플레이스",
+  "time": {
+    "$date": "2025-03-10T15:13:26.000Z"
+  },
+  "paymentMethod": "현대카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67ecc92f9aa95271b39ee895"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 3,
+  "day": 15,
+  "isCombined": false,
+  "title": "소금집 모르타델라 슬라이스 햄 수제햄...",
+  "cost": -7900,
+  "category": "food",
+  "memo": "",
+  "vendor": "소금집",
+  "time": {
+    "$date": "2025-03-09T15:13:26.000Z"
+  },
+  "paymentMethod": "현대카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67ecc9789aa95271b39ee896"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 3,
+  "day": 15,
+  "isCombined": false,
+  "title": "",
+  "cost": 1000000,
+  "category": "transfer",
+  "memo": "",
+  "vendor": "삼성SSAFY",
+  "time": {
+    "$date": "2025-03-14T15:13:26.000Z"
+  },
+  "paymentMethod": "카카오뱅크",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67ecccfc0bc76d689620b64c"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 1,
+  "isCombined": false,
+  "title": "",
+  "cost": -6020,
+  "category": "living",
+  "memo": "",
+  "vendor": "GS25지에스사랑점",
+  "time": {
+    "$date": "2025-03-31T15:13:26.000Z"
+  },
+  "paymentMethod": "현대카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67eccd390bc76d689620b64d"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 1,
+  "isCombined": false,
+  "title": "정*희",
+  "cost": -4250,
+  "category": "transfer",
+  "memo": "넷플 정기결제",
+  "vendor": "우리은행",
+  "time": {
+    "$date": "2025-03-31T15:15:26.000Z"
+  },
+  "paymentMethod": "카카오뱅크",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67eccd980bc76d689620b64e"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 2,
+  "isCombined": false,
+  "title": "후불교통비",
+  "cost": -12250,
+  "category": "transfer",
+  "memo": "",
+  "vendor": "케이뱅크",
+  "time": {
+    "$date": "2025-04-01T15:15:26.000Z"
+  },
+  "paymentMethod": "케이뱅크 교통 전용(MY K-패스)",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67ee11077be4585f3d4c7cca"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 2,
+  "isCombined": false,
+  "title": "윤*진",
+  "cost": 4500,
+  "category": "transfer",
+  "memo": "",
+  "vendor": "국민은행",
+  "time": {
+    "$date": "2025-04-01T15:16:26.000Z"
+  },
+  "paymentMethod": "카카오뱅크",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67ee16357be4585f3d4c7ccd"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 1,
+  "isCombined": false,
+  "title": "combine test",
+  "cost": 10000,
+  "category": "transfer",
+  "memo": "",
+  "vendor": "케이뱅크hi?",
+  "time": {
+    "$date": "2025-04-01T15:15:26.000Z"
+  },
+  "paymentMethod": "케이뱅크 교통 전용(MY K-패스)",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67ee16287be4585f3d4c7ccc"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 3,
+  "isCombined": false,
+  "title": "combine test - main",
+  "cost": -5000,
+  "category": "transfer",
+  "memo": "",
+  "vendor": "케이뱅크",
+  "time": {
+    "$date": "2025-04-01T15:15:26.000Z"
+  },
+  "paymentMethod": "케이뱅크 교통 전용(MY K-패스)",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f282a1c8c20d24a5a42d1c"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 6,
+  "isCombined": false,
+  "title": "coffee",
+  "cost": -32423,
+  "category": "cafe",
+  "memo": "",
+  "vendor": "coffee hangout",
+  "time": {
+    "$date": "2025-04-06T18:00:36.000Z"
+  },
+  "paymentMethod": "kb pay",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f28684c8c20d24a5a42d21"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 6,
+  "isCombined": false,
+  "title": "norebang",
+  "cost": -2000,
+  "category": "leisure",
+  "memo": "norebang galre",
+  "vendor": "onair norebang",
+  "time": {
+    "$date": "2025-04-06T13:49:01.000Z"
+  },
+  "paymentMethod": "kb pay",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f351e697c5697d0d7cb361"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 7,
+  "isCombined": false,
+  "title": "캐비어라면",
+  "cost": -30000,
+  "category": "food",
+  "memo": "캐비어 라면은 어떤맛일까 궁금했다.",
+  "vendor": "비싼라면가게",
+  "time": {
+    "$date": "2025-04-07T10:00:45.000Z"
+  },
+  "paymentMethod": "카카오페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f36140dba73018f2357035"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 6,
+  "isCombined": false,
+  "title": "bus",
+  "cost": -2000,
+  "category": "traffic",
+  "memo": "expensive",
+  "vendor": "red bus",
+  "time": {
+    "$date": "2025-04-07T05:22:27.000Z"
+  },
+  "paymentMethod": "카카오페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f36a50dba73018f2357036"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 7,
+  "isCombined": false,
+  "title": "통신비 납부",
+  "cost": -30000,
+  "category": "home",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-04-06T21:00:34.000Z"
+  },
+  "paymentMethod": "kb pay",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f3797654b13b1ed1aa94e7"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 3,
+  "day": 15,
+  "isCombined": false,
+  "title": "도니조아",
+  "cost": -150780,
+  "category": "liquor",
+  "memo": "참이슬 땡긴다",
+  "vendor": "",
+  "time": {
+    "$date": "2025-03-16T07:44:05.000Z"
+  },
+  "paymentMethod": "신한카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f4dcde12a08053befc0063"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 4,
+  "day": 8,
+  "isCombined": false,
+  "title": "치킨떡볶이",
+  "cost": -38000,
+  "category": "food",
+  "memo": "",
+  "vendor": "교촌치킨 산본점",
+  "time": {
+    "$date": "2025-04-08T08:22:31.000Z"
+  },
+  "paymentMethod": "네이버 페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f5c5d3f1973850d3ea5042"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 4,
+  "day": 9,
+  "isCombined": false,
+  "title": "피자",
+  "cost": -30000,
+  "category": "food",
+  "memo": "",
+  "vendor": "도미노 피자",
+  "time": {
+    "$date": "2025-04-09T09:00:21.000Z"
+  },
+  "paymentMethod": "네이버 페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f5dac38bcc5437a4b1e343"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 4,
+  "day": 9,
+  "isCombined": false,
+  "title": "별자리키링",
+  "cost": -4000,
+  "category": "shopping",
+  "memo": "야호",
+  "vendor": "별자리달자리",
+  "time": {
+    "$date": "2025-04-09T11:25:43.000Z"
+  },
+  "paymentMethod": "네이버 페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f5db198bcc5437a4b1e344"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 4,
+  "day": 9,
+  "isCombined": false,
+  "title": "김본",
+  "cost": 3000,
+  "category": "transfer",
+  "memo": "돈 줘서 고마워!",
+  "vendor": "황정현",
+  "time": {
+    "$date": "2025-04-09T11:27:19.000Z"
+  },
+  "paymentMethod": "신한 은행",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f5ef438bcc5437a4b1e348"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 4,
+  "day": 9,
+  "isCombined": false,
+  "title": "노즈쏙 정",
+  "cost": -5500,
+  "category": "health",
+  "memo": "비염 시러 왕창시러",
+  "vendor": "온누리 약국",
+  "time": {
+    "$date": "2025-04-09T12:53:07.000Z"
+  },
+  "paymentMethod": "네이버 페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f62aa672fe9847830b9bd4"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 3,
+  "day": 11,
+  "isCombined": false,
+  "title": "GgaGga",
+  "cost": -500,
+  "category": "etc",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-03-11T00:00:05.000Z"
+  },
+  "paymentMethod": "Card",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f62b0672fe9847830b9bd5"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 2,
+  "day": 10,
+  "isCombined": false,
+  "title": "Don",
+  "cost": 200000,
+  "category": "transfer",
+  "memo": "",
+  "vendor": "Carrot",
+  "time": {
+    "$date": "2025-02-10T00:00:50.000Z"
+  },
+  "paymentMethod": "Bank",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f68f56e9683f653ac95b8a"
+  },
+  "user_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3",
+  "year": 2025,
+  "month": 4,
+  "day": 9,
+  "isCombined": false,
+  "title": "",
+  "cost": -600,
+  "category": "cafe",
+  "memo": "",
+  "vendor": "ＧＳ２５지에스사랑점",
+  "time": {
+    "$date": "2025-04-09T01:17:00.000Z"
+  },
+  "paymentMethod": "우리카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f6bfc47c41cd750ef6ca77"
+  },
+  "user_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "딜라이트 프로젝트 베이글칩 모음전 15종 택12건",
+  "cost": -9100,
+  "category": "shopping",
+  "memo": "",
+  "vendor": "올리브영",
+  "time": {
+    "$date": "2025-04-09T16:27:22.000Z"
+  },
+  "paymentMethod": "네이버페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f6c38e945bb40f879f3ad9"
+  },
+  "user_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3",
+  "year": 2025,
+  "month": 4,
+  "day": 6,
+  "isCombined": false,
+  "title": "딜라이트 프로젝트 베이글칩 모음전 15종 택12건",
+  "cost": -9100,
+  "category": "shopping",
+  "memo": "",
+  "vendor": "올리브영",
+  "time": {
+    "$date": "2025-04-05T16:27:22.000Z"
+  },
+  "paymentMethod": "네이버페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f71df430b15577b8c70bc4"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 3,
+  "day": 6,
+  "isCombined": false,
+  "title": "치킨",
+  "cost": -30000,
+  "category": "food",
+  "memo": "",
+  "vendor": "노랑통닭",
+  "time": {
+    "$date": "2025-03-06T10:00:31.000Z"
+  },
+  "paymentMethod": "카카오 페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f4d81712a08053befc0062"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 4,
+  "day": 8,
+  "isCombined": false,
+  "title": "김본",
+  "cost": 50000,
+  "category": "transfer",
+  "memo": "돈줘서고마워!",
+  "vendor": "이규리",
+  "time": {
+    "$date": "2025-04-08T08:01:58.000Z"
+  },
+  "paymentMethod": "신한 은행",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f5f20c8bcc5437a4b1e351"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 4,
+  "day": 8,
+  "isCombined": false,
+  "title": "용돈",
+  "cost": 400000,
+  "category": "transfer",
+  "memo": "",
+  "vendor": "엄마",
+  "time": {
+    "$date": "2025-04-08T10:00:08.000Z"
+  },
+  "paymentMethod": "신한 은행",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f71e4830b15577b8c70bc5"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "유튜브",
+  "cost": -8000,
+  "category": "subscription",
+  "memo": "",
+  "vendor": "구글",
+  "time": {
+    "$date": "2025-04-10T10:26:06.000Z"
+  },
+  "paymentMethod": "카카오 뱅크",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f5fa5e8bcc5437a4b1e353"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "치약",
+  "cost": -4000,
+  "category": "shopping",
+  "memo": "",
+  "vendor": "지에스 사랑점",
+  "time": {
+    "$date": "2025-04-10T20:00:39.000Z"
+  },
+  "paymentMethod": "신한 카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f72c60f777d046b8614f75"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "블랑",
+  "cost": -3000,
+  "category": "liquor",
+  "memo": "",
+  "vendor": "영웅싸롱",
+  "time": {
+    "$date": "2025-04-10T11:26:20.000Z"
+  },
+  "paymentMethod": "네이버 페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f72cb5f777d046b8614f76"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "유심",
+  "cost": -3000,
+  "category": "travel",
+  "memo": "",
+  "vendor": "말톡",
+  "time": {
+    "$date": "2025-04-10T00:00:39.000Z"
+  },
+  "paymentMethod": "카카오 페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f72cfaf777d046b8614f78"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 4,
+  "day": 24,
+  "isCombined": false,
+  "title": "치킨",
+  "cost": -30000,
+  "category": "food",
+  "memo": "",
+  "vendor": "교촌치킨",
+  "time": {
+    "$date": "2025-04-24T00:00:53.000Z"
+  },
+  "paymentMethod": "네이버 페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f5f1168bcc5437a4b1e34f"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 4,
+  "day": 9,
+  "isCombined": false,
+  "title": "토마토주스",
+  "cost": -3000,
+  "category": "cafe",
+  "memo": "토마토주스 맛",
+  "vendor": "쥬시",
+  "time": {
+    "$date": "2025-04-09T13:01:14.000Z"
+  },
+  "paymentMethod": "네이버 페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f5f4538bcc5437a4b1e352"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 4,
+  "day": 9,
+  "isCombined": false,
+  "title": "니모 키링",
+  "cost": -2000,
+  "category": "shopping",
+  "memo": "예쁘다",
+  "vendor": "키리링샵",
+  "time": {
+    "$date": "2025-04-09T13:14:57.000Z"
+  },
+  "paymentMethod": "네이버 페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f63a39d276827613a344a8"
+  },
+  "user_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "year": 2025,
+  "month": 4,
+  "day": 9,
+  "isCombined": false,
+  "title": "황정현",
+  "cost": 30000,
+  "category": "transfer",
+  "memo": "돈줘",
+  "vendor": "김본",
+  "time": {
+    "$date": "2025-04-09T18:13:13.000Z"
+  },
+  "paymentMethod": "신한 은행",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f75b89ef707d275bf0aecf"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "카메라거치대",
+  "cost": -1110,
+  "category": "education",
+  "memo": "",
+  "vendor": "당근",
+  "time": {
+    "$date": "2025-04-10T14:47:12.000Z"
+  },
+  "paymentMethod": "현금",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f75bc0ef707d275bf0aed0"
+  },
+  "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "크라운 새콤달콤 딸기레몬1+...",
+  "cost": 0,
+  "category": "etc",
+  "memo": "",
+  "vendor": "푸른농장몰",
+  "time": {
+    "$date": "2025-04-10T23:43:49.000Z"
+  },
+  "paymentMethod": "",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f75c09ef707d275bf0aed1"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "youtube",
+  "cost": -11000,
+  "category": "education",
+  "memo": "wow",
+  "vendor": "google",
+  "time": {
+    "$date": "2025-04-10T14:49:30.000Z"
+  },
+  "paymentMethod": "카카오페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f763a3ef707d275bf0aed2"
+  },
+  "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "크라운 새콤달콤 딸기레몬",
+  "cost": -1000,
+  "category": "cafe",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-04-10T23:48:18.000Z"
+  },
+  "paymentMethod": "네이버페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7662b1a02a67fd507cad3"
+  },
+  "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": true,
+  "title": "뽑기",
+  "cost": -3000,
+  "category": "leisure",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-04-11T00:32:59.000Z"
+  },
+  "paymentMethod": "카카오페이",
+  "group": [
+    {
+      "_id": {
+        "$oid": "67f766161a02a67fd507cad1"
+      },
+      "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+      "year": 2025,
+      "month": 4,
+      "day": 10,
+      "isCombined": false,
+      "title": "뽑기",
+      "cost": -1000,
+      "category": "leisure",
+      "memo": "",
+      "vendor": "",
+      "time": {
+        "$date": "2025-04-11T00:32:25.000Z"
+      },
+      "paymentMethod": "카카오페이",
+      "group": []
+    },
+    {
+      "_id": {
+        "$oid": "67f766261a02a67fd507cad2"
+      },
+      "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+      "year": 2025,
+      "month": 4,
+      "day": 10,
+      "isCombined": false,
+      "title": "뽑기",
+      "cost": -2000,
+      "category": "leisure",
+      "memo": "",
+      "vendor": "",
+      "time": {
+        "$date": "2025-04-11T00:32:59.000Z"
+      },
+      "paymentMethod": "카카오페이",
+      "group": []
+    }
+  ],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7682e1a02a67fd507cad4"
+  },
+  "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "",
+  "cost": -1800,
+  "category": "shopping",
+  "memo": "",
+  "vendor": "바나플에프엔비",
+  "time": {
+    "$date": "2025-04-11T00:31:00.000Z"
+  },
+  "paymentMethod": "KB국민체크(8303)",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f768f61a02a67fd507cad5"
+  },
+  "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "흑당버블티",
+  "cost": 0,
+  "category": "cafe",
+  "memo": "",
+  "vendor": "바나프레소",
+  "time": {
+    "$date": "2025-04-11T00:32:02.000Z"
+  },
+  "paymentMethod": "",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f769761a02a67fd507cad7"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 2,
+  "day": 4,
+  "isCombined": false,
+  "title": "aaa",
+  "cost": -12345,
+  "category": "food",
+  "memo": "aaa",
+  "vendor": "aaa",
+  "time": {
+    "$date": "2025-02-04T09:00:48.000Z"
+  },
+  "paymentMethod": "aaa",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f769931a02a67fd507cad8"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 2,
+  "day": 27,
+  "isCombined": false,
+  "title": "bbb",
+  "cost": -2134,
+  "category": "beauty",
+  "memo": "bbb",
+  "vendor": "bbb",
+  "time": {
+    "$date": "2025-02-27T09:00:22.000Z"
+  },
+  "paymentMethod": "bbb",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f76d801a02a67fd507cadd"
+  },
+  "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": true,
+  "title": "액트투 팝콘 버터맛 78g",
+  "cost": 0,
+  "category": "etc",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-04-11T00:57:00.000Z"
+  },
+  "paymentMethod": "",
+  "group": [
+    {
+      "_id": {
+        "$oid": "67f76c011a02a67fd507cadb"
+      },
+      "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+      "year": 2025,
+      "month": 4,
+      "day": 10,
+      "isCombined": false,
+      "title": "액트투 팝콘 버터맛 78g",
+      "cost": 0,
+      "category": "snack",
+      "memo": "",
+      "vendor": "",
+      "time": {
+        "$date": "2025-04-11T00:51:07.000Z"
+      },
+      "paymentMethod": "네이버페이",
+      "group": []
+    },
+    {
+      "_id": {
+        "$oid": "67f76ca41a02a67fd507cadc"
+      },
+      "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+      "year": 2025,
+      "month": 4,
+      "day": 10,
+      "isCombined": false,
+      "title": "액트투 팝콘 버터맛 78g",
+      "cost": 0,
+      "category": "etc",
+      "memo": "",
+      "vendor": "",
+      "time": {
+        "$date": "2025-04-11T00:57:00.000Z"
+      },
+      "paymentMethod": "",
+      "group": []
+    }
+  ],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f76d871a02a67fd507cade"
+  },
+  "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": true,
+  "title": "수박모양 미니젤리 40g",
+  "cost": -20600,
+  "category": "etc",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-04-11T00:45:18.000Z"
+  },
+  "paymentMethod": "네이버페이",
+  "group": [
+    {
+      "_id": {
+        "$oid": "67f769bf1a02a67fd507cad9"
+      },
+      "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+      "year": 2025,
+      "month": 4,
+      "day": 10,
+      "isCombined": false,
+      "title": "수박모양 미니젤리 40g",
+      "cost": 0,
+      "category": "etc",
+      "memo": "",
+      "vendor": "",
+      "time": {
+        "$date": "2025-04-11T00:45:18.000Z"
+      },
+      "paymentMethod": "네이버페이",
+      "group": []
+    },
+    {
+      "_id": {
+        "$oid": "67f76a741a02a67fd507cada"
+      },
+      "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+      "year": 2025,
+      "month": 4,
+      "day": 10,
+      "isCombined": false,
+      "title": "",
+      "cost": -20600,
+      "category": "etc",
+      "memo": "",
+      "vendor": "네이버페이",
+      "time": {
+        "$date": "2025-04-11T00:48:00.000Z"
+      },
+      "paymentMethod": "KB국민체크(8303)",
+      "group": []
+    }
+  ],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f770cd1a02a67fd507cadf"
+  },
+  "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": true,
+  "title": "난나나콘 50g",
+  "cost": 4850,
+  "category": "etc",
+  "memo": "",
+  "vendor": "마켓찐몰",
+  "time": {
+    "$date": "2025-04-11T00:22:13.000Z"
+  },
+  "paymentMethod": "",
+  "group": [
+    {
+      "_id": {
+        "$oid": "67f7650bef707d275bf0aed3"
+      },
+      "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+      "year": 2025,
+      "month": 4,
+      "day": 10,
+      "isCombined": false,
+      "title": "난나나콘 50g",
+      "cost": 0,
+      "category": "etc",
+      "memo": "",
+      "vendor": "마켓찐몰",
+      "time": {
+        "$date": "2025-04-11T00:22:13.000Z"
+      },
+      "paymentMethod": "",
+      "group": []
+    },
+    {
+      "_id": {
+        "$oid": "67f7690c1a02a67fd507cad6"
+      },
+      "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+      "year": 2025,
+      "month": 4,
+      "day": 10,
+      "isCombined": false,
+      "title": "",
+      "cost": 4850,
+      "category": "etc",
+      "memo": "",
+      "vendor": "",
+      "time": {
+        "$date": "2025-04-11T00:45:00.000Z"
+      },
+      "paymentMethod": "KB국민체크",
+      "group": []
+    }
+  ],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f774cd3b22d039349a53d8"
+  },
+  "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+  "year": 2025,
+  "month": 4,
+  "day": 8,
+  "isCombined": false,
+  "title": "비행기",
+  "cost": -100000,
+  "category": "travel",
+  "memo": "",
+  "vendor": "대한항공",
+  "time": {
+    "$date": "2025-04-08T09:00:24.000Z"
+  },
+  "paymentMethod": "네이버페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f776033b22d039349a53d9"
+  },
+  "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "참이슬",
+  "cost": -3000,
+  "category": "liquor",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-04-11T01:40:29.000Z"
+  },
+  "paymentMethod": "네이버페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f785cac7835a799459df9c"
+  },
+  "user_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "",
+  "cost": -3300,
+  "category": "food",
+  "memo": "",
+  "vendor": "바나플에프엔비",
+  "time": {
+    "$date": "2025-04-11T02:46:00.000Z"
+  },
+  "paymentMethod": "우리카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f78683c7835a799459df9d"
+  },
+  "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "액트투 팝콘 버터맛",
+  "cost": 0,
+  "category": "etc",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-04-11T02:49:18.000Z"
+  },
+  "paymentMethod": "",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f788c3c7835a799459df9e"
+  },
+  "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "크라운 마이쮸 대용량",
+  "cost": 0,
+  "category": "etc",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-04-11T02:53:33.000Z"
+  },
+  "paymentMethod": "",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7920d9394e827a20d5ed1"
+  },
+  "user_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "",
+  "cost": -12900,
+  "category": "food",
+  "memo": "",
+  "vendor": "땡기면，땡비어",
+  "time": {
+    "$date": "2025-04-11T03:37:00.000Z"
+  },
+  "paymentMethod": "우리카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7a3d79394e827a20d5ed4"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 4,
+  "isCombined": false,
+  "title": "",
+  "cost": -27900,
+  "category": "shopping",
+  "memo": "",
+  "vendor": "와디즈",
+  "time": {
+    "$date": "2025-04-04T12:22:00.000Z"
+  },
+  "paymentMethod": "우리카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7a5ad9394e827a20d5ed7"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "",
+  "cost": -10900,
+  "category": "etc",
+  "memo": "",
+  "vendor": "땡기면，땡비어",
+  "time": {
+    "$date": "2025-04-11T03:38:00.000Z"
+  },
+  "paymentMethod": "우리카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7a5c39394e827a20d5ed8"
+  },
+  "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "",
+  "cost": -18240,
+  "category": "home",
+  "memo": "",
+  "vendor": "한국전력전기",
+  "time": {
+    "$date": "2025-04-11T04:58:00.000Z"
+  },
+  "paymentMethod": "우리카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7a9359394e827a20d5edc"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 3,
+  "day": 13,
+  "isCombined": false,
+  "title": "주식회사무신사",
+  "cost": -362540,
+  "category": "shopping",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-03-14T04:55:48.000Z"
+  },
+  "paymentMethod": "신한카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7ab019394e827a20d5ede"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 3,
+  "day": 8,
+  "isCombined": false,
+  "title": "영양제",
+  "cost": -352000,
+  "category": "health",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-03-08T20:44:19.000Z"
+  },
+  "paymentMethod": "신한카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7abf39394e827a20d5edf"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 3,
+  "day": 8,
+  "isCombined": false,
+  "title": "커피머신",
+  "cost": -144325,
+  "category": "etc",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-03-09T06:55:36.000Z"
+  },
+  "paymentMethod": "우리카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7ad949394e827a20d5ee0"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 3,
+  "day": 3,
+  "isCombined": false,
+  "title": "고구려",
+  "cost": -250000,
+  "category": "food",
+  "memo": "중식 선결제",
+  "vendor": "",
+  "time": {
+    "$date": "2025-03-03T18:00:10.000Z"
+  },
+  "paymentMethod": "신한카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7adee9394e827a20d5ee1"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 3,
+  "day": 27,
+  "isCombined": false,
+  "title": "스픽 1년권",
+  "cost": -329900,
+  "category": "education",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-03-28T00:54:41.000Z"
+  },
+  "paymentMethod": "신한카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7c9119394e827a20d5ee5"
+  },
+  "user_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+  "year": 2025,
+  "month": 4,
+  "day": 10,
+  "isCombined": false,
+  "title": "상품명",
+  "cost": 10000,
+  "category": "etc",
+  "memo": "",
+  "vendor": "가맹점명",
+  "time": {
+    "$date": "2025-04-11T07:25:16.000Z"
+  },
+  "paymentMethod": "티머니",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7f52cf1faa63c6b3714f4"
+  },
+  "user_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3",
+  "year": 2025,
+  "month": 4,
+  "day": 11,
+  "isCombined": false,
+  "title": "말랑카우",
+  "cost": -13000,
+  "category": "etc",
+  "memo": "",
+  "vendor": "롯데",
+  "time": {
+    "$date": "2025-04-11T10:42:22.000Z"
+  },
+  "paymentMethod": "네이버페이",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f803a10b1b6165f5dd7d5b"
+  },
+  "user_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3",
+  "year": 2025,
+  "month": 4,
+  "day": 11,
+  "isCombined": false,
+  "title": "농심 신라면 20개+오징어짬",
+  "cost": -38610,
+  "category": "shopping",
+  "memo": "",
+  "vendor": "농심 브랜드스토어",
+  "time": {
+    "$date": "2025-04-11T11:44:15.000Z"
+  },
+  "paymentMethod": "우리카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f84e050b1b6165f5dd7d5e"
+  },
+  "user_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3",
+  "year": 2025,
+  "month": 4,
+  "day": 11,
+  "isCombined": false,
+  "title": "음료수",
+  "cost": -4100,
+  "category": "etc",
+  "memo": "",
+  "vendor": "ＧＳ２５지에스사",
+  "time": {
+    "$date": "2025-04-11T16:44:00.000Z"
+  },
+  "paymentMethod": "우리카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f863940b1b6165f5dd7d66"
+  },
+  "user_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3",
+  "year": 2025,
+  "month": 4,
+  "day": 11,
+  "isCombined": false,
+  "title": "농심 신라면 120g, 20",
+  "cost": -16610,
+  "category": "food",
+  "memo": "",
+  "vendor": "농심 브랜드스토어",
+  "time": {
+    "$date": "2025-04-11T18:33:09.000Z"
+  },
+  "paymentMethod": "우리카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7a6489394e827a20d5ed9"
+  },
+  "user_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3",
+  "year": 2025,
+  "month": 4,
+  "day": 8,
+  "isCombined": false,
+  "title": "고고즉석떡볶이",
+  "cost": -50000,
+  "category": "food",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-04-09T04:30:00.000Z"
+  },
+  "paymentMethod": "우리카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7a6a29394e827a20d5eda"
+  },
+  "user_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3",
+  "year": 2025,
+  "month": 4,
+  "day": 9,
+  "isCombined": false,
+  "title": "정*희",
+  "cost": 10000,
+  "category": "transfer",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-04-09T09:02:13.000Z"
+  },
+  "paymentMethod": "우리은행",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f7a6c19394e827a20d5edb"
+  },
+  "user_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3",
+  "year": 2025,
+  "month": 4,
+  "day": 9,
+  "isCombined": false,
+  "title": "황*현",
+  "cost": 10000,
+  "category": "transfer",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-04-09T10:11:22.000Z"
+  },
+  "paymentMethod": "우리은행",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f87ae80b1b6165f5dd7d6f"
+  },
+  "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "year": 2025,
+  "month": 4,
+  "day": 8,
+  "isCombined": true,
+  "title": "고고즉석떡볶이",
+  "cost": -10000,
+  "category": "food",
+  "memo": "",
+  "vendor": "",
+  "time": {
+    "$date": "2025-04-09T04:55:08.000Z"
+  },
+  "paymentMethod": "우리카드",
+  "group": [
+    {
+      "_id": {
+        "$oid": "67f867210b1b6165f5dd7d69"
+      },
+      "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+      "year": 2025,
+      "month": 4,
+      "day": 8,
+      "isCombined": false,
+      "title": "고고즉석떡볶이",
+      "cost": -30000,
+      "category": "food",
+      "memo": "",
+      "vendor": "",
+      "time": {
+        "$date": "2025-04-09T04:55:08.000Z"
+      },
+      "paymentMethod": "우리카드",
+      "group": []
+    },
+    {
+      "_id": {
+        "$oid": "67f8673b0b1b6165f5dd7d6a"
+      },
+      "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+      "year": 2025,
+      "month": 4,
+      "day": 9,
+      "isCombined": false,
+      "title": "정*희",
+      "cost": 10000,
+      "category": "transfer",
+      "memo": "",
+      "vendor": "",
+      "time": {
+        "$date": "2025-04-09T09:05:41.000Z"
+      },
+      "paymentMethod": "신한은행",
+      "group": []
+    },
+    {
+      "_id": {
+        "$oid": "67f8677a0b1b6165f5dd7d6b"
+      },
+      "user_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+      "year": 2025,
+      "month": 4,
+      "day": 9,
+      "isCombined": false,
+      "title": "황*현",
+      "cost": 10000,
+      "category": "transfer",
+      "memo": "",
+      "vendor": "",
+      "time": {
+        "$date": "2025-04-09T09:10:38.000Z"
+      },
+      "paymentMethod": "국민은행",
+      "group": []
+    }
+  ],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+},
+{
+  "_id": {
+    "$oid": "67f87c890b1b6165f5dd7d70"
+  },
+  "user_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3",
+  "year": 2025,
+  "month": 4,
+  "day": 11,
+  "isCombined": false,
+  "title": "신라면 120g, 20개",
+  "cost": 0,
+  "category": "etc",
+  "memo": "",
+  "vendor": "네이버페이",
+  "time": {
+    "$date": "2025-04-11T20:19:51.000Z"
+  },
+  "paymentMethod": "우리카드",
+  "group": [],
+  "_class": "com.example.mugbackend.transaction.domain.Transaction"
+}]

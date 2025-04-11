@@ -1,0 +1,8132 @@
+[{
+  "_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1_2025_2",
+  "year": 2025,
+  "month": 2,
+  "category": {
+    "education": 0,
+    "etc": 0,
+    "food": 12345,
+    "health": 0,
+    "home": 0,
+    "leisure": 0,
+    "liquor": 0,
+    "living": 0,
+    "pet": 0,
+    "shopping": 0,
+    "subscription": 0,
+    "traffic": 0,
+    "transfer": 0,
+    "travel": 0,
+    "beauty": 2134,
+    "cafe": 0
+  },
+  "paymentMethod": {
+    "aaa": 12345,
+    "bbb": 2134
+  },
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 12345,
+      "isValid": true
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 200000,
+      "expense": 0,
+      "isValid": true
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 2134,
+      "isValid": true
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "monthTotal": 14479
+},
+{
+  "_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1_2025_4",
+  "year": 2025,
+  "month": 4,
+  "monthTotal": 179853,
+  "category": {
+    "education": 12110,
+    "etc": 10900,
+    "food": 40000,
+    "health": 0,
+    "home": 30000,
+    "leisure": 2000,
+    "liquor": 0,
+    "living": 6020,
+    "pet": 0,
+    "shopping": 27900,
+    "subscription": 0,
+    "traffic": 2000,
+    "transfer": 16500,
+    "travel": 0,
+    "beauty": 0,
+    "cafe": 32423
+  },
+  "paymentMethod": {
+    "현대카드": 6020,
+    "카카오뱅크": 4250,
+    "케이뱅크 교통 전용(MY K-패스)": 17250,
+    "kb pay": 64423,
+    "카카오페이": 43000,
+    "우리카드": 68800,
+    "현금": 1110
+  },
+  "daily": {
+    "1": {
+      "income": 10000,
+      "expense": 10270,
+      "isValid": true
+    },
+    "2": {
+      "income": 4500,
+      "expense": 12250,
+      "isValid": true
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 27900,
+      "isValid": true
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 36423,
+      "isValid": true
+    },
+    "7": {
+      "income": 0,
+      "expense": 60000,
+      "isValid": true
+    },
+    "8": {
+      "income": 0,
+      "expense": 10000,
+      "isValid": true
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 23010,
+      "isValid": true
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1_2025_3",
+  "year": 2025,
+  "month": 3,
+  "category": {
+    "education": 329900,
+    "etc": 144825,
+    "food": 257900,
+    "health": 368000,
+    "home": 16550,
+    "leisure": 0,
+    "liquor": 150780,
+    "living": 0,
+    "pet": 0,
+    "shopping": 362540,
+    "subscription": 0,
+    "traffic": 0,
+    "transfer": 0,
+    "travel": 0,
+    "beauty": 0,
+    "cafe": 10870
+  },
+  "paymentMethod": {
+    "카카오뱅크": 16550,
+    "프렌즈체크카드": 16000,
+    "네이버페이": 6870,
+    "현대카드": 11900,
+    "Card": 500,
+    "신한카드": 1445220,
+    "우리카드": 144325
+  },
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 250000,
+      "isValid": true
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 496325,
+      "isValid": true
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 500,
+      "isValid": true
+    },
+    "12": {
+      "income": 0,
+      "expense": 6870,
+      "isValid": true
+    },
+    "13": {
+      "income": 0,
+      "expense": 362540,
+      "isValid": true
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 1000000,
+      "expense": 158680,
+      "isValid": true
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 4000,
+      "isValid": true
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 1300,
+      "expense": 329900,
+      "isValid": true
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 16000,
+      "isValid": true
+    },
+    "31": {
+      "income": 0,
+      "expense": 16550,
+      "isValid": true
+    }
+  },
+  "monthTotal": 1641365
+},
+{
+  "_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1_2025_5",
+  "year": 2025,
+  "month": 5,
+  "monthTotal": 0,
+  "category": {
+    "education": 0,
+    "etc": 0,
+    "food": 0,
+    "health": 0,
+    "home": 0,
+    "leisure": 0,
+    "liquor": 0,
+    "living": 0,
+    "pet": 0,
+    "shopping": 0,
+    "subscription": 0,
+    "traffic": 0,
+    "transfer": 0,
+    "travel": 0,
+    "beauty": 0,
+    "cafe": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1_2025_1",
+  "year": 2025,
+  "month": 1,
+  "monthTotal": 0,
+  "category": {},
+  "paymentMethod": {},
+  "daily": {},
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1_2024_12",
+  "year": 2024,
+  "month": 12,
+  "monthTotal": 0,
+  "category": {},
+  "paymentMethod": {},
+  "daily": {},
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1_2024_11",
+  "year": 2024,
+  "month": 11,
+  "monthTotal": 0,
+  "category": {},
+  "paymentMethod": {},
+  "daily": {},
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1_2024_10",
+  "year": 2024,
+  "month": 10,
+  "monthTotal": 0,
+  "category": {},
+  "paymentMethod": {},
+  "daily": {},
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1_2024_9",
+  "year": 2024,
+  "month": 9,
+  "monthTotal": 0,
+  "category": {},
+  "paymentMethod": {},
+  "daily": {},
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1_2024_8",
+  "year": 2024,
+  "month": 8,
+  "monthTotal": 0,
+  "category": {},
+  "paymentMethod": {},
+  "daily": {},
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1_2024_7",
+  "year": 2024,
+  "month": 7,
+  "monthTotal": 0,
+  "category": {},
+  "paymentMethod": {},
+  "daily": {},
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1_2024_6",
+  "year": 2024,
+  "month": 6,
+  "monthTotal": 0,
+  "category": {},
+  "paymentMethod": {},
+  "daily": {},
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1_2024_5",
+  "year": 2024,
+  "month": 5,
+  "monthTotal": 0,
+  "category": {},
+  "paymentMethod": {},
+  "daily": {},
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2_2025_4",
+  "year": 2025,
+  "month": 4,
+  "monthTotal": 130500,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 5500,
+    "subscription": 8000,
+    "liquor": 3000,
+    "food": 98000,
+    "home": 0,
+    "cafe": 3000,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 3000,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 10000
+  },
+  "paymentMethod": {
+    "네이버 페이": 115500,
+    "신한 카드": 4000,
+    "카카오 뱅크": 8000,
+    "카카오 페이": 3000
+  },
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 450000,
+      "expense": 38000,
+      "isValid": true
+    },
+    "9": {
+      "income": 33000,
+      "expense": 44500,
+      "isValid": true
+    },
+    "10": {
+      "income": 0,
+      "expense": 18000,
+      "isValid": true
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 30000,
+      "isValid": true
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3_2025_4",
+  "year": 2025,
+  "month": 4,
+  "monthTotal": 157320,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 82810,
+    "home": 0,
+    "cafe": 600,
+    "transfer": 0,
+    "etc": 17100,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 56810
+  },
+  "paymentMethod": {
+    "우리카드": 126120,
+    "네이버페이": 31200
+  },
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 9100,
+      "isValid": true
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 50000,
+      "isValid": true
+    },
+    "9": {
+      "income": 20000,
+      "expense": 600,
+      "isValid": true
+    },
+    "10": {
+      "income": 0,
+      "expense": 25300,
+      "isValid": true
+    },
+    "11": {
+      "income": 0,
+      "expense": 72320,
+      "isValid": true
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2_2025_3",
+  "year": 2025,
+  "month": 3,
+  "monthTotal": 30000,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 30000,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {
+    "카카오 페이": 30000
+  },
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 30000,
+      "isValid": true
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2_2025_2",
+  "year": 2025,
+  "month": 2,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2_2025_1",
+  "year": 2025,
+  "month": 1,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2_2024_12",
+  "year": 2024,
+  "month": 12,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2_2024_11",
+  "year": 2024,
+  "month": 11,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2_2024_10",
+  "year": 2024,
+  "month": 10,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2_2024_9",
+  "year": 2024,
+  "month": 9,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2_2024_8",
+  "year": 2024,
+  "month": 8,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2_2024_7",
+  "year": 2024,
+  "month": 7,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2_2024_6",
+  "year": 2024,
+  "month": 6,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2_2024_5",
+  "year": 2024,
+  "month": 5,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3_null_null",
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "jtc4mDDCvuPH1IojPyHwBQMOEhf2_2025_4",
+  "year": 2025,
+  "month": 4,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "jtc4mDDCvuPH1IojPyHwBQMOEhf2_2025_3",
+  "year": 2025,
+  "month": 3,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "jtc4mDDCvuPH1IojPyHwBQMOEhf2_2025_2",
+  "year": 2025,
+  "month": 2,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "jtc4mDDCvuPH1IojPyHwBQMOEhf2_2025_1",
+  "year": 2025,
+  "month": 1,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "jtc4mDDCvuPH1IojPyHwBQMOEhf2_2024_12",
+  "year": 2024,
+  "month": 12,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "jtc4mDDCvuPH1IojPyHwBQMOEhf2_2024_11",
+  "year": 2024,
+  "month": 11,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "jtc4mDDCvuPH1IojPyHwBQMOEhf2_2024_10",
+  "year": 2024,
+  "month": 10,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2_2025_4",
+  "year": 2025,
+  "month": 4,
+  "monthTotal": 147640,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 3000,
+    "food": 0,
+    "home": 18240,
+    "cafe": 1000,
+    "transfer": 0,
+    "etc": 20600,
+    "travel": 100000,
+    "leisure": 3000,
+    "traffic": 0,
+    "shopping": 1800
+  },
+  "paymentMethod": {
+    "네이버페이": 104000,
+    "카카오페이": 3000,
+    "KB국민체크(8303)": 22400,
+    "우리카드": 18240
+  },
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 100000,
+      "isValid": true
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 14850,
+      "expense": 47640,
+      "isValid": true
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2_2025_3",
+  "year": 2025,
+  "month": 3,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2_2025_2",
+  "year": 2025,
+  "month": 2,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2_2025_1",
+  "year": 2025,
+  "month": 1,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2_2024_12",
+  "year": 2024,
+  "month": 12,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2_2024_11",
+  "year": 2024,
+  "month": 11,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2_2024_10",
+  "year": 2024,
+  "month": 10,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1_2024_4",
+  "year": 2024,
+  "month": 4,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2_2024_9",
+  "year": 2024,
+  "month": 9,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2_2024_8",
+  "year": 2024,
+  "month": 8,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3_2025_3",
+  "year": 2025,
+  "month": 3,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3_2025_2",
+  "year": 2025,
+  "month": 2,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3_2025_1",
+  "year": 2025,
+  "month": 1,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3_2024_12",
+  "year": 2024,
+  "month": 12,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3_2024_11",
+  "year": 2024,
+  "month": 11,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3_2024_10",
+  "year": 2024,
+  "month": 10,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3_2024_9",
+  "year": 2024,
+  "month": 9,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3_2024_8",
+  "year": 2024,
+  "month": 8,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+},
+{
+  "_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3_2024_7",
+  "year": 2024,
+  "month": 7,
+  "monthTotal": 0,
+  "category": {
+    "living": 0,
+    "education": 0,
+    "beauty": 0,
+    "health": 0,
+    "subscription": 0,
+    "liquor": 0,
+    "food": 0,
+    "home": 0,
+    "cafe": 0,
+    "transfer": 0,
+    "etc": 0,
+    "travel": 0,
+    "leisure": 0,
+    "traffic": 0,
+    "shopping": 0
+  },
+  "paymentMethod": {},
+  "daily": {
+    "1": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "2": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "3": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "4": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "5": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "6": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "7": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "8": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "9": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "10": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "11": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "12": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "13": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "14": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "15": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "16": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "17": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "18": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "19": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "20": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "21": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "22": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "23": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "24": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "25": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "26": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "27": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "28": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "29": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "30": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    },
+    "31": {
+      "income": 0,
+      "expense": 0,
+      "isValid": false
+    }
+  },
+  "_class": "com.example.mugbackend.analysis.domain.Analysis"
+}]

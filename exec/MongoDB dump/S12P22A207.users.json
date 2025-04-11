@@ -1,0 +1,96 @@
+[{
+  "_id": "1HmYQUhVnjbyQWDIANJHIDkynhx1",
+  "name": "MULGA",
+  "email": "mulgaTest@ssafy.com",
+  "budget": 2000000,
+  "isWithdrawn": false,
+  "receivesNotification": true,
+  "_class": "com.example.mugbackend.user.domain.User"
+},
+{
+  "_id": "r30daCYCJFecfkoy4GERnKJxo7a2",
+  "name": "testSignupUser",
+  "email": "mulga207@gmail.com",
+  "budget": 1000000,
+  "isWithdrawn": false,
+  "receivesNotification": true,
+  "createdAt": {
+    "$date": "2025-03-28T00:35:26.784Z"
+  },
+  "_class": "com.example.mugbackend.user.domain.User",
+  "test": {
+    "$oid": "67e62a547be4585f3d4c7c74"
+  }
+},
+{
+  "_id": "jtc4mDDCvuPH1IojPyHwBQMOEhf2",
+  "name": "윤혜진",
+  "email": "dbsgpwls0316@gmail.com",
+  "budget": 1234567,
+  "isWithdrawn": false,
+  "receivesNotification": true,
+  "createdAt": {
+    "$date": "2025-04-07T08:54:31.009Z"
+  },
+  "_class": "com.example.mugbackend.user.domain.User"
+},
+{
+  "_id": "VjMiem83cAePFGjsIqfK9LWT5LF2",
+  "name": "ample ex",
+  "email": "ampleeeeex@gmail.com",
+  "budget": 999999999,
+  "isWithdrawn": false,
+  "receivesNotification": true,
+  "createdAt": {
+    "$date": "2025-04-07T15:20:50.090Z"
+  },
+  "_class": "com.example.mugbackend.user.domain.User"
+},
+{
+  "_id": "PKaXdbNXCKek0vl8sSYDQLO5zKs2",
+  "name": "ᄑᄅ",
+  "email": "uplegendary999@gmail.com",
+  "budget": 1111111,
+  "isWithdrawn": false,
+  "receivesNotification": true,
+  "createdAt": {
+    "$date": "2025-04-08T01:02:03.189Z"
+  },
+  "_class": "com.example.mugbackend.user.domain.User"
+},
+{
+  "_id": "aAeovBlrrEWTRTSCSL1p6scYI2q2",
+  "name": "[서울_19반_김본]",
+  "email": "qhsl99@sookmyung.ac.kr",
+  "budget": 1000000,
+  "isWithdrawn": false,
+  "receivesNotification": true,
+  "createdAt": {
+    "$date": "2025-04-08T01:51:17.583Z"
+  },
+  "_class": "com.example.mugbackend.user.domain.User"
+},
+{
+  "_id": "J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3",
+  "name": "이규리[서울_2반_A207]팀원",
+  "email": "kllee0309@gmail.com",
+  "budget": 1000000,
+  "isWithdrawn": false,
+  "receivesNotification": true,
+  "createdAt": {
+    "$date": "2025-04-08T09:04:03.643Z"
+  },
+  "_class": "com.example.mugbackend.user.domain.User"
+},
+{
+  "_id": "Kma3YPb8lEMYKRF7zlEk2LSV9wq2",
+  "name": "물가",
+  "email": "mulgas2@gmail.com",
+  "budget": 1000000,
+  "isWithdrawn": false,
+  "receivesNotification": true,
+  "createdAt": {
+    "$date": "2025-04-10T04:35:28.358Z"
+  },
+  "_class": "com.example.mugbackend.user.domain.User"
+}]

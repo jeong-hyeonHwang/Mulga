@@ -1,0 +1,9 @@
+_id,name,email,budget,isWithdrawn,receivesNotification,_class,createdAt,test
+1HmYQUhVnjbyQWDIANJHIDkynhx1,MULGA,mulgaTest@ssafy.com,2000000,false,true,com.example.mugbackend.user.domain.User,,
+r30daCYCJFecfkoy4GERnKJxo7a2,testSignupUser,mulga207@gmail.com,1000000,false,true,com.example.mugbackend.user.domain.User,2025-03-28T00:35:26.784Z,67e62a547be4585f3d4c7c74
+jtc4mDDCvuPH1IojPyHwBQMOEhf2,윤혜진,dbsgpwls0316@gmail.com,1234567,false,true,com.example.mugbackend.user.domain.User,2025-04-07T08:54:31.009Z,
+VjMiem83cAePFGjsIqfK9LWT5LF2,ample ex,ampleeeeex@gmail.com,999999999,false,true,com.example.mugbackend.user.domain.User,2025-04-07T15:20:50.090Z,
+PKaXdbNXCKek0vl8sSYDQLO5zKs2,ᄑᄅ,uplegendary999@gmail.com,1111111,false,true,com.example.mugbackend.user.domain.User,2025-04-08T01:02:03.189Z,
+aAeovBlrrEWTRTSCSL1p6scYI2q2,[서울_19반_김본],qhsl99@sookmyung.ac.kr,1000000,false,true,com.example.mugbackend.user.domain.User,2025-04-08T01:51:17.583Z,
+J9BazXA3N8PaJ4Hpp4Jk1N05PyJ3,이규리[서울_2반_A207]팀원,kllee0309@gmail.com,1000000,false,true,com.example.mugbackend.user.domain.User,2025-04-08T09:04:03.643Z,
+Kma3YPb8lEMYKRF7zlEk2LSV9wq2,물가,mulgas2@gmail.com,1000000,false,true,com.example.mugbackend.user.domain.User,2025-04-10T04:35:28.358Z,
