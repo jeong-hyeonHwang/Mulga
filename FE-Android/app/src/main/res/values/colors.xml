@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="red1">#DC444E</color>
+    <color name="primary_color">#00A4CD</color>
+    <color name="gradient1">#1FC6E1</color>
+    <color name="gradient2">#2DC0F6</color>
+    <color name="black1">#171717</color>
+    <color name="grey1">#344A53</color>
+    <color name="grey2">#98AFBA</color>
+    <color name="grey3">#CDDAE0</color>
+    <color name="grey4">#E6ECF0</color>
+    <color name="grey5">#F6F8FB</color>
+    <color name="white1">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="category_beauty">#E81E63</color>
+    <color name="category_subscription">#CD382D</color>
+    <color name="category_leisure">#FF5722</color>
+    <color name="category_home">#FF9800</color>
+    <color name="category_liquor">#F0B400</color>
+    <color name="category_cafe">#D1BB00</color>
+    <color name="category_education">#AEBB2D</color>
+    <color name="category_transfer">#8BC34A</color>
+    <color name="category_health">#4CAF50</color>
+    <color name="category_living">#009688</color>
+    <color name="category_food">#00BCD4</color>
+    <color name="category_shopping">#006FFF</color>
+    <color name="category_travel">#3C2DDB</color>
+    <color name="category_traffic">#9C27B0</color>
+    <color name="category_pet">#795548</color>
+
+    <color name="google_stroke">#747775</color>
+    <color name="google_font">#1F1F1F</color>
+</resources>
