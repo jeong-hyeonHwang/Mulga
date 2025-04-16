@@ -171,10 +171,12 @@ backend.host=http://j12a207.p.ssafy.io:8000
 # 배포 시 특이사항
 
 - **Android 빌드**: 
-Firebase 바탕으로  앱 서명의 무결성과 보안 확보를 위해 gitlab 아래의 세 파일을 `/app` 하위에 삽입해야 합니다.
+Firebase 바탕으로 앱 서명의 무결성과 보안 확보를 위해 gitlab 아래의 두 파일을 `/app` 하위에 삽입해야 합니다.
     - `key.jks`
     - `key.properties`
+RabbitMQ, backend 주소 설정을 위해 gitlab 아래의 파일을 `/S12P21A207` 하위에 삽입해야 합니다.
     - `local.properties`
+
 - 설정 서버
     - gitlab의 config 브랜치의 스프링 부트 프로젝트 배포
     - config server와 연결된 Github 레파지토리는 private으로 관리
